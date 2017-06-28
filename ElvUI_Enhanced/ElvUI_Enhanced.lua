@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI);
 local addon = E:NewModule("ElvUI_Enhanced");
 
-local addonName = ...;
+local addonName = "ElvUI_Enhanced";
 
 local LEP = LibStub("LibElvUIPlugin-1.0");
 

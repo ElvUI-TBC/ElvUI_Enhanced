@@ -1,4 +1,4 @@
-## Interface: 30300
+## Interface: 20400
 ## Author: Bunny
 ## Version: 1.00
 ## Title: |cffA11313E|r|cffC4C4C4lvUI|r |cffA11313E|r|cffC4C4C4nhanced|r

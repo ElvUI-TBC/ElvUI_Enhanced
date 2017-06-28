@@ -9,17 +9,10 @@ local watchFrame;
 
 local statedriver = {
 	["NONE"] = function()
-		WatchFrame.userCollapsed = false;
-		WatchFrame_Expand(watchFrame);
-		WatchFrame:Show();
-	end,
-	["COLLAPSED"] = function()
-		WatchFrame.userCollapsed = true;
-		WatchFrame_Collapse(watchFrame);
-		WatchFrame:Show();
+		QuestWatchFrame:Show();
 	end,
 	["HIDDEN"] = function()
-		WatchFrame:Hide();
+		QuestWatchFrame:Hide();
 	end
 };
 
@@ -57,7 +50,7 @@ function WF:UpdateSettings()
 end
 
 function WF:Initialize()
-	watchFrame = _G["WatchFrame"];
+	watchFrame = _G["QuestWatchFrame"];
 	self:UpdateSettings();
 end
 

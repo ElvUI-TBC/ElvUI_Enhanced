@@ -132,83 +132,83 @@ local function DataTextsOptions()
 	return config;
 end
 
-local function EquipmentOptions()
-	local PD = E:GetModule("Enhanced_PaperDoll");
+-- local function EquipmentOptions()
+-- 	local PD = E:GetModule("Enhanced_PaperDoll");
 
-	local config = {
-		order = 4,
-		type = "group",
-		name = L["Equipment"],
-		get = function(info) return E.db.enhanced.equipment[info[#info]]; end,
-		set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; end,
-		args = {
-			header = {
-				order = 0,
-				type = "header",
-				name = L["Equipment"]
-			},
-			intro = {
-				order = 1,
-				type = "description",
-				name = L["DURABILITY_DESC"]
-			},
-			enable = {
-				order = 2,
-				type = "toggle",
-				name = L["Enable"],
-				set = function(info, value)
-					E.db.enhanced.equipment[info[#info]] = value;
-					PD:ToggleState()
-				end,
-			},
-			durability = {
-				order = 3,
-				type = "group",
-				name = DURABILITY,
-				guiInline = true,
-				get = function(info) return E.db.enhanced.equipment.durability[info[#info]]; end,
-				set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player") end,
-				args = {
-					enable = {
-						order = 1,
-						type = "toggle",
-						name = L["Enable"],
-						desc = L["Enable/Disable the display of durability information on the character screen."]
-					},
-					onlydamaged = {
-						order = 2,
-						type = "toggle",
-						name = L["Damaged Only"],
-						desc = L["Only show durabitlity information for items that are damaged."],
-						disabled = function() return not E.db.enhanced.equipment.durability.enable; end
-					}
-				}
-			},
-			intro2 = {
-				order = 4,
-				type = "description",
-				name = L["ITEMLEVEL_DESC"]
-			},
-			itemlevel = {
-				order = 5,
-				type = "group",
-				name = L["Item Level"],
-				guiInline = true,
-				get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]]; end,
-				set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); end,
-				args = {
-					enable = {
-						order = 1,
-						type = "toggle",
-						name = L["Enable"],
-						desc = L["Enable/Disable the display of item levels on the character screen."]
-					}
-				}
-			}
-		}
-	};
-	return config;
-end
+-- 	local config = {
+-- 		order = 4,
+-- 		type = "group",
+-- 		name = L["Equipment"],
+-- 		get = function(info) return E.db.enhanced.equipment[info[#info]]; end,
+-- 		set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; end,
+-- 		args = {
+-- 			header = {
+-- 				order = 0,
+-- 				type = "header",
+-- 				name = L["Equipment"]
+-- 			},
+-- 			intro = {
+-- 				order = 1,
+-- 				type = "description",
+-- 				name = L["DURABILITY_DESC"]
+-- 			},
+-- 			enable = {
+-- 				order = 2,
+-- 				type = "toggle",
+-- 				name = L["Enable"],
+-- 				set = function(info, value)
+-- 					E.db.enhanced.equipment[info[#info]] = value;
+-- 					PD:ToggleState()
+-- 				end,
+-- 			},
+-- 			durability = {
+-- 				order = 3,
+-- 				type = "group",
+-- 				name = DURABILITY,
+-- 				guiInline = true,
+-- 				get = function(info) return E.db.enhanced.equipment.durability[info[#info]]; end,
+-- 				set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player") end,
+-- 				args = {
+-- 					enable = {
+-- 						order = 1,
+-- 						type = "toggle",
+-- 						name = L["Enable"],
+-- 						desc = L["Enable/Disable the display of durability information on the character screen."]
+-- 					},
+-- 					onlydamaged = {
+-- 						order = 2,
+-- 						type = "toggle",
+-- 						name = L["Damaged Only"],
+-- 						desc = L["Only show durabitlity information for items that are damaged."],
+-- 						disabled = function() return not E.db.enhanced.equipment.durability.enable; end
+-- 					}
+-- 				}
+-- 			},
+-- 			intro2 = {
+-- 				order = 4,
+-- 				type = "description",
+-- 				name = L["ITEMLEVEL_DESC"]
+-- 			},
+-- 			itemlevel = {
+-- 				order = 5,
+-- 				type = "group",
+-- 				name = L["Item Level"],
+-- 				guiInline = true,
+-- 				get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]]; end,
+-- 				set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); end,
+-- 				args = {
+-- 					enable = {
+-- 						order = 1,
+-- 						type = "toggle",
+-- 						name = L["Enable"],
+-- 						desc = L["Enable/Disable the display of item levels on the character screen."]
+-- 					}
+-- 				}
+-- 			}
+-- 		}
+-- 	};
+-- 	return config;
+-- end
 
 local function MinimapOptions()
 	local config = {
@@ -396,7 +396,6 @@ local function WatchFrameOptions()
 
 	local choices = {
 		["NONE"] = L["None"],
-		["COLLAPSED"] = L["Collapsed"],
 		["HIDDEN"] = L["Hidden"]
 	};
 
@@ -478,7 +477,7 @@ function addon:GetOptions()
 			generalGroup = GeneralOptions(),
 			chatGroup = ChatOptions(),
 			datatextsGroup = DataTextsOptions(),
-			equipmentGroup = EquipmentOptions(),
+			-- equipmentGroup = EquipmentOptions(),
 			minimapGroup = MinimapOptions(),
 			namePlatesGroup = NamePlatesOptions(),
 			tooltipGroup = TooltipOptions(),

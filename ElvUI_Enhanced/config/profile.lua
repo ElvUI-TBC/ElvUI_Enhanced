@@ -57,10 +57,10 @@ P.enhanced = {
 	},
 	watchframe = {
 		enable = false,
-		city = "COLLAPSED",
+		city = "HIDDEN",
 		pvp = "HIDDEN",
 		arena = "HIDDEN",
-		party = "COLLAPSED",
-		raid = "COLLAPSED",
+		party = "HIDDEN",
+		raid = "HIDDEN",
 	},
 };
