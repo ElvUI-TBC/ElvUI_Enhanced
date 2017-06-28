@@ -45,41 +45,7 @@ local function GeneralOptions()
 				min = 0, max = 1, step = 0.01,
 				get = function(info) return E.db.enhanced.general.moverTransparancy; end,
 				set = function(info, value) E.db.enhanced.general.moverTransparancy = value M:UpdateMoverTransparancy(); end
-			},
-			-- portraitHDModelFix = {
-			-- 	order = 4,
-			-- 	type = "group",
-			-- 	guiInline = true,
-			-- 	name = L["Portrait HD Fix"],
-			-- 	get = function(info) return E.db.enhanced.unitframe.portraitHDModelFix[info[#info]]; end,
-			-- 	set = function(info, value) E.db.enhanced.unitframe.portraitHDModelFix[info[#info]] = value; end,
-			-- 	args = {
-			-- 		enable = {
-			-- 			order = 1,
-			-- 			type = "toggle",
-			-- 			name = L["Enable"],A
-			-- 			set = function(info, value) E.db.enhanced.unitframe.portraitHDModelFix.enable = value; E:GetModule("Enhanced_UF_PortraitHDModelFix"):ToggleState(); end
-			-- 		},
-			-- 		debug = {
-			-- 			order = 2,
-			-- 			type = "toggle",
-			-- 			name = L["Debug"],
-			-- 			desc = L["Print to chat model names of units with enabled 3D portraits."],
-			-- 			set = function(info, value) E.db.enhanced.unitframe.portraitHDModelFix.debug = value; end,
-			-- 			disabled = function() return not E.db.enhanced.unitframe.portraitHDModelFix.enable; end
-			-- 		},
-			-- 		modelsToFix = {
-			-- 			order = 3,
-			-- 			type = "input",
-			-- 			name = L["Models to fix"],
-			-- 			desc = L["List of models with broken portrait camera. Separete each model name with \";\" simbol"],
-			-- 			width = "full",
-			-- 			multiline = true,
-			-- 			set = function(info, value) E.db.enhanced.unitframe.portraitHDModelFix.modelsToFix = value; E:GetModule("Enhanced_UF_PortraitHDModelFix"):UpdatePortraits(); end,
-			-- 			disabled = function() return not E.db.enhanced.unitframe.portraitHDModelFix.enable; end
-			-- 		}
-			-- 	}
-			-- }
+			}
 		}
 	};
 	return config;
@@ -268,93 +234,9 @@ local function MinimapOptions()
 	return config;
 end
 
-local function TooltipOptions()
-	local config = {
-		order = 6,
-		type = "group",
-		name = L["Tooltip"],
-		get = function(info) return E.db.enhanced.tooltip[info[#info]] end,
-		set = function(info, value) E.db.enhanced.tooltip[info[#info]] = value; end,
-		args = {
-			header = {
-				order = 0,
-				type = "header",
-				name = L["Tooltip"]
-			},
-			progressInfo = {
-				order = 1,
-				type = "group",
-				name = L["Progress Info"],
-				guiInline = true,
-				get = function(info) return E.db.enhanced.tooltip.progressInfo[info[#info]]; end,
-				set = function(info, value) E.db.enhanced.tooltip.progressInfo[info[#info]] = value; end,
-				args = {
-					enable = {
-						order = 1,
-						type = "toggle",
-						name = L["Enable"],
-						set = function(info, value) E.db.enhanced.tooltip.progressInfo[info[#info]] = value; E:GetModule("Enhanced_ProgressionInfo"):ToggleState(); end
-					},
-					checkPlayer = {
-						order = 2,
-						type = "toggle",
-						name = L["Check Player"]
-					},
-					modifier = {
-						order = 3,
-						type = "select",
-						name = L["Visibility"],
-						set = function(info, value) E.db.enhanced.tooltip.progressInfo[info[#info]] = value; E:GetModule("Enhanced_ProgressionInfo"):UpdateModifier(); end,
-						values = {
-							["ALL"] = ALWAYS,
-							["SHIFT"] = SHIFT_KEY,
-							["ALT"] = ALT_KEY,
-							["CTRL"] = CTRL_KEY
-						}
-					},
-					tiers = {
-						order = 4,
-						type = "group",
-						name = L["Tiers"],
-						get = function(info) return E.db.enhanced.tooltip.progressInfo.tiers[info[#info]]; end,
-						set = function(info, value) E.db.enhanced.tooltip.progressInfo.tiers[info[#info]] = value; E:GetModule("Enhanced_ProgressionInfo"):UpdateSettings() end,
-						args = {
-							RS = {
-								order = 1,
-								type = "toggle",
-								name = E:AbbreviateString(L["Ruby Sanctum"]),
-								desc = L["Ruby Sanctum"],
-							},
-							ICC = {
-								order = 2,
-								type = "toggle",
-								name = E:AbbreviateString(L["Icecrown Citadel"]),
-								desc = L["Icecrown Citadel"],
-							},
-							TotC = {
-								order = 3,
-								type = "toggle",
-								name = E:AbbreviateString(L["Trial of the Crusader"]),
-								desc = L["Trial of the Crusader"],
-							},
-							Ulduar = {
-								order = 4,
-								type = "toggle",
-								name = L["Ulduar"],
-								desc = L["Ulduar"],
-							}
-						}
-					}
-				}
-			}
-		}
-	};
-	return config;
-end
-
 local function NamePlatesOptions()
 	local config = {
-		order = 7,
+		order = 6,
 		type = "group",
 		name = L["NamePlates"],
 		get = function(info) return E.db.enhanced.nameplates[info[#info]] end,
@@ -364,22 +246,16 @@ local function NamePlatesOptions()
 				type = "header",
 				name = L["NamePlates"]
 			},
-			cacheUnitClass = {
-				order = 1,
-				type = "toggle",
-				name = L["Cache Unit Class"],
-				set = function(info, value) E.db.enhanced.nameplates[info[#info]] = value; E:GetModule("Enhanced_NamePlates"):CacheUnitClass(); E:GetModule("NamePlates"):ConfigureAll(); end,
-			},
 			smooth = {
 				type = "toggle",
-				order = 2,
+				order = 1,
 				name = L["Smooth Bars"],
 				desc = L["Bars will transition smoothly."],
 				set = function(info, value) E.db.enhanced.nameplates[ info[#info] ] = value; E:GetModule("NamePlates"):ConfigureAll(); end
 			},
 			smoothSpeed = {
 				type = "range",
-				order = 3,
+				order = 2,
 				name = L["Animation Speed"],
 				desc = L["Speed in seconds"],
 				min = 0.1, max = 3, step = 0.01,
@@ -400,7 +276,7 @@ local function WatchFrameOptions()
 	};
 
 	local config = {
-		order = 8,
+		order = 7,
 		type = "group",
 		name = L["WatchFrame"],
 		get = function(info) return E.db.enhanced.watchframe[info[#info]] end,
@@ -480,7 +356,6 @@ function addon:GetOptions()
 			equipmentGroup = EquipmentOptions(),
 			minimapGroup = MinimapOptions(),
 			namePlatesGroup = NamePlatesOptions(),
-			tooltipGroup = TooltipOptions(),
 			watchFrameGroup = WatchFrameOptions(),
 		}
 	};
