@@ -56,22 +56,13 @@ L["Distance"] = "Дистанция"
 L["Enhanced Time Color"] = true
 
 -- Tooltip
-L["Progress Info"] = "Прогресс"
-L["Check Player"] = "Проверять себя";
-L["Tiers"] = "Тиры";
-L["Ruby Sanctum"] = "Рубиновое Святилище";
-L["Icecrown Citadel"] = "Цитадель Ледяной Короны";
-L["Trial of the Crusader"] = "Испытание Крестоносца";
-L["Ulduar"] = "Ульдуар";
-L["RS"] = "РС";
-L["ICC"] = "ЦЛК";
-L["TotC"] = "ИК";
+L["Item Border Color"] = "Цвет рамки предметов"
+L["Colorize the tooltip border based on item quality."] = "Окрашивать бордюр тултипа в цвет качества предмета"
 
 -- WatchFrame
 L["WatchFrame"] = "Список заданий"
 L["WATCHFRAME_DESC"] = "Настройте отображение списка заданий (квест лог) исходя из ваших личных предпочтений."
 L["Hidden"] = "Скрыть"
-L["Collapsed"] = "Развернуть"
 L["Settings"] = "Настройки"
 L["City (Resting)"] = "Город (отдых)"
 L["PvP"] = "PvP"

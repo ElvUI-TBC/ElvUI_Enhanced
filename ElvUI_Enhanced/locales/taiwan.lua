@@ -58,22 +58,13 @@ L["Distance"] = "距離"
 L["Enhanced Time Color"] = true
 
 -- Tooltip
-L["Progress Info"] = true
-L["Check Player"] = true;
-L["Tiers"] = true;
-L["Ruby Sanctum"] = true;
-L["Icecrown Citadel"] = true;
-L["Trial of the Crusader"] = true;
-L["Ulduar"] = true;
-L["RS"] = true;
-L["ICC"] = true;
-L["TotC"] = true;
+L["Item Border Color"] = true
+L["Colorize the tooltip border based on item quality."] = true
 
 -- WatchFrame
 L["WatchFrame"] = "追蹤器"
 L["WATCHFRAME_DESC"] = "Adjust the settings for the visibility of the watchframe (questlog) to your personal preference."
 L["Hidden"] = "隱藏"
-L["Collapsed"] = "收起"
 L["Settings"] = "設定"
 L["City (Resting)"] = "城市 (休息)"
 L["PvP"] = true

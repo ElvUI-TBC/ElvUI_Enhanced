@@ -58,22 +58,13 @@ L["Distance"] = "Entfernung"
 L["Enhanced Time Color"] = true
 
 -- Tooltip
-L["Progress Info"] = true
-L["Check Player"] = true;
-L["Tiers"] = true;
-L["Ruby Sanctum"] = true;
-L["Icecrown Citadel"] = true;
-L["Trial of the Crusader"] = true;
-L["Ulduar"] = true;
-L["RS"] = true;
-L["ICC"] = true;
-L["TotC"] = true;
+L["Item Border Color"] = true
+L["Colorize the tooltip border based on item quality."] = true
 
 -- WatchFrame
 L["WatchFrame"] = "Questlog"
 L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen für die Sichtbarkeit des Questlogs ganz an ihre persönlichen Bedürfnisse an."
 L["Hidden"] = "Versteckt"
-L["Collapsed"] = "Eingeklappt"
 L["Settings"] = "Einstellungen"
 L["City (Resting)"] = "Stadt (erholend)"
 L["PvP"] = "PvP"

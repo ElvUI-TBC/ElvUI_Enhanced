@@ -58,22 +58,13 @@ L["Distance"] = "Distance"
 L["Enhanced Time Color"] = true
 
 -- Tooltip
-L["Progress Info"] = true
-L["Check Player"] = true;
-L["Tiers"] = true;
-L["Ruby Sanctum"] = true;
-L["Icecrown Citadel"] = true;
-L["Trial of the Crusader"] = true;
-L["Ulduar"] = true;
-L["RS"] = true;
-L["ICC"] = true;
-L["TotC"] = true;
+L["Item Border Color"] = true
+L["Colorize the tooltip border based on item quality."] = true
 
 -- WatchFrame
 L["WatchFrame"] = "Fenêtre d'objectifs"
 L["WATCHFRAME_DESC"] = "Réglez les paramètres pour la visibilité de la fenêtre d'objectifs (journal de quête) avec vos préférences personnelles."
 L["Hidden"] = "Caché"
-L["Collapsed"] = "Replié"
 L["Settings"] = "Paramètres"
 L["City (Resting)"] = "Ville (repos)"
 L["PvP"] = "PvP"

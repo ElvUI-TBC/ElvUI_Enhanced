@@ -178,7 +178,7 @@ end
 
 local function MinimapOptions()
 	local config = {
-		order = 5,
+		order = 4,
 		type = "group",
 		name = L["Minimap"],
 		get = function(info) return E.db.enhanced.minimap[info[#info]] end,
@@ -231,6 +231,32 @@ local function MinimapOptions()
 		["HIDE"] = L["Hide"]
 	};
 	config.args.locationText = E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText
+	return config;
+end
+
+local function TooltipOptions()
+	local config = {
+		order = 5,
+		type = "group",
+		name = L["Tooltip"],
+		get = function(info) return E.db.enhanced.tooltip[info[#info]] end,
+		set = function(info, value) E.db.enhanced.tooltip[info[#info]] = value; end,
+		args = {
+			header = {
+				order = 0,
+				type = "header",
+				name = L["Tooltip"]
+			},
+			itemQualityBorderColor = {
+				order = 1,
+				type = "toggle",
+				name = L["Item Border Color"],
+				desc = L["Colorize the tooltip border based on item quality."],
+				get = function(info) return E.db.enhanced.tooltip.itemQualityBorderColor end,
+				set = function(info, value) E.db.enhanced.tooltip.itemQualityBorderColor = value; E:GetModule("Enhanced_ItemBorderColor"):ToggleState(); end
+			}
+		}
+	};
 	return config;
 end
 
@@ -355,6 +381,7 @@ function addon:GetOptions()
 			datatextsGroup = DataTextsOptions(),
 			equipmentGroup = EquipmentOptions(),
 			minimapGroup = MinimapOptions(),
+			tooltipGroup = TooltipOptions(),
 			namePlatesGroup = NamePlatesOptions(),
 			watchFrameGroup = WatchFrameOptions(),
 		}
