@@ -1,5 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI);
-local TC = E:NewModule("TargetClass", "AceEvent-3.0");
+local TC = E:NewModule("Enhanced_TargetClass", "AceEvent-3.0");
 
 local frame;
 

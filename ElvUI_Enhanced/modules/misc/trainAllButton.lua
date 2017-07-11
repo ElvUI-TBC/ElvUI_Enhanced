@@ -7,14 +7,14 @@ frame:SetScript("OnEvent", function(_, _, addon)
 	if(addon == "Blizzard_TrainerUI") then
 		local ClassTrainerTrainAllButton = CreateFrame("Button", "ClassTrainerTrainAllButton", ClassTrainerFrame, "UIPanelButtonTemplate")
 		ClassTrainerTrainAllButton:SetParent(ClassTrainerFrame)
-		ClassTrainerTrainAllButton:SetText(L["All"])
+		ClassTrainerTrainAllButton:SetText(L["Train All"])
 		ClassTrainerTrainAllButton:Size(80, 22)
 
 		if(E.private.skins.blizzard.enable ~= true or E.private.skins.blizzard.trainer ~= true) then
-			ClassTrainerTrainAllButton:SetPoint("TOPRIGHT", ClassTrainerTrainButton, "TOPLEFT", 0, 0)
+			ClassTrainerTrainAllButton:Point("TOPRIGHT", ClassTrainerTrainButton, "TOPLEFT", 0, 0)
 		else
 			S:HandleButton(ClassTrainerTrainAllButton)
-			ClassTrainerTrainAllButton:SetPoint("TOPRIGHT", ClassTrainerTrainButton, "TOPLEFT", -3, 0)
+			ClassTrainerTrainAllButton:Point("TOPRIGHT", ClassTrainerTrainButton, "TOPLEFT", -3, 0)
 		end
 
 		ClassTrainerTrainAllButton:HookScript("OnClick", function()

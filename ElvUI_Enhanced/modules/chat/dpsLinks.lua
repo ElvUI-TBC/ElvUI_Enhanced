@@ -11,49 +11,29 @@ local ShowUIPanel = ShowUIPanel
 local ItemRefTooltip = ItemRefTooltip
 
 local channelEvents = {
-	"CHAT_MSG_INSTANCE_CHAT",
-	"CHAT_MSG_INSTANCE_CHAT_LEADER",
 	"CHAT_MSG_CHANNEL",
 	"CHAT_MSG_GUILD",
 	"CHAT_MSG_OFFICER",
 	"CHAT_MSG_PARTY",
-	"CHAT_MSG_PARTY_LEADER",
 	"CHAT_MSG_RAID",
 	"CHAT_MSG_RAID_LEADER",
 	"CHAT_MSG_SAY",
 	"CHAT_MSG_WHISPER",
 	"CHAT_MSG_WHISPER_INFORM",
 	"CHAT_MSG_YELL",
-	"CHAT_MSG_BN_WHISPER",
-	"CHAT_MSG_BN_WHISPER_INFORM"
 }
 
 local spamFirstLines = {
-	"^Recount - (.*)$",				-- Recount
-	"^Skada: (.*) for (.*):$",		-- Skada enUS
-	"^Skada: (.*) por (.*):$",		-- Skada esES/ptBR
-	"^Skada: (.*) für (.*):$",		-- Skada deDE
---	"^Skada: (.*) fur (.*):$",		-- Skada deDE
-	"^Skada: (.*) pour (.*):$",		-- Skada frFR
---	"^Skada: (.*) per (.*):$",		-- Skada itIT
-	"^(.*) 의 Skada 보고 (.*):$",	-- Skada koKR
-	"^Отчёт Skada: (.*), с (.*):$",	-- Skada ruRU
-	"^Skada报告(.*)的(.*):$",		-- Skada zhCN
-	"^Skada:(.*)來自(.*):$",			-- Skada zhTW
-	"^(.*) Done for (.*)$",			-- TinyDPS
+	"^Recount - (.*)$",	-- Recount
 }
 
 local spamNextLines = {
-	"^(%d+)\. (.*)$",	-- Recount, Skada
-	"^ (%d+). (.*)$",	-- Skada
---	"^(.*)   (.*)$",	-- Additional Skada
-	"^.*%%%)$",			-- Skada player details
-	"^(%d+). (.*):(.*)(%d+)(.*)(%d+)%%(.*)%((%d+)%)$", -- TinyDPS
+	"^(%d+)\. (.*)$",	-- Recount
 }
 
 function EDL:FilterLine(event, source, msg, ...)
 	for _, line in ipairs(spamNextLines) do
-		if msg:match(line) then
+		if msg and msg ~= nil and msg:match(line) then
 			local curTime = GetTime()
 
 			for id, meter in ipairs(self.Meters) do
@@ -81,7 +61,7 @@ function EDL:FilterLine(event, source, msg, ...)
 	for i, line in ipairs(spamFirstLines) do
 		local newID = 0
 
-		if msg:match(line) then
+		if msg and msg ~= nil and msg:match(line) then
 			local curTime = GetTime()
 
 			if find(msg, "|cff(.+)|r") then
