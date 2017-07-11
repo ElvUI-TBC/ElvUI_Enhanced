@@ -1,6 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI);
-local DT = E:GetModule("DataTexts");
-
+local DT = E:GetModule("DataTexts")
 local LRC = LibStub("LibRangeCheck-2.0");
 
 local join = string.join;
@@ -55,4 +54,4 @@ local function ValueColorUpdate(hex)
 end
 E["valueColorUpdateFuncs"][ValueColorUpdate] = true;
 
-DT:RegisterDatatext("Target Range", {"PLAYER_TARGET_CHANGED"}, OnEvent, OnUpdate);
+DT:RegisterDatatext("Target Range", {"PLAYER_TARGET_CHANGED"}, OnEvent, OnUpdate, nil, nil, nil, L["Target Range"])

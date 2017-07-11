@@ -16,12 +16,6 @@ local function OnUpdate(self, t)
 
 	if(int > 0) then return end
 
-	-- if(GameTimeFrame.flashInvite) then
-	-- 	E:Flash(self, 0.53)
-	-- else
-	-- 	E:StopFlash(self)
-	-- end
-
 	self.text:SetText(BetterDate(E.db.datatexts.timeFormat .. " " .. E.db.datatexts.dateFormat, time()):gsub("%W", displayNumberString):gsub(TIMEMANAGER_AM, displayNumberString):gsub(TIMEMANAGER_PM, displayNumberString))
 
 	lastPanel = self

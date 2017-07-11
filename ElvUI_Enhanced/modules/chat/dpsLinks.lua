@@ -11,6 +11,8 @@ local ShowUIPanel = ShowUIPanel
 local ItemRefTooltip = ItemRefTooltip
 
 local channelEvents = {
+	"CHAT_MSG_INSTANCE_CHAT",
+	"CHAT_MSG_INSTANCE_CHAT_LEADER",
 	"CHAT_MSG_CHANNEL",
 	"CHAT_MSG_GUILD",
 	"CHAT_MSG_OFFICER",
@@ -23,7 +25,7 @@ local channelEvents = {
 	"CHAT_MSG_WHISPER_INFORM",
 	"CHAT_MSG_YELL",
 	"CHAT_MSG_BN_WHISPER",
-	"CHAT_MSG_BN_WHISPER_INFORM",
+	"CHAT_MSG_BN_WHISPER_INFORM"
 }
 
 local spamFirstLines = {
@@ -37,7 +39,7 @@ local spamFirstLines = {
 	"^(.*) 의 Skada 보고 (.*):$",	-- Skada koKR
 	"^Отчёт Skada: (.*), с (.*):$",	-- Skada ruRU
 	"^Skada报告(.*)的(.*):$",		-- Skada zhCN
-	"^Skada:(.*)來自(.*):$",		-- Skada zhTW
+	"^Skada:(.*)來自(.*):$",			-- Skada zhTW
 	"^(.*) Done for (.*)$",			-- TinyDPS
 }
 
@@ -147,7 +149,7 @@ function EDL:SetItemRef(link, text, button, chatframe)
 		return nil
 	end
 
-	return self.hooks.SetItemRef(link, text, button, chatframe)
+	return self.hooks.SetItemRef(link, text, button)
 end
 
 function EDL:ItemRefTooltip_SetHyperlink(self, link, ...)

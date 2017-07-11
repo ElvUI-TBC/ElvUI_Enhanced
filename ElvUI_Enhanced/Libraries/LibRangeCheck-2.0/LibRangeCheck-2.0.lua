@@ -1,6 +1,6 @@
 --[[
 Name: LibRangeCheck-2.0
-Revision: $Revision: 98 $
+Revision: $Revision: 136 $
 Author(s): mitch0
 Website: http://www.wowace.com/projects/librangecheck-2-0/
 Description: A range checking library based on interact distances and spell ranges
@@ -41,7 +41,7 @@ License: Public Domain
 -- @class file
 -- @name LibRangeCheck-2.0
 local MAJOR_VERSION = "LibRangeCheck-2.0"
-local MINOR_VERSION = tonumber(("$Revision: 98 $"):match("%d+")) + 100000
+local MINOR_VERSION = tonumber(("$Revision: 136 $"):match("%d+")) + 100000
 
 local lib, oldminor = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then
@@ -81,119 +81,108 @@ local FriendSpells = {}
 -- list of harmful spells that have different ranges
 local HarmSpells = {}
 
-FriendSpells["DEATHKNIGHT"] = {
-}
-HarmSpells["DEATHKNIGHT"] = {
-    47541, -- ["Death Coil"], -- 30
-    47476, -- ["Strangulate"], -- 30 (Glyph of Strangulate: +20)
-    45477, -- ["Icy Touch"], -- 20 (Icy Reach: 25, 30)
-    56222, -- ["Dark Command"], -- 20
-    50842, -- ["Pestilence"], -- 5
-    45902, -- ["Blood Strike"], -- 5, but requires weapon, use Pestilence if possible, so keep it after Pestilence in this list
-}
-
 FriendSpells["DRUID"] = {
     5185, -- ["Healing Touch"], -- 40
-    467, -- ["Thorns"], -- 30 (Nature's Reach: 33, 36)
-    1126, -- ["Mark of the Wild"], -- 30
+    467, -- ["Thorns"], -- 30
 }
 HarmSpells["DRUID"] = {
-    16979, -- ["Feral Charge"], -- 8-25
-    5176, -- ["Wrath"], -- 30 (Nature's Reach: 33, 36)
-    33786, -- ["Cyclone"], -- 20 (Nature's Reach: 22, 24; Gale Winds: +10/20%)
-    6795, -- ["Growl"], -- 20
+    5176, -- ["Wrath"], -- 40
+    770, -- ["Faerie Fire"] -- 35 (Glyph of Faerie Fire: +10)
+    339, -- ["Entangling Roots"], -- 35
+    6795, -- ["Growl"], -- 30
+--    16979, -- ["Feral Charge"], -- 8-25
+    33786, -- ["Cyclone"], -- 20 (Gale Winds: 22, 24)
+    80964, -- ["Skull Bash"] -- 13
     5211, -- ["Bash"], -- 5
 }
 
 FriendSpells["HUNTER"] = {}
 HarmSpells["HUNTER"] = {
     1130, -- ["Hunter's Mark"] -- 100
-    53351, -- ["Kill Shot"] -- 5-45 (Hawk Eye: 47, 49, 51)
-    75, -- ["Auto Shot"], -- 5-35 (Hawk Eye: 37, 39, 41)
+    53351, -- ["Kill Shot"] -- 45
+    75, -- ["Auto Shot"], -- 40
+    19801, -- ["Tranquilizing Shot"] -- 35
+    34490, -- ["Silencing Shot"] -- 35
     2764, -- ["Throw"], -- 30
-    19503, -- ["Scatter Shot"], -- 15 (Hawk Eye: 17, 19, 21; Glyph of Scatter Shot: +3)
-    2974, -- ["Wing Clip"], -- 5
+    19503, -- ["Scatter Shot"], -- 20 (Glyph of Scatter Shot: +3)
+    2973, -- ["Raptor Strike"] -- 5
 }
 
 FriendSpells["MAGE"] = {
-    475, -- ["Remove Curse"], -- 40 (Magic Attunement: 43, 46)
-    1459, -- ["Arcane Intellect"], -- 30 (Magic Attunement: 33, 36)
+    475, -- ["Remove Curse"], -- 40
+    1459, -- ["Arcane Brilliance"], -- 30
 }
 HarmSpells["MAGE"] = {
-    44614, -- ["Frostfire Bolt"], -- 40
-    133, -- ["Fireball"], -- 35 (Flame Throwing: 38, 41)
-    116, -- ["Frostbolt"], -- 30 (Arctic Reach: 33, 36)
-    30455, -- ["Ice Lance"], -- 30 (Arctic Reach: 33, 36, Glyph of Ice Lance: +5)
-    5143, -- ["Arcane Missiles"], -- 30 (Magic Attunement: 33, 36; Glyph of Arcane Missiles: +5)
-    30451, -- ["Arcane Blast"], -- 30 (Magic Attunement: 33, 36)
-    2948, -- ["Scorch"], -- 30 (Flame Throwing: 33, 36)
+    133, -- ["Fireball"], -- 40
+    116, -- ["Frostbolt"], -- 35
+    30455, -- ["Ice Lance"], -- 35 (Ice Shards: +2, +5)
     5019, -- ["Shoot"], -- 30
-    2136, -- ["Fire Blast"], -- 20 (Flame Throwing: 23, 26; Gladiator Gloves: +5)
 }
 
 FriendSpells["PALADIN"] = {
     635, -- ["Holy Light"], -- 40
-    19740, -- ["Blessing of Might"], -- 30
-    20473, -- ["Holy Shock"], -- 20
+    20217, -- ["Blessing of Kings"], -- 30
 }
 HarmSpells["PALADIN"] = {
-    24275, -- ["Hammer of Wrath"],  -- 30 (Glyph of Hammer of Wrath: +5)
-    20473, -- ["Holy Shock"], -- 20
-    20271, -- ["Judgement"], -- 10
+    62124, -- ["Hand of Reckoning"], -- 30
+--    20473, -- ["Holy Shock"], -- 20
+    20271, -- ["Judgement"], -- 10 (Improved Judgement: +10, +20; Enlightened Judgements: +5, +10)
+    853, -- ["Hammer of Justice"], -- 10 (Glyph of Hammer of Justice: +5)
     35395, -- ["Crusader Strike"], -- 5
 }
 
 FriendSpells["PRIEST"] = {
-    2050, -- ["Lesser Heal"], -- 40
-    1243, -- ["Power Word: Fortitude"], -- 30
+    2061, -- ["Flash Heal"], -- 40
+    6346, -- ["Fear Ward"], -- 30
 }
 HarmSpells["PRIEST"] = {
-    585, -- ["Smite"], -- 30 (Holy Reach: 33, 36)
-    589, -- ["Shadow Word: Pain"], -- 30 (Shadow Reach: 33, 36)
+    589, -- ["Shadow Word: Pain"], -- 40
+    48045, -- ["Mind Sear"], -- 35
     5019, -- ["Shoot"], -- 30
-    15407, -- ["Mind Flay"], -- 20 (Shadow Reach: 22, 24, Glyph of Mind Flay: +10)
 }
 
 FriendSpells["ROGUE"] = {}
 HarmSpells["ROGUE"] = {
-    2764, -- ["Throw"], -- 30
-    26679, -- ["Deadly Throw"], -- 30 (Glyph of Deadly Throw: +5)
-    2094, -- ["Blind"], -- 10 (Dirty Tricks: 12, 15)
+    2764, -- ["Throw"], -- 30 (Throwing Specialization: +5, +10)
+    3018, -- ["Shoot"], -- 30
+    2094, -- ["Blind"], -- 15
+    6770, -- ["Sap"], -- 10
+--    8676, -- ["Ambush"], -- 5 (Glyph of Ambush: +5)
+--    921, -- ["Pick Pocket"], -- 5 (Glyph of Pick Pocket: + 5)
     2098, -- ["Eviscerate"], -- 5
 }
 
 FriendSpells["SHAMAN"] = {
     331, -- ["Healing Wave"], -- 40
-    526, -- ["Cure Poison"], -- 30
+    546, -- ["Water Walking"], -- 30
 }
 HarmSpells["SHAMAN"] = {
-    403, -- ["Lightning Bolt"], -- 30 (Storm Reach: 33, 36)
+    403, -- ["Lightning Bolt"], -- 30 (Elemental Reach: +5)
     370, -- ["Purge"], -- 30
-    8050, -- ["Flame Shock"], -- 20 (Elemental Reach: 27, 35; Gladiator Gloves: +5)
---    8042, -- ["Earth Shock"], -- 20 (Storm, Earth and Fire: 21-25; Gladiator Gloves: +5)
-    8056, -- ["Frost Shock"], -- 20 (Gladiator Gloves: +5)
+    8042, -- ["Earth Shock"], -- 25 (Elemental Reach: +7; Gladiator Gloves: +5)
+    57994, -- ["Wind Shear"], -- 25
+    73899, -- ["Primal Strike"],. -- 5
 }
 
 FriendSpells["WARRIOR"] = {}
 HarmSpells["WARRIOR"] = {
-    100, -- ["Charge"], -- 8-25 (Glyph of Charge: +5)
     3018, -- ["Shoot"], -- 30
     2764, -- ["Throw"], -- 30
     355, -- ["Taunt"], -- 30
+    100, -- ["Charge"], -- 8-25 (Glyph of Long Charge: +5)
+    20252, -- ["Intercept"], -- 8-25
     5246, -- ["Intimidating Shout"], -- 8
-    772, -- ["Rend"], -- 5
+    88161, -- ["Strike"], -- 5
 }
 
 FriendSpells["WARLOCK"] = {
-    5697, -- ["Unending Breath"], -- 30 (demo)
+    5697, -- ["Unending Breath"], -- 30
 }
 HarmSpells["WARLOCK"] = {
+    348, -- ["Immolate"], -- 40
+    27243, -- ["Seed of Corruption"], -- 35
     5019, -- ["Shoot"], -- 30
-    348, -- ["Immolate"], -- 30 (Destructive Reach: 33, 36)
-    172, -- ["Corruption"], -- 30 (Grim Reach: 33, 36)
-    18223, -- ["Curse of Exhaustion"], -- 30 (Grim Reach: 33, 36, Glyph of Curse of Exhaustion: +5)
-    5782, -- ["Fear"], -- 20 (Grim Reach: 22, 24)
-    17877, -- ["Shadowburn"], -- 20 (Destructive Reach: 22, 24)
+    18223, -- ["Curse of Exhaustion"], -- 30 (Glyph of Exhaustion: +5)
 }
 
 -- Items [Special thanks to Maldivia for the nice list]
@@ -295,7 +284,8 @@ local HarmItems = {
         28767, -- The Decapitator
     },
     [45] = {
-        32698, -- Wrangling Rope
+--        32698, -- Wrangling Rope
+        23836, -- Goblin Rocket Launcher
     },
     [60] = {
         32825, -- Soul Cannon
@@ -330,7 +320,9 @@ local tinsert = tinsert
 local tremove = tremove
 local BOOKTYPE_SPELL = BOOKTYPE_SPELL
 local GetSpellInfo = GetSpellInfo
-local GetSpellName = GetSpellName
+local GetSpellBookItemName = GetSpellBookItemName
+local GetNumSpellTabs = GetNumSpellTabs
+local GetSpellTabInfo = GetSpellTabInfo
 local GetItemInfo = GetItemInfo
 local UnitCanAttack = UnitCanAttack
 local UnitCanAssist = UnitCanAssist
@@ -344,8 +336,6 @@ local UnitRace = UnitRace
 local GetInventoryItemLink = GetInventoryItemLink
 local GetTime = GetTime
 local HandSlotId = GetInventorySlotInfo("HandsSlot")
-local TT = ItemRefTooltip
-local math_floor = math.floor
 
 -- temporary stuff
 
@@ -386,7 +376,9 @@ local checkers_SpellWithMin = setmetatable({}, {
 local checkers_Item = setmetatable({}, {
     __index = function(t, item)
         local func = function(unit)
-            return (IsItemInRange(item, unit) == 1)
+            if IsItemInRange(item, unit) == 1 then
+                 return true
+            end
         end
         t[item] = func
         return func
@@ -427,19 +419,16 @@ local function initItemRequests(cacheAll)
     foundNewItems = nil
 end
 
-local function requestItemInfo(itemId)
-    if not itemId then return end
-    TT:SetHyperlink(string.format("item:%d", itemId))
+local function getNumSpells()
+    local _, _, offset, numSpells = GetSpellTabInfo(GetNumSpellTabs())
+    return offset + numSpells
 end
 
 -- return the spellIndex of the given spell by scanning the spellbook
 local function findSpellIdx(spellName)
-    local i = 1
-    while true do
-        local spell, rank = GetSpellName(i, BOOKTYPE_SPELL)
-        if not spell then return nil end
+    for i = 1, getNumSpells() do
+        local spell, rank = GetSpellBookItemName(i, BOOKTYPE_SPELL)
         if spell == spellName then return i end
-        i = i + 1
     end
     return nil
 end
@@ -466,8 +455,8 @@ local function createCheckerList(spellList, itemList, interactList)
             local name, _, _, _, _, _, _, minRange, range = GetSpellInfo(sid)
             local spellIdx = findSpellIdx(name)
             if spellIdx and range then
-                minRange = math_floor(minRange + 0.5)
-                range = math_floor(range + 0.5)
+                minRange = math.floor(minRange + 0.5)
+                range = math.floor(range + 0.5)
                 -- print("### spell: " .. tostring(name) .. ", " .. tostring(minRange) .. " - " ..  tostring(range))
                 if minRange == 0 then -- getRange() expects minRange to be nil in this case
                     minRange = nil
@@ -615,6 +604,7 @@ local function createSmartChecker(friendChecker, harmChecker, miscChecker)
     end
 end
 
+
 -- OK, here comes the actual lib
 
 -- pre-initialize the checkerLists here so that we can return some meaningful result even if
@@ -630,6 +620,7 @@ lib.harmRC = createCheckerList(nil, nil, DefaultInteractList)
 lib.failedItemRequests = {}
 
 -- << Public API
+
 
 
 --- The callback name that is fired when checkers are changed.
@@ -662,9 +653,7 @@ end
 
 -- initialize RangeCheck if not yet initialized or if "forced"
 function lib:init(forced)
-    if self.initialized and (not forced) then
-        return
-    end
+    if self.initialized and (not forced) then return end
     self.initialized = true
     local _, playerClass = UnitClass("player")
     local _, playerRace = UnitRace("player")
@@ -900,6 +889,10 @@ function lib:GLYPH_UPDATED()
     self:scheduleInit()
 end
 
+function lib:SPELLS_CHANGED()
+    self:scheduleInit()
+end
+
 function lib:UNIT_INVENTORY_CHANGED(event, unit)
     if self.initialized and unit == "player" and self.handSlotItem ~= GetInventoryItemLink("player", HandSlotId) then
         self:scheduleInit()
@@ -928,7 +921,6 @@ function lib:processItemRequests(itemRequests)
                 end
                 tremove(items, i)
             elseif not itemRequestTimeoutAt then
-                requestItemInfo(item)
                 itemRequestTimeoutAt = GetTime() + ItemRequestTimeout
                 return true
             elseif GetTime() > itemRequestTimeoutAt then
@@ -973,6 +965,7 @@ function lib:scheduleInit()
 end
 
 
+
 -- << load-time initialization
 
 function lib:activate()
@@ -985,6 +978,7 @@ function lib:activate()
         frame:RegisterEvent("GLYPH_ADDED")
         frame:RegisterEvent("GLYPH_REMOVED")
         frame:RegisterEvent("GLYPH_UPDATED")
+        frame:RegisterEvent("SPELLS_CHANGED")
         local _, playerClass = UnitClass("player")
         if playerClass == "MAGE" or playerClass == "SHAMAN" then
             -- Mage and Shaman gladiator gloves modify spell ranges

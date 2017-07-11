@@ -18,8 +18,8 @@ local slots = {
 	["ShoulderSlot"] = true,
 	["BackSlot"] = false,
 	["ChestSlot"] = true,
---	["ShirtSlot"] = false,
---	["TabardSlot"] = false,
+	-- ["ShirtSlot"] = false,
+	-- ["TabardSlot"] = false,
 	["WristSlot"] = true,
 	["HandsSlot"] = true,
 	["WaistSlot"] = true,
@@ -32,7 +32,7 @@ local slots = {
 	["MainHandSlot"] = true,
 	["SecondaryHandSlot"] = true,
 	["RangedSlot"] = true,
---	["AmmoSlot"] = false,
+	-- ["AmmoSlot"] = false,
 }
 
 function PD:UpdatePaperDoll(unit)

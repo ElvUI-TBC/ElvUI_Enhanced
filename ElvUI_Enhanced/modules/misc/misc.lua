@@ -24,8 +24,37 @@ function M:AutoRelease()
 	end
 end
 
+local DeclineDuel = CreateFrame("Frame")
+function M:LoadDeclineDuel()
+	if not E.db.enhanced.general.declineduel then
+		DeclineDuel:UnregisterAllEvents()
+		return
+	end
+
+	DeclineDuel:RegisterEvent("DUEL_REQUESTED")
+	DeclineDuel:SetScript("OnEvent", function(_, event, name)
+		if(event == "DUEL_REQUESTED") then
+			StaticPopup_Hide("DUEL_REQUESTED")
+			CancelDuel()
+			E:Print(L["Declined duel request from "]..name..".")
+		end
+	end)
+end
+
+function M:HideZone()
+	if(E.db.enhanced.general.hideZoneText) then
+		ZoneTextFrame:UnregisterAllEvents()
+	else
+		ZoneTextFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+		ZoneTextFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
+		ZoneTextFrame:RegisterEvent("ZONE_CHANGED")
+	end
+end
+
 function M:Initialize()
 	self:AutoRelease();
+	self:HideZone()
+	self:LoadDeclineDuel()
 	self:WatchedFaction();
 	self:LoadMoverTransparancy()
 end
