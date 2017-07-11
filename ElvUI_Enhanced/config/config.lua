@@ -717,7 +717,7 @@ function addon:GetOptions()
 		args = {
 			generalGroup = GeneralOptions(),
 			actionbarGroup = ActionbarOptions(),
-			-- chatGroup = ChatOptions(),
+			chatGroup = ChatOptions(),
 			datatextsGroup = DataTextsOptions(),
 			equipmentGroup = EquipmentOptions(),
 			minimapGroup = MinimapOptions(),
