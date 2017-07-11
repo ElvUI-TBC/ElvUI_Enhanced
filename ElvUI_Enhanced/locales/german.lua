@@ -3,7 +3,7 @@ local L = AceLocale:NewLocale("ElvUI", "deDE")
 if not L then return end
 
 -- DESC locales
-L["ENH_LOGIN_MSG"] = "Sie verwenden |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(Cataclysm)|r Version %s%s|r."
+L["ENH_LOGIN_MSG"] = "Sie verwenden |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(TBC)|r Version %s%s|r."
 L["EQUIPMENT_DESC"] = "Passen Sie die Einstellungen für das Ändern Ihrer Ausrüstung an, wenn Sie Ihre Talentspezialisierung ändern oder ein Schlachtfeld betreten."
 L["DURABILITY_DESC"] = "Passen Sie die Einstellungen für die Haltbarkeit im Charakterfenster an."
 L["ITEMLEVEL_DESC"] = "Passen Sie die Einstellungen für die Anzeige von Gegenstandsstufen im Charakterfenster an."
@@ -60,22 +60,11 @@ L["Decline Duel"] = true;
 L["Declined duel request from "] = "Duellaufforderung abgelehnt von "
 
 -- Equipment
-L["Choose the equipment set to use for your primary specialization."] = "Wählen Sie das Ausrüstungsset für Ihre primäre Talentspezialisierung."
-L["Choose the equipment set to use for your secondary specialization."] = "Wählen Sie das Ausrüstungsset für Ihre sekundäre Talentspezialisierung."
-L["Choose the equipment set to use when you enter a battleground or arena."] = "Wählen Sie Ihr Ausrüstungsset für Schlachtfelder oder die Arena."
 L["Damaged Only"] = "Nur Beschädigte"
-L["Enable/Disable the battleground switch."] = "Automatische Änderung der Ausrüstung beim Betreten eines Schlachtfelds aktivieren / deaktivieren."
 L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
 L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren / deaktivieren."
-L["Enable/Disable the specialization switch."] = "Automatische Änderung der Ausrüstung beim Talentwechsel aktivieren / deaktivieren."
-L["Equipment Set Overlay"] = "Ausrüstungssettext"
-L["Equipment Set"] = "Ausrüstungsset"
 L["Equipment"] = "Ausrüstung"
-L["No Change"] = "Keine Änderung"
 L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
-L["Show the associated equipment sets for the items in your bags (or bank)."] = "Zeige auf Gegenständen im Rucksack (oder der Bank) die zugehörigen Ausrüstungssets als Text an."
-L["Specialization"] = "Talentspezialisierung"
-L["You have equipped equipment set: "] = "Sie haben das folgende Ausrüstungsset angelegt: "
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Ändere automatisch die beobachtete Fraktion auf der Erfahrungsleiste zu der Fraktion für die Sie grade Rufpunkte erhalten haben."
@@ -87,13 +76,11 @@ L["Display quest levels at Quest Log."] = true;
 L["Hide Zone Text"] = true;
 L["Mover Transparency"] = "Transparenz Ankerpunkte"
 L["PvP Autorelease"] = "Automatische Freigabe im PvP"
-L["Select Quest Reward"] = "Wähle Questbelohnung"
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Ruf beobachten"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;
-L["Cache Unit Class"] = true;
 L["Smooth Bars"] = true;
 
 -- Minimap
@@ -107,8 +94,8 @@ L["The time to wait before fading the minimap back in after combat hide. (0 = Di
 L["Toggle Location Panel."] = true;
 
 -- Tooltip
-L["Display the players raid progression in the tooltip, this may not immediately update when mousing over a unit."] = true;
-L["Progression Info"] = true;
+L["Item Border Color"] = true
+L["Colorize the tooltip border based on item quality."] = true
 L["Show/Hides an Icon for Items on the Tooltip."] = "Icon für Gegenstände am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells on the Tooltip."] = "Icon für Zauber am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = "Icon für Zauber oder Gegenstände am Tooltip anzeigen oder ausblenden."
@@ -141,7 +128,6 @@ L["Show class icon for units."] = "Zeige Klassensymbole für Einheiten"
 -- WatchFrame
 L["Arena"] = "Arena"
 L["City (Resting)"] = "Stadt (erholend)"
-L["Collapsed"] = "Eingeklappt"
 L["Hidden"] = "Versteckt"
 L["Party"] = "Gruppe"
 L["PvP"] = "PvP"

@@ -354,8 +354,16 @@ local function TooltipOptions()
 				type = "header",
 				name = ColorizeSettingName(L["Tooltip"])
 			},
-			tooltipIcon = {
+			itemQualityBorderColor = {
 				order = 1,
+				type = "toggle",
+				name = L["Item Border Color"],
+				desc = L["Colorize the tooltip border based on item quality."],
+				get = function(info) return E.db.enhanced.tooltip.itemQualityBorderColor end,
+				set = function(info, value) E.db.enhanced.tooltip.itemQualityBorderColor = value; E:GetModule("Enhanced_ItemBorderColor"):ToggleState(); end
+			},
+			tooltipIcon = {
+				order = 2,
 				type = "group",
 				name = L["Tooltip Icon"],
 				guiInline = true,

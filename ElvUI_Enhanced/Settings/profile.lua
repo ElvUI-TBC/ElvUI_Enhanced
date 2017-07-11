@@ -65,6 +65,7 @@ P.enhanced = {
 		smoothSpeed = 0.3,
 	},
 	tooltip = {
+		itemQualityBorderColor = false,
 		tooltipIcon = {
 			enable = false,
 			tooltipIconSpells  = true,

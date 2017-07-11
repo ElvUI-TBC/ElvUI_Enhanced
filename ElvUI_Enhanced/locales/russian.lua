@@ -3,7 +3,7 @@ local L = AceLocale:NewLocale("ElvUI", "ruRU")
 if not L then return end
 
 -- DESC locales
-L["ENH_LOGIN_MSG"] = "Вы используете |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(Cataclysm)|r версии %s%s|r."
+L["ENH_LOGIN_MSG"] = "Вы используете |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(TBC)|r версии %s%s|r."
 L["EQUIPMENT_DESC"] = "Adjust the settings for switching your gear set when you change specialization or enter a battleground."
 L["DURABILITY_DESC"] = "Настройка параметров информации о прочности предметов в окне персонажа."
 L["ITEMLEVEL_DESC"] = "Настройка параметров информации об уровне предмета в окне персонажа."
@@ -60,22 +60,11 @@ L["Decline Duel"] = true;
 L["Declined duel request from "] = "DДуэль отклонена от "
 
 -- Equipment
-L["Choose the equipment set to use for your primary specialization."] = true;
-L["Choose the equipment set to use for your secondary specialization."] = true;
-L["Choose the equipment set to use when you enter a battleground or arena."] = true;
 L["Damaged Only"] = "Только поврежденные"
-L["Enable/Disable the battleground switch."] = true;
 L["Enable/Disable the display of durability information on the character screen."] = "Включить/Выключить отображение информации о прочности предметов в окне персонажа."
 L["Enable/Disable the display of item levels on the character screen."] = "Включить/Выключить отображение уровня предмета в окне персонажа."
-L["Enable/Disable the specialization switch."] = true;
-L["Equipment Set Overlay"] = "Название комплекта"
-L["Equipment Set"] = true;
 L["Equipment"] = "Экипировка"
-L["No Change"] = true;
 L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
-L["Show the associated equipment sets for the items in your bags (or bank)."] = "Отображает название комплекта экипировки, к которому привязан предмет, на его иконке в сумках или банке."
-L["Specialization"] = true
-L["You have equipped equipment set: "] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Автоматическое изменение фракции на панели репутации на ту, очки репутации которой вы получили."
@@ -87,13 +76,11 @@ L["Display quest levels at Quest Log."] = true;
 L["Hide Zone Text"] = true;
 L["Mover Transparency"] = "Прозрачность фиксаторов"
 L["PvP Autorelease"] = "Автовыход из тела"
-L["Select Quest Reward"] = true;
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Отслеживание репутации"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;
-L["Cache Unit Class"] = true;
 L["Smooth Bars"] = true;
 
 -- Minimap
@@ -107,8 +94,8 @@ L["The time to wait before fading the minimap back in after combat hide. (0 = Di
 L["Toggle Location Panel."] = true;
 
 -- Tooltip
-L["Display the players raid progression in the tooltip, this may not immediately update when mousing over a unit."] = true;
-L["Progression Info"] = true;
+L["Item Border Color"] = "Цвет рамки предметов"
+L["Colorize the tooltip border based on item quality."] = "Окрашивать бордюр тултипа в цвет качества предмета"
 L["Show/Hides an Icon for Items on the Tooltip."] = true;
 L["Show/Hides an Icon for Spells on the Tooltip."] = true;
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true;
@@ -141,7 +128,6 @@ L["Show class icon for units."] = "Показывать иконку класс�
 -- WatchFrame
 L["Arena"] = "Арена"
 L["City (Resting)"] = "Город (отдых)"
-L["Collapsed"] = "Развернуть"
 L["Hidden"] = "Скрыть"
 L["Party"] = "Группа"
 L["PvP"] = "PvP"

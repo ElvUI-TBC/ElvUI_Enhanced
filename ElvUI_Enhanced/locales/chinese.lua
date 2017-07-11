@@ -3,7 +3,7 @@ local L = AceLocale:NewLocale("ElvUI", "zhCN")
 if not L then return end
 
 -- DESC locales
-L["ENH_LOGIN_MSG"] = "您正在使用 |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(Cataclysm)|r version %s%s|r."
+L["ENH_LOGIN_MSG"] = "您正在使用 |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(TBC)|r version %s%s|r."
 L["EQUIPMENT_DESC"] = "当你切换专精或进入战场时自动更换装备, 你可以在选项中选择相关的装备模组."
 L["DURABILITY_DESC"] = "调整设置人物窗口装备耐久度显示."
 L["ITEMLEVEL_DESC"] = "Adjust the settings for the item level information on the character screen."
@@ -60,22 +60,11 @@ L["Decline Duel"] = true;
 L["Declined duel request from "] = "已拒绝决斗请求自"
 
 -- Equipment
-L["Choose the equipment set to use for your primary specialization."] = "选择当你使用主专精时的装备模组."
-L["Choose the equipment set to use for your secondary specialization."] = "选择当你使用副专精时的装备模组."
-L["Choose the equipment set to use when you enter a battleground or arena."] = "选择当你进入战场时的装备模组."
 L["Damaged Only"] = "受损显示"
-L["Enable/Disable the battleground switch."] = "开启/关闭 战场切换"
 L["Enable/Disable the display of durability information on the character screen."] = "开启/关闭 人物窗口装备耐久度显示."
 L["Enable/Disable the display of item levels on the character screen."] = true;
-L["Enable/Disable the specialization switch."] = "开启/关闭 专精切换"
-L["Equipment Set Overlay"] = true;
-L["Equipment Set"] = "装备模组"
 L["Equipment"] = "自动换装"
-L["No Change"] = "不改变"
 L["Only show durabitlity information for items that are damaged."] = "只在装备受损时显示耐久度."
-L["Show the associated equipment sets for the items in your bags (or bank)."] = true;
-L["Specialization"] = "专精"
-L["You have equipped equipment set: "] = "你已装备此模组: "
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "当你获得某个阵营的声望时, 将自动追踪此阵营的声望至经验栏位."
@@ -87,13 +76,11 @@ L["Display quest levels at Quest Log."] = true;
 L["Hide Zone Text"] = true;
 L["Mover Transparency"] = true;
 L["PvP Autorelease"] = "PVP自动释放灵魂"
-L["Select Quest Reward"] = true;
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "声望追踪"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;
-L["Cache Unit Class"] = true;
 L["Smooth Bars"] = true;
 
 -- Minimap
@@ -107,8 +94,8 @@ L["The time to wait before fading the minimap back in after combat hide. (0 = Di
 L["Toggle Location Panel."] = true;
 
 -- Tooltip
-L["Display the players raid progression in the tooltip, this may not immediately update when mousing over a unit."] = true;
-L["Progression Info"] = true;
+L["Item Border Color"] = true
+L["Colorize the tooltip border based on item quality."] = true
 L["Show/Hides an Icon for Items on the Tooltip."] = true;
 L["Show/Hides an Icon for Spells on the Tooltip."] = true;
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true;
@@ -140,7 +127,6 @@ L["Show class icon for units."] = true;
 
 -- WatchFrame
 L["Hidden"] = true;
-L["Collapsed"] = true;
 L["City (Resting)"] = true;
 L["PvP"] = true;
 L["Arena"] = true;

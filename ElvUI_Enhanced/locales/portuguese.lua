@@ -3,7 +3,7 @@ local L = AceLocale:NewLocale("ElvUI", "ptBR")
 if not L then return end
 
 -- DESC locales
-L["ENH_LOGIN_MSG"] = "Você está a usar |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(Cataclysm)|r versão %s%s|r."
+L["ENH_LOGIN_MSG"] = "Você está a usar |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cffff8000(TBC)|r versão %s%s|r."
 L["EQUIPMENT_DESC"] = "Ajuste os parâmetros para a mudança de equipamento quando muda de especialização ou entra num campo de batalha."
 L["DURABILITY_DESC"] = "Ajuste as opções para a informação de durabilidade no ecrã de informação do personagem."
 L["ITEMLEVEL_DESC"] = "Adjust the settings for the item level information on the character screen."
@@ -60,22 +60,11 @@ L["Decline Duel"] = true;
 L["Declined duel request from "] = true;
 
 -- Equipment
-L["Choose the equipment set to use for your primary specialization."] = "Escolha o conjunto de equipamento para usar com a especialização primária."
-L["Choose the equipment set to use for your secondary specialization."] = "Escolha o conjunto de equipamento para usar com a especialização secundária."
-L["Choose the equipment set to use when you enter a battleground or arena."] = "Escolha o conjunto de equipamento para usar quando entra num Campo de batalha."
 L["Damaged Only"] = "Só Danificados"
-L["Enable/Disable the battleground switch."] = "Activar/desactivar a mudança em Campo de batalha."
 L["Enable/Disable the display of durability information on the character screen."] = "Activar/desactivar a informação de durabilidade no ecrã de informação do personagem."
 L["Enable/Disable the display of item levels on the character screen."] = true;
-L["Enable/Disable the specialization switch."] = "Activar/desactivar a mudança com a especialização."
-L["Equipment Set Overlay"] = true;
-L["Equipment Set"] = "Conjunto de Equipamento"
 L["Equipment"] = "Equipamento"
-L["No Change"] = "Sem mudança"
 L["Only show durabitlity information for items that are damaged."] = "Só mostrar informação de durabilidade para itens danificados."
-L["Show the associated equipment sets for the items in your bags (or bank)."] = true;
-L["Specialization"] = "Especialização"
-L["You have equipped equipment set: "] = "Você tem equipado o conjunto: "
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Mudar automaticamente a facção controlada para a facção na qual acabou de ganhar pontos de reputação."
@@ -87,13 +76,11 @@ L["Display quest levels at Quest Log."] = true;
 L["Hide Zone Text"] = true;
 L["Mover Transparency"] = true;
 L["PvP Autorelease"] = "Auto-libertar em JxJ"
-L["Select Quest Reward"] = true;
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Controlar Reputação"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;
-L["Cache Unit Class"] = true;
 L["Smooth Bars"] = true;
 
 -- Minimap
@@ -107,8 +94,8 @@ L["The time to wait before fading the minimap back in after combat hide. (0 = Di
 L["Toggle Location Panel."] = true;
 
 -- Tooltip
-L["Display the players raid progression in the tooltip, this may not immediately update when mousing over a unit."] = true;
-L["Progression Info"] = true;
+L["Item Border Color"] = true
+L["Colorize the tooltip border based on item quality."] = true
 L["Show/Hides an Icon for Items on the Tooltip."] = true;
 L["Show/Hides an Icon for Spells on the Tooltip."] = true;
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true;
@@ -140,7 +127,6 @@ L["Show class icon for units."] = true;
 
 -- WatchFrame
 L["Hidden"] = true;
-L["Collapsed"] = true;
 L["City (Resting)"] = true;
 L["PvP"] = true;
 L["Arena"] = true;
