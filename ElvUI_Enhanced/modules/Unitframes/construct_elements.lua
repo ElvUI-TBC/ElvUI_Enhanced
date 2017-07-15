@@ -23,7 +23,7 @@ function UF:UpdateRoleIconFrame(frame)
 	if(not frame) then return; end
 
 	if(E.db.enhanced.unitframe.hideRoleInCombat) then
-		RegisterStateDriver(frame.LFDRole:GetParent(), "visibility", "[combat]hide;show");
+		RegisterStateDriver(frame.RaidRoleFramesAnchor:GetParent(), "visibility", "[combat]hide;show");
 	end
 end
 
