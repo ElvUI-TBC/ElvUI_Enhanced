@@ -324,7 +324,7 @@ function AL:Initialize()
 		reload:SetJustifyH("LEFT");
 		addonListEntry[i].Reload = reload;
 
-		local enabled = CreateFrame("CheckButton", "$parentEnabled", addonListEntry[i]);
+		local enabled = CreateFrame("CheckButton", "$parentEnabled", addonListEntry[i], "ChatConfigCheckButtonTemplate");
 		enabled:SetSize(24, 24);
 		enabled:SetPoint("LEFT", 5, 0);
 		S:HandleCheckBox(enabled);

@@ -6,7 +6,7 @@ local DressUpFrameUndressButton = CreateFrame("Button", "DressUpFrameUndressButt
 DressUpFrameUndressButton:SetText(L["Undress"]);
 DressUpFrameUndressButton:Size(80, 22);
 DressUpFrameUndressButton:SetParent(DressUpFrame);
-DressUpFrameUndressButton:HookScript("OnClick", function(self)
+DressUpFrameUndressButton:HookScript2("OnClick", function(self)
 	self.model:Undress();
 	PlaySound("gsTitleOptionOK");
 end)
@@ -18,7 +18,7 @@ SideDressUpFrameUndressButton:SetText(L["Undress"]);
 SideDressUpFrameUndressButton:Size(80, 22);
 SideDressUpFrameUndressButton:SetParent(SideDressUpModel);
 
-SideDressUpFrameUndressButton:HookScript("OnClick", function(self)
+SideDressUpFrameUndressButton:HookScript2("OnClick", function(self)
 	self.model:Undress();
 	PlaySound("gsTitleOptionOK");
 end)

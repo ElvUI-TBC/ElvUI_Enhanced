@@ -17,7 +17,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 			ClassTrainerTrainAllButton:Point("TOPRIGHT", ClassTrainerTrainButton, "TOPLEFT", -3, 0)
 		end
 
-		ClassTrainerTrainAllButton:HookScript("OnClick", function()
+		ClassTrainerTrainAllButton:HookScript2("OnClick", function()
 			for i = 1, GetNumTrainerServices() do
 				if(select(3, GetTrainerServiceInfo(i)) == "available") then
 					BuyTrainerService(i)
