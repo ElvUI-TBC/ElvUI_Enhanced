@@ -1,0 +1,16 @@
+## Interface: 20400
+## Author: Bunny, Apollyonn, Loaal, Crum
+## Version: 1.01
+## Title: |cffA11313E|r|cffC4C4C4lvUI|r |cffA11313E|r|cffC4C4C4nhanced|r
+## Notes: Plugin-Enhancements for |cffA11313E|r|cffC4C4C4lvUI|r.
+## RequiredDeps: ElvUI
+## DefaultState: Enabled
+
+Developer\Load_Developer.xml
+Libraries\Load_Libraries.xml
+Locales\Load_Locales.xml
+Media\Load_Media.xml
+Settings\Load_Settings.xml
+ElvUI_Enhanced.lua
+Config\Load_Config.xml
+Modules\Load_Modules.xml
