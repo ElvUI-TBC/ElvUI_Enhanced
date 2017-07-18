@@ -76,7 +76,7 @@ PAPERDOLL_SIDEBARS = {
 	{
 		name = L["Titles"];
 		frame = "PaperDollTitlesPane";
-		icon = "Interface\\AddOns\\ElvUI_Enhanced\\Mmedia\\Textures\\PaperDollSidebarTabs";
+		icon = "Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDollSidebarTabs";
 		texCoords = {0.01562500, 0.53125000, 0.32421875, 0.46093750};
 	}
 }
