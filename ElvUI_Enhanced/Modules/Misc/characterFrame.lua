@@ -82,6 +82,9 @@ PAPERDOLL_SIDEBARS = {
 }
 
 PAPERDOLL_STATINFO = {
+	["ITEM_LEVEL"] = {
+		updateFunc = function(statFrame, unit) module:ItemLevel(statFrame, unit) end
+	},
 	["STRENGTH"] = {
 		updateFunc = function(statFrame, unit) module:SetStat(statFrame, unit, 1) end
 	},
@@ -196,8 +199,14 @@ PAPERDOLL_STATINFO = {
 }
 
 PAPERDOLL_STATCATEGORIES = {
-	["BASE_STATS"] = {
+	["ITEM_LEVEL"] = {
 		id = 1,
+		stats = {
+			"ITEM_LEVEL"
+		}
+	},
+	["BASE_STATS"] = {
+		id = 2,
 		stats = {
 			"STRENGTH",
 			"AGILITY",
@@ -207,7 +216,7 @@ PAPERDOLL_STATCATEGORIES = {
 		}
 	},
 	["MELEE_COMBAT"] = {
-		id = 2,
+		id = 3,
 		stats = {
 			"MELEE_DAMAGE",
 			"MELEE_DPS",
@@ -219,7 +228,7 @@ PAPERDOLL_STATCATEGORIES = {
 		}
 	},
 	["RANGED_COMBAT"] = {
-		id = 3,
+		id = 4,
 		stats = {
 			"RANGED_COMBAT1",
 			"RANGED_COMBAT2",
@@ -229,7 +238,7 @@ PAPERDOLL_STATCATEGORIES = {
 		}
 	},
 	["SPELL_COMBAT"] = {
-		id = 4,
+		id = 5,
 		stats = {
 			"SPELL_COMBAT1",
 			"SPELL_COMBAT2",
@@ -240,7 +249,7 @@ PAPERDOLL_STATCATEGORIES = {
 		}
 	},
 	["DEFENSES"] = {
-		id = 5,
+		id = 6,
 		stats = {
 			"DEFENSES1",
 			"DEFENSES2",
@@ -251,7 +260,7 @@ PAPERDOLL_STATCATEGORIES = {
 		}
 	},
 	["RESISTANCE"] = {
-		id = 6,
+		id = 7,
 		stats = {
 			"ARCANE",
 			"FIRE",
@@ -263,6 +272,7 @@ PAPERDOLL_STATCATEGORIES = {
 }
 
 PAPERDOLL_STATCATEGORY_DEFAULTORDER = {
+	"ITEM_LEVEL",
 	"BASE_STATS",
 	"MELEE_COMBAT",
 	"RANGED_COMBAT",
@@ -346,6 +356,18 @@ function module:CharacterFrame_Expand()
 end
 
 local StatCategoryFrames = {}
+
+function module:ItemLevel(statFrame, unit)
+	local label = _G[statFrame:GetName().."Label"]
+	if PersonalGearScore then
+		local myGearScore = GearScore_GetScore(UnitName("player"), "player")
+		label:SetText(myGearScore)
+		local r, b, g = GearScore_GetQuality(myGearScore)
+		label:SetTextColor(r, g, b)
+	else
+		label:SetText(E:GetModule("Tooltip"):GetItemLvL("player"))
+	end
+end
 
 function module:SetStat(statFrame, unit, statIndex)
 	local label = _G[statFrame:GetName().."Label"]
@@ -676,6 +698,12 @@ function module:PaperDollFrame_UpdateStatCategory(categoryFrame)
 	local categoryInfo = PAPERDOLL_STATCATEGORIES[categoryFrame.Category]
 	if categoryInfo == PAPERDOLL_STATCATEGORIES["RESISTANCE"] then
 		categoryFrame.NameText:SetText(L["Resistance"])
+	elseif categoryInfo == PAPERDOLL_STATCATEGORIES["ITEM_LEVEL"] then
+		if PersonalGearScore then
+			categoryFrame.NameText:SetText("Gear Score")
+		else
+			categoryFrame.NameText:SetText(L["Item Level"])
+		end
 	else
 		categoryFrame.NameText:SetText(_G["PLAYERSTAT_"..categoryFrame.Category])
 	end
@@ -698,6 +726,15 @@ function module:PaperDollFrame_UpdateStatCategory(categoryFrame)
 					end
 				end
 				statFrame:Show()
+
+				if stat == "ITEM_LEVEL" then
+					statFrame:Height(30)
+					local label = _G[statFrame:GetName().."Label"]
+					label:ClearAllPoints()
+					label:SetPoint("CENTER")
+					label:FontTemplate(nil, 20)
+					_G[statFrame:GetName().."StatText"]:SetText("")
+				end
 
 				if statInfo.updateFunc2 then
 					statFrame:SetScript("OnEnter", PaperDollStatTooltip)
@@ -724,7 +761,7 @@ function module:PaperDollFrame_UpdateStatCategory(categoryFrame)
 	end
 
 	for index = 1, numVisible do
-		if index%2 == 0 then
+		if index%2 == 0 or categoryInfo == PAPERDOLL_STATCATEGORIES["ITEM_LEVEL"] then
 			local statFrame = _G[categoryFrame:GetName().."Stat"..index]
 			if not statFrame.leftGrad then
 				local r, g, b = 0.8, 0.8, 0.8
@@ -768,7 +805,7 @@ function module:PaperDollFrame_UpdateStatScrollChildHeight()
 	local totalHeight = 0
 	while _G["CharacterStatsPaneCategory"..index] do
 		if _G["CharacterStatsPaneCategory"..index]:IsShown() then
-			totalHeight = totalHeight + _G["CharacterStatsPaneCategory"..index]:GetHeight() + 8
+			totalHeight = totalHeight + _G["CharacterStatsPaneCategory"..index]:GetHeight() + 6
 		end
 		index = index + 1
 	end
@@ -901,9 +938,9 @@ function module:PaperDoll_UpdateCategoryPositions()
 		end
 
 		if prevFrame then
-			frame:SetPoint("TOPLEFT", prevFrame, "BOTTOMLEFT", 0 + xOffset, -8)
+			frame:SetPoint("TOPLEFT", prevFrame, "BOTTOMLEFT", 0 + xOffset, -6)
 		else
-			frame:SetPoint("TOPLEFT", 1 + xOffset, -8 + (CharacterStatsPane.initialOffsetY or 0))
+			frame:SetPoint("TOPLEFT", 1 + xOffset, -6 + (CharacterStatsPane.initialOffsetY or 0))
 		end
 		prevFrame = frame
 	end
@@ -1162,14 +1199,10 @@ function module:Initialize()
 	if not E.private.enhanced.character.enable then return end
 
 	if PersonalGearScore then
-		PersonalGearScore:ClearAllPoints()
-		PersonalGearScore:SetPoint("BOTTOMLEFT", PaperDollFrame, "TOPLEFT", 72, -363)
-		PersonalGearScore:SetParent(CharacterModelFrame)
+		PersonalGearScore:Hide()
 	end
 	if GearScore2 then
-		GearScore2:ClearAllPoints()
-		GearScore2:SetPoint("BOTTOMLEFT", PaperDollFrame, "TOPLEFT", 72, -375)
-		GearScore2:SetParent(CharacterModelFrame)
+		GearScore2:Hide()
 	end
 
 	local function FixHybridScrollBarSize(frame, w1, w2, h1, h2)
