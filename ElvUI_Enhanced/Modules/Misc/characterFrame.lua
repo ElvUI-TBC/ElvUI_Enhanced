@@ -366,6 +366,7 @@ function module:ItemLevel(statFrame, unit)
 		label:SetTextColor(r, g, b)
 	else
 		label:SetText(E:GetModule("Tooltip"):GetItemLvL("player"))
+		label:SetTextColor(unpack(E.media.rgbvaluecolor))
 	end
 end
 
