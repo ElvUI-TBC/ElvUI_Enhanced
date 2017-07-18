@@ -1346,6 +1346,11 @@ function module:Initialize()
 	CharacterModelFrame:Size(231, 320)
 	CharacterModelFrame:Point("TOPLEFT", PaperDollFrame, "TOPLEFT", 66, -78)
 
+	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand", "Ranged", "Ammo"}
+	for _, slotName in ipairs(slots) do
+		_G[format("Character%sSlot", slotName)]:SetFrameLevel(CharacterModelFrame:GetFrameLevel() + 3)
+	end
+
 	CharacterModelFrame.textureTop = CharacterModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
 	CharacterModelFrame.textureTop:Size(256, 128)
 	CharacterModelFrame.textureTop:Point("TOP")
