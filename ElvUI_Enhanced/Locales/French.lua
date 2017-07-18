@@ -75,6 +75,7 @@ L["Colorizes recipes, mounts & pets that are already known"] = true;
 L["Display quest levels at Quest Log."] = true;
 L["Hide Zone Text"] = true;
 L["Mover Transparency"] = "Transparence des Ancres"
+L["Original Close Button"] = true;
 L["PvP Autorelease"] = "Libération automatique en PVP"
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Suivre la Réputation"

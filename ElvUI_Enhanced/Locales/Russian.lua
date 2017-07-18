@@ -75,6 +75,7 @@ L["Colorizes recipes, mounts & pets that are already known"] = true;
 L["Display quest levels at Quest Log."] = true;
 L["Hide Zone Text"] = true;
 L["Mover Transparency"] = "Прозрачность фиксаторов"
+L["Original Close Button"] = true;
 L["PvP Autorelease"] = "Автовыход из тела"
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Отслеживание репутации"

@@ -30,7 +30,8 @@ P.enhanced = {
 		autoRepChange = false,
 		moverTransparancy = 0.8,
 		declineduel = false,
-		hideZoneText = false
+		hideZoneText = false,
+		originalCloseButton = false,
 	},
 	actionbars = {
 		transparentActionbars = {

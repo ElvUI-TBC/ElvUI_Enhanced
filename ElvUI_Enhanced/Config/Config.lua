@@ -61,6 +61,13 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.hideZoneText end,
 				set = function(info, value) E.db.enhanced.general.hideZoneText = value M:HideZone() end
 			},
+			originalCloseButton = {
+				order = 5,
+				type = "toggle",
+				name = L["Original Close Button"],
+				get = function(info) return E.db.enhanced.general.originalCloseButton end,
+				set = function(info, value) E.db.enhanced.general.originalCloseButton = value E:StaticPopup_Show("CONFIG_RL") end
+			},
 			moverTransparancy = {
 				order = 6,
 				type = "range",
