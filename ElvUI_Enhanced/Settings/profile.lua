@@ -60,12 +60,21 @@ P.enhanced = {
 	},
 	equipment = {
 		enable = false,
+		font = "Homespun",
+		fontSize = 10,
+		fontOutline = "MONOCHROMEOUTLINE",
 		durability = {
 			enable = true,
-			onlydamaged = true
+			onlydamaged = true,
+			position = "TOPLEFT",
+			xOffset = 1,
+			yOffset = 0
 		},
 		itemlevel = {
-			enable = true
+			enable = true,
+			position = "BOTTOMLEFT",
+			xOffset = 1,
+			yOffset = 4
 		}
 	},
 	minimap = {

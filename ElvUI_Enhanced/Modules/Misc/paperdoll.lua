@@ -82,21 +82,34 @@ function PD:UpdatePaperDoll(unit)
 	end
 end
 
+function PD:UpdateInfoText(name)
+	local db = E.db.enhanced.equipment
+	local frame
+	for slotName, durability in pairs(slots) do
+		frame = _G[format("%s%s", name, slotName)]
+
+		frame.ItemLevel:Point(db.itemlevel.position, frame, db.itemlevel.xOffset, db.itemlevel.yOffset)
+		frame.ItemLevel:FontTemplate(E.LSM:Fetch("font", db.font), db.fontSize, db.fontOutline)
+
+		if name == "Character" and durability then
+			frame.DurabilityInfo:Point(db.durability.position, frame, db.durability.xOffset, db.durability.yOffset)
+			frame.DurabilityInfo:FontTemplate(E.LSM:Fetch("font", db.font), db.fontSize, db.fontOutline)
+		end
+	end
+end
+
 function PD:BuildInfoText(name)
 	local frame
 	for slotName, durability in pairs(slots) do
 		frame = _G[format("%s%s", name, slotName)]
 
 		frame.ItemLevel = frame:CreateFontString(nil, "OVERLAY")
-		frame.ItemLevel:Point("BOTTOMLEFT", frame, "BOTTOMLEFT", 1, 1)
-		frame.ItemLevel:FontTemplate(E.media.font, 12, "THINOUTLINE")
 
 		if name == "Character" and durability then
 			frame.DurabilityInfo = frame:CreateFontString(nil, "OVERLAY")
-			frame.DurabilityInfo:Point("TOP", frame, "TOP", 0, -4)
-			frame.DurabilityInfo:FontTemplate(E.media.font, 12, "THINOUTLINE")
 		end
 	end
+	self:UpdateInfoText(name)
 end
 
 function PD:OnEvent(event, unit)

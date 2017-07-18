@@ -199,7 +199,8 @@ local function EquipmentOptions()
 				name = L["Durability"],
 				guiInline = true,
 				get = function(info) return E.db.enhanced.equipment.durability[info[#info]] end,
-				set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll() end,
+				set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+				disabled = function() return not E.db.enhanced.equipment.enable end,
 				args = {
 					info = {
 						order = 1,
@@ -217,7 +218,37 @@ local function EquipmentOptions()
 						type = "toggle",
 						name = L["Damaged Only"],
 						desc = L["Only show durabitlity information for items that are damaged."],
-						disabled = function() return not E.db.enhanced.equipment.durability.enable end
+						disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
+					},
+					spacer = {
+						order = 4,
+						type = "description",
+						name = " "
+					},
+					position = {
+						order = 5,
+						type = "select",
+						name = L["Position"],
+						values = {
+							["TOP"] = "TOP",
+							["TOPLEFT"] = "TOPLEFT",
+							["TOPRIGHT"] = "TOPRIGHT",
+							["BOTTOM"] = "BOTTOM",
+							["BOTTOMLEFT"] = "BOTTOMLEFT",
+							["BOTTOMRIGHT"] = "BOTTOMRIGHT"
+						}
+					},
+					xOffset = {
+						order = 6,
+						type = "range",
+						name = L["X-Offset"],
+						min = -20, max = 20, step = 1
+					},
+					yOffset = {
+						order = 7,
+						type = "range",
+						name = L["Y-Offset"],
+						min = -20, max = 20, step = 1
 					}
 				}
 			},
@@ -227,7 +258,8 @@ local function EquipmentOptions()
 				name = L["Item Level"],
 				guiInline = true,
 				get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]] end,
-				set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll() end,
+				set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+				disabled = function() return not E.db.enhanced.equipment.enable end,
 				args = {
 					info = {
 						order = 1,
@@ -239,6 +271,71 @@ local function EquipmentOptions()
 						type = "toggle",
 						name = L["Enable"],
 						desc = L["Enable/Disable the display of item levels on the character screen."]
+					},
+					spacer = {
+						order = 3,
+						type = "description",
+						name = " "
+					},
+					position = {
+						order = 4,
+						type = "select",
+						name = L["Position"],
+						values = {
+							["TOP"] = "TOP",
+							["TOPLEFT"] = "TOPLEFT",
+							["TOPRIGHT"] = "TOPRIGHT",
+							["BOTTOM"] = "BOTTOM",
+							["BOTTOMLEFT"] = "BOTTOMLEFT",
+							["BOTTOMRIGHT"] = "BOTTOMRIGHT"
+						}
+					},
+					xOffset = {
+						order = 5,
+						type = "range",
+						name = L["X-Offset"],
+						min = -20, max = 20, step = 1
+					},
+					yOffset = {
+						order = 6,
+						type = "range",
+						name = L["Y-Offset"],
+						min = -20, max = 20, step = 1
+					}
+				}
+			},
+			fontGroup = {
+				order = 4,
+				type = "group",
+				name = L["Font"],
+				guiInline = true,
+				get = function(info) return E.db.enhanced.equipment[info[#info]] end,
+				set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+				disabled = function() return not E.db.enhanced.equipment.enable end,
+				args = {
+					font = {
+						order = 2,
+						type = "select",
+						dialogControl = "LSM30_Font",
+						name = L["Font"],
+						values = AceGUIWidgetLSMlists.font
+					},
+					fontSize = {
+						order = 3,
+						type = "range",
+						name = L["Font Size"],
+						min = 6, max = 36, step = 1
+					},
+					fontOutline = {
+						order = 4,
+						type = "select",
+						name = L["Font Outline"],
+						values = {
+							["NONE"] = L["None"],
+							["OUTLINE"] = "OUTLINE",
+							["MONOCHROMEOUTLINE"] = "MONOCROMEOUTLINE",
+							["THICKOUTLINE"] = "THICKOUTLINE"
+						}
 					}
 				}
 			}
