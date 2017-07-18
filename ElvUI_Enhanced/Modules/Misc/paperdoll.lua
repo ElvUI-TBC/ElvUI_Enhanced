@@ -88,10 +88,12 @@ function PD:UpdateInfoText(name)
 	for slotName, durability in pairs(slots) do
 		frame = _G[format("%s%s", name, slotName)]
 
+		frame.ItemLevel:ClearAllPoints()
 		frame.ItemLevel:Point(db.itemlevel.position, frame, db.itemlevel.xOffset, db.itemlevel.yOffset)
 		frame.ItemLevel:FontTemplate(E.LSM:Fetch("font", db.font), db.fontSize, db.fontOutline)
 
 		if name == "Character" and durability then
+			frame.DurabilityInfo:ClearAllPoints()
 			frame.DurabilityInfo:Point(db.durability.position, frame, db.durability.xOffset, db.durability.yOffset)
 			frame.DurabilityInfo:FontTemplate(E.LSM:Fetch("font", db.font), db.fontSize, db.fontOutline)
 		end
