@@ -105,6 +105,13 @@ L["Tooltip Icon"] = true;
 L["Skin Animations"] = true;
 L["Undress"] = "Ausziehen"
 
+-- Character Frame
+L["Character Stats"] = true;
+L["Hide Character Information"] = true;
+L["Hide Pet Information"] = true;
+L["Show Character Information"] = true;
+L["Show Pet Information"] = true;
+
 -- Movers
 L["Loss Control Icon"] = "Kontrollverlustsymbol"
 L["Player Portrait"] = true;

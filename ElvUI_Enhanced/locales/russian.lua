@@ -105,6 +105,13 @@ L["Tooltip Icon"] = true;
 L["Skin Animations"] = true;
 L["Undress"] = "Раздеть"
 
+-- Character Frame
+L["Character Stats"] = "Характеристики"
+L["Hide Character Information"] = "Скрыть информацию о персонаже"
+L["Hide Pet Information"] = "Скрыть информацию о питомце"
+L["Show Character Information"] = "Показать информацию о персонаже"
+L["Show Pet Information"] = "Показать информацию о питомце"
+
 -- Movers
 L["Loss Control Icon"] = "Иконка потери контроля"
 L["Player Portrait"] = "Портрет игрока"
