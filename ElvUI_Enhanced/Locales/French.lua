@@ -108,6 +108,7 @@ L["Undress"] = "Déshabillé"
 
 -- Character Frame
 L["Character Stats"] = true;
+L["Damage Per Second"] = "DPS";
 L["Hide Character Information"] = true;
 L["Hide Pet Information"] = true;
 L["Show Character Information"] = true;

@@ -108,6 +108,7 @@ L["Undress"] = "Раздеть"
 
 -- Character Frame
 L["Character Stats"] = "Характеристики"
+L["Damage Per Second"] = "Урон в секунду"
 L["Hide Character Information"] = "Скрыть информацию о персонаже"
 L["Hide Pet Information"] = "Скрыть информацию о питомце"
 L["Show Character Information"] = "Показать информацию о персонаже"
