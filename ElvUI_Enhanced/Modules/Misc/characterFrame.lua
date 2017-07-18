@@ -646,8 +646,9 @@ end
 function PaperDollFrame_CollapseStatCategory(categoryFrame)
 	if not categoryFrame.collapsed then
 		categoryFrame.collapsed = true
+		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("NoBackdrop")
 		local index = 1
-		while(_G[categoryFrame:GetName().."Stat"..index]) do
+		while _G[categoryFrame:GetName().."Stat"..index] do
 			_G[categoryFrame:GetName().."Stat"..index]:Hide()
 			index = index + 1
 		end
@@ -661,6 +662,7 @@ end
 function PaperDollFrame_ExpandStatCategory(categoryFrame)
 	if categoryFrame.collapsed then
 		categoryFrame.collapsed = false
+		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Transparent")
 		categoryFrame.CollapsedIcon:Hide()
 		categoryFrame.ExpandedIcon:Show()
 		module:PaperDollFrame_UpdateStatCategory(categoryFrame)
@@ -689,7 +691,7 @@ function module:PaperDollFrame_UpdateStatCategory(categoryFrame)
 			if statInfo then
 				local statFrame = _G[categoryFrame:GetName().."Stat"..numVisible + 1]
 				if not statFrame then
-					statFrame = CreateFrame("FRAME", categoryFrame:GetName() .."Stat"..numVisible + 1, categoryFrame, "StatFrameTemplate")
+					statFrame = CreateFrame("FRAME", categoryFrame:GetName() .."Stat"..numVisible + 1, categoryFrame, "CharacterStatFrameTemplate")
 					if prevStatFrame then
 						statFrame:SetPoint("TOPLEFT", prevStatFrame, "BOTTOMLEFT", 0, 0)
 						statFrame:SetPoint("TOPRIGHT", prevStatFrame, "BOTTOMRIGHT", 0, 0)
@@ -724,14 +726,21 @@ function module:PaperDollFrame_UpdateStatCategory(categoryFrame)
 	for index = 1, numVisible do
 		if index%2 == 0 then
 			local statFrame = _G[categoryFrame:GetName().."Stat"..index]
-			if not statFrame.Bg then
-				statFrame.Bg = statFrame:CreateTexture(statFrame:GetName().."Bg", "BACKGROUND")
-				statFrame.Bg:SetPoint("LEFT", categoryFrame, "LEFT", 1, 0)
-				statFrame.Bg:SetPoint("RIGHT", categoryFrame, "RIGHT", 0, 0)
-				statFrame.Bg:SetPoint("TOP")
-				statFrame.Bg:SetPoint("BOTTOM")
-				statFrame.Bg:SetTexture(0.9, 0.9, 1)
-				statFrame.Bg:SetAlpha(0.1)
+			if not statFrame.leftGrad then
+				local r, g, b = 0.8, 0.8, 0.8
+				statFrame.leftGrad = statFrame:CreateTexture(nil, "BACKGROUND")
+				statFrame.leftGrad:SetWidth(80)
+				statFrame.leftGrad:SetHeight(statFrame:GetHeight())
+				statFrame.leftGrad:SetPoint("LEFT", statFrame, "CENTER")
+				statFrame.leftGrad:SetTexture(E.media.blankTex)
+				statFrame.leftGrad:SetGradientAlpha("Horizontal", r, g, b, 0.35, r, g, b, 0)
+
+				statFrame.rightGrad = statFrame:CreateTexture(nil, "BACKGROUND")
+				statFrame.rightGrad:SetWidth(80)
+				statFrame.rightGrad:SetHeight(statFrame:GetHeight())
+				statFrame.rightGrad:SetPoint("RIGHT", statFrame, "CENTER")
+				statFrame.rightGrad:SetTexture([[Interface\BUTTONS\WHITE8X8.blp]])
+				statFrame.rightGrad:SetGradientAlpha("Horizontal", r, g, b, 0, r, g, b, 0.35)
 			end
 		end
 	end
@@ -759,7 +768,7 @@ function module:PaperDollFrame_UpdateStatScrollChildHeight()
 	local totalHeight = 0
 	while _G["CharacterStatsPaneCategory"..index] do
 		if _G["CharacterStatsPaneCategory"..index]:IsShown() then
-			totalHeight = totalHeight + _G["CharacterStatsPaneCategory"..index]:GetHeight() + 4
+			totalHeight = totalHeight + _G["CharacterStatsPaneCategory"..index]:GetHeight() + 8
 		end
 		index = index + 1
 	end
@@ -892,9 +901,9 @@ function module:PaperDoll_UpdateCategoryPositions()
 		end
 
 		if prevFrame then
-			frame:SetPoint("TOPLEFT", prevFrame, "BOTTOMLEFT", 0 + xOffset, -4)
+			frame:SetPoint("TOPLEFT", prevFrame, "BOTTOMLEFT", 0 + xOffset, -8)
 		else
-			frame:SetPoint("TOPLEFT", 1 + xOffset, -4 + (CharacterStatsPane.initialOffsetY or 0))
+			frame:SetPoint("TOPLEFT", 1 + xOffset, -8 + (CharacterStatsPane.initialOffsetY or 0))
 		end
 		prevFrame = frame
 	end
@@ -1315,27 +1324,30 @@ function module:Initialize()
 	statsPane:SetScrollChild(statsPaneScrollChild)
 
 	CharacterStatsPaneScrollBar.Show = function(self)
-		statsPane:Width(172)
+		statsPane:Width(177)
 		statsPane:Point("TOPRIGHT", -57, -75)
 		for _, button in next, statsPane.buttons do
-			button:Width(172)
+			button:Width(177)
+			button.Toolbar:Width(150 - 18)
 		end
 		getmetatable(self).__index.Show(self)
 	end
 
 	CharacterStatsPaneScrollBar.Hide = function(self)
-		statsPane:Width(190)
+		statsPane:Width(177 + 18)
 		statsPane:Point("TOPRIGHT", -39, -75)
 		for _, button in next, statsPane.buttons do
-			button:Width(190)
+			button:Width(177 + 18)
+			button.Toolbar:Width(150)
 		end
 		getmetatable(self).__index.Hide(self)
 	end
 
-	statsPane:Width(187)
+	statsPane:Width(177)
 	statsPane:Point("TOPRIGHT", -39, -75)
 	for _, button in next, statsPane.buttons do
-		button:Width(187)
+		button:Width(177)
+		button.Toolbar:Width(150 - 18)
 	end
 
 	statsPane:SetScript("OnShow", function(self)
