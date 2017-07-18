@@ -65,6 +65,7 @@ L["Enable/Disable the display of durability information on the character screen.
 L["Enable/Disable the display of item levels on the character screen."] = "Включить/Выключить отображение уровня предмета в окне персонажа."
 L["Equipment"] = "Экипировка"
 L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
+L["Quality Color"] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Автоматическое изменение фракции на панели репутации на ту, очки репутации которой вы получили."

@@ -65,6 +65,7 @@ L["Enable/Disable the display of durability information on the character screen.
 L["Enable/Disable the display of item levels on the character screen."] = "在角色資訊上顯示各裝備裝等"
 L["Equipment"] = "自動換裝"
 L["Only show durabitlity information for items that are damaged."] = "只在裝備受損時顯示耐久度."
+L["Quality Color"] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "當你獲得某個陣營的聲望時, 將自動追蹤此陣營的聲望至經驗值欄位."

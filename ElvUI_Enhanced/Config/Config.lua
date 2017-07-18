@@ -249,13 +249,13 @@ local function EquipmentOptions()
 						order = 6,
 						type = "range",
 						name = L["X-Offset"],
-						min = -20, max = 20, step = 1
+						min = -50, max = 50, step = 1
 					},
 					yOffset = {
 						order = 7,
 						type = "range",
 						name = L["Y-Offset"],
-						min = -20, max = 20, step = 1
+						min = -50, max = 50, step = 1
 					}
 				}
 			},
@@ -279,13 +279,19 @@ local function EquipmentOptions()
 						name = L["Enable"],
 						desc = L["Enable/Disable the display of item levels on the character screen."]
 					},
-					spacer = {
+					qualityColor = {
 						order = 3,
+						type = "toggle",
+						name = L["Quality Color"],
+						disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
+					},
+					spacer = {
+						order = 4,
 						type = "description",
 						name = " "
 					},
 					position = {
-						order = 4,
+						order = 5,
 						type = "select",
 						name = L["Position"],
 						values = {
@@ -298,16 +304,16 @@ local function EquipmentOptions()
 						}
 					},
 					xOffset = {
-						order = 5,
-						type = "range",
-						name = L["X-Offset"],
-						min = -20, max = 20, step = 1
-					},
-					yOffset = {
 						order = 6,
 						type = "range",
+						name = L["X-Offset"],
+						min = -50, max = 50, step = 1
+					},
+					yOffset = {
+						order = 7,
+						type = "range",
 						name = L["Y-Offset"],
-						min = -20, max = 20, step = 1
+						min = -50, max = 50, step = 1
 					}
 				}
 			},

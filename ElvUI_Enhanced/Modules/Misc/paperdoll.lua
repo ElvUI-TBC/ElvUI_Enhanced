@@ -7,8 +7,10 @@ local pairs, select = pairs, select
 local CanInspect = CanInspect
 local GetInventoryItemDurability = GetInventoryItemDurability
 local GetInventoryItemLink = GetInventoryItemLink
+local GetInventoryItemQuality = GetInventoryItemQuality
 local GetInventoryItemTexture = GetInventoryItemTexture
 local GetInventorySlotInfo = GetInventorySlotInfo
+local GetItemQualityColor = GetItemQualityColor
 local GetItemInfo = GetItemInfo
 local InCombatLockdown = InCombatLockdown
 
@@ -65,6 +67,18 @@ function PD:UpdatePaperDoll(unit)
 				itemLevel = select(4, GetItemInfo(itemLink))
 				if itemLevel then
 					frame.ItemLevel:SetText(itemLevel)
+
+					if E.db.enhanced.equipment.itemlevel.qualityColor then
+						frame.ItemLevel:SetTextColor()
+						local rarity = GetInventoryItemQuality(unit, slotId)
+						if rarity and rarity > 1 then
+							frame.ItemLevel:SetTextColor(GetItemQualityColor(rarity))
+						else
+							frame.ItemLevel:SetTextColor(1, 1, 1)
+						end
+					else
+						frame.ItemLevel:SetTextColor(1, 1, 1)
+					end
 				end
 			end
 		end
