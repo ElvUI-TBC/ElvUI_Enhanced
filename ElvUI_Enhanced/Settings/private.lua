@@ -14,4 +14,10 @@ V.equipment = {
 
 V.loseofcontrol = {
 	enable = false
-};
+}
+
+V.enhanced = {
+	character = {
+		enable = true
+	}
+}

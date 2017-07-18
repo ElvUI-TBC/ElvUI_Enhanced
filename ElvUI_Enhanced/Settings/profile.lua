@@ -41,6 +41,20 @@ P.enhanced = {
 	chat = {
 		dpsLinks = false,
 	},
+	character = {
+		background = false,
+		inspectBackground = false,
+		collapsed = false,
+		orderName = "",
+		collapsedName = {
+			BASE_STATS = false,
+			MELEE_COMBAT = false,
+			RANGED_COMBAT = false,
+			SPELL_COMBAT = false,
+			DEFENSES = false,
+			RESISTANCE = false
+		}
+	},
 	datatexts = {
 		timeColorEnch = false,
 	},
