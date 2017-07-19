@@ -1224,6 +1224,7 @@ function mod:Initialize()
 		end
 	end
 
+	PlayerTitleDropDown:Kill()
 	CharacterAttributesFrame:Kill()
 	CharacterResistanceFrame:Kill()
 
