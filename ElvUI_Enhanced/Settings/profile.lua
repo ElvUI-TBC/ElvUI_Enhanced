@@ -73,6 +73,7 @@ P.enhanced = {
 		},
 		itemlevel = {
 			enable = true,
+			qualityColor = true,
 			position = "BOTTOMLEFT",
 			xOffset = 1,
 			yOffset = 4
