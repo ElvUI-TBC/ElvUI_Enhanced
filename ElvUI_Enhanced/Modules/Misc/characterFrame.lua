@@ -1170,17 +1170,24 @@ function mod:UpdateInspectModelFrame()
 
 		local _, fileName = UnitRace(InspectFrame.unit)
 
-		InspectModelFrame.textureTop:Show()
-		InspectModelFrame.textureTop:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.tga")
-		InspectModelFrame.textureMid:Show()
-		InspectModelFrame.textureMid:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.tga")
-		InspectModelFrame.textureBot:Show()
-		InspectModelFrame.textureBot:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.tga")
+		InspectModelFrame.textureTopLeft:Show()
+		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
+		InspectModelFrame.textureTopLeft:SetDesaturated(true)
+		InspectModelFrame.textureTopRight:Show()
+		InspectModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.blp")
+		InspectModelFrame.textureTopRight:SetDesaturated(true)
+		InspectModelFrame.textureBotLeft:Show()
+		InspectModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.blp")
+		InspectModelFrame.textureBotLeft:SetDesaturated(true)
+		InspectModelFrame.textureBotRight:Show()
+		InspectModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
+		InspectModelFrame.textureBotRight:SetDesaturated(true)
 	else
 		InspectModelFrame.backdrop:Hide()
-		InspectModelFrame.textureTop:Hide()
-		InspectModelFrame.textureMid:Hide()
-		InspectModelFrame.textureBot:Hide()
+		InspectModelFrame.textureTopLeft:Hide()
+		InspectModelFrame.textureTopRight:Hide()
+		InspectModelFrame.textureBotLeft:Hide()
+		InspectModelFrame.textureBotRight:Hide()
 	end
 end
 
@@ -1189,17 +1196,29 @@ function mod:ADDON_LOADED(_, addon)
 	self:UnregisterEvent("ADDON_LOADED")
 
 	InspectModelFrame:CreateBackdrop("Default")
-	InspectModelFrame:Size(231, 320)
+	InspectModelFrame:Size(231, 321)
 	InspectModelFrame:Point("TOPLEFT", InspectPaperDollFrame, "TOPLEFT", 66, -78)
 
-	InspectModelFrame.textureTop = InspectModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
-	InspectModelFrame.textureTop:Point("TOP")
+	InspectModelFrame.textureTopLeft = InspectModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
+	InspectModelFrame.textureTopLeft:Point("TOPLEFT")
+	InspectModelFrame.textureTopLeft:Size(212, 245)
+	InspectModelFrame.textureTopLeft:SetTexCoord(0.171875, 1, 0.0392156862745098, 1)
 
-	InspectModelFrame.textureMid = InspectModelFrame:CreateTexture("$parentTextureMid", "BACKGROUND")
-	InspectModelFrame.textureMid:Point("CENTER", 0, -32)
+	InspectModelFrame.textureTopRight = InspectModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
+	InspectModelFrame.textureTopRight:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "TOPRIGHT")
+	InspectModelFrame.textureTopRight:Size(19, 245)
+	InspectModelFrame.textureTopRight:SetTexCoord(0, 0.296875, 0.0392156862745098, 1)
 
-	InspectModelFrame.textureBot = InspectModelFrame:CreateTexture("$parentTextureBot", "BACKGROUND")
-	InspectModelFrame.textureBot:Point("BOTTOM")
+	InspectModelFrame.textureBotLeft = InspectModelFrame:CreateTexture("$parentTextureMid", "BACKGROUND")
+	InspectModelFrame.textureBotLeft:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "BOTTOMLEFT")
+	InspectModelFrame.textureBotLeft:Size(212, 128)
+	InspectModelFrame.textureBotLeft:SetTexCoord(0.171875, 1, 0, 1)
+
+	InspectModelFrame.textureBotRight = InspectModelFrame:CreateTexture("$parentTextureBot", "BACKGROUND")
+	InspectModelFrame.textureBotRight:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "BOTTOMRIGHT")
+	InspectModelFrame.textureBotRight:Size(19, 128)
+	InspectModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
+
 	self:SecureHook("InspectFrame_UpdateTalentTab", "UpdateInspectModelFrame")
 end
 
@@ -1397,7 +1416,7 @@ function mod:Initialize()
 	end)
 
 	CharacterModelFrame:CreateBackdrop("Default")
-	CharacterModelFrame:Size(231, 322)
+	CharacterModelFrame:Size(231, 321)
 	CharacterModelFrame:Point("TOPLEFT", PaperDollFrame, "TOPLEFT", 66, -78)
 
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand", "Ranged", "Ammo"}
