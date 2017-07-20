@@ -43,12 +43,13 @@ P.enhanced = {
 		dpsLinks = false,
 	},
 	character = {
-		background = true,
-		petBackground = true,
-		inspectBackground = true,
+		background = false,
+		petBackground = false,
+		inspectBackground = false,
 		collapsed = false,
 		orderName = "",
 		collapsedName = {
+			ITEM_LEVEL = false,
 			BASE_STATS = false,
 			MELEE_COMBAT = false,
 			RANGED_COMBAT = false,
