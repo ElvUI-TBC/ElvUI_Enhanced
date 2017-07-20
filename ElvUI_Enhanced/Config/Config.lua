@@ -151,10 +151,230 @@ local function ChatOptions()
 	return config;
 end
 
+-- Character Frame
+local function CharacterFrameOptions()
+	local PD = E:GetModule("Enhanced_PaperDoll")
+
+	local config = {
+		order = 4,
+		type = "group",
+		name = L["Character Frame"],
+		childGroups = "tab",
+		args = {
+			characterFrame = {
+				order = 1,
+				type = "group",
+				name = L["Enhanced Character Frame"],
+				args = {
+					header = {
+						order = 0,
+						type = "header",
+						name = ColorizeSettingName(L["Enhanced Character Frame"])
+					},
+					enable = {
+						order = 1,
+						type = "toggle",
+						name = L["Enable"],
+						get = function(info) return E.private.enhanced.character.enable end,
+						set = function(info, value) E.private.enhanced.character.enable = value; E:StaticPopup_Show("PRIVATE_RL"); end
+					},
+					background = {
+						order = 2,
+						type = "toggle",
+						name = L["Paperdoll Background"],
+						get = function(info) return E.db.enhanced.character.background; end,
+						set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
+						disabled = function() return not E.private.enhanced.character.enable; end
+					},
+					inspectBackground = {
+						order = 3,
+						type = "toggle",
+						name = L["Inspect Paperdoll Background"],
+						get = function(info) return E.db.enhanced.character.inspectBackground; end,
+						set = function(info, value) E.db.enhanced.character.inspectBackground = value; end,
+						disabled = function() return not E.private.enhanced.character.enable; end
+					}
+				}
+			},
+			equipment = {
+				order = 2,
+				type = "group",
+				name = L["Equipment"],
+				get = function(info) return E.db.enhanced.equipment[info[#info]] end,
+				set = function(info, value) E.db.enhanced.equipment[info[#info]] = value end,
+				args = {
+					header = {
+						order = 0,
+						type = "header",
+						name = ColorizeSettingName(L["Equipment"])
+					},
+					durability = {
+						order = 2,
+						type = "group",
+						name = L["Durability"],
+						guiInline = true,
+						get = function(info) return E.db.enhanced.equipment.durability[info[#info]] end,
+						set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						args = {
+							info = {
+								order = 1,
+								type = "description",
+								name = L["ITEMLEVEL_DESC"]
+							},
+							enable = {
+								order = 2,
+								type = "toggle",
+								name = L["Enable"],
+								desc = L["Enable/Disable the display of durability information on the character screen."]
+							},
+							onlydamaged = {
+								order = 3,
+								type = "toggle",
+								name = L["Damaged Only"],
+								desc = L["Only show durabitlity information for items that are damaged."],
+								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+							},
+							spacer = {
+								order = 4,
+								type = "description",
+								name = " "
+							},
+							position = {
+								order = 5,
+								type = "select",
+								name = L["Position"],
+								values = {
+									["TOP"] = "TOP",
+									["TOPLEFT"] = "TOPLEFT",
+									["TOPRIGHT"] = "TOPRIGHT",
+									["BOTTOM"] = "BOTTOM",
+									["BOTTOMLEFT"] = "BOTTOMLEFT",
+									["BOTTOMRIGHT"] = "BOTTOMRIGHT"
+								},
+								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+							},
+							xOffset = {
+								order = 6,
+								type = "range",
+								name = L["X-Offset"],
+								min = -50, max = 50, step = 1,
+								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+							},
+							yOffset = {
+								order = 7,
+								type = "range",
+								name = L["Y-Offset"],
+								min = -50, max = 50, step = 1,
+								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+							}
+						}
+					},
+					itemlevel = {
+						order = 3,
+						type = "group",
+						name = L["Item Level"],
+						guiInline = true,
+						get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]] end,
+						set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						args = {
+							info = {
+								order = 1,
+								type = "description",
+								name = L["ITEMLEVEL_DESC"]
+							},
+							enable = {
+								order = 2,
+								type = "toggle",
+								name = L["Enable"],
+								desc = L["Enable/Disable the display of item levels on the character screen."]
+							},
+							qualityColor = {
+								order = 3,
+								type = "toggle",
+								name = L["Quality Color"],
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+							},
+							spacer = {
+								order = 4,
+								type = "description",
+								name = " "
+							},
+							position = {
+								order = 5,
+								type = "select",
+								name = L["Position"],
+								values = {
+									["TOP"] = "TOP",
+									["TOPLEFT"] = "TOPLEFT",
+									["TOPRIGHT"] = "TOPRIGHT",
+									["BOTTOM"] = "BOTTOM",
+									["BOTTOMLEFT"] = "BOTTOMLEFT",
+									["BOTTOMRIGHT"] = "BOTTOMRIGHT"
+								},
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+							},
+							xOffset = {
+								order = 6,
+								type = "range",
+								name = L["X-Offset"],
+								min = -50, max = 50, step = 1,
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+							},
+							yOffset = {
+								order = 7,
+								type = "range",
+								name = L["Y-Offset"],
+								min = -50, max = 50, step = 1,
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+							}
+						}
+					},
+					fontGroup = {
+						order = 4,
+						type = "group",
+						name = L["Font"],
+						guiInline = true,
+						get = function(info) return E.db.enhanced.equipment[info[#info]] end,
+						set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						args = {
+							font = {
+								order = 2,
+								type = "select",
+								dialogControl = "LSM30_Font",
+								name = L["Font"],
+								values = AceGUIWidgetLSMlists.font
+							},
+							fontSize = {
+								order = 3,
+								type = "range",
+								name = L["Font Size"],
+								min = 6, max = 36, step = 1
+							},
+							fontOutline = {
+								order = 4,
+								type = "select",
+								name = L["Font Outline"],
+								values = {
+									["NONE"] = L["None"],
+									["OUTLINE"] = "OUTLINE",
+									["MONOCHROMEOUTLINE"] = "MONOCROMEOUTLINE",
+									["THICKOUTLINE"] = "THICKOUTLINE"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return config;
+end
+
 -- Datatext
 local function DataTextsOptions()
 	local config = {
-		order = 4,
+		order = 5,
 		type = "group",
 		name = L["DataTexts"],
 		args = {
@@ -172,189 +392,6 @@ local function DataTextsOptions()
 			}
 		}
 	};
-	return config;
-end
-
--- Equipment
-local function EquipmentOptions()
-	local PD = E:GetModule("Enhanced_PaperDoll")
-
-	local config = {
-		order = 5,
-		type = "group",
-		name = L["Equipment"],
-		get = function(info) return E.db.enhanced.equipment[info[#info]] end,
-		set = function(info, value) E.db.enhanced.equipment[info[#info]] = value end,
-		args = {
-			header = {
-				order = 0,
-				type = "header",
-				name = ColorizeSettingName(L["Equipment"])
-			},
-			enable = {
-				order = 1,
-  				type = "toggle",
-  				name = L["Enable"],
-  				set = function(info, value)
- 					E.db.enhanced.equipment[info[#info]] = value;
- 					PD:ToggleState()
-  				end,
-  			},
-			durability = {
-				order = 2,
-				type = "group",
-				name = L["Durability"],
-				guiInline = true,
-				get = function(info) return E.db.enhanced.equipment.durability[info[#info]] end,
-				set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
-				disabled = function() return not E.db.enhanced.equipment.enable end,
-				args = {
-					info = {
-						order = 1,
-						type = "description",
-						name = L["ITEMLEVEL_DESC"]
-					},
-					enable = {
-						order = 2,
-						type = "toggle",
-						name = L["Enable"],
-						desc = L["Enable/Disable the display of durability information on the character screen."]
-					},
-					onlydamaged = {
-						order = 3,
-						type = "toggle",
-						name = L["Damaged Only"],
-						desc = L["Only show durabitlity information for items that are damaged."],
-						disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
-					},
-					spacer = {
-						order = 4,
-						type = "description",
-						name = " "
-					},
-					position = {
-						order = 5,
-						type = "select",
-						name = L["Position"],
-						values = {
-							["TOP"] = "TOP",
-							["TOPLEFT"] = "TOPLEFT",
-							["TOPRIGHT"] = "TOPRIGHT",
-							["BOTTOM"] = "BOTTOM",
-							["BOTTOMLEFT"] = "BOTTOMLEFT",
-							["BOTTOMRIGHT"] = "BOTTOMRIGHT"
-						}
-					},
-					xOffset = {
-						order = 6,
-						type = "range",
-						name = L["X-Offset"],
-						min = -50, max = 50, step = 1
-					},
-					yOffset = {
-						order = 7,
-						type = "range",
-						name = L["Y-Offset"],
-						min = -50, max = 50, step = 1
-					}
-				}
-			},
-			itemlevel = {
-				order = 3,
-				type = "group",
-				name = L["Item Level"],
-				guiInline = true,
-				get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]] end,
-				set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
-				disabled = function() return not E.db.enhanced.equipment.enable end,
-				args = {
-					info = {
-						order = 1,
-						type = "description",
-						name = L["ITEMLEVEL_DESC"]
-					},
-					enable = {
-						order = 2,
-						type = "toggle",
-						name = L["Enable"],
-						desc = L["Enable/Disable the display of item levels on the character screen."]
-					},
-					qualityColor = {
-						order = 3,
-						type = "toggle",
-						name = L["Quality Color"],
-						disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
-					},
-					spacer = {
-						order = 4,
-						type = "description",
-						name = " "
-					},
-					position = {
-						order = 5,
-						type = "select",
-						name = L["Position"],
-						values = {
-							["TOP"] = "TOP",
-							["TOPLEFT"] = "TOPLEFT",
-							["TOPRIGHT"] = "TOPRIGHT",
-							["BOTTOM"] = "BOTTOM",
-							["BOTTOMLEFT"] = "BOTTOMLEFT",
-							["BOTTOMRIGHT"] = "BOTTOMRIGHT"
-						}
-					},
-					xOffset = {
-						order = 6,
-						type = "range",
-						name = L["X-Offset"],
-						min = -50, max = 50, step = 1
-					},
-					yOffset = {
-						order = 7,
-						type = "range",
-						name = L["Y-Offset"],
-						min = -50, max = 50, step = 1
-					}
-				}
-			},
-			fontGroup = {
-				order = 4,
-				type = "group",
-				name = L["Font"],
-				guiInline = true,
-				get = function(info) return E.db.enhanced.equipment[info[#info]] end,
-				set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
-				disabled = function() return not E.db.enhanced.equipment.enable end,
-				args = {
-					font = {
-						order = 2,
-						type = "select",
-						dialogControl = "LSM30_Font",
-						name = L["Font"],
-						values = AceGUIWidgetLSMlists.font
-					},
-					fontSize = {
-						order = 3,
-						type = "range",
-						name = L["Font Size"],
-						min = 6, max = 36, step = 1
-					},
-					fontOutline = {
-						order = 4,
-						type = "select",
-						name = L["Font Outline"],
-						values = {
-							["NONE"] = L["None"],
-							["OUTLINE"] = "OUTLINE",
-							["MONOCHROMEOUTLINE"] = "MONOCROMEOUTLINE",
-							["THICKOUTLINE"] = "THICKOUTLINE"
-						}
-					}
-				}
-			}
-		}
-	}
-
 	return config;
 end
 
@@ -850,8 +887,8 @@ function addon:GetOptions()
 			generalGroup = GeneralOptions(),
 			actionbarGroup = ActionbarOptions(),
 			chatGroup = ChatOptions(),
+			characterFrameGroup = CharacterFrameOptions(),
 			datatextsGroup = DataTextsOptions(),
-			equipmentGroup = EquipmentOptions(),
 			minimapGroup = MinimapOptions(),
 			namePlatesGroup = NamePlatesOptions(),
 			tooltipGroup = TooltipOptions(),

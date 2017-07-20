@@ -43,8 +43,8 @@ P.enhanced = {
 		dpsLinks = false,
 	},
 	character = {
-		background = false,
-		inspectBackground = false,
+		background = true,
+		inspectBackground = true,
 		collapsed = false,
 		orderName = "",
 		collapsedName = {
@@ -60,19 +60,18 @@ P.enhanced = {
 		timeColorEnch = false,
 	},
 	equipment = {
-		enable = false,
 		font = "Homespun",
 		fontSize = 10,
 		fontOutline = "MONOCHROMEOUTLINE",
 		durability = {
-			enable = true,
+			enable = false,
 			onlydamaged = true,
 			position = "TOPLEFT",
 			xOffset = 1,
 			yOffset = 0
 		},
 		itemlevel = {
-			enable = true,
+			enable = false,
 			qualityColor = true,
 			position = "BOTTOMLEFT",
 			xOffset = 1,
