@@ -187,7 +187,7 @@ local function CharacterFrameOptions()
 						disabled = function() return not E.private.enhanced.character.enable; end
 					},
 					petBackground = {
-						order = 2,
+						order = 3,
 						type = "toggle",
 						name = L["Pet Paperdoll Background"],
 						get = function(info) return E.db.enhanced.character.petBackground; end,
@@ -195,7 +195,7 @@ local function CharacterFrameOptions()
 						disabled = function() return not E.private.enhanced.character.enable; end
 					},
 					inspectBackground = {
-						order = 3,
+						order = 4,
 						type = "toggle",
 						name = L["Inspect Paperdoll Background"],
 						get = function(info) return E.db.enhanced.character.inspectBackground; end,
