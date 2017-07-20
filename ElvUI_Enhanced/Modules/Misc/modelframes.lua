@@ -47,11 +47,14 @@ function module:ModelControlButton(model)
 		UIFrameFadeOut(self:GetParent(), 0.2, self:GetParent():GetAlpha(), 0.5)
 		GameTooltip:Hide()
 	end)
+
+	if E.private.skins.blizzard.enable then
+		model.bg:Hide()
+	end
 end
 
 function module:ModelWithControls(model)
 	model.controlFrame = CreateFrame("Frame", "$parentControlFrame", model)
-	model.controlFrame:SetSize(76, 23)
 	model.controlFrame:SetPoint("TOP", 0, -2)
 	model.controlFrame:SetAlpha(0.5)
 	model.controlFrame:Hide()
@@ -119,6 +122,7 @@ function module:ModelWithControls(model)
 
 	if E.private.skins.blizzard.enable then
 		model.controlFrame:StripTextures()
+		model.controlFrame:SetSize(80, 23)
 
 		S:HandleButton(panButton)
 
@@ -131,6 +135,7 @@ function module:ModelWithControls(model)
 		S:HandleButton(rotateResetButton)
 		rotateResetButton:SetPoint("LEFT", "$parentRotateRightButton", "RIGHT", 2, 0)
 	else
+		model.controlFrame:SetSize(76, 23)
 		rotateLeftButton:SetPoint("LEFT", "$parentPanButton", "RIGHT", 0, 0)
 		rotateRightButton:SetPoint("LEFT", "$parentRotateLeftButton", "RIGHT", 0, 0)
 		rotateResetButton:SetPoint("LEFT", "$parentRotateRightButton", "RIGHT", 0, 0)
