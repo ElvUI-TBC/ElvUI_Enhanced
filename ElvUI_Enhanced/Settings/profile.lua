@@ -47,16 +47,30 @@ P.enhanced = {
 		petBackground = false,
 		inspectBackground = false,
 		collapsed = false,
-		orderName = "",
-		collapsedName = {
-			ITEM_LEVEL = false,
-			BASE_STATS = false,
-			MELEE_COMBAT = false,
-			RANGED_COMBAT = false,
-			SPELL_COMBAT = false,
-			DEFENSES = false,
-			RESISTANCE = false
-		}
+		player = {
+			orderName = "",
+			collapsedName = {
+				ITEM_LEVEL = false,
+				BASE_STATS = false,
+				MELEE_COMBAT = false,
+				RANGED_COMBAT = false,
+				SPELL_COMBAT = false,
+				DEFENSES = false,
+				RESISTANCE = false,
+			},
+		},
+		pet = {
+			orderName = "",
+			collapsedName = {
+				ITEM_LEVEL = false,
+				BASE_STATS = false,
+				MELEE_COMBAT = false,
+				RANGED_COMBAT = false,
+				SPELL_COMBAT = false,
+				DEFENSES = false,
+				RESISTANCE = false,
+			},
+		},
 	},
 	datatexts = {
 		timeColorEnch = false,

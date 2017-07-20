@@ -92,10 +92,10 @@
 					<OnClick>
 						if self:GetParent().collapsed then
 							PaperDollFrame_ExpandStatCategory(self:GetParent())
-							ElvUI[1].db.enhanced.character.collapsedName[self:GetParent().Category] = false
+							CharacterStatsPane.collapsedData[self:GetParent().Category] = false
 						else
 							PaperDollFrame_CollapseStatCategory(self:GetParent())
-							ElvUI[1].db.enhanced.character.collapsedName[self:GetParent().Category] = true
+							CharacterStatsPane.collapsedData[self:GetParent().Category] = true
 						end
 					</OnClick>
 					<OnDragStart>

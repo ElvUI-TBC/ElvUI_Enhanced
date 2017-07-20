@@ -899,10 +899,10 @@ function mod:PaperDoll_FindCategoryById(id)
 	return nil
 end
 
-function mod:PaperDoll_InitStatCategories(defaultOrder, unit)
+function mod:PaperDoll_InitStatCategories(defaultOrder, orderData, collapsedData, unit)
 	local order = defaultOrder
 
-	local orderString = E.db.enhanced.character.orderName
+	local orderString = orderData
 	local savedOrder = {}
 	if orderString and orderString ~= "" then
 		for i in gmatch(orderString, "%d+,?") do
@@ -938,7 +938,7 @@ function mod:PaperDoll_InitStatCategories(defaultOrder, unit)
 		if valid then
 			order = savedOrder
 		else
-			E.db.enhanced.character.orderName = ""
+			orderData = ""
 		end
 	end
 
@@ -951,7 +951,7 @@ function mod:PaperDoll_InitStatCategories(defaultOrder, unit)
 		frame:Show()
 
 		local categoryInfo = PAPERDOLL_STATCATEGORIES[frame.Category]
-		if categoryInfo and E.db.enhanced.character.collapsedName[frame.Category] then
+		if categoryInfo and collapsedData[frame.Category] then
 			PaperDollFrame_CollapseStatCategory(frame)
 		else
 			PaperDollFrame_ExpandStatCategory(frame)
@@ -966,6 +966,8 @@ function mod:PaperDoll_InitStatCategories(defaultOrder, unit)
 	end
 
 	CharacterStatsPane.defaultOrder = defaultOrder
+	CharacterStatsPane.orderData = orderData
+	CharacterStatsPane.collapsedData = collapsedData
 	CharacterStatsPane.unit = unit
 
 	self:PaperDoll_UpdateCategoryPositions()
@@ -982,7 +984,7 @@ function PaperDoll_SaveStatCategoryOrder()
 			end
 		end
 		if same then
-			E.db.enhanced.character.orderName = ""
+			E.db.enhanced.character[CharacterStatsPane.unit].orderName = ""
 			return
 		end
 	end
@@ -995,7 +997,8 @@ function PaperDoll_SaveStatCategoryOrder()
 			string = string..PAPERDOLL_STATCATEGORIES[StatCategoryFrames[index].Category].id
 		end
 	end
-	E.db.enhanced.character.orderName = string
+
+	E.db.enhanced.character[CharacterStatsPane.unit].orderName = string
 end
 
 function mod:PaperDoll_UpdateCategoryPositions()
@@ -1597,7 +1600,7 @@ function mod:Initialize()
 
 	self:UpdateCharacterModelFrame()
 
-	self:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, "player")
+	self:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, E.db.enhanced.character.player.orderName, E.db.enhanced.character.player.collapsedName, "player")
 
 	PaperDollFrame:HookScript("OnEvent", function(self, event, ...)
 		if not self:IsVisible() then return end
@@ -1631,7 +1634,7 @@ function mod:Initialize()
 			mod:CharacterFrame_Expand()
 		end
 
-		mod:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, "player")
+		mod:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, E.db.enhanced.character.player.orderName, E.db.enhanced.character.player.collapsedName, "player")
 		CharacterFrameExpandButton:Show()
 		CharacterFrameExpandButton.collapseTooltip = L["Hide Character Information"]
 		CharacterFrameExpandButton.expandTooltip = L["Show Character Information"]
@@ -1672,7 +1675,7 @@ function mod:Initialize()
 			mod:CharacterFrame_Expand()
 		end
 
-		mod:PaperDoll_InitStatCategories(PETPAPERDOLL_STATCATEGORY_DEFAULTORDER, "pet")
+		mod:PaperDoll_InitStatCategories(PETPAPERDOLL_STATCATEGORY_DEFAULTORDER, E.db.enhanced.character.pet.orderName, E.db.enhanced.character.pet.collapsedName, "pet")
 
 		CharacterFrameExpandButton:Show()
 		CharacterFrameExpandButton.collapseTooltip = L["Hide Pet Information"]
@@ -1688,7 +1691,7 @@ function mod:Initialize()
 		CharacterFrameExpandButton:Hide()
 	end)
 
-	self:PaperDoll_InitStatCategories(PETPAPERDOLL_STATCATEGORY_DEFAULTORDER, "pet")
+	self:PaperDoll_InitStatCategories(PETPAPERDOLL_STATCATEGORY_DEFAULTORDER, E.db.enhanced.character.pet.orderName, E.db.enhanced.character.pet.collapsedName, "pet")
 
 	self:RegisterEvent("ADDON_LOADED")
 end
