@@ -1648,8 +1648,12 @@ function mod:Initialize()
 		self:CharacterFrame_Expand()
 	end
 
-	PetNameText:SetPoint("CENTER", CharacterFrame, 6, 200)
+	PetNameText:SetPoint("CENTER", CharacterFrame, 0, 200)
 	PetLevelText:SetPoint("TOP", CharacterFrame, 0, -20)
+
+	PetTrainingPointText:ClearAllPoints()
+	PetTrainingPointText:SetPoint("BOTTOMRIGHT", PetModelFrame, "BOTTOMRIGHT", -31, -26)
+
 	PetPaperDollCloseButton:Kill()
 	PetAttributesFrame:Kill()
 	PetResistanceFrame:Kill()

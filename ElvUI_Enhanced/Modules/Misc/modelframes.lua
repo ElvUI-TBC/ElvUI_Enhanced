@@ -122,7 +122,7 @@ function module:ModelWithControls(model)
 
 	if E.private.skins.blizzard.enable then
 		model.controlFrame:StripTextures()
-		model.controlFrame:SetSize(80, 23)
+		model.controlFrame:SetSize(82, 23)
 
 		S:HandleButton(panButton)
 
