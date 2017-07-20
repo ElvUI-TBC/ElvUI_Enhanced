@@ -1303,15 +1303,21 @@ function mod:UpdatePetModelFrame()
 		PetModelFrame.petPaperDollPetModelBg:Show()
 		if playerClass == "HUNTER" then
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petHunter.blp")
+			PetModelFrame.backgroundOverlay:SetAlpha(0.3)
 		elseif playerClass == "WARLOCK" then
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petWarlock.blp")
+			PetModelFrame.backgroundOverlay:SetAlpha(0.1)
 		else
 			PetPaperDollPetModelBg:Hide()
 		end
 		PetModelFrame.petPaperDollPetModelBg:SetDesaturated(true)
+
+		PetModelFrame.backgroundOverlay:Show()
+		PetModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
 	else
 		PetModelFrame.backdrop:Hide()
 		PetModelFrame.petPaperDollPetModelBg:Hide()
+		PetModelFrame.backgroundOverlay:Hide()
 	end
 end
 
@@ -1666,6 +1672,9 @@ function mod:Initialize()
 	PetModelFrame.petPaperDollPetModelBg = PetModelFrame:CreateTexture("$parentPetPaperDollPetModelBg", "BACKGROUND")
 	PetModelFrame.petPaperDollPetModelBg:Size(494, 461)
 	PetModelFrame.petPaperDollPetModelBg:Point("TOPLEFT")
+
+	PetModelFrame.backgroundOverlay = PetModelFrame:CreateTexture("$parentBackgroundOverlay", "BORDER")
+	PetModelFrame.backgroundOverlay:SetAllPoints()
 
 	self:UpdatePetModelFrame()
 
