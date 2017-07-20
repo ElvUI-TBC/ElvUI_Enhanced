@@ -25,6 +25,17 @@ L["Postpone Delay"] = true;
 -- Chat
 L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = "Ersetzt lange Berichte von Damage Metern mit einem klickbaren Hyperlink um Chatspam zu vermeiden."
 
+-- Character Frame
+L["Damaged Only"] = "Nur Beschädigte"
+L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
+L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren / deaktivieren."
+L["Enhanced Character Frame"] = true;
+L["Equipment"] = "Ausrüstung"
+L["Inspect Paperdoll Background"] = true;
+L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
+L["Paperdoll Background"] = true;
+L["Quality Color"] = true;
+
 -- Datatext
 L["Combat Indicator"] = true;
 L["Datatext Disabled"] = true;
@@ -58,14 +69,6 @@ L["You died."] = true;
 L["Auto decline all duels"] = true;
 L["Decline Duel"] = true;
 L["Declined duel request from "] = "Duellaufforderung abgelehnt von "
-
--- Equipment
-L["Damaged Only"] = "Nur Beschädigte"
-L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
-L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren / deaktivieren."
-L["Equipment"] = "Ausrüstung"
-L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
-L["Quality Color"] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Ändere automatisch die beobachtete Fraktion auf der Erfahrungsleiste zu der Fraktion für die Sie grade Rufpunkte erhalten haben."

@@ -25,6 +25,17 @@ L["Postpone Delay"] = true;
 -- Chat
 L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = true;
 
+-- Character Frame
+L["Damaged Only"] = "受损显示"
+L["Enable/Disable the display of durability information on the character screen."] = "开启/关闭 人物窗口装备耐久度显示."
+L["Enable/Disable the display of item levels on the character screen."] = true;
+L["Enhanced Character Frame"] = true;
+L["Equipment"] = "自动换装"
+L["Inspect Paperdoll Background"] = true;
+L["Only show durabitlity information for items that are damaged."] = "只在装备受损时显示耐久度."
+L["Paperdoll Background"] = true;
+L["Quality Color"] = true;
+
 -- Datatext
 L["Combat Indicator"] = true;
 L["Datatext Disabled"] = true;
@@ -58,14 +69,6 @@ L["You died."] = true;
 L["Auto decline all duels"] = "自动拒绝决斗请求"
 L["Decline Duel"] = true;
 L["Declined duel request from "] = "已拒绝决斗请求自"
-
--- Equipment
-L["Damaged Only"] = "受损显示"
-L["Enable/Disable the display of durability information on the character screen."] = "开启/关闭 人物窗口装备耐久度显示."
-L["Enable/Disable the display of item levels on the character screen."] = true;
-L["Equipment"] = "自动换装"
-L["Only show durabitlity information for items that are damaged."] = "只在装备受损时显示耐久度."
-L["Quality Color"] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "当你获得某个阵营的声望时, 将自动追踪此阵营的声望至经验栏位."

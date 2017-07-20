@@ -25,6 +25,17 @@ L["Postpone Delay"] = true;
 -- Chat
 L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = "Заменяет длинные отчеты от аддонов для измерения УВС на гиперссылку, сокращая уровень спама в чате."
 
+-- Character Frame
+L["Damaged Only"] = "Только поврежденные"
+L["Enable/Disable the display of durability information on the character screen."] = "Включить/Выключить отображение информации о прочности предметов в окне персонажа."
+L["Enable/Disable the display of item levels on the character screen."] = "Включить/Выключить отображение уровня предмета в окне персонажа."
+L["Enhanced Character Frame"] = true;
+L["Equipment"] = "Экипировка"
+L["Inspect Paperdoll Background"] = true;
+L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
+L["Paperdoll Background"] = true;
+L["Quality Color"] = true;
+
 -- Datatext
 L["Combat Indicator"] = true;
 L["Datatext Disabled"] = true;
@@ -58,14 +69,6 @@ L["You died."] = "Вы умерли."
 L["Auto decline all duels"] = "Автоматически отклонять все дуэли."
 L["Decline Duel"] = true;
 L["Declined duel request from "] = "DДуэль отклонена от "
-
--- Equipment
-L["Damaged Only"] = "Только поврежденные"
-L["Enable/Disable the display of durability information on the character screen."] = "Включить/Выключить отображение информации о прочности предметов в окне персонажа."
-L["Enable/Disable the display of item levels on the character screen."] = "Включить/Выключить отображение уровня предмета в окне персонажа."
-L["Equipment"] = "Экипировка"
-L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
-L["Quality Color"] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Автоматическое изменение фракции на панели репутации на ту, очки репутации которой вы получили."

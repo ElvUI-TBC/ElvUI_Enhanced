@@ -25,6 +25,17 @@ L["Postpone Delay"] = true;
 -- Chat
 L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = true;
 
+-- Character Frame
+L["Damaged Only"] = "Só Danificados"
+L["Enable/Disable the display of durability information on the character screen."] = "Activar/desactivar a informação de durabilidade no ecrã de informação do personagem."
+L["Enable/Disable the display of item levels on the character screen."] = true;
+L["Enhanced Character Frame"] = true;
+L["Equipment"] = "Equipamento"
+L["Inspect Paperdoll Background"] = true;
+L["Only show durabitlity information for items that are damaged."] = "Só mostrar informação de durabilidade para itens danificados."
+L["Paperdoll Background"] = true;
+L["Quality Color"] = true;
+
 -- Datatext
 L["Combat Indicator"] = true;
 L["Datatext Disabled"] = true;
@@ -58,14 +69,6 @@ L["You died."] = true;
 L["Auto decline all duels"] = true;
 L["Decline Duel"] = true;
 L["Declined duel request from "] = true;
-
--- Equipment
-L["Damaged Only"] = "Só Danificados"
-L["Enable/Disable the display of durability information on the character screen."] = "Activar/desactivar a informação de durabilidade no ecrã de informação do personagem."
-L["Enable/Disable the display of item levels on the character screen."] = true;
-L["Equipment"] = "Equipamento"
-L["Only show durabitlity information for items that are damaged."] = "Só mostrar informação de durabilidade para itens danificados."
-L["Quality Color"] = true;
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Mudar automaticamente a facção controlada para a facção na qual acabou de ganhar pontos de reputação."
