@@ -60,6 +60,13 @@ local CR_CRIT_TAKEN_RANGED = CR_CRIT_TAKEN_RANGED
 local CR_CRIT_TAKEN_SPELL = CR_CRIT_TAKEN_SPELL
 local HEALTH_PER_STAMINA = HEALTH_PER_STAMINA
 
+local slotName = {
+	"Head","Neck","Shoulder","Back","Chest",
+	"Shirt","Tabard","Wrist","Waist","Legs","Feet",
+	"Finger0","Finger1","Trinket0","Trinket1",
+	"MainHand", "SecondaryHand", "Ranged", "Ammo"
+}
+
 local CHARACTERFRAME_COLLAPSED_WIDTH = 348 + 37
 local CHARACTERFRAME_EXPANDED_WIDTH = 540 + 42
 local STATCATEGORY_MOVING_INDENT = 4
@@ -357,6 +364,51 @@ end
 
 local StatCategoryFrames = {}
 
+local function GetRainbowColor(r, g, b, elapsed)
+	local perStep = elapsed * 0.5
+	local step = 1
+
+	if r >= 1 and b >= 0 and g < 1 then
+		step = 1
+	end
+	if r >= 0 and g >= 1 and b <= 0 then
+		step = 2
+	end
+	if r <= 0 and g >= 1 and b < 1 then
+		step = 3
+	end
+	if r <= 0 and g >= 0 and b >= 1 then
+		step = 4
+	end
+	if r < 1 and g <= 0 and b >= 1 then
+		step = 5
+	end
+	if r >= 1 and g <= 0 and b >= 0 then
+		step = 6
+	end
+
+	if step == 1 then
+		g = g + perStep
+	end
+	if step == 2 then
+		r = r - perStep
+	end
+	if step == 3 then
+		b = b + perStep
+	end
+	if step == 4 then
+		g = g - perStep
+	end
+	if step == 5 then
+		r = r + perStep
+	end
+	if step == 6 then
+		b = b - perStep
+	end
+
+	return r, g, b
+end
+
 function mod:ItemLevel(statFrame, unit)
 	local label = _G[statFrame:GetName().."Label"]
 	if PersonalGearScore then
@@ -367,6 +419,12 @@ function mod:ItemLevel(statFrame, unit)
 	else
 		label:SetText(E:GetModule("Tooltip"):GetItemLvL("player"))
 		label:SetTextColor(unpack(E.media.rgbvaluecolor))
+
+		statFrame.r, statFrame.g, statFrame.b = statFrame.r or 0, statFrame.g or 0.5, statFrame.b or 0.5
+		statFrame:SetScript("OnUpdate", function(self, elapsed)
+			self.r, self.g, self.b = GetRainbowColor(self.r, self.g, self.b, elapsed)
+			label:SetTextColor(self.r, self.g, self.b)
+		end)
 	end
 end
 
@@ -1254,6 +1312,24 @@ function mod:ADDON_LOADED(_, addon)
 	self:SecureHook("InspectFrame_UpdateTalentTab", "UpdateInspectModelFrame")
 end
 
+--[[
+local test = {}
+function GetItemLevelColor(unit)
+	local i = 0
+	for _, name in ipairs(slotName) do
+		local slotID = GetInventorySlotInfo(format("%sSlot", name))
+		local hasItem = GetInventoryItemTexture("player", slotID)
+		if hasItem then
+			local rarity = GetInventoryItemQuality("player", slotId)
+			if rarity then
+				i = i + 1
+				test[i] = rarity
+				--local r, g, b = GetItemQualityColor(rarity)
+			end
+		end
+	end
+end
+]]
 function mod:Initialize()
 	if not E.private.enhanced.character.enable then return end
 
@@ -1451,9 +1527,8 @@ function mod:Initialize()
 	CharacterModelFrame:Size(231, 320)
 	CharacterModelFrame:Point("TOPLEFT", PaperDollFrame, "TOPLEFT", 66, -78)
 
-	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand", "Ranged", "Ammo"}
-	for _, slotName in ipairs(slots) do
-		_G[format("Character%sSlot", slotName)]:SetFrameLevel(CharacterModelFrame:GetFrameLevel() + 3)
+	for _, name in ipairs(slotName) do
+		_G[format("Character%sSlot", name)]:SetFrameLevel(CharacterModelFrame:GetFrameLevel() + 3)
 	end
 
 	CharacterModelFrame.textureTopLeft = CharacterModelFrame:CreateTexture("$parentTextureTopLeft", "BACKGROUND")
