@@ -1196,27 +1196,27 @@ function mod:ADDON_LOADED(_, addon)
 	self:UnregisterEvent("ADDON_LOADED")
 
 	InspectModelFrame:CreateBackdrop("Default")
-	InspectModelFrame:Size(231, 321)
+	InspectModelFrame:Size(231, 320)
 	InspectModelFrame:Point("TOPLEFT", InspectPaperDollFrame, "TOPLEFT", 66, -78)
 
 	InspectModelFrame.textureTopLeft = InspectModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
 	InspectModelFrame.textureTopLeft:Point("TOPLEFT")
-	InspectModelFrame.textureTopLeft:Size(212, 245)
+	InspectModelFrame.textureTopLeft:Size(212, 244)
 	InspectModelFrame.textureTopLeft:SetTexCoord(0.171875, 1, 0.0392156862745098, 1)
 
 	InspectModelFrame.textureTopRight = InspectModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
 	InspectModelFrame.textureTopRight:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "TOPRIGHT")
-	InspectModelFrame.textureTopRight:Size(19, 245)
+	InspectModelFrame.textureTopRight:Size(19, 244)
 	InspectModelFrame.textureTopRight:SetTexCoord(0, 0.296875, 0.0392156862745098, 1)
 
 	InspectModelFrame.textureBotLeft = InspectModelFrame:CreateTexture("$parentTextureMid", "BACKGROUND")
 	InspectModelFrame.textureBotLeft:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "BOTTOMLEFT")
-	InspectModelFrame.textureBotLeft:Size(212, 128)
+	InspectModelFrame.textureBotLeft:Size(212, 127)
 	InspectModelFrame.textureBotLeft:SetTexCoord(0.171875, 1, 0, 1)
 
 	InspectModelFrame.textureBotRight = InspectModelFrame:CreateTexture("$parentTextureBot", "BACKGROUND")
 	InspectModelFrame.textureBotRight:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "BOTTOMRIGHT")
-	InspectModelFrame.textureBotRight:Size(19, 128)
+	InspectModelFrame.textureBotRight:Size(19, 127)
 	InspectModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
 
 	self:SecureHook("InspectFrame_UpdateTalentTab", "UpdateInspectModelFrame")
@@ -1416,7 +1416,7 @@ function mod:Initialize()
 	end)
 
 	CharacterModelFrame:CreateBackdrop("Default")
-	CharacterModelFrame:Size(231, 321)
+	CharacterModelFrame:Size(231, 320)
 	CharacterModelFrame:Point("TOPLEFT", PaperDollFrame, "TOPLEFT", 66, -78)
 
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand", "Ranged", "Ammo"}
@@ -1425,22 +1425,22 @@ function mod:Initialize()
 	end
 
 	CharacterModelFrame.textureTopLeft = CharacterModelFrame:CreateTexture("$parentTextureTopLeft", "BACKGROUND")
-	CharacterModelFrame.textureTopLeft:Size(212, 245)
+	CharacterModelFrame.textureTopLeft:Size(212, 244)
 	CharacterModelFrame.textureTopLeft:Point("TOPLEFT")
 	CharacterModelFrame.textureTopLeft:SetTexCoord(0.171875, 1, 0.0392156862745098, 1)
 
 	CharacterModelFrame.textureTopRight = CharacterModelFrame:CreateTexture("$parentTextureTopRight", "BACKGROUND")
-	CharacterModelFrame.textureTopRight:Size(19, 245)
+	CharacterModelFrame.textureTopRight:Size(19, 244)
 	CharacterModelFrame.textureTopRight:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "TOPRIGHT")
 	CharacterModelFrame.textureTopRight:SetTexCoord(0, 0.296875, 0.0392156862745098, 1)
 
 	CharacterModelFrame.textureBotLeft = CharacterModelFrame:CreateTexture("$parentTextureBotLeft", "BACKGROUND")
-	CharacterModelFrame.textureBotLeft:Size(212, 128)
+	CharacterModelFrame.textureBotLeft:Size(212, 127)
 	CharacterModelFrame.textureBotLeft:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "BOTTOMLEFT")
 	CharacterModelFrame.textureBotLeft:SetTexCoord(0.171875, 1, 0, 1)
 
 	CharacterModelFrame.textureBotRight = CharacterModelFrame:CreateTexture("$parentTextureBotRight", "BACKGROUND")
-	CharacterModelFrame.textureBotRight:Size(19, 128)
+	CharacterModelFrame.textureBotRight:Size(19, 127)
 	CharacterModelFrame.textureBotRight:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "BOTTOMRIGHT")
 	CharacterModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
 
