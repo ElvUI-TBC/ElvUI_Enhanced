@@ -455,7 +455,6 @@ function mod:Initialize()
 	self:RegisterEvent("PLAYER_ENTERING_WORLD", "HidePopup");
 	self:RegisterEvent("RESURRECT_REQUEST", "HidePopup");
 	self:RegisterEvent("PLAYER_ALIVE", "HidePopup");
-	self:RegisterEvent("RAISED_AS_GHOUL", "HidePopup");
 
 	self:RawHook("SetItemRef", true);
 
@@ -464,35 +463,35 @@ function mod:Initialize()
 		button1 = DEATH_RELEASE,
 		button2 = USE_SOULSTONE,
 		button3 = L["Death Recap"],
-		OnShow = function()
-			this.timeleft = GetReleaseTimeRemaining();
+		OnShow = function(self)
+			self.timeleft = GetReleaseTimeRemaining();
 			local text = HasSoulstone();
 			if(text) then
-				this.button2:SetText(text);
+				self.button2:SetText(text);
 			end
 
 			if(IsActiveBattlefieldArena()) then
-				this.text:SetText(DEATH_RELEASE_SPECTATOR);
-			elseif(this.timeleft == -1) then
-				this.text:SetText(DEATH_RELEASE_NOTIMER);
+				self.text:SetText(DEATH_RELEASE_SPECTATOR);
+			elseif(self.timeleft == -1) then
+				self.text:SetText(DEATH_RELEASE_NOTIMER);
 			end
 			if(mod:HasEvents()) then
-				this.button3:Enable();
-				this.button3:SetScript("OnEnter", nil);
-				this.button3:SetScript("OnLeave", nil);
+				self.button3:Enable();
+				self.button3:SetScript("OnEnter", nil);
+				self.button3:SetScript("OnLeave", nil);
 			else
-				this.button3:Disable();
-				this.button3:SetScript("OnEnter", function(self)
+				self.button3:Disable();
+				self.button3:SetScript("OnEnter", function(self)
 					GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT");
 					GameTooltip:SetText(L["Death Recap unavailable."]);
 					GameTooltip:Show();
 				end);
-				this.button3:SetScript("OnLeave", GameTooltip_Hide);
+				self.button3:SetScript("OnLeave", GameTooltip_Hide);
 			end
 		end,
-		OnHide = function()
-			this.button3:SetScript("OnEnter", nil);
-			this.button3:SetScript("OnLeave", nil);
+		OnHide = function(self)
+			self.button3:SetScript("OnEnter", nil);
+			self.button3:SetScript("OnLeave", nil);
 			HideUIPanel(DeathRecapFrame);
 		end,
 		OnAccept = function()
@@ -502,7 +501,7 @@ function mod:Initialize()
 			end
 			RepopMe();
 		end,
-		OnCancel = function(data, reason)
+		OnCancel = function(_, _, reason)
 			if(reason == "override") then
 				StaticPopup_Show("RECOVER_CORPSE");
 				return;
@@ -522,10 +521,10 @@ function mod:Initialize()
 			local _, recapID = mod:HasEvents();
 			mod:OpenRecap(recapID);
 		end,
-		OnUpdate = function(elapsed)
-			if(this.timeleft > 0) then
-				local text = _G[this:GetName() .. "Text"];
-				local timeleft = this.timeleft;
+		OnUpdate = function(self, elapsed)
+			if(self.timeleft > 0) then
+				local text = _G[self:GetName() .. "Text"];
+				local timeleft = self.timeleft;
 				if(timeleft < 60) then
 					text:SetFormattedText(DEATH_RELEASE_TIMER, timeleft, SECONDS);
 				else
@@ -534,16 +533,16 @@ function mod:Initialize()
 			end
 
 			if(IsFalling() and not IsOutOfBounds()) then
-				this.button1:Disable();
-				this.button2:Disable();
+				self.button1:Disable();
+				self.button2:Disable();
 				return;
 			else
-				this.button1:Enable();
+				self.button1:Enable();
 			end
 			if(HasSoulstone()) then
-				this.button2:Enable();
+				self.button2:Enable();
 			else
-				this.button2:Disable();
+				self.button2:Disable();
 			end
 		end,
 		DisplayButton2 = function()
