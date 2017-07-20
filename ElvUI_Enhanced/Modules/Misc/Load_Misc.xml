@@ -48,28 +48,6 @@
 
 	<Frame name="StatGroupTemplate" virtual="true">
 		<Size x="187" y="0"/>
-		<Layers>
-			<Layer level="ARTWORK">
-				<Texture name="$parentCollapsedIcon" hidden="true">
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="5" y="-5"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-				<Texture name="$parentExpandedIcon">
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="5" y="-7"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</Texture>
-			</Layer>
-		</Layers>
 		<Frames>
 			<Button name="$parentToolbar">
 				<Size x="150" y="18"/>
@@ -126,8 +104,6 @@
 			<OnLoad>
 				self.NameText = _G[self:GetName().."ToolbarText"]
 				self.Toolbar = _G[self:GetName().."Toolbar"]
-				self.CollapsedIcon = _G[self:GetName().."CollapsedIcon"]
-				self.ExpandedIcon = _G[self:GetName().."ExpandedIcon"]
 			</OnLoad>
 		</Scripts>
 	</Frame>

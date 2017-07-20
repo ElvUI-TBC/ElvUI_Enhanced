@@ -733,8 +733,6 @@ function PaperDollFrame_CollapseStatCategory(categoryFrame)
 			_G[categoryFrame:GetName().."Stat"..index]:Hide()
 			index = index + 1
 		end
-		categoryFrame.CollapsedIcon:Show()
-		categoryFrame.ExpandedIcon:Hide()
 		categoryFrame:SetHeight(18)
 		mod:PaperDollFrame_UpdateStatScrollChildHeight()
 	end
@@ -744,8 +742,6 @@ function PaperDollFrame_ExpandStatCategory(categoryFrame)
 	if categoryFrame.collapsed then
 		categoryFrame.collapsed = false
 		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Transparent")
-		categoryFrame.CollapsedIcon:Hide()
-		categoryFrame.ExpandedIcon:Show()
 		mod:PaperDollFrame_UpdateStatCategory(categoryFrame)
 		mod:PaperDollFrame_UpdateStatScrollChildHeight()
 	end
@@ -997,7 +993,6 @@ function PaperDoll_SaveStatCategoryOrder()
 			string = string..PAPERDOLL_STATCATEGORIES[StatCategoryFrames[index].Category].id
 		end
 	end
-
 	E.db.enhanced.character[CharacterStatsPane.unit].orderName = string
 end
 
