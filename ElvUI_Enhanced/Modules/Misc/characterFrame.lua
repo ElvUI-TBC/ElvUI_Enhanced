@@ -793,6 +793,25 @@ function mod:PaperDollFrame_UpdateStatCategory(categoryFrame)
 					label:SetPoint("CENTER")
 					label:FontTemplate(nil, 20)
 					_G[statFrame:GetName().."StatText"]:SetText("")
+
+					if statFrame.leftGrad then
+						statFrame.leftGrad:Show()
+						statFrame.rightGrad:Show()
+					end
+				else
+					if statFrame:GetHeight() == 30 then
+						statFrame:Height(15)
+						local label = _G[statFrame:GetName().."Label"]
+						label:ClearAllPoints()
+						label:SetPoint("LEFT", 7, 0)
+						label:FontTemplate()
+						label:SetTextColor(1, 0.82, 0)
+
+						if statFrame.leftGrad then
+							statFrame.leftGrad:Hide()
+							statFrame.rightGrad:Hide()
+						end
+					end
 				end
 
 				if statInfo.updateFunc2 then

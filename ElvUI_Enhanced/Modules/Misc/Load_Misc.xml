@@ -21,7 +21,7 @@
 			<Layer level="ARTWORK">
 				<FontString name="$parentLabel" inherits="GameFontNormalSmall">
 					<Anchors>
-						<Anchor point="LEFT" x="11" y="0">
+						<Anchor point="LEFT">
 							<Offset x="7" y="0"/>
 						</Anchor>
 					</Anchors>
