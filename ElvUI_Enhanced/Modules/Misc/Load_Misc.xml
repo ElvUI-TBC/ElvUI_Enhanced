@@ -12,6 +12,7 @@
 	<Script file="trainAllButton.lua"/>
 	<Script file="undressButton.lua"/>
 	<Script file="originalCloseButton.lua"/>
+	<Script file="modelframes.lua"/>
 
 	<Script file="characterFrame.lua"/>
 

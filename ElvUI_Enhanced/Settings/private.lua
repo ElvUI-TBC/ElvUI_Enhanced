@@ -19,5 +19,8 @@ V.loseofcontrol = {
 V.enhanced = {
 	character = {
 		enable = true
+	},
+	model = {
+		enable = true
 	}
 }

@@ -68,8 +68,15 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.originalCloseButton end,
 				set = function(info, value) E.db.enhanced.general.originalCloseButton = value E:StaticPopup_Show("CONFIG_RL") end
 			},
-			moverTransparancy = {
+			model = {
 				order = 7,
+				type = "toggle",
+				name = L["Model Frames"],
+				get = function(info) return E.private.enhanced.model.enable end,
+				set = function(info, value) E.private.enhanced.model.enable = value; E:StaticPopup_Show("PRIVATE_RL") end
+			},
+			moverTransparancy = {
+				order = 8,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],

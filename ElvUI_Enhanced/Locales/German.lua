@@ -85,6 +85,14 @@ L["PvP Autorelease"] = "Automatische Freigabe im PvP"
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Ruf beobachten"
 
+-- Model Frames
+L["Drag"] = true;
+L["Left-click on character and drag to rotate."] = true;
+L["Model Frames"] = true;
+L["Right-click on character and drag to move it within the window."] = true;
+L["Rotate Left"] = true;
+L["Rotate Right"] = true;
+
 -- Nameplates
 L["Bars will transition smoothly."] = true;
 L["Smooth Bars"] = true;

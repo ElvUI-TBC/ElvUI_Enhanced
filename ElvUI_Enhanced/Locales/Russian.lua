@@ -85,6 +85,14 @@ L["PvP Autorelease"] = "Автовыход из тела"
 L["Show Quest Level"] = true;
 L["Track Reputation"] = "Отслеживание репутации"
 
+-- Model Frames
+L["Drag"] = "Перетащить"
+L["Left-click on character and drag to rotate."] = "Зажмите левую кнопку мыши и тащите курсор, чтобы вращать изображение."
+L["Model Frames"] = "Портреты"
+L["Right-click on character and drag to move it within the window."] = "Зажмите правую кнопку мыши и тащите курсор, чтобы переместить персонажа."
+L["Rotate Left"] = "Вращение влево"
+L["Rotate Right"] = "Вращение вправо"
+
 -- Nameplates
 L["Bars will transition smoothly."] = true;
 L["Smooth Bars"] = true;
