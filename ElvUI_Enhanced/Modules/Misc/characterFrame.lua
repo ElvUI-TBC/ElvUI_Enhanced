@@ -1141,7 +1141,7 @@ function mod:UpdateCharacterModelFrame()
 	if E.db.enhanced.character.background then
 		CharacterModelFrame.backdrop:Show()
 
-		local _, fileName = UnitRace("player")
+		local race, fileName = UnitRace("player")
 
 		CharacterModelFrame.textureTopLeft:Show()
 		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
@@ -1155,12 +1155,26 @@ function mod:UpdateCharacterModelFrame()
 		CharacterModelFrame.textureBotRight:Show()
 		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
 		CharacterModelFrame.textureBotRight:SetDesaturated(true)
+
+		CharacterModelFrame.backgroundOverlay:Show()
+		CharacterModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
+
+		if race == "Undead" then
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.1)
+		elseif race == "Blood Elf" or race == "Night Elf" then
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.3)
+		elseif race == "Troll" or race == "Orc" then
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.4)
+		else
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.5)
+		end
 	else
 		CharacterModelFrame.backdrop:Hide()
 		CharacterModelFrame.textureTopLeft:Hide()
 		CharacterModelFrame.textureTopRight:Hide()
 		CharacterModelFrame.textureBotLeft:Hide()
 		CharacterModelFrame.textureBotRight:Hide()
+		CharacterModelFrame.backgroundOverlay:Hide()
 	end
 end
 
@@ -1168,7 +1182,7 @@ function mod:UpdateInspectModelFrame()
 	if E.db.enhanced.character.inspectBackground then
 		InspectModelFrame.backdrop:Show()
 
-		local _, fileName = UnitRace(InspectFrame.unit)
+		local race, fileName = UnitRace(InspectFrame.unit)
 
 		InspectModelFrame.textureTopLeft:Show()
 		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
@@ -1182,12 +1196,26 @@ function mod:UpdateInspectModelFrame()
 		InspectModelFrame.textureBotRight:Show()
 		InspectModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
 		InspectModelFrame.textureBotRight:SetDesaturated(true)
+
+		InspectModelFrame.backgroundOverlay:Show()
+		InspectModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
+
+		if race == "Undead" then
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.1)
+		elseif race == "Blood Elf" or race == "Night Elf" then
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.3)
+		elseif race == "Troll" or race == "Orc" then
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.4)
+		else
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.5)
+		end
 	else
 		InspectModelFrame.backdrop:Hide()
 		InspectModelFrame.textureTopLeft:Hide()
 		InspectModelFrame.textureTopRight:Hide()
 		InspectModelFrame.textureBotLeft:Hide()
 		InspectModelFrame.textureBotRight:Hide()
+		InspectModelFrame.backgroundOverlay:Hide()
 	end
 end
 
@@ -1211,13 +1239,17 @@ function mod:ADDON_LOADED(_, addon)
 
 	InspectModelFrame.textureBotLeft = InspectModelFrame:CreateTexture("$parentTextureBotLeft", "BACKGROUND")
 	InspectModelFrame.textureBotLeft:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "BOTTOMLEFT")
-	InspectModelFrame.textureBotLeft:Size(212, 127)
+	InspectModelFrame.textureBotLeft:Size(212, 128)
 	InspectModelFrame.textureBotLeft:SetTexCoord(0.171875, 1, 0, 1)
 
 	InspectModelFrame.textureBotRight = InspectModelFrame:CreateTexture("$parentTextureBotRight", "BACKGROUND")
 	InspectModelFrame.textureBotRight:Point("TOPLEFT", InspectModelFrame.textureTopLeft, "BOTTOMRIGHT")
-	InspectModelFrame.textureBotRight:Size(19, 127)
+	InspectModelFrame.textureBotRight:Size(19, 128)
 	InspectModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
+
+	InspectModelFrame.backgroundOverlay = InspectModelFrame:CreateTexture("$parentBackgroundOverlay", "BACKGROUND")
+	InspectModelFrame.backgroundOverlay:Point("TOPLEFT", InspectModelFrame.textureTopLeft)
+	InspectModelFrame.backgroundOverlay:Point("BOTTOMRIGHT", InspectModelFrame.textureBotRight, 0, 52)
 
 	self:SecureHook("InspectFrame_UpdateTalentTab", "UpdateInspectModelFrame")
 end
@@ -1435,14 +1467,18 @@ function mod:Initialize()
 	CharacterModelFrame.textureTopRight:SetTexCoord(0, 0.296875, 0.0392156862745098, 1)
 
 	CharacterModelFrame.textureBotLeft = CharacterModelFrame:CreateTexture("$parentTextureBotLeft", "BACKGROUND")
-	CharacterModelFrame.textureBotLeft:Size(212, 127)
+	CharacterModelFrame.textureBotLeft:Size(212, 128)
 	CharacterModelFrame.textureBotLeft:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "BOTTOMLEFT")
 	CharacterModelFrame.textureBotLeft:SetTexCoord(0.171875, 1, 0, 1)
 
 	CharacterModelFrame.textureBotRight = CharacterModelFrame:CreateTexture("$parentTextureBotRight", "BACKGROUND")
-	CharacterModelFrame.textureBotRight:Size(19, 127)
+	CharacterModelFrame.textureBotRight:Size(19, 128)
 	CharacterModelFrame.textureBotRight:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "BOTTOMRIGHT")
 	CharacterModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
+
+	CharacterModelFrame.backgroundOverlay = CharacterModelFrame:CreateTexture("$parentBackgroundOverlay", "BORDER")
+	CharacterModelFrame.backgroundOverlay:Point("TOPLEFT", CharacterModelFrame.textureTopLeft)
+	CharacterModelFrame.backgroundOverlay:Point("BOTTOMRIGHT", CharacterModelFrame.textureBotRight, 0, 52)
 
 	self:UpdateCharacterModelFrame()
 
