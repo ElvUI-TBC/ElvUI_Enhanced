@@ -60,18 +60,19 @@ P.enhanced = {
 		timeColorEnch = false,
 	},
 	equipment = {
+		enable = false,
 		font = "Homespun",
 		fontSize = 10,
 		fontOutline = "MONOCHROMEOUTLINE",
 		durability = {
-			enable = false,
+			enable = true,
 			onlydamaged = true,
 			position = "TOPLEFT",
 			xOffset = 1,
 			yOffset = 0
 		},
 		itemlevel = {
-			enable = false,
+			enable = true,
 			qualityColor = true,
 			position = "BOTTOMLEFT",
 			xOffset = 1,

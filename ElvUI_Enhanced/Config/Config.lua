@@ -208,6 +208,15 @@ local function CharacterFrameOptions()
 						type = "header",
 						name = ColorizeSettingName(L["Equipment"])
 					},
+					enable = {
+						order = 1,
+						type = "toggle",
+						name = L["Enable"],
+  						set = function(info, value)
+ 							E.db.enhanced.equipment[info[#info]] = value;
+ 							PD:ToggleState()
+  						end
+					},
 					durability = {
 						order = 2,
 						type = "group",
@@ -215,6 +224,7 @@ local function CharacterFrameOptions()
 						guiInline = true,
 						get = function(info) return E.db.enhanced.equipment.durability[info[#info]] end,
 						set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						disabled = function() return not E.db.enhanced.equipment.enable end,
 						args = {
 							info = {
 								order = 1,
@@ -232,7 +242,7 @@ local function CharacterFrameOptions()
 								type = "toggle",
 								name = L["Damaged Only"],
 								desc = L["Only show durabitlity information for items that are damaged."],
-								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+								disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
 							},
 							spacer = {
 								order = 4,
@@ -251,21 +261,21 @@ local function CharacterFrameOptions()
 									["BOTTOMLEFT"] = "BOTTOMLEFT",
 									["BOTTOMRIGHT"] = "BOTTOMRIGHT"
 								},
-								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+								disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
 							},
 							xOffset = {
 								order = 6,
 								type = "range",
 								name = L["X-Offset"],
 								min = -50, max = 50, step = 1,
-								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+								disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
 							},
 							yOffset = {
 								order = 7,
 								type = "range",
 								name = L["Y-Offset"],
 								min = -50, max = 50, step = 1,
-								disabled = function() return not E.db.enhanced.equipment.durability.enable end
+								disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
 							}
 						}
 					},
@@ -276,6 +286,7 @@ local function CharacterFrameOptions()
 						guiInline = true,
 						get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]] end,
 						set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						disabled = function() return not E.db.enhanced.equipment.enable end,
 						args = {
 							info = {
 								order = 1,
@@ -292,7 +303,7 @@ local function CharacterFrameOptions()
 								order = 3,
 								type = "toggle",
 								name = L["Quality Color"],
-								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
 							},
 							spacer = {
 								order = 4,
@@ -311,21 +322,21 @@ local function CharacterFrameOptions()
 									["BOTTOMLEFT"] = "BOTTOMLEFT",
 									["BOTTOMRIGHT"] = "BOTTOMRIGHT"
 								},
-								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
 							},
 							xOffset = {
 								order = 6,
 								type = "range",
 								name = L["X-Offset"],
 								min = -50, max = 50, step = 1,
-								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
 							},
 							yOffset = {
 								order = 7,
 								type = "range",
 								name = L["Y-Offset"],
 								min = -50, max = 50, step = 1,
-								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable end
+								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
 							}
 						}
 					},
@@ -336,6 +347,7 @@ local function CharacterFrameOptions()
 						guiInline = true,
 						get = function(info) return E.db.enhanced.equipment[info[#info]] end,
 						set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						disabled = function() return not E.db.enhanced.equipment.enable end,
 						args = {
 							font = {
 								order = 2,
