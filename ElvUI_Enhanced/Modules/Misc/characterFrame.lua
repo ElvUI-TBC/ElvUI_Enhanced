@@ -1141,7 +1141,7 @@ function mod:UpdateCharacterModelFrame()
 	if E.db.enhanced.character.background then
 		CharacterModelFrame.backdrop:Show()
 
-		local race, fileName = UnitRace("player")
+		local _, fileName = UnitRace("player")
 
 		CharacterModelFrame.textureTopLeft:Show()
 		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
@@ -1159,11 +1159,11 @@ function mod:UpdateCharacterModelFrame()
 		CharacterModelFrame.backgroundOverlay:Show()
 		CharacterModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
 
-		if race == "Undead" then
+		if strupper(fileName) == "SCOURGE" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.1)
-		elseif race == "Blood Elf" or race == "Night Elf" then
+		elseif strupper(fileName) == "BLOODELF" or strupper(fileName) == "NIGHTELF" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.3)
-		elseif race == "Troll" or race == "Orc" then
+		elseif strupper(fileName) == "TROLL" or strupper(fileName) == "ORC" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.4)
 		else
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.5)
@@ -1182,7 +1182,7 @@ function mod:UpdateInspectModelFrame()
 	if E.db.enhanced.character.inspectBackground then
 		InspectModelFrame.backdrop:Show()
 
-		local race, fileName = UnitRace(InspectFrame.unit)
+		local _, fileName = UnitRace(InspectFrame.unit)
 
 		InspectModelFrame.textureTopLeft:Show()
 		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
@@ -1200,11 +1200,11 @@ function mod:UpdateInspectModelFrame()
 		InspectModelFrame.backgroundOverlay:Show()
 		InspectModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
 
-		if race == "Undead" then
+		if strupper(fileName) == "SCOURGE" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.1)
-		elseif race == "Blood Elf" or race == "Night Elf" then
+		elseif strupper(fileName) == "BLOODELF" or strupper(fileName) == "NIGHTELF" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.3)
-		elseif race == "Troll" or race == "Orc" then
+		elseif strupper(fileName) == "TROLL" or strupper(fileName) == "ORC" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.4)
 		else
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.5)
