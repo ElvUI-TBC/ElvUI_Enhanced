@@ -34,6 +34,7 @@ L["Equipment"] = "Экипировка"
 L["Inspect Paperdoll Background"] = true;
 L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
 L["Paperdoll Background"] = true;
+L["Pet Paperdoll Background"] = true;
 L["Quality Color"] = true;
 
 -- Datatext

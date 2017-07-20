@@ -34,6 +34,7 @@ L["Equipment"] = "自动换装"
 L["Inspect Paperdoll Background"] = true;
 L["Only show durabitlity information for items that are damaged."] = "只在装备受损时显示耐久度."
 L["Paperdoll Background"] = true;
+L["Pet Paperdoll Background"] = true;
 L["Quality Color"] = true;
 
 -- Datatext

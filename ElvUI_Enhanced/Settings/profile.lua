@@ -44,6 +44,7 @@ P.enhanced = {
 	},
 	character = {
 		background = true,
+		petBackground = true,
 		inspectBackground = true,
 		collapsed = false,
 		orderName = "",

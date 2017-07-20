@@ -186,6 +186,14 @@ local function CharacterFrameOptions()
 						set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
 						disabled = function() return not E.private.enhanced.character.enable; end
 					},
+					petBackground = {
+						order = 2,
+						type = "toggle",
+						name = L["Pet Paperdoll Background"],
+						get = function(info) return E.db.enhanced.character.petBackground; end,
+						set = function(info, value) E.db.enhanced.character.petBackground = value; E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame(); end,
+						disabled = function() return not E.private.enhanced.character.enable; end
+					},
 					inspectBackground = {
 						order = 3,
 						type = "toggle",

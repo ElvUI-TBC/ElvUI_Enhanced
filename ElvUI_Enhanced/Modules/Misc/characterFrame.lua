@@ -1277,6 +1277,27 @@ function mod:UpdateInspectModelFrame()
 	end
 end
 
+function mod:UpdatePetModelFrame()
+	if E.db.enhanced.character.petBackground then
+		PetModelFrame.backdrop:Show()
+
+		local _, playerClass = UnitClass("player")
+
+		PetModelFrame.petPaperDollPetModelBg:Show()
+		if playerClass == "HUNTER" then
+			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petHunter.blp")
+		elseif playerClass == "WARLOCK" then
+			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petWarlock.blp")
+		else
+			PetPaperDollPetModelBg:Hide()
+		end
+		PetModelFrame.petPaperDollPetModelBg:SetDesaturated(true)
+	else
+		PetModelFrame.backdrop:Hide()
+		PetModelFrame.petPaperDollPetModelBg:Hide()
+	end
+end
+
 function mod:ADDON_LOADED(_, addon)
 	if addon ~= "Blizzard_InspectUI" then return end
 	self:UnregisterEvent("ADDON_LOADED")
@@ -1612,10 +1633,18 @@ function mod:Initialize()
 
 	PetNameText:SetPoint("CENTER", CharacterFrame, 6, 200)
 	PetLevelText:SetPoint("TOP", CharacterFrame, 0, -20)
-	PetModelFrame:SetSize(310, 320)
 	PetPaperDollCloseButton:Kill()
 	PetAttributesFrame:Kill()
 	PetResistanceFrame:Kill()
+
+	PetModelFrame:CreateBackdrop("Default")
+	PetModelFrame:SetSize(310, 320)
+
+	PetModelFrame.petPaperDollPetModelBg = PetModelFrame:CreateTexture("$parentPetPaperDollPetModelBg", "BACKGROUND")
+	PetModelFrame.petPaperDollPetModelBg:Size(494, 461)
+	PetModelFrame.petPaperDollPetModelBg:Point("TOPLEFT")
+
+	self:UpdatePetModelFrame()
 
 	PetPaperDollFrame:HookScript("OnShow", function(self)
 		if E.db.enhanced.character.collapsed then
