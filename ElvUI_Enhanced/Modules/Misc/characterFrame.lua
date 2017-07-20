@@ -1650,9 +1650,11 @@ function mod:Initialize()
 
 	PetNameText:SetPoint("CENTER", CharacterFrame, 0, 200)
 	PetLevelText:SetPoint("TOP", CharacterFrame, 0, -20)
+	PetPaperDollPetInfo:SetPoint("TOPLEFT", 25, -78)
 
 	PetTrainingPointText:ClearAllPoints()
 	PetTrainingPointText:SetPoint("BOTTOMRIGHT", PetModelFrame, "BOTTOMRIGHT", -31, -26)
+	PetTrainingPointLabel:SetPoint("RIGHT", PetTrainingPointText, "LEFT", -5, 1)
 
 	PetPaperDollCloseButton:Kill()
 	PetAttributesFrame:Kill()
