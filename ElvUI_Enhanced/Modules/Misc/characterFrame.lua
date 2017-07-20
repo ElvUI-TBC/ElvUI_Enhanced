@@ -1143,17 +1143,24 @@ function mod:UpdateCharacterModelFrame()
 
 		local _, fileName = UnitRace("player")
 
-		CharacterModelFrame.textureTop:Show()
-		CharacterModelFrame.textureTop:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.tga")
-		CharacterModelFrame.textureMid:Show()
-		CharacterModelFrame.textureMid:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.tga")
-		CharacterModelFrame.textureBot:Show()
-		CharacterModelFrame.textureBot:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.tga")
+		CharacterModelFrame.textureTopLeft:Show()
+		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.tga")
+		CharacterModelFrame.textureTopLeft:SetDesaturated(true)
+		CharacterModelFrame.textureTopRight:Show()
+		CharacterModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.tga")
+		CharacterModelFrame.textureTopRight:SetDesaturated(true)
+		CharacterModelFrame.textureBotLeft:Show()
+		CharacterModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.tga")
+		CharacterModelFrame.textureBotLeft:SetDesaturated(true)
+		CharacterModelFrame.textureBotRight:Show()
+		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.tga")
+		CharacterModelFrame.textureBotRight:SetDesaturated(true)
 	else
 		CharacterModelFrame.backdrop:Hide()
-		CharacterModelFrame.textureTop:Hide()
-		CharacterModelFrame.textureMid:Hide()
-		CharacterModelFrame.textureBot:Hide()
+		CharacterModelFrame.textureTopLeft:Hide()
+		CharacterModelFrame.textureTopRight:Hide()
+		CharacterModelFrame.textureBotLeft:Hide()
+		CharacterModelFrame.textureBotRight:Hide()
 	end
 end
 
@@ -1390,7 +1397,7 @@ function mod:Initialize()
 	end)
 
 	CharacterModelFrame:CreateBackdrop("Default")
-	CharacterModelFrame:Size(231, 320)
+	CharacterModelFrame:Size(231, 322)
 	CharacterModelFrame:Point("TOPLEFT", PaperDollFrame, "TOPLEFT", 66, -78)
 
 	local slots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand", "Ranged", "Ammo"}
@@ -1398,17 +1405,26 @@ function mod:Initialize()
 		_G[format("Character%sSlot", slotName)]:SetFrameLevel(CharacterModelFrame:GetFrameLevel() + 3)
 	end
 
-	CharacterModelFrame.textureTop = CharacterModelFrame:CreateTexture("$parentTextureTop", "BACKGROUND")
-	CharacterModelFrame.textureTop:Size(256, 128)
-	CharacterModelFrame.textureTop:Point("TOP")
+	CharacterModelFrame.textureTopLeft = CharacterModelFrame:CreateTexture("$parentTextureTopLeft", "BACKGROUND")
+	CharacterModelFrame.textureTopLeft:Size(212, 245)
+	CharacterModelFrame.textureTopLeft:Point("TOPLEFT")
+	CharacterModelFrame.textureTopLeft:SetTexCoord(0.171875, 1, 0.0392156862745098, 1)
 
-	CharacterModelFrame.textureMid = CharacterModelFrame:CreateTexture("$parentTextureMid", "BACKGROUND")
-	CharacterModelFrame.textureMid:Size(256, 128)
-	CharacterModelFrame.textureMid:Point("CENTER", 0, -32)
+	CharacterModelFrame.textureTopRight = CharacterModelFrame:CreateTexture("$parentTextureTopRight", "BACKGROUND")
+	CharacterModelFrame.textureTopRight:Size(19, 245)
+	CharacterModelFrame.textureTopRight:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "TOPRIGHT")
+	CharacterModelFrame.textureTopRight:SetTexCoord(0, 0.296875, 0.0392156862745098, 1)
 
-	CharacterModelFrame.textureBot = CharacterModelFrame:CreateTexture("$parentTextureBot", "BACKGROUND")
-	CharacterModelFrame.textureBot:Size(256, 128)
-	CharacterModelFrame.textureBot:Point("BOTTOM")
+	CharacterModelFrame.textureBotLeft = CharacterModelFrame:CreateTexture("$parentTextureBotLeft", "BACKGROUND")
+	CharacterModelFrame.textureBotLeft:Size(212, 128)
+	CharacterModelFrame.textureBotLeft:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "BOTTOMLEFT")
+	CharacterModelFrame.textureBotLeft:SetTexCoord(0.171875, 1, 0, 1)
+
+	CharacterModelFrame.textureBotRight = CharacterModelFrame:CreateTexture("$parentTextureBotRight", "BACKGROUND")
+	CharacterModelFrame.textureBotRight:Size(19, 128)
+	CharacterModelFrame.textureBotRight:Point("TOPLEFT", CharacterModelFrame.textureTopLeft, "BOTTOMRIGHT")
+	CharacterModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
+
 	self:UpdateCharacterModelFrame()
 
 	self:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, "player")
