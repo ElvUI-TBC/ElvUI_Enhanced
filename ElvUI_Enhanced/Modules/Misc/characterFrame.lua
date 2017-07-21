@@ -1329,6 +1329,11 @@ function mod:ADDON_LOADED(_, addon)
 	InspectModelFrame:Size(231, 320)
 	InspectModelFrame:Point("TOPLEFT", InspectPaperDollFrame, "TOPLEFT", 66, -78)
 
+	local inspectSlots = {"Head", "Neck", "Shoulder", "Back", "Chest", "Shirt", "Tabard", "Wrist", "Waist", "Legs", "Feet", "Finger0", "Finger1", "Trinket0", "Trinket1", "MainHand", "SecondaryHand", "Ranged"}
+	for _, name in ipairs(inspectSlots) do
+		_G[format("Inspect%sSlot", name)]:SetFrameLevel(InspectModelFrame:GetFrameLevel() + 3)
+	end
+
 	InspectModelFrame.textureTopLeft = InspectModelFrame:CreateTexture("$parentTextureTopLeft", "BACKGROUND")
 	InspectModelFrame.textureTopLeft:Point("TOPLEFT")
 	InspectModelFrame.textureTopLeft:Size(212, 244)
@@ -1349,7 +1354,7 @@ function mod:ADDON_LOADED(_, addon)
 	InspectModelFrame.textureBotRight:Size(19, 128)
 	InspectModelFrame.textureBotRight:SetTexCoord(0, 0.296875, 0, 1)
 
-	InspectModelFrame.backgroundOverlay = InspectModelFrame:CreateTexture("$parentBackgroundOverlay", "BACKGROUND")
+	InspectModelFrame.backgroundOverlay = InspectModelFrame:CreateTexture("$parentBackgroundOverlay", "BORDER")
 	InspectModelFrame.backgroundOverlay:Point("TOPLEFT", InspectModelFrame.textureTopLeft)
 	InspectModelFrame.backgroundOverlay:Point("BOTTOMRIGHT", InspectModelFrame.textureBotRight, 0, 52)
 
