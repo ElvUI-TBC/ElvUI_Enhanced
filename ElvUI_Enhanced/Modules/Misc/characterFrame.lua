@@ -17,11 +17,17 @@ local GetAttackPowerForStat = GetAttackPowerForStat
 local GetBlockChance = GetBlockChance
 local GetCombatRating = GetCombatRating
 local GetCombatRatingBonus = GetCombatRatingBonus
+local GetContainerItemLink = GetContainerItemLink
+local GetContainerNumSlots = GetContainerNumSlots
 local GetCritChance = GetCritChance
 local GetCritChanceFromAgility = GetCritChanceFromAgility
 local GetCurrentTitle = GetCurrentTitle
 local GetCursorPosition = GetCursorPosition
 local GetDodgeChance = GetDodgeChance
+local GetInventoryItemLink = GetInventoryItemLink
+local GetInventoryItemTexture = GetInventoryItemTexture
+local GetInventorySlotInfo = GetInventorySlotInfo
+local GetItemInfo = GetItemInfo
 local GetNumTitles = GetNumTitles
 local GetParryChance = GetParryChance
 local GetShieldBlock = GetShieldBlock
@@ -1335,9 +1341,10 @@ local slots = {
 	["RangedSlot"] = "INVTYPE_RANGEDRIGHT",
 }
 
+local bagsTable = {}
 function GetAverageItemLevel()
-	local bagsTable = {}
 	local itemLink, itemLevel, itemEquipLoc
+	local total, totalBag, item, bagItem, isBagItemLevel = 0, 0, 0, 0
 
 	for bag = 0, 4 do
 		for slot = 1, GetContainerNumSlots(bag) do
@@ -1357,8 +1364,6 @@ function GetAverageItemLevel()
 		end
 	end
 
-	itemLink, itemLevel = nil, nil
-	local total, totalBag, item, bagItem, isBagItemLevel = 0, 0, 0, 0
 	for slotName, itemLoc in pairs(slots) do
 		itemLink = GetInventoryItemLink("player", GetInventorySlotInfo(slotName))
 		if itemLink then
@@ -1366,7 +1371,7 @@ function GetAverageItemLevel()
 			if itemLevel and itemLevel > 0 then
 				item = item + 1
 				bagItem = bagItem + 1
-				
+
 				isBagItemLevel = bagsTable[itemEquipLoc]
 				if isBagItemLevel and isBagItemLevel > itemLevel then
 					totalBag = totalBag + isBagItemLevel
@@ -1399,14 +1404,12 @@ function GetItemLevelColor(unit)
 
 	local i = 0
 	local sumR, sumG, sumB = 0, 0, 0
-	for _, name in ipairs(slotName) do
-		local slotID = GetInventorySlotInfo(format("%sSlot", name))
-		local hasItem = GetInventoryItemTexture(unit, slotID)
-		if hasItem then
+	for slotName, _ in pairs(slots) do
+		local slotID = GetInventorySlotInfo(slotName)
+		if GetInventoryItemTexture(unit, slotID) then
 			local itemLink = GetInventoryItemLink(unit, slotID)
 			if itemLink then
 				local quality = select(3, GetItemInfo(itemLink))
-				--local quality = GetInventoryItemQuality("player", slotId)
 				if quality then
 					i = i + 1
 					local r, g, b = GetItemQualityColor(quality)
