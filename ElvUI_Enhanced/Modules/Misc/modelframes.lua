@@ -317,13 +317,13 @@ function module:Model_OnUpdate(self, elapsedTime, rotationsPerSecond)
 		local cameraZ = self.cameraZ + dy
 		-- bounds
 		scale = scale * modelScale
-		local maxCameraY = (settings.panMaxRight * 2) * scale
+		local maxCameraY = (settings.panMaxRight * 2.8) * scale
 		cameraY = min(cameraY, maxCameraY)
-		local minCameraY = (settings.panMaxLeft * 2) * scale
+		local minCameraY = (settings.panMaxLeft * 2.8) * scale
 		cameraY = max(cameraY, minCameraY)
-		local maxCameraZ = (settings.panMaxTop * 2) * scale
+		local maxCameraZ = (settings.panMaxTop * 2.8) * scale
 		cameraZ = min(cameraZ, maxCameraZ)
-		local minCameraZ = (settings.panMaxBottom * 2) * scale
+		local minCameraZ = (settings.panMaxBottom * 2.8) * scale
 		cameraZ = max(cameraZ, minCameraZ)
 
 		self:SetPosition(self.cameraX, cameraY, cameraZ)
