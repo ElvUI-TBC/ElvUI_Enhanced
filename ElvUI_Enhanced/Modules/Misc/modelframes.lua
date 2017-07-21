@@ -78,6 +78,28 @@ function module:ModelWithControls(model)
 	model.controlFrame.middle:SetPoint("RIGHT", "$parentRight", "LEFT", 0, 0)
 	model.controlFrame.middle:SetTexCoord(0, 1, 0.62500000, 0.80468750)
 
+	local zoomInButton = CreateFrame("Button", "$parentZoomInButton", model.controlFrame)
+	self:ModelControlButton(zoomInButton)
+	zoomInButton:SetPoint("LEFT", 2, 0)
+	zoomInButton:RegisterForClicks("AnyUp")
+	zoomInButton.icon:SetTexCoord(0.57812500, 0.82812500, 0.14843750, 0.27343750)
+	zoomInButton.tooltip = "ZOOM_IN"
+	zoomInButton.tooltipText = "KEY_MOUSEWHEELUP"
+	zoomInButton:SetScript("OnMouseDown", function(self)
+		module:Model_OnMouseWheel(self:GetParent():GetParent(), 1)
+	end)
+
+	local zoomOutButton = CreateFrame("Button", "$parentZoomOutButton", model.controlFrame)
+	self:ModelControlButton(zoomOutButton)
+	zoomOutButton:SetPoint("LEFT", 2, 0)
+	zoomOutButton:RegisterForClicks("AnyUp")
+	zoomOutButton.icon:SetTexCoord(0.29687500, 0.54687500, 0.00781250, 0.13281250)
+	zoomOutButton.tooltip = "ZOOM_OUT"
+	zoomOutButton.tooltipText = "KEY_MOUSEWHEELDOWN"
+	zoomOutButton:SetScript("OnMouseDown", function(self)
+		module:Model_OnMouseWheel(self:GetParent():GetParent(), -1)
+	end)
+
 	local panButton = CreateFrame("Button", "$parentPanButton", model.controlFrame)
 	self:ModelControlButton(panButton)
 	panButton:SetPoint("LEFT", 2, 0)
@@ -122,9 +144,15 @@ function module:ModelWithControls(model)
 
 	if E.private.skins.blizzard.enable then
 		model.controlFrame:StripTextures()
-		model.controlFrame:SetSize(82, 23)
+		model.controlFrame:SetSize(123, 23)
+
+		S:HandleButton(zoomInButton)
+
+		S:HandleButton(zoomOutButton)
+		zoomOutButton:SetPoint("LEFT", "$parentZoomInButton", "RIGHT", 2, 0)
 
 		S:HandleButton(panButton)
+		panButton:SetPoint("LEFT", "$parentZoomOutButton", "RIGHT", 2, 0)
 
 		S:HandleButton(rotateLeftButton)
 		rotateLeftButton:SetPoint("LEFT", "$parentPanButton", "RIGHT", 2, 0)
@@ -135,7 +163,9 @@ function module:ModelWithControls(model)
 		S:HandleButton(rotateResetButton)
 		rotateResetButton:SetPoint("LEFT", "$parentRotateRightButton", "RIGHT", 2, 0)
 	else
-		model.controlFrame:SetSize(76, 23)
+		model.controlFrame:SetSize(114, 23)
+		zoomOutButton:SetPoint("LEFT", "$parentZoomInButton", "RIGHT", 0, 0)
+		panButton:SetPoint("LEFT", "$parentZoomOutButton", "RIGHT", 0, 0)
 		rotateLeftButton:SetPoint("LEFT", "$parentPanButton", "RIGHT", 0, 0)
 		rotateRightButton:SetPoint("LEFT", "$parentRotateLeftButton", "RIGHT", 0, 0)
 		rotateResetButton:SetPoint("LEFT", "$parentRotateRightButton", "RIGHT", 0, 0)
@@ -148,6 +178,9 @@ function module:ModelWithControls(model)
 	end)
 
 	self:HookScript(model, "OnUpdate", "Model_OnUpdate")
+	model:SetScript("OnMouseWheel", function(self, delta)
+		module:Model_OnMouseWheel(self, delta)
+	end)
 	model:SetScript("OnMouseUp", function(self, button)
 		if button == "RightButton" and self.panning then
 			module:Model_StopPanning(self)
@@ -215,6 +248,18 @@ do
 	end
 end
 
+function module:Model_OnMouseWheel(model, delta, maxZoom, minZoom)
+	maxZoom = maxZoom or 2.5;
+	minZoom = minZoom or 0;
+	local zoomLevel = model.zoomLevel or minZoom;
+	zoomLevel = zoomLevel + delta * 0.15;
+	zoomLevel = min(zoomLevel, maxZoom);
+	zoomLevel = max(zoomLevel, minZoom);
+	local _, y, z = model:GetPosition()
+	model:SetPosition(zoomLevel, y, z)
+	model.zoomLevel = zoomLevel;
+end
+
 function module:Model_OnMouseDown(model, button)
 	if not button or button == "LeftButton" then
 		model.mouseDown = true
@@ -259,7 +304,8 @@ function module:Model_OnUpdate(self, elapsedTime, rotationsPerSecond)
 		-- settings
 		local settings = ModelSettings[playerRaceSex]
 
-		local zoom = 1
+		local zoom = self.zoomLevel or 0;
+		zoom = 1 + zoom - 0; -- want 1 at minimum zoom
 
 		-- Panning should require roughly the same mouse movement regardless of zoom level so the model moves at the same rate as the cursor
 		-- This formula more or less works for all zoom levels, found via trial and error
@@ -310,6 +356,7 @@ end
 function module:Model_Reset(model)
 	model.rotation = 0.61
 	model:SetRotation(model.rotation)
+	model.zoomLevel = 0
 	model:SetPosition(0, 0, 0)
 end
 
@@ -348,6 +395,7 @@ end
 function module:ADDON_LOADED(event, addon)
 	if addon == "Blizzard_InspectUI" then
 		InspectModelFrame:EnableMouse(true)
+		InspectModelFrame:EnableMouseWheel(true)
 
 		InspectModelRotateLeftButton:Kill()
 		InspectModelRotateRightButton:Kill()
@@ -355,6 +403,7 @@ function module:ADDON_LOADED(event, addon)
 		self:ModelWithControls(InspectModelFrame)
 	elseif addon == "Blizzard_AuctionUI" then
 		AuctionDressUpModel:EnableMouse(true)
+		AuctionDressUpModel:EnableMouseWheel(true)
 
 		AuctionDressUpModelRotateLeftButton:Kill()
 		AuctionDressUpModelRotateRightButton:Kill()
@@ -370,6 +419,7 @@ function module:Initialize()
 		local model = _G[models[i]]
 
 		model:EnableMouse(true)
+		model:EnableMouseWheel(true)
 
 		_G[models[i].."RotateLeftButton"]:Kill()
 		_G[models[i].."RotateRightButton"]:Kill()
