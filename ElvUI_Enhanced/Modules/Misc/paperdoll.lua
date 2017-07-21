@@ -64,13 +64,12 @@ function PD:UpdatePaperDoll(unit)
 			itemLink = GetInventoryItemLink(unit, slotID)
 
 			if itemLink then
-				itemLevel = select(4, GetItemInfo(itemLink))
+				rarity, itemLevel = select(3, GetItemInfo(itemLink))
 				if itemLevel then
 					frame.ItemLevel:SetText(itemLevel)
 
 					if E.db.enhanced.equipment.itemlevel.qualityColor then
 						frame.ItemLevel:SetTextColor()
-						local rarity = select(3, GetItemInfo(itemLink))
 						--local rarity = GetInventoryItemQuality(unit, slotId)
 						if rarity and rarity > 1 then
 							frame.ItemLevel:SetTextColor(GetItemQualityColor(rarity))
