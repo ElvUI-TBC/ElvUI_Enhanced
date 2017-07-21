@@ -252,7 +252,7 @@ function module:Model_OnMouseWheel(model, delta, maxZoom, minZoom)
 	maxZoom = maxZoom or 2.5;
 	minZoom = minZoom or 0;
 	local zoomLevel = model.zoomLevel or minZoom;
-	zoomLevel = zoomLevel + delta * 0.15;
+	zoomLevel = zoomLevel + delta * 0.45;
 	zoomLevel = min(zoomLevel, maxZoom);
 	zoomLevel = max(zoomLevel, minZoom);
 	local _, y, z = model:GetPosition()
@@ -309,7 +309,7 @@ function module:Model_OnUpdate(self, elapsedTime, rotationsPerSecond)
 
 		-- Panning should require roughly the same mouse movement regardless of zoom level so the model moves at the same rate as the cursor
 		-- This formula more or less works for all zoom levels, found via trial and error
-		local transformationRatio = settings.panValue * 2 ^ (zoom * 2) * scale / modelScale
+		local transformationRatio = settings.panValue * 2 ^ (zoom * 1.25) * scale / modelScale
 
 		local dx = (cursorX - self.cursorX) / transformationRatio
 		local dy = (cursorY - self.cursorY) / transformationRatio
@@ -449,7 +449,7 @@ function module:Initialize()
 				module:ModelControlButton_OnMouseUp(controlFrame.buttonDown)
 			end
 			if not MouseIsOver(controlFrame) then
-				controlFrame:Hide()
+			--	controlFrame:Hide()
 			end
 		end
 	end)
