@@ -303,6 +303,46 @@ PETPAPERDOLL_STATCATEGORY_DEFAULTORDER = {
 	"RESISTANCE",
 }
 
+local locale = GetLocale()
+local classTextFormat =
+locale == "deDE" and "Stufe %s %s%s %s" or
+locale == "ruRU" and "%2$s%4$s (%3$s)|r %1$s-го уровня" or
+locale == "frFR" and "%2$s%4$s %3$s|r de niveau %1$s" or
+locale == "koKR" and "%s 레벨 %s%s %s|r" or
+locale == "zhCN" and "等级%s %s%s %s|r" or
+locale == "zhTW" and "等級%s%s%s%s|r" or
+locale == "esES" and "%2$s%4$s %3$s|r de nivel %1$s" or
+locale == "ptBR" and "%2$s%4$s (%3$s)|r Nível %1$s" or
+"Level %s %s%s %s|r"
+
+function mod:PaperDollFrame_SetLevel()
+	local talentTree = E:GetTalentSpecInfo()
+	local classDisplayName, class = UnitClass("player")
+	local classColor = RAID_CLASS_COLORS[class]
+	local classColorString = format("|cFF%02x%02x%02x", classColor.r*255, classColor.g*255, classColor.b*255)
+	local specName
+
+	if talentTree then
+		specName = GetTalentTabInfo(talentTree)
+	end
+
+	if specName and specName ~= "" then
+		CharacterLevelText:SetFormattedText(classTextFormat, UnitLevel("player"), classColorString, specName, classDisplayName)
+	else
+		CharacterLevelText:SetFormattedText(PLAYER_LEVEL, UnitLevel("player"), classColorString, classDisplayName)
+	end
+
+	if CharacterLevelText:GetWidth() > 210 then
+		if PaperDollSidebarTab1:IsVisible() then
+			CharacterLevelText:SetPoint("TOP", CharacterNameText, "BOTTOM", -10, -6)
+		else
+			CharacterLevelText:SetPoint("TOP", CharacterNameText, "BOTTOM", 10, -6)
+		end
+	else
+		CharacterLevelText:SetPoint("TOP", CharacterNameText, "BOTTOM", 0, -6)
+	end
+end
+
 function mod:PaperDollSidebarTab(button)
 	button:SetSize(33, 35)
 	button:SetTemplate("Default")
@@ -1657,6 +1697,7 @@ function mod:Initialize()
 
 	self:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, E.db.enhanced.character.player.orderName, E.db.enhanced.character.player.collapsedName, "player")
 
+	PaperDollFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
 	PaperDollFrame:HookScript("OnEvent", function(self, event, ...)
 		if not self:IsVisible() then return end
 
@@ -1669,7 +1710,7 @@ function mod:Initialize()
 
 		if unit == "player" then
 			if event == "UNIT_LEVEL" then
-				PaperDollFrame_SetLevel()
+				mod:PaperDollFrame_SetLevel()
 			elseif event == "UNIT_DAMAGE" or event == "PLAYER_DAMAGE_DONE_MODS" or event == "UNIT_ATTACK_SPEED" or event == "UNIT_RANGEDDAMAGE" or event == "UNIT_ATTACK" or event == "UNIT_STATS" or event == "UNIT_RANGED_ATTACK_POWER" then
 				mod:PaperDollFrame_UpdateStats()
 			elseif event == "UNIT_RESISTANCES" then
@@ -1679,6 +1720,8 @@ function mod:Initialize()
 
 		if event == "COMBAT_RATING_UPDATE" then
 			mod:PaperDollFrame_UpdateStats()
+		elseif event == "PLAYER_TALENT_UPDATE" then
+			mod:PaperDollFrame_SetLevel()
 		end
 	end)
 
@@ -1693,6 +1736,7 @@ function mod:Initialize()
 		CharacterFrameExpandButton:Show()
 		CharacterFrameExpandButton.collapseTooltip = L["Hide Character Information"]
 		CharacterFrameExpandButton.expandTooltip = L["Show Character Information"]
+		mod:PaperDollFrame_SetLevel()
 	end)
 
 	PaperDollFrame:HookScript("OnHide", function(self)
