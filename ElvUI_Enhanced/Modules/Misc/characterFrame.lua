@@ -1308,7 +1308,7 @@ function mod:UpdatePetModelFrame()
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petWarlock.blp")
 			PetModelFrame.backgroundOverlay:SetAlpha(0.1)
 		else
-			PetPaperDollPetModelBg:Hide()
+			PetModelFrame.petPaperDollPetModelBg:Hide()
 		end
 		PetModelFrame.petPaperDollPetModelBg:SetDesaturated(true)
 
