@@ -252,7 +252,7 @@ function module:Model_OnMouseWheel(model, delta, maxZoom, minZoom)
 	maxZoom = maxZoom or 2.8;
 	minZoom = minZoom or 0;
 	local zoomLevel = model.zoomLevel or minZoom;
-	zoomLevel = zoomLevel + delta * 0.45;
+	zoomLevel = zoomLevel + delta * 0.60;
 	zoomLevel = min(zoomLevel, maxZoom);
 	zoomLevel = max(zoomLevel, minZoom);
 	local _, y, z = model:GetPosition()
