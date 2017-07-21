@@ -372,7 +372,12 @@ function mod:ItemLevel(statFrame, unit)
 		local r, b, g = GearScore_GetQuality(myGearScore)
 		label:SetTextColor(r, g, b)
 	else
-		label:SetText(E:GetModule("Tooltip"):GetItemLvL("player"))
+		local level, level2 = GetAverageItemLevel()
+		if level2 == level then
+			label:SetText(level2)
+		else
+			label:SetText(level2.." / "..level)
+		end
 		label:SetTextColor(GetItemLevelColor())
 	end
 end
@@ -1308,6 +1313,85 @@ function mod:ADDON_LOADED(_, addon)
 	InspectModelFrame.backgroundOverlay:Point("BOTTOMRIGHT", InspectModelFrame.textureBotRight, 0, 52)
 
 	self:SecureHook("InspectFrame_UpdateTalentTab", "UpdateInspectModelFrame")
+end
+
+local slots = {
+	["HeadSlot"] = "INVTYPE_HEAD",
+	["NeckSlot"] = "INVTYPE_NECK",
+	["ShoulderSlot"] = "INVTYPE_SHOULDER",
+	["BackSlot"] = "INVTYPE_CLOAK",
+	["ChestSlot"] = "INVTYPE_ROBE",
+	["WristSlot"] = "INVTYPE_WRIST",
+	["HandsSlot"] = "INVTYPE_HAND",
+	["WaistSlot"] = "INVTYPE_WAIST",
+	["LegsSlot"] = "INVTYPE_LEGS",
+	["FeetSlot"] = "INVTYPE_FEET",
+	["Finger0Slot"] = "INVTYPE_FINGER",
+	["Finger1Slot"] = "INVTYPE_FINGER",
+	["Trinket0Slot"] = "INVTYPE_TRINKET",
+	["Trinket1Slot"] = "INVTYPE_TRINKET",
+	["MainHandSlot"] = "INVTYPE_WEAPONMAINHAND",
+	["SecondaryHandSlot"] = "INVTYPE_HOLDABLE",
+	["RangedSlot"] = "INVTYPE_RANGEDRIGHT",
+}
+
+function GetAverageItemLevel()
+	local bagsTable = {}
+	local itemLink, itemLevel, itemEquipLoc
+
+	for bag = 0, 4 do
+		for slot = 1, GetContainerNumSlots(bag) do
+			itemLink = GetContainerItemLink(bag, slot)
+			if itemLink then
+				_, _, _, itemLevel, _, _, _, _, itemEquipLoc = GetItemInfo(itemLink)
+				if itemEquipLoc ~= "" then
+					if not bagsTable[itemEquipLoc] then
+						bagsTable[itemEquipLoc] = itemLevel
+					else
+						if itemLevel > bagsTable[itemEquipLoc] then
+							bagsTable[itemEquipLoc] = itemLevel
+						end
+					end
+				end
+			end
+		end
+	end
+
+	itemLink, itemLevel = nil, nil
+	local total, totalBag, item, bagItem, isBagItemLevel = 0, 0, 0, 0
+	for slotName, itemLoc in pairs(slots) do
+		itemLink = GetInventoryItemLink("player", GetInventorySlotInfo(slotName))
+		if itemLink then
+			_, _, _, itemLevel, _, _, _, _, itemEquipLoc = GetItemInfo(itemLink)
+			if itemLevel and itemLevel > 0 then
+				item = item + 1
+				bagItem = bagItem + 1
+				
+				isBagItemLevel = bagsTable[itemEquipLoc]
+				if isBagItemLevel and isBagItemLevel > itemLevel then
+					totalBag = totalBag + isBagItemLevel
+				else
+					totalBag = totalBag + itemLevel
+				end
+
+				total = total + itemLevel
+			end
+		else
+			isBagItemLevel = bagsTable[itemLoc]
+			if isBagItemLevel then
+				bagItem = bagItem + 1
+				totalBag = totalBag + isBagItemLevel
+			end
+		end
+	end
+
+	wipe(bagsTable)
+
+	if total < 1 then
+		return 0, 0
+	end
+
+	return format("%.2f", (totalBag / bagItem)), format("%.2f", (total / item))
 end
 
 function GetItemLevelColor(unit)
