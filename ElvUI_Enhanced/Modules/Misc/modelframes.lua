@@ -252,7 +252,7 @@ function module:Model_OnMouseWheel(model, delta, maxZoom, minZoom)
 	maxZoom = maxZoom or 2.8;
 	minZoom = minZoom or 0;
 	local zoomLevel = model.zoomLevel or minZoom;
-	zoomLevel = zoomLevel + delta * 0.60;
+	zoomLevel = zoomLevel + delta * 0.5;
 	zoomLevel = min(zoomLevel, maxZoom);
 	zoomLevel = max(zoomLevel, minZoom);
 	local _, y, z = model:GetPosition()
@@ -317,13 +317,13 @@ function module:Model_OnUpdate(self, elapsedTime, rotationsPerSecond)
 		local cameraZ = self.cameraZ + dy
 		-- bounds
 		scale = scale * modelScale
-		local maxCameraY = (settings.panMaxRight * 2.8) * scale
+		local maxCameraY = (settings.panMaxRight * zoom) * scale
 		cameraY = min(cameraY, maxCameraY)
-		local minCameraY = (settings.panMaxLeft * 2.8) * scale
+		local minCameraY = (settings.panMaxLeft * zoom) * scale
 		cameraY = max(cameraY, minCameraY)
-		local maxCameraZ = (settings.panMaxTop * 2.8) * scale
+		local maxCameraZ = (settings.panMaxTop * zoom) * scale
 		cameraZ = min(cameraZ, maxCameraZ)
-		local minCameraZ = (settings.panMaxBottom * 2.8) * scale
+		local minCameraZ = (settings.panMaxBottom * zoom) * scale
 		cameraZ = max(cameraZ, minCameraZ)
 
 		self:SetPosition(self.cameraX, cameraY, cameraZ)
