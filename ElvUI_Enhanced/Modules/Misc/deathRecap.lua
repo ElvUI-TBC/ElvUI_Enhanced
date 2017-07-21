@@ -1,6 +1,7 @@
 local E, L, V, P, G, _ = unpack(ElvUI);
 local mod = E:NewModule("DeathRecap", "AceHook-3.0", "AceEvent-3.0");
 
+
 local format, upper = string.format, string.upper;
 local floor = math.floor;
 local tsort, twipe = table.sort, table.wipe;
