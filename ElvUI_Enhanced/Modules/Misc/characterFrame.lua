@@ -364,51 +364,6 @@ end
 
 local StatCategoryFrames = {}
 
-local function GetRainbowColor(r, g, b, elapsed)
-	local perStep = elapsed * 0.5
-	local step = 1
-
-	if r >= 1 and b >= 0 and g < 1 then
-		step = 1
-	end
-	if r >= 0 and g >= 1 and b <= 0 then
-		step = 2
-	end
-	if r <= 0 and g >= 1 and b < 1 then
-		step = 3
-	end
-	if r <= 0 and g >= 0 and b >= 1 then
-		step = 4
-	end
-	if r < 1 and g <= 0 and b >= 1 then
-		step = 5
-	end
-	if r >= 1 and g <= 0 and b >= 0 then
-		step = 6
-	end
-
-	if step == 1 then
-		g = g + perStep
-	end
-	if step == 2 then
-		r = r - perStep
-	end
-	if step == 3 then
-		b = b + perStep
-	end
-	if step == 4 then
-		g = g - perStep
-	end
-	if step == 5 then
-		r = r + perStep
-	end
-	if step == 6 then
-		b = b - perStep
-	end
-
-	return r, g, b
-end
-
 function mod:ItemLevel(statFrame, unit)
 	local label = _G[statFrame:GetName().."Label"]
 	if PersonalGearScore then
@@ -418,13 +373,7 @@ function mod:ItemLevel(statFrame, unit)
 		label:SetTextColor(r, g, b)
 	else
 		label:SetText(E:GetModule("Tooltip"):GetItemLvL("player"))
-		label:SetTextColor(unpack(E.media.rgbvaluecolor))
-
-		statFrame.r, statFrame.g, statFrame.b = statFrame.r or 0, statFrame.g or 0.5, statFrame.b or 0.5
-		statFrame:SetScript("OnUpdate", function(self, elapsed)
-			self.r, self.g, self.b = GetRainbowColor(self.r, self.g, self.b, elapsed)
-			label:SetTextColor(self.r, self.g, self.b)
-		end)
+		label:SetTextColor(GetItemLevelColor())
 	end
 end
 
@@ -1361,24 +1310,37 @@ function mod:ADDON_LOADED(_, addon)
 	self:SecureHook("InspectFrame_UpdateTalentTab", "UpdateInspectModelFrame")
 end
 
---[[
-local test = {}
 function GetItemLevelColor(unit)
+	if not unit then unit = "player" end
+
 	local i = 0
+	local sumR, sumG, sumB = 0, 0, 0
 	for _, name in ipairs(slotName) do
 		local slotID = GetInventorySlotInfo(format("%sSlot", name))
-		local hasItem = GetInventoryItemTexture("player", slotID)
+		local hasItem = GetInventoryItemTexture(unit, slotID)
 		if hasItem then
-			local rarity = GetInventoryItemQuality("player", slotId)
-			if rarity then
-				i = i + 1
-				test[i] = rarity
-				--local r, g, b = GetItemQualityColor(rarity)
+			local itemLink = GetInventoryItemLink(unit, slotID)
+			if itemLink then
+				local quality = select(3, GetItemInfo(itemLink))
+				--local quality = GetInventoryItemQuality("player", slotId)
+				if quality then
+					i = i + 1
+					local r, g, b = GetItemQualityColor(quality)
+					sumR = sumR + r
+					sumG = sumG + g
+					sumB = sumB + b
+				end
 			end
 		end
 	end
+
+	if i > 0 then
+		return (sumR / i), (sumG / i), (sumB / i)
+	else
+		return 1, 1, 1
+	end
 end
-]]
+
 function mod:Initialize()
 	if not E.private.enhanced.character.enable then return end
 
