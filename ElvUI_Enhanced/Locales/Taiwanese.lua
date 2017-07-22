@@ -89,9 +89,13 @@ L["Track Reputation"] = "聲望追蹤"
 L["Drag"] = true;
 L["Left-click on character and drag to rotate."] = true;
 L["Model Frames"] = true;
+L["Mouse Wheel Down"] = true;
+L["Mouse Wheel Up"] = true;
 L["Right-click on character and drag to move it within the window."] = true;
 L["Rotate Left"] = true;
 L["Rotate Right"] = true;
+L["Zoom In"] = true;
+L["Zoom Out"] = true;
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;

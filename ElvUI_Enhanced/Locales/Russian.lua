@@ -89,9 +89,13 @@ L["Track Reputation"] = "Отслеживание репутации"
 L["Drag"] = "Перетащить"
 L["Left-click on character and drag to rotate."] = "Зажмите левую кнопку мыши и тащите курсор, чтобы вращать изображение."
 L["Model Frames"] = "Портреты"
+L["Mouse Wheel Down"] = "Прокрутка вниз"
+L["Mouse Wheel Up"] = "Прокрутка вверх"
 L["Right-click on character and drag to move it within the window."] = "Зажмите правую кнопку мыши и тащите курсор, чтобы переместить персонажа."
 L["Rotate Left"] = "Вращение влево"
 L["Rotate Right"] = "Вращение вправо"
+L["Zoom In"] = "Приблизить"
+L["Zoom Out"] = "Отдалить"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;

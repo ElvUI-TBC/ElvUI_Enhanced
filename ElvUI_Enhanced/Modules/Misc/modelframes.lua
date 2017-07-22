@@ -83,8 +83,8 @@ function module:ModelWithControls(model)
 	zoomInButton:SetPoint("LEFT", 2, 0)
 	zoomInButton:RegisterForClicks("AnyUp")
 	zoomInButton.icon:SetTexCoord(0.57812500, 0.82812500, 0.14843750, 0.27343750)
-	zoomInButton.tooltip = "ZOOM_IN"
-	zoomInButton.tooltipText = "KEY_MOUSEWHEELUP"
+	zoomInButton.tooltip = L["Zoom In"]
+	zoomInButton.tooltipText = L["Mouse Wheel Up"]
 	zoomInButton:SetScript("OnMouseDown", function(self)
 		module:Model_OnMouseWheel(self:GetParent():GetParent(), 1)
 	end)
@@ -94,8 +94,8 @@ function module:ModelWithControls(model)
 	zoomOutButton:SetPoint("LEFT", 2, 0)
 	zoomOutButton:RegisterForClicks("AnyUp")
 	zoomOutButton.icon:SetTexCoord(0.29687500, 0.54687500, 0.00781250, 0.13281250)
-	zoomOutButton.tooltip = "ZOOM_OUT"
-	zoomOutButton.tooltipText = "KEY_MOUSEWHEELDOWN"
+	zoomOutButton.tooltip = L["Zoom Out"]
+	zoomOutButton.tooltipText = L["Mouse Wheel Down"]
 	zoomOutButton:SetScript("OnMouseDown", function(self)
 		module:Model_OnMouseWheel(self:GetParent():GetParent(), -1)
 	end)

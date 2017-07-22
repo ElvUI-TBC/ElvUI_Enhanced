@@ -86,12 +86,16 @@ L["Show Quest Level"] = true;
 L["Track Reputation"] = "Ruf beobachten"
 
 -- Model Frames
-L["Drag"] = true;
-L["Left-click on character and drag to rotate."] = true;
+L["Drag"] = "Ziehen"
+L["Left-click on character and drag to rotate."] = "Linksklicken und ziehen, um den Charakter zu drehen."
 L["Model Frames"] = true;
-L["Right-click on character and drag to move it within the window."] = true;
-L["Rotate Left"] = true;
-L["Rotate Right"] = true;
+L["Mouse Wheel Down"] = "Mausrad nach unten"
+L["Mouse Wheel Up"] = "Mausrad nach oben"
+L["Right-click on character and drag to move it within the window."] = "Rechtsklicken und ziehen, um den Charakter im Fenster zu verschieben."
+L["Rotate Left"] = "Linksdrehung"
+L["Rotate Right"] = "Rechtsdrehung"
+L["Zoom In"] = "Hereinzoomen"
+L["Zoom Out"] = "Herauszoomen"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;
