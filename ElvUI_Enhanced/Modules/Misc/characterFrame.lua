@@ -636,12 +636,12 @@ function mod:SetResilience(statFrame, unit)
 		lowestRating = CR_CRIT_TAKEN_SPELL
 	end
 
-	--local maxRatingBonus = GetMaxCombatRatingBonus(lowestRating)
-	--local lowestRatingBonus = GetCombatRatingBonus(lowestRating)
+	local lowestRatingBonus = GetCombatRatingBonus(lowestRating)
 
 	PaperDollFrame_SetLabelAndText(statFrame, STAT_RESILIENCE, minResilience)
-	--statFrame.tooltip = HIGHLIGHT_FONT_COLOR_CODE..format("%s", STAT_RESILIENCE).." "..minResilience..FONT_COLOR_CODE_CLOSE
-	--statFrame.tooltip2 = format(RESILIENCE_TOOLTIP, lowestRatingBonus, min(lowestRatingBonus * RESILIENCE_CRIT_CHANCE_TO_DAMAGE_REDUCTION_MULTIPLIER, maxRatingBonus), lowestRatingBonus * RESILIENCE_CRIT_CHANCE_TO_CONSTANT_DAMAGE_REDUCTION_MULTIPLIER)
+	statFrame.tooltip = HIGHLIGHT_FONT_COLOR_CODE..format("%s", STAT_RESILIENCE).." "..minResilience..FONT_COLOR_CODE_CLOSE
+	statFrame.tooltip2 = format(RESILIENCE_TOOLTIP, lowestRatingBonus, min(lowestRatingBonus * 2, 25.00), lowestRatingBonus)
+
 	statFrame:Show()
 end
 
