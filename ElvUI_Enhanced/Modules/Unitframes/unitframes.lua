@@ -1,6 +1,8 @@
 local E, L, V, P, G = unpack(ElvUI);
 local UF = E:GetModule("UnitFrames");
 
+if not E.private.unitframe.enable then return end
+
 ElvUF_Player.AnimatedLoss = CreateFrame("StatusBar", nil, ElvUF_Player);
 UF["statusbars"][ElvUF_Player.AnimatedLoss] = true;
 ElvUF_Player.AnimatedLoss:Hide();
