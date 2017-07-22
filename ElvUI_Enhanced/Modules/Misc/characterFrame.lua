@@ -1391,7 +1391,7 @@ function GetAverageItemLevel()
 			itemLink = GetContainerItemLink(bag, slot)
 			if itemLink then
 				_, _, _, itemLevel, _, _, _, _, itemEquipLoc = GetItemInfo(itemLink)
-				if itemEquipLoc ~= "" then
+				if itemEquipLoc and itemEquipLoc ~= "" then
 					if not bagsTable[itemEquipLoc] then
 						bagsTable[itemEquipLoc] = itemLevel
 					else
