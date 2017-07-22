@@ -86,16 +86,16 @@ L["Show Quest Level"] = true;
 L["Track Reputation"] = "聲望追蹤"
 
 -- Model Frames
-L["Drag"] = true;
-L["Left-click on character and drag to rotate."] = true;
+L["Drag"] = "拖曳"
+L["Left-click on character and drag to rotate."] = "滑鼠左鍵點擊角色並拖曳以旋轉角度。"
 L["Model Frames"] = true;
-L["Mouse Wheel Down"] = true;
-L["Mouse Wheel Up"] = true;
-L["Right-click on character and drag to move it within the window."] = true;
-L["Rotate Left"] = true;
-L["Rotate Right"] = true;
-L["Zoom In"] = true;
-L["Zoom Out"] = true;
+L["Mouse Wheel Down"] = "滑鼠滾輪向下滾動"
+L["Mouse Wheel Up"] = "滑鼠滾輪向上滾動"
+L["Right-click on character and drag to move it within the window."] = "滑鼠右鍵點擊角色並拖曳以在視窗內移動。"
+L["Rotate Left"] = "向左旋轉"
+L["Rotate Right"] = "向右旋轉"
+L["Zoom In"] = "放大"
+L["Zoom Out"] = "縮小"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;

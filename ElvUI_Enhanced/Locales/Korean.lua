@@ -86,16 +86,16 @@ L["Show Quest Level"] = true;
 L["Track Reputation"] = true;
 
 -- Model Frames
-L["Drag"] = true;
-L["Left-click on character and drag to rotate."] = true;
+L["Drag"] = "끌기"
+L["Left-click on character and drag to rotate."] = "마우스 왼쪽 버튼으로 클릭 후 드래그하면 캐릭터를 회전할 수 있습니다."
 L["Model Frames"] = true;
-L["Mouse Wheel Down"] = true;
-L["Mouse Wheel Up"] = true;
-L["Right-click on character and drag to move it within the window."] = true;
-L["Rotate Left"] = true;
-L["Rotate Right"] = true;
-L["Zoom In"] = true;
-L["Zoom Out"] = true;
+L["Mouse Wheel Down"] = "마우스 휠 아래로"
+L["Mouse Wheel Up"] = "마우스 휠 위로"
+L["Right-click on character and drag to move it within the window."] = "마우스 오른쪽 버튼으로 클릭 후 드래그하면 캐릭터를 창 안에서 이동할 수 있습니다."
+L["Rotate Left"] = "왼쪽으로 회전"
+L["Rotate Right"] = "오른쪽으로 회전"
+L["Zoom In"] = "확대"
+L["Zoom Out"] = "축소"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true;
