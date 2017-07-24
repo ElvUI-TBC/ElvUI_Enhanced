@@ -209,6 +209,7 @@ function module:ModelWithControls(model)
 		end
 		self.mouseDown = false
 		self.controlFrame:Hide()
+		module:Model_Reset(self)
 	end)
 end
 
