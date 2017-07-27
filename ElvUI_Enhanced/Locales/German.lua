@@ -11,10 +11,10 @@ L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen des Watchframe (Questlog) n
 
 -- Actionbars
 L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten-Hintergrund transparent."
-L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten-Buttons transparent."
+L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten-Tasten transparent."
 L["Transparent ActionBars"] = "Transparente Aktionsleisten"
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
-L["Transparent Buttons"] = "Transparente Buttons"
+L["Transparent s"] = "Transparente Tasten"
 
 -- Animated Loss
 L["Animated Loss"] = true;
