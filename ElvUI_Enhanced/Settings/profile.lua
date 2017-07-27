@@ -35,8 +35,8 @@ P.enhanced = {
 	},
 	actionbars = {
 		transparentActionbars = {
-			transparentBackdrops = true,
-			transparentButtons = true
+			transparentBackdrops = false,
+			transparentButtons = false
 		}
 	},
 	chat = {
