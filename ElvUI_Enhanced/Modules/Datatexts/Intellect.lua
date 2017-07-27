@@ -5,7 +5,7 @@ local select = select;
 local join = string.join
 
 local INTELLECT_COLON = INTELLECT_COLON
-local ITEM_MOD_INTELLECT_SHORT = ITEM_MOD_INTELLECT_SHORT
+local SPELL_STAT4_NAME = SPELL_STAT4_NAME
 
 local displayNumberString = ""
 local lastPanel;
@@ -24,4 +24,4 @@ local function ValueColorUpdate(hex)
 end
 E["valueColorUpdateFuncs"][ValueColorUpdate] = true
 
-DT:RegisterDatatext("Intellect", {"UNIT_STATS", "UNIT_AURA", "FORGE_MASTER_ITEM_CHANGED", "ACTIVE_TALENT_GROUP_CHANGED", "PLAYER_TALENT_UPDATE"}, OnEvent, nil, nil, nil, nil, ITEM_MOD_INTELLECT_SHORT)
+DT:RegisterDatatext("Intellect", {"UNIT_STATS", "UNIT_AURA", "FORGE_MASTER_ITEM_CHANGED", "ACTIVE_TALENT_GROUP_CHANGED", "PLAYER_TALENT_UPDATE"}, OnEvent, nil, nil, nil, nil, SPELL_STAT4_NAME)
