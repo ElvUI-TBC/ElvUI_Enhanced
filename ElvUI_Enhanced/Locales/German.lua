@@ -12,7 +12,7 @@ L["WATCHFRAME_DESC"] = "Adjust the settings for the visibility of the watchframe
 -- Actionbars
 L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
 L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten Tasten transparent."
-L["Transparent ActionBars"] = true;
+L["Transparent ActionBars"] = "Transparente Aktionsleisten"
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
 L["Transparent Buttons"] = "Transparente Tasten"
 
@@ -29,46 +29,46 @@ L["Replaces long reports from damage meters with a clickeble hyperlink to reduce
 L["Damaged Only"] = "Nur Beschädigte"
 L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
 L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren / deaktivieren."
-L["Enhanced Character Frame"] = true;
+L["Enhanced Character Frame"] = "Erweitertes Charakterfenster"
 L["Equipment"] = "Ausrüstung"
-L["Inspect Paperdoll Background"] = true;
+L["Inspect Paperdoll Background"] = "Betrachten Paperdoll Hintergrund"
 L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
-L["Paperdoll Background"] = true;
-L["Pet Paperdoll Background"] = true;
-L["Quality Color"] = true;
+L["Paperdoll Background"] = "Paperdoll Hintergrund"
+L["Pet Paperdoll Background"] = "Begleiter Paperdoll Hintergrund"
+L["Quality Color"] = "Qualitäts-Farbe"
 
 -- Datatext
-L["Combat Indicator"] = true;
-L["Datatext Disabled"] = true;
-L["Distance"] = true;
-L["Enhanced Time Color"] = true;
-L["Equipped"] = true;
-L["In Combat"] = true;
+L["Combat Indicator"] = "Kampfanzeige"
+L["Datatext Disabled"] = "Infotext deaktiviert"
+L["Distance"] = "Entfernung"
+L["Enhanced Time Color"] = "Erweiterte Zeit-Färbung"
+L["Equipped"] = "Angelegt"
+L["In Combat"] = "Im Kampf"
 L["New Mail"] = "Neue Post"
 L["No Mail"] = "Keine Post"
-L["Out of Combat"] = true;
-L["Reincarnation"] = true;
-L["Target Range"] = true;
+L["Out of Combat"] = "Außerhalb des Kampfes"
+L["Reincarnation"] = "Wiederbelebung"
+L["Target Range"] = "Zielreichweite"
 L["Total"] = "Gesamt"
-L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = true;
+L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = "Du spielst keinen |cff0070DEShaman|r, Infotext deaktiviert."
 
 -- Death Recap
 L["%s %s"] = true;
-L["%s by %s"] = true;
-L["%s sec before death at %s%% health."] = true;
-L["(%d Absorbed)"] = true;
-L["(%d Blocked)"] = true;
-L["(%d Overkill)"] = true;
-L["(%d Resisted)"] = true;
-L["Death Recap unavailable."] = true;
+L["%s by %s"] = "%s durch %s"
+L["%s sec before death at %s%% health."] = "%s Sekunden vor Tod bei %s%% Gesundheit."
+L["(%d Absorbed)"] = "(%d Absorbiert)"
+L["(%d Blocked)"] = "(%d Geblockt)"
+L["(%d Overkill)"] = "(%d Über dem Tod)"
+L["(%d Resisted)"] = "(%d Widerstanden)"
+L["Death Recap unavailable."] = "Todesursache nicht verfügbar."
 L["Death Recap"] = "Todesursache"
-L["Killing blow at %s%% health."] = true;
-L["Recap"] = true;
-L["You died."] = true;
+L["Killing blow at %s%% health."] = "Todesstoß bei %s%% Gesundheit."
+L["Recap"] = "Zusammenfassung"
+L["You died."] = "Du bist gestorben."
 
 -- Decline Duels
-L["Auto decline all duels"] = true;
-L["Decline Duel"] = true;
+L["Auto decline all duels"] = "Auto-Ablehnen von allen Duellen"
+L["Decline Duel"] = "Duell ablehnen"
 L["Declined duel request from "] = "Duellaufforderung abgelehnt von "
 
 -- General
@@ -76,13 +76,13 @@ L["Automatically change your watched faction on the reputation bar to the factio
 L["Automatically release body when killed inside a battleground."] = "Gibt automatisch Ihren Geist frei, wenn Sie auf dem Schlachtfeld getötet wurden."
 L["Automatically select the quest reward with the highest vendor sell value."] = "Wählt automatisch die Questbelohnung mit dem höchsten Wiederverkaufswert beim Händler"
 L["Changes the transparency of all the movers."] = "Konfiguriere die Einstellungen der Transparenz der Ankerpukte"
-L["Colorizes recipes, mounts & pets that are already known"] = true;
-L["Display quest levels at Quest Log."] = true;
-L["Hide Zone Text"] = true;
+L["Colorizes recipes, mounts & pets that are already known"] = "Rezepte, Reittiere und Begleiter einfärben, die bereits bekannt sind"
+L["Display quest levels at Quest Log."] = "Questlevel im Questlog anzeigen."
+L["Hide Zone Text"] = "Zonentext verstecken"
 L["Mover Transparency"] = "Transparenz Ankerpunkte"
-L["Original Close Button"] = true;
+L["Original Close Button"] = "Originaler Schließen-Button"
 L["PvP Autorelease"] = "Automatische Freigabe im PvP"
-L["Show Quest Level"] = true;
+L["Show Quest Level"] = "Zeige Questlevel"
 L["Track Reputation"] = "Ruf beobachten"
 
 -- Model Frames
@@ -98,43 +98,43 @@ L["Zoom In"] = "Hereinzoomen"
 L["Zoom Out"] = "Herauszoomen"
 
 -- Nameplates
-L["Bars will transition smoothly."] = true;
-L["Smooth Bars"] = true;
+L["Bars will transition smoothly."] = "Balken werden sanft übergehen"
+L["Smooth Bars"] = "Sanfte Balken"
 
 -- Minimap
 L["Above Minimap"] = "Oberhalb der Minimap"
 L["FadeIn Delay"] = "Einblendungsverzögerung"
 L["Hide minimap while in combat."] = "Ausblenden der Minimap während des Kampfes."
 L["Location Digits"] = "Koordinaten Nachkommastellen"
-L["Location Panel"] = true;
+L["Location Panel"] = "Standort-Panel"
 L["Number of digits for map location."] = "Anzahl der Nachkommastellen der Koordinaten."
 L["The time to wait before fading the minimap back in after combat hide. (0 = Disabled)"] = "Die Zeit vor dem wieder Einblenden der Minimap nach dem Kampf. (0 = deaktiviert)"
-L["Toggle Location Panel."] = true;
+L["Toggle Location Panel."] = "Umschalten des Standort-Panels"
 
 -- Tooltip
-L["Item Border Color"] = true
-L["Colorize the tooltip border based on item quality."] = true
+L["Item Border Color"] = "Gegenstandsrahmen-Farbe"
+L["Colorize the tooltip border based on item quality."] = "Färbe den Tooltip-Rahmen basierend auf der Gegenstandsqualität"
 L["Show/Hides an Icon for Items on the Tooltip."] = "Icon für Gegenstände am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells on the Tooltip."] = "Icon für Zauber am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = "Icon für Zauber oder Gegenstände am Tooltip anzeigen oder ausblenden."
 L["Tooltip Icon"] = true;
 
 -- Misc
-L["Skin Animations"] = true;
+L["Skin Animations"] = "Skin-Animationen"
 L["Undress"] = "Ausziehen"
 
 -- Character Frame
-L["Character Stats"] = true;
+L["Character Stats"] = "Charakterstatistiken"
 L["Damage Per Second"] = "DPS";
-L["Hide Character Information"] = true;
-L["Hide Pet Information"] = true;
-L["Show Character Information"] = true;
-L["Show Pet Information"] = true;
+L["Hide Character Information"] = "Verstecke Charakter-Informationen"
+L["Hide Pet Information"] = "Verstecke Begleiter-Informationen"
+L["Show Character Information"] = "Zeige Charakter-Informationen"
+L["Show Pet Information"] = "Zeige Begleiter-Informationen"
 
 -- Movers
 L["Loss Control Icon"] = "Kontrollverlustsymbol"
-L["Player Portrait"] = true;
-L["Target Portrait"] = true;
+L["Player Portrait"] = "Spieler-Portrait"
+L["Target Portrait"] = "Ziel-Portrait"
 
 -- Loss Control
 L["CC"] = "CC"
@@ -147,7 +147,7 @@ L["Snare"] = "Verlangsamung"
 
 -- Unitframes
 L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = "Alle Rollensymbole (Schaden/Heiler/Tank) auf den Einheitenfenstern werden versteckt, wenn der Charakter sich im Kampf befindet."
-L["Detached Height"] = true;
+L["Detached Height"] = "Höhe loslösen"
 L["Hide Role Icon in combat"] = "Verstecke Rollensymbol im Kampf"
 L["Show class icon for units."] = "Zeige Klassensymbole für Einheiten"
 
