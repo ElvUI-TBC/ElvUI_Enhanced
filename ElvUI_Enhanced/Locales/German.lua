@@ -7,14 +7,14 @@ L["ENH_LOGIN_MSG"] = "Sie verwenden |cff1784d1ElvUI|r |cff1784d1Enhanced|r |cfff
 L["EQUIPMENT_DESC"] = "Passen Sie die Einstellungen für das Ändern Ihrer Ausrüstung an, wenn Sie Ihre Talentspezialisierung ändern oder ein Schlachtfeld betreten."
 L["DURABILITY_DESC"] = "Passen Sie die Einstellungen für die Haltbarkeit im Charakterfenster an."
 L["ITEMLEVEL_DESC"] = "Passen Sie die Einstellungen für die Anzeige von Gegenstandsstufen im Charakterfenster an."
-L["WATCHFRAME_DESC"] = "Adjust the settings for the visibility of the watchframe (questlog) to your personal preference."
+L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen des Watchframe (Questlog) nach ihren Wünschen an."
 
 -- Actionbars
-L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
-L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten Tasten transparent."
+L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten-Hintergrund transparent."
+L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten-Buttons transparent."
 L["Transparent ActionBars"] = "Transparente Aktionsleisten"
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
-L["Transparent Buttons"] = "Transparente Tasten"
+L["Transparent Buttons"] = "Transparente Buttons"
 
 -- Animated Loss
 L["Animated Loss"] = true;
@@ -23,19 +23,19 @@ L["Start Delay"] = true;
 L["Postpone Delay"] = true;
 
 -- Chat
-L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = "Ersetzt lange Berichte von Damage Metern mit einem klickbaren Hyperlink um Chatspam zu vermeiden."
+L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = "Ersetzt lange Berichte von Damage Metern mit einem klickbaren Hyperlink, um Chatspam zu vermeiden."
 
 -- Character Frame
 L["Damaged Only"] = "Nur Beschädigte"
 L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
-L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren / deaktivieren."
+L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren/deaktivieren."
 L["Enhanced Character Frame"] = "Erweitertes Charakterfenster"
 L["Equipment"] = "Ausrüstung"
 L["Inspect Paperdoll Background"] = "Betrachten Paperdoll Hintergrund"
 L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
 L["Paperdoll Background"] = "Paperdoll Hintergrund"
 L["Pet Paperdoll Background"] = "Begleiter Paperdoll Hintergrund"
-L["Quality Color"] = "Qualitäts-Farbe"
+L["Quality Color"] = "Qualitätsfarbe"
 
 -- Datatext
 L["Combat Indicator"] = "Kampfanzeige"
@@ -75,7 +75,7 @@ L["Declined duel request from "] = "Duellaufforderung abgelehnt von "
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Ändere automatisch die beobachtete Fraktion auf der Erfahrungsleiste zu der Fraktion für die Sie grade Rufpunkte erhalten haben."
 L["Automatically release body when killed inside a battleground."] = "Gibt automatisch Ihren Geist frei, wenn Sie auf dem Schlachtfeld getötet wurden."
 L["Automatically select the quest reward with the highest vendor sell value."] = "Wählt automatisch die Questbelohnung mit dem höchsten Wiederverkaufswert beim Händler"
-L["Changes the transparency of all the movers."] = "Konfiguriere die Einstellungen der Transparenz der Ankerpukte"
+L["Changes the transparency of all the movers."] = "Ändere die Transparenz aller Ankerpukte"
 L["Colorizes recipes, mounts & pets that are already known"] = "Rezepte, Reittiere und Begleiter einfärben, die bereits bekannt sind"
 L["Display quest levels at Quest Log."] = "Questlevel im Questlog anzeigen."
 L["Hide Zone Text"] = "Zonentext verstecken"
@@ -132,7 +132,7 @@ L["Show Character Information"] = "Zeige Charakter-Informationen"
 L["Show Pet Information"] = "Zeige Begleiter-Informationen"
 
 -- Movers
-L["Loss Control Icon"] = "Kontrollverlustsymbol"
+L["Loss Control Icon"] = "Kontrollverlust-Icon"
 L["Player Portrait"] = "Spieler-Portrait"
 L["Target Portrait"] = "Ziel-Portrait"
 
