@@ -149,7 +149,7 @@ local function ChatOptions()
 				order = 1,
 				type = "toggle",
 				name = L["Filter DPS meters Spam"],
-				desc = L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"],
+				desc = L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"],
 				get = function(info) return E.db.enhanced.chat.dpsLinks; end,
 				set = function(info, value) E.db.enhanced.chat.dpsLinks = value; E:GetModule("Enhanced_DPSLinks"):UpdateSettings(); end
 			}
@@ -593,14 +593,14 @@ local function WatchFrameOptions()
 	local config = {
 		order = 9,
 		type = "group",
-		name = L["Objective Frame"],
+		name = L["Watch Frame"],
 		get = function(info) return E.db.enhanced.watchframe[info[#info]] end,
 		set = function(info, value) E.db.enhanced.watchframe[info[#info]] = value; WF:UpdateSettings(); end,
 		args = {
 			header = {
 				order = 0,
 				type = "header",
-				name = ColorizeSettingName(L["Objective Frame"])
+				name = ColorizeSettingName(L["Watch Frame"])
 			},
 			intro = {
 				order = 1,

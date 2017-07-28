@@ -16,6 +16,13 @@ L["Transparent ActionBars"] = true;
 L["Transparent Backdrop"] = "Прозрачный фон"
 L["Transparent Buttons"] = "Прозрачные кнопки"
 
+-- AddOn List
+L["Enable All"] = true;
+L["Dependencies: "] = true;
+L["Disable All"] = true;
+L["Load AddOn"] = true;
+L["Requires Reload"] = true;
+
 -- Animated Loss
 L["Animated Loss"] = true;
 L["Pause Delay"] = true;
@@ -23,7 +30,8 @@ L["Start Delay"] = true;
 L["Postpone Delay"] = true;
 
 -- Chat
-L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = "Заменяет длинные отчеты от аддонов для измерения УВС на гиперссылку, сокращая уровень спама в чате."
+L["Filter DPS meters Spam"] = true;
+L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true;
 
 -- Character Frame
 L["Damaged Only"] = "Только поврежденные"
@@ -103,6 +111,7 @@ L["Smooth Bars"] = true;
 
 -- Minimap
 L["Above Minimap"] = "Над миникартой"
+L["Combat Hide"] = true;
 L["FadeIn Delay"] = "Задержка появления"
 L["Hide minimap while in combat."] = "Скрывать миникарту во время боя."
 L["Location Digits"] = "Цифры координат"
@@ -128,8 +137,11 @@ L["Character Stats"] = "Характеристики"
 L["Damage Per Second"] = "Урон в секунду"
 L["Hide Character Information"] = "Скрыть информацию о персонаже"
 L["Hide Pet Information"] = "Скрыть информацию о питомце"
+L["Item Level"] = true;
+L["Resistance"] = true;
 L["Show Character Information"] = "Показать информацию о персонаже"
 L["Show Pet Information"] = "Показать информацию о питомце"
+L["Titles"] = true;
 
 -- Movers
 L["Loss Control Icon"] = "Иконка потери контроля"
@@ -147,9 +159,11 @@ L["Snare"] = "Ловушки"
 
 -- Unitframes
 L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = "Все иконки ролей (дд/хил/танк) на фреймах юнитов будут скрыты во время боя."
+L["Class Icons"] = true;
 L["Detached Height"] = "Высота при откреплении"
 L["Hide Role Icon in combat"] = "Скрыть иконку роли в бою"
 L["Show class icon for units."] = "Показывать иконку класса на цели."
+L["Target"] = true;
 
 -- WatchFrame
 L["Arena"] = "Арена"
