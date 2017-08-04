@@ -114,27 +114,35 @@ local abilities = {};
 
 function LOS:OnUpdate(elapsed)
 	if(self.timeLeft) then
-		self.timeLeft = self.timeLeft - elapsed;
-
-		if(self.timeLeft >= 10) then
-			self.NumberText:SetFormattedText("%d", self.timeLeft);
-		elseif(self.timeLeft < 9.95) then
-			self.NumberText:SetFormattedText("%.1f", self.timeLeft);
+		self.elapsed = (self.elapsed or 0) + elapsed
+		if self.elapsed >= 0.01 then
+			local _, _, _, _, _, duration, timeLeft = UnitAura("player", self.index, "HARMFUL")
+			if timeLeft and timeLeft > self.timeLeft then
+				LOS.Cooldown:SetCooldown(GetTime() + (timeLeft - duration), duration)
+			end
+			self.timeLeft = timeLeft
+			if(timeLeft >= 10) then
+				self.NumberText:SetFormattedText("%d", timeLeft)
+			elseif(timeLeft < 9.95) then
+				self.NumberText:SetFormattedText("%.1f", timeLeft)
+			end
+			self.elapsed = 0
 		end
 	end
 end
 
 function LOS:UNIT_AURA()
 	local maxExpirationTime = 0;
-	local Icon, Duration;
+	local Icon, Duration, Index;
 
 	for i = 1, 40 do
-		local name, _, icon, _, _, duration, expirationTime = UnitDebuff("player", i);
+		local name, _, icon, _, _, duration, expirationTime = UnitAura("player", i, "HARMFUL");
 
 		if(E.db.enhanced.loseofcontrol[abilities[name]] and expirationTime > maxExpirationTime) then
 			maxExpirationTime = expirationTime;
 			Icon = icon;
 			Duration = duration;
+			Index = i;
 
 			self.AbilityName:SetText(name);
 		end
@@ -143,22 +151,23 @@ function LOS:UNIT_AURA()
 	if(maxExpirationTime == 0) then
 		self.maxExpirationTime = 0;
 		self.frame.timeLeft = nil;
+		self.frame.index = nil;
 		self.frame:SetScript("OnUpdate", nil);
 		self.frame:Hide();
 	elseif(maxExpirationTime ~= self.maxExpirationTime) then
 		self.maxExpirationTime = maxExpirationTime;
+		self.frame.index = Index;
 
 		self.Icon:SetTexture(Icon);
 
-		self.Cooldown:SetCooldown(maxExpirationTime - Duration, Duration);
+		self.Cooldown:SetCooldown(GetTime() + (maxExpirationTime - Duration), Duration);
 
-		local timeLeft = maxExpirationTime - GetTime();
 		if(not self.frame.timeLeft) then
-			self.frame.timeLeft = timeLeft;
+			self.frame.timeLeft = maxExpirationTime;
 
 			self.frame:SetScript("OnUpdate", self.OnUpdate);
 		else
-			self.frame.timeLeft = timeLeft;
+			self.frame.timeLeft = maxExpirationTime;
 		end
 
 		self.frame:Show();
