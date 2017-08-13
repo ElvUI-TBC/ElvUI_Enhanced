@@ -110,13 +110,12 @@ local function ActionbarOptions()
 				type = "group",
 				name = L["Equipped"],
 				guiInline = true,
-				get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
-				set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value; end,
 				args = {
 					equipped = {
 						order = 1,
 						type = "toggle",
 						name = L["Equipped"],
+						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value; EAB:UpdateCallback(); E:GetModule("ActionBars"):UpdateButtonSettings() end
 					},
 					equippedColor = {
@@ -133,6 +132,7 @@ local function ActionbarOptions()
 							t.r, t.g, t.b = r, g, b
 							E:GetModule("ActionBars"):UpdateButtonSettings()
 						end,
+						disabled = function() return not E.db.enhanced.actionbars.equipped end
 					}
 				}
 			},
