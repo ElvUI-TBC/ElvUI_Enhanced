@@ -546,7 +546,7 @@ function mod:SetResistance(statFrame, unit, resistanceIndex)
 	local petBonus = ComputePetBonus("PET_BONUS_RES", resistance)
 	local resistanceNameShort = _G["SPELL_SCHOOL"..resistanceIndex.."_CAP"]
 	local resistanceName = _G["RESISTANCE"..resistanceIndex.."_NAME"]
-	local resistanceIconCode = "|TInterface\\PaperDollInfoFrame\\SpellSchoolIcon"..(resistanceIndex + 1)..":14:14:0:0:64:64:4:60:4:60|t"
+	local resistanceIconCode = "|TInterface\\PaperDollInfoFrame\\SpellSchoolIcon"..(resistanceIndex + 1)..":18:18:0:0|t"
 	_G[statFrame:GetName().."Label"]:SetText(resistanceIconCode.." "..format("%s:", resistanceNameShort))
 	local text = _G[statFrame:GetName().."StatText"]
 	PaperDollFormatStat(resistanceName, base, positive, negative, statFrame, text)
@@ -741,7 +741,7 @@ end
 function PaperDollFrame_ExpandStatCategory(categoryFrame)
 	if categoryFrame.collapsed then
 		categoryFrame.collapsed = false
-		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Transparent")
+		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Default", true)
 		mod:PaperDollFrame_UpdateStatCategory(categoryFrame)
 		mod:PaperDollFrame_UpdateStatScrollChildHeight()
 	end
@@ -787,7 +787,9 @@ function mod:PaperDollFrame_UpdateStatCategory(categoryFrame)
 					local label = _G[statFrame:GetName().."Label"]
 					label:ClearAllPoints()
 					label:SetPoint("CENTER")
+					label:SetSize(187, 30)
 					label:FontTemplate(nil, 20)
+					label:SetJustifyH("CENTER")
 					_G[statFrame:GetName().."StatText"]:SetText("")
 
 					if statFrame.leftGrad then
@@ -800,7 +802,9 @@ function mod:PaperDollFrame_UpdateStatCategory(categoryFrame)
 						local label = _G[statFrame:GetName().."Label"]
 						label:ClearAllPoints()
 						label:SetPoint("LEFT", 7, 0)
+						label:SetSize(122, 15)
 						label:FontTemplate()
+						label:SetJustifyH("LEFT")
 						label:SetTextColor(1, 0.82, 0)
 
 						if statFrame.leftGrad then
