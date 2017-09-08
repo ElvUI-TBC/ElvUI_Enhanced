@@ -10,6 +10,7 @@ L["ITEMLEVEL_DESC"] = "Réglez les paramètres pour afficher le niveau d'objet s
 L["WATCHFRAME_DESC"] = "Adjust the settings for the visibility of the watchframe (questlog) to your personal preference."
 
 -- Actionbars
+L["Equipped Item Border"] = true;
 L["Sets actionbars' backgrounds to transparent template."] = true;
 L["Sets actionbars buttons' backgrounds to transparent template."] = true;
 L["Transparent ActionBars"] = true;

@@ -10,6 +10,7 @@ L["ITEMLEVEL_DESC"] = "調整在角色資訊上顯示物品裝等的各種設定
 L["WATCHFRAME_DESC"] = "Adjust the settings for the visibility of the watchframe (questlog) to your personal preference."
 
 -- Actionbars
+L["Equipped Item Border"] = true;
 L["Sets actionbars' backgrounds to transparent template."] = true;
 L["Sets actionbars buttons' backgrounds to transparent template."] = true;
 L["Transparent ActionBars"] = true;

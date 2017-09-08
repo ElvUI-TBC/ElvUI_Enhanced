@@ -10,6 +10,7 @@ L["ITEMLEVEL_DESC"] = "Настройка параметров информац�
 L["WATCHFRAME_DESC"] = "Настройте отображение списка заданий (квест лог) исходя из ваших личных предпочтений."
 
 -- Actionbars
+L["Equipped Item Border"] = true;
 L["Sets actionbars' backgrounds to transparent template."] = "Делает фон панелей команд прозрачным."
 L["Sets actionbars buttons' backgrounds to transparent template."] = "Делает кнопки панелей команд прозрачными"
 L["Transparent ActionBars"] = true;

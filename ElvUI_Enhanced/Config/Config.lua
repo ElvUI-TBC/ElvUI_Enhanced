@@ -108,20 +108,20 @@ local function ActionbarOptions()
 			equipped = {
 				order = 1,
 				type = "group",
-				name = L["Equipped"],
+				name = L["Equipped Item Border"],
 				guiInline = true,
 				args = {
 					equipped = {
 						order = 1,
 						type = "toggle",
-						name = L["Equipped"],
+						name = L["Enable"],
 						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value; EAB:UpdateCallback(); E:GetModule("ActionBars"):UpdateButtonSettings() end
 					},
 					equippedColor = {
 						order = 2,
 						type = "color",
-						name = L["Equipped Color"],
+						name = L["Border Color"],
 						get = function(info)
 							local t = E.db.enhanced.actionbars[ info[#info] ]
 							local d = P.enhanced.actionbars[ info[#info] ]
