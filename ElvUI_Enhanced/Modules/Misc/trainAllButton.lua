@@ -31,7 +31,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 			for i = 1, GetNumTrainerServices() do
 				if(select(3, GetTrainerServiceInfo(i)) == "available") then
 					Cost=Cost+GetTrainerServiceCost(i)
-					GameTooltip:SetOwner(ClassTrainerTrainAllButton,"ANCHOR_CURSOR", 0, -4)
+					GameTooltip:SetOwner(ClassTrainerTrainAllButton,"ANCHOR_TOPRIGHT", 0, 4)
 					GameTooltip:SetText("|cffffffff"..L["Total cost:"].."|r "..E:FormatMoney(Cost, E.db.datatexts.goldFormat or "BLIZZARD", not E.db.datatexts.goldCoins))
 				end
 			end
