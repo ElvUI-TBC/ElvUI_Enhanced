@@ -25,7 +25,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 				end
 			end
 		end)
-		
+
 		ClassTrainerTrainAllButton:HookScript2("OnEnter", function()
 			Cost = 0
 			for i = 1, GetNumTrainerServices() do
@@ -36,7 +36,7 @@ frame:SetScript("OnEvent", function(_, _, addon)
 				end
 			end
 		end)
-		
+
 		ClassTrainerTrainAllButton:HookScript2("OnLeave", function()
 			GameTooltip:Hide()
 		end)
