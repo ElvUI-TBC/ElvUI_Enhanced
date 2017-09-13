@@ -690,103 +690,6 @@ local function WatchFrameOptions()
 	return config;
 end
 
--- Unitframes
-local function UnitFramesOptions()
-	-- Player Detached Portrait
-	E.Options.args.unitframe.args.player.args.portrait.args.spacer = {
-		order = 10,
-		type = "description",
-		name = "",
-		width = "full"
-	};
-	E.Options.args.unitframe.args.player.args.portrait.args.detachFromFrame = {
-		order = 10,
-		type = "toggle",
-		name = ColorizeSettingName(L["Detach From Frame"])
-	};
-	E.Options.args.unitframe.args.player.args.portrait.args.detachedWidth = {
-		order = 11,
-		type = "range",
-		name = ColorizeSettingName(L["Detached Width"]),
-		min = 10, max = 600, step = 1,
-		disabled = function() return not E.db.unitframe.units.player.portrait.detachFromFrame; end
-	};
-	E.Options.args.unitframe.args.player.args.portrait.args.detachedHeight = {
-		order = 12,
-		type = "range",
-		name = ColorizeSettingName(L["Detached Height"]),
-		min = 10, max = 600, step = 1,
-		disabled = function() return not E.db.unitframe.units.player.portrait.detachFromFrame; end
-	};
-
-	-- Target Detached Portrait
-	E.Options.args.unitframe.args.target.args.portrait.args.spacer = {
-		order = 9,
-		type = "description",
-		name = "",
-		width = "full"
-	};
-	E.Options.args.unitframe.args.target.args.portrait.args.detachFromFrame = {
-		order = 10,
-		type = "toggle",
-		name = ColorizeSettingName(L["Detach From Frame"])
-	};
-	E.Options.args.unitframe.args.target.args.portrait.args.detachedWidth = {
-		order = 11,
-		type = "range",
-		name = ColorizeSettingName(L["Detached Width"]),
-		min = 10, max = 600, step = 1,
-		disabled = function() return not E.db.unitframe.units.target.portrait.detachFromFrame; end
-	};
-	E.Options.args.unitframe.args.target.args.portrait.args.detachedHeight = {
-		order = 12,
-		type = "range",
-		name = ColorizeSettingName(L["Detached Height"]),
-		min = 10, max = 600, step = 1,
-		disabled = function() return not E.db.unitframe.units.target.portrait.detachFromFrame; end
-	};
-
-	-- Animated Loss
-	E.Options.args.unitframe.args.player.args.animatedLoss = {
-		order = 150,
-		type = "group",
-		name = ColorizeSettingName(L["Animated Loss"]),
-		get = function(info) return E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ]; end,
-		set = function(info, value) E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("player"); end,
-		args = {
-			enable = {
-				order = 1,
-				type = "toggle",
-				name = L["Enable"]
-			},
-			duration = {
-				order = 2,
-				type = "range",
-				name = L["Duration"],
-				min = 0.01, max = 1.50, step = 0.01
-			},
-			startDelay = {
-				order = 3,
-				type = "range",
-				name = L["Start Delay"],
-				min = 0.01, max = 1.00, step = 0.01
-			},
-			pauseDelay = {
-				order = 4,
-				type = "range",
-				name = L["Pause Delay"],
-				min = 0.01, max = 0.30, step = 0.01
-			},
-			postponeDelay = {
-				order = 5,
-				type = "range",
-				name = L["Postpone Delay"],
-				min = 0.01, max = 0.30, step = 0.01
-			}
-		}
-	}
-end
-
 -- Loss Control
 local function LoseControlOptions()
 	local config = {
@@ -877,13 +780,111 @@ local function UnitFrameOptions()
 					}
 				}
 			},
-			target = {
+			player = {
 				order = 2,
+				type = "group",
+				name = L["Player"],
+				args = {
+					animatedLoss = {
+						order = 1,
+						type = "group",
+						name = L["Animated Loss"],
+						get = function(info) return E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ]; end,
+						set = function(info, value) E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("player"); end,
+						args = {
+							header = {
+								order = 1,
+								type = "header",
+								name = L["Animated Loss"]
+							},
+							enable = {
+								order = 2,
+								type = "toggle",
+								name = L["Enable"]
+							},
+							spacer = {
+								order = 3,
+								type = "description",
+								name = " "
+							},
+							duration = {
+								order = 4,
+								type = "range",
+								name = L["Duration"],
+								min = 0.01, max = 1.50, step = 0.01,
+								disabled = function() return not E.db.unitframe.units.player.animatedLoss.enable end
+							},
+							startDelay = {
+								order = 5,
+								type = "range",
+								name = L["Start Delay"],
+								min = 0.01, max = 1.00, step = 0.01,
+								disabled = function() return not E.db.unitframe.units.player.animatedLoss.enable end
+							},
+							pauseDelay = {
+								order = 6,
+								type = "range",
+								name = L["Pause Delay"],
+								min = 0.01, max = 0.30, step = 0.01,
+								disabled = function() return not E.db.unitframe.units.player.animatedLoss.enable end
+							},
+							postponeDelay = {
+								order = 7,
+								type = "range",
+								name = L["Postpone Delay"],
+								min = 0.01, max = 0.30, step = 0.01,
+								disabled = function() return not E.db.unitframe.units.player.animatedLoss.enable end
+							}
+						}
+					},
+					detachPortrait = {
+						order = 2,
+						type = "group",
+						name = L["Portrait"],
+						get = function(info) return E.db.unitframe.units["player"]["portrait"][ info[#info] ]; end,
+						set = function(info, value) E.db.unitframe.units["player"]["portrait"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("player"); end,
+						args = {
+							header = {
+								order = 1,
+								type = "header",
+								name = L["Portrait"]
+							},
+							detachFromFrame = {
+								order = 2,
+								type = "toggle",
+								name = L["Detach From Frame"],
+								disabled = function() return not E.db.unitframe.units.player.portrait.enable end
+							},
+							spacer = {
+								order = 3,
+								type = "description",
+								name = " "
+							},
+							detachedWidth = {
+								order = 4,
+								type = "range",
+								name = L["Detached Width"],
+								min = 10, max = 600, step = 1,
+								disabled = function() return not E.db.unitframe.units.player.portrait.enable end
+							},
+							detachedHeight = {
+								order = 5,
+								type = "range",
+								name = L["Detached Height"],
+								min = 10, max = 600, step = 1,
+								disabled = function() return not E.db.unitframe.units.player.portrait.enable end
+							}
+						}
+					}
+				}
+			},
+			target = {
+				order = 3,
 				type = "group",
 				name = L["Target"],
 				args = {
 					classIcon = {
-						order = 3,
+						order = 1,
 						type = "group",
 						name = L["Class Icons"],
 						args = {
@@ -900,30 +901,77 @@ local function UnitFrameOptions()
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.enable end,
 								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.enable = value; TC:ToggleSettings() end
 							},
-							size = {
+							spacer = {
 								order = 2,
+								type = "description",
+								name = " "
+							},
+							size = {
+								order = 3,
 								type = "range",
 								name = L["Size"],
 								desc = L["Size of the indicator icon."],
 								min = 16, max = 40, step = 1,
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.size end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.size = value; TC:ToggleSettings() end
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.size = value; TC:ToggleSettings() end,
+								disabled = function() return not E.db.enhanced.unitframe.units.target.classicon.enable end
 							},
 							xOffset = {
-								order = 3,
+								order = 4,
 								type = "range",
 								name = L["xOffset"],
 								min = -100, max = 100, step = 1,
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.xOffset end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.xOffset = value; TC:ToggleSettings() end
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.xOffset = value; TC:ToggleSettings() end,
+								disabled = function() return not E.db.enhanced.unitframe.units.target.classicon.enable end
 							},
 							yOffset = {
-								order = 4,
+								order = 5,
 								type = "range",
 								name = L["yOffset"],
 								min = -80, max = 40, step = 1,
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.yOffset end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.yOffset = value; TC:ToggleSettings() end
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.yOffset = value; TC:ToggleSettings() end,
+								disabled = function() return not E.db.enhanced.unitframe.units.target.classicon.enable end
+							}
+						}
+					},
+					detachPortrait = {
+						order = 2,
+						type = "group",
+						name = L["Portrait"],
+						get = function(info) return E.db.unitframe.units["target"]["portrait"][ info[#info] ]; end,
+						set = function(info, value) E.db.unitframe.units["target"]["portrait"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("target"); end,
+						args = {
+							header = {
+								order = 1,
+								type = "header",
+								name = L["Portrait"]
+							},
+							detachFromFrame = {
+								order = 2,
+								type = "toggle",
+								name = L["Detach From Frame"],
+								disabled = function() return not E.db.unitframe.units.target.portrait.enable end
+							},
+							spacer = {
+								order = 3,
+								type = "description",
+								name = " "
+							},
+							detachedWidth = {
+								order = 4,
+								type = "range",
+								name = L["Detached Width"],
+								min = 10, max = 600, step = 1,
+								disabled = function() return not E.db.unitframe.units.target.portrait.enable end
+							},
+							detachedHeight = {
+								order = 5,
+								type = "range",
+								name = L["Detached Height"],
+								min = 10, max = 600, step = 1,
+								disabled = function() return not E.db.unitframe.units.target.portrait.enable end
 							}
 						}
 					}
@@ -935,8 +983,6 @@ local function UnitFrameOptions()
 end
 
 function addon:GetOptions()
-	UnitFramesOptions()
-
 	E.Options.args.enhanced = {
 		order = 50,
 		type = "group",
