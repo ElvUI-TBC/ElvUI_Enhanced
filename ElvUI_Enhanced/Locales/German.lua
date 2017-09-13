@@ -10,11 +10,19 @@ L["ITEMLEVEL_DESC"] = "Passen Sie die Einstellungen für die Anzeige von Gegenst
 L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen des Watchframe (Questlog) nach ihren Wünschen an."
 
 -- Actionbars
-L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten-Hintergrund transparent."
+L["Equipped Item Border"] = "Rahmen der angelegten Items"
+L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
 L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten-Tasten transparent."
-L["Transparent ActionBars"] = "Transparente Aktionsleisten"
+L["Transparent ActionBars"] = true;
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
 L["Transparent s"] = "Transparente Tasten"
+
+-- AddOn List
+L["Enable All"] = true;
+L["Dependencies: "] = true;
+L["Disable All"] = true;
+L["Load AddOn"] = true;
+L["Requires Reload"] = true;
 
 -- Animated Loss
 L["Animated Loss"] = true;
@@ -23,7 +31,8 @@ L["Start Delay"] = true;
 L["Postpone Delay"] = true;
 
 -- Chat
-L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = "Ersetzt lange Berichte von Damage Metern mit einem klickbaren Hyperlink, um Chatspam zu vermeiden."
+L["Filter DPS meters Spam"] = "Spam von DPS-Metern filtern"
+L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true;
 
 -- Character Frame
 L["Damaged Only"] = "Nur Beschädigte"
@@ -103,6 +112,7 @@ L["Smooth Bars"] = "Sanfte Balken"
 
 -- Minimap
 L["Above Minimap"] = "Oberhalb der Minimap"
+L["Combat Hide"] = true;
 L["FadeIn Delay"] = "Einblendungsverzögerung"
 L["Hide minimap while in combat."] = "Ausblenden der Minimap während des Kampfes."
 L["Location Digits"] = "Koordinaten Nachkommastellen"
@@ -128,8 +138,11 @@ L["Character Stats"] = "Charakterstatistiken"
 L["Damage Per Second"] = "DPS";
 L["Hide Character Information"] = "Verstecke Charakter-Informationen"
 L["Hide Pet Information"] = "Verstecke Begleiter-Informationen"
+L["Item Level"] = true;
+L["Resistance"] = "Widerstände"
 L["Show Character Information"] = "Zeige Charakter-Informationen"
 L["Show Pet Information"] = "Zeige Begleiter-Informationen"
+L["Titles"] = "Titel"
 
 -- Movers
 L["Loss Control Icon"] = "Kontrollverlust-Icon"
@@ -147,9 +160,11 @@ L["Snare"] = "Verlangsamung"
 
 -- Unitframes
 L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = "Alle Rollensymbole (Schaden/Heiler/Tank) auf den Einheitenfenstern werden versteckt, wenn der Charakter sich im Kampf befindet."
+L["Class Icons"] = "Klassensymbole"
 L["Detached Height"] = "Höhe loslösen"
 L["Hide Role Icon in combat"] = "Verstecke Rollensymbol im Kampf"
 L["Show class icon for units."] = "Zeige Klassensymbole für Einheiten"
+L["Target"] = true;
 
 -- WatchFrame
 L["Arena"] = "Arena"

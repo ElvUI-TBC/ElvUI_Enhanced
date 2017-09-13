@@ -34,6 +34,8 @@ P.enhanced = {
 		originalCloseButton = false,
 	},
 	actionbars = {
+		equipped = false,
+		equippedColor = {r = 0, g = 1.0, b = 0},
 		transparentActionbars = {
 			transparentBackdrops = false,
 			transparentButtons = false

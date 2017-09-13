@@ -23,8 +23,8 @@ hooksecurefunc(UF, "Configure_HealthBar", function(self, frame)
 			animatedLoss.postponeDelay = frame.db.animatedLoss.postponeDelay;
 
 			animatedLoss.PostUpdate = function(self)
-				self:SetPoint("TOPLEFT", frame.Health:GetStatusBarTexture(), "TOPRIGHT");
-				self:SetPoint("BOTTOMLEFT", frame.Health:GetStatusBarTexture(), "BOTTOMRIGHT");
+				self:SetPoint("TOPLEFT", frame.Health.texturePointer, "TOPRIGHT");
+				self:SetPoint("BOTTOMLEFT", frame.Health.texturePointer, "BOTTOMRIGHT");
 
 				local totalWidth = frame.Health:GetSize();
 				self:SetWidth(totalWidth);

@@ -20,14 +20,15 @@
 		<Size x="187" y="15"/>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parentLabel" inherits="GameFontNormalSmall">
+				<FontString name="$parentLabel" justifyH="LEFT" inherits="GameFontNormalSmall">
+					<Size x="122" y="0"/>
 					<Anchors>
 						<Anchor point="LEFT">
 							<Offset x="7" y="0"/>
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="$parentStatText" inherits="GameFontHighlightSmall">
+				<FontString name="$parentStatText" justifyH="RIGHT" inherits="GameFontHighlightSmall">
 					<Anchors>
 						<Anchor point="RIGHT">
 							<Offset x="-3" y="0"/>
@@ -66,7 +67,7 @@
 				<Scripts>
 					<OnLoad>
 						self:RegisterForDrag("LeftButton")
-						self:SetTemplate("Transparent")
+						self:SetTemplate("Default", true)
 					</OnLoad>
 					<OnClick>
 						if self:GetParent().collapsed then

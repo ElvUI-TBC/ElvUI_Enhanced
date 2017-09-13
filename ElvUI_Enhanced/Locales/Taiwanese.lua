@@ -10,11 +10,19 @@ L["ITEMLEVEL_DESC"] = "調整在角色資訊上顯示物品裝等的各種設定
 L["WATCHFRAME_DESC"] = "Adjust the settings for the visibility of the watchframe (questlog) to your personal preference."
 
 -- Actionbars
+L["Equipped Item Border"] = true;
 L["Sets actionbars' backgrounds to transparent template."] = true;
 L["Sets actionbars buttons' backgrounds to transparent template."] = true;
 L["Transparent ActionBars"] = true;
 L["Transparent Backdrop"] = true;
 L["Transparent Buttons"] = true;
+
+-- AddOn List
+L["Enable All"] = true;
+L["Dependencies: "] = true;
+L["Disable All"] = true;
+L["Load AddOn"] = true;
+L["Requires Reload"] = true;
 
 -- Animated Loss
 L["Animated Loss"] = true;
@@ -23,7 +31,8 @@ L["Start Delay"] = true;
 L["Postpone Delay"] = true;
 
 -- Chat
-L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam."] = true;
+L["Filter DPS meters Spam"] = true;
+L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true;
 
 -- Character Frame
 L["Damaged Only"] = "受損顯示"
@@ -103,6 +112,7 @@ L["Smooth Bars"] = true;
 
 -- Minimap
 L["Above Minimap"] = "小地圖之上"
+L["Combat Hide"] = true;
 L["FadeIn Delay"] = "隱藏延遲"
 L["Hide minimap while in combat."] = "戰鬥中隱藏小地圖"
 L["Location Digits"] = "坐標位數"
@@ -128,8 +138,11 @@ L["Character Stats"] = true;
 L["Damage Per Second"] = "DPS";
 L["Hide Character Information"] = true;
 L["Hide Pet Information"] = true;
+L["Item Level"] = true;
+L["Resistance"] = true;
 L["Show Character Information"] = true;
 L["Show Pet Information"] = true;
+L["Titles"] = true;
 
 -- Movers
 L["Loss Control Icon"] = "失去控制圖示"
@@ -147,9 +160,11 @@ L["Snare"] = "減速類技能"
 
 -- Unitframes
 L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = true;
+L["Class Icons"] = true;
 L["Detached Height"] = true;
 L["Hide Role Icon in combat"] = true;
 L["Show class icon for units."] = "顯是職業圖標"
+L["Target"] = true;
 
 -- WatchFrame
 L["Arena"] = "競技場"

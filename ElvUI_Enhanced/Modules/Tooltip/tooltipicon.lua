@@ -14,7 +14,7 @@ local function AddIcon(self, icon)
 	if icon then
 		local title = _G[self:GetName() .. "TextLeft1"]
 		if title and not title:GetText():find("|T" .. icon) then
-			title:SetFormattedText("|T%s:20:20:0:0:64:64:5:59:5:59:%d|t %s", icon, 20, title:GetText())
+			title:SetFormattedText("|T%s:48:48:0:0:64:64:5:59:5:59:%d|t %s", icon, 48, title:GetText())
 		end
 	end
 end

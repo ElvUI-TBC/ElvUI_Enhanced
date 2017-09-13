@@ -92,6 +92,7 @@ end
 
 -- Actionbars
 local function ActionbarOptions()
+	local EAB = E:GetModule("Enhanced_ActionBars");
 	local ETAB = E:GetModule("Enhanced_TransparentActionbars");
 
 	local config = {
@@ -104,8 +105,39 @@ local function ActionbarOptions()
 				type = "header",
 				name = ColorizeSettingName(L["ActionBars"])
 			},
-			transparentActionbars = {
+			equipped = {
 				order = 1,
+				type = "group",
+				name = L["Equipped Item Border"],
+				guiInline = true,
+				args = {
+					equipped = {
+						order = 1,
+						type = "toggle",
+						name = L["Enable"],
+						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
+						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value; EAB:UpdateCallback(); E:GetModule("ActionBars"):UpdateButtonSettings() end
+					},
+					equippedColor = {
+						order = 2,
+						type = "color",
+						name = L["Border Color"],
+						get = function(info)
+							local t = E.db.enhanced.actionbars[ info[#info] ]
+							local d = P.enhanced.actionbars[ info[#info] ]
+							return t.r, t.g, t.b, t.a, d.r, d.g, d.b
+						end,
+						set = function(info, r, g, b)
+							local t = E.db.enhanced.actionbars[ info[#info] ]
+							t.r, t.g, t.b = r, g, b
+							E:GetModule("ActionBars"):UpdateButtonSettings()
+						end,
+						disabled = function() return not E.db.enhanced.actionbars.equipped end
+					}
+				}
+			},
+			transparentActionbars = {
+				order = 2,
 				type = "group",
 				name = L["Transparent ActionBars"],
 				guiInline = true,
@@ -149,7 +181,7 @@ local function ChatOptions()
 				order = 1,
 				type = "toggle",
 				name = L["Filter DPS meters Spam"],
-				desc = L["Replaces long reports from damage meters with a clickeble hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"],
+				desc = L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"],
 				get = function(info) return E.db.enhanced.chat.dpsLinks; end,
 				set = function(info, value) E.db.enhanced.chat.dpsLinks = value; E:GetModule("Enhanced_DPSLinks"):UpdateSettings(); end
 			}
@@ -593,14 +625,14 @@ local function WatchFrameOptions()
 	local config = {
 		order = 9,
 		type = "group",
-		name = L["Objective Frame"],
+		name = L["Watch Frame"],
 		get = function(info) return E.db.enhanced.watchframe[info[#info]] end,
 		set = function(info, value) E.db.enhanced.watchframe[info[#info]] = value; WF:UpdateSettings(); end,
 		args = {
 			header = {
 				order = 0,
 				type = "header",
-				name = ColorizeSettingName(L["Objective Frame"])
+				name = ColorizeSettingName(L["Watch Frame"])
 			},
 			intro = {
 				order = 1,

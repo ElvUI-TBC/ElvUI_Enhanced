@@ -90,7 +90,7 @@ local Enable = function(self, unit)
 		animatedLoss.min = UnitHealth("player");
 
 		animatedLoss.hook = self:GetScript("OnUpdate");
-		self:HookScript("OnUpdate", OnAnimatedLossUpdate);
+		self:HookScript2("OnUpdate", OnAnimatedLossUpdate);
 		--animatedLoss:SetScript("OnUpdate", OnAnimatedLossUpdate);
 
 		animatedLoss.duration = .75;

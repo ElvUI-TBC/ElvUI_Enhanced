@@ -1,5 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI);
 local S = E:GetModule("Skins")
+local Cost
 
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
@@ -23,6 +24,21 @@ frame:SetScript("OnEvent", function(_, _, addon)
 					BuyTrainerService(i)
 				end
 			end
+		end)
+
+		ClassTrainerTrainAllButton:HookScript2("OnEnter", function()
+			Cost = 0
+			for i = 1, GetNumTrainerServices() do
+				if(select(3, GetTrainerServiceInfo(i)) == "available") then
+					Cost=Cost+GetTrainerServiceCost(i)
+					GameTooltip:SetOwner(ClassTrainerTrainAllButton,"ANCHOR_TOPRIGHT", 0, 4)
+					GameTooltip:SetText("|cffffffff"..L["Total cost:"].."|r "..E:FormatMoney(Cost, E.db.datatexts.goldFormat or "BLIZZARD", not E.db.datatexts.goldCoins))
+				end
+			end
+		end)
+
+		ClassTrainerTrainAllButton:HookScript2("OnLeave", function()
+			GameTooltip:Hide()
 		end)
 
 		hooksecurefunc("ClassTrainerFrame_Update", function()
