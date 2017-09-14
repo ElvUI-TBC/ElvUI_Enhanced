@@ -2,10 +2,10 @@ local E, L, V, P, G = unpack(ElvUI)
 local mod = E:NewModule("Enhanced_ActionBars")
 local LAB = LibStub("LibActionButton-1.0")
 
-local color
 function mod:LAB_ButtonUpdate(button)
-	color = E.db.enhanced.actionbars.equippedColor
 	if button.backdrop then
+		local color = E.db.enhanced.actionbars.equippedColor
+
 		E:Delay(0.05, function()
 			if button:IsEquipped() then
 				button.backdrop:SetBackdropBorderColor(color.r, color.g, color.b)

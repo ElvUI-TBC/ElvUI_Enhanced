@@ -250,15 +250,15 @@ do
 end
 
 function module:Model_OnMouseWheel(model, delta, maxZoom, minZoom)
-	maxZoom = maxZoom or 2.8;
-	minZoom = minZoom or 0;
-	local zoomLevel = model.zoomLevel or minZoom;
-	zoomLevel = zoomLevel + delta * 0.5;
-	zoomLevel = min(zoomLevel, maxZoom);
-	zoomLevel = max(zoomLevel, minZoom);
+	maxZoom = maxZoom or 2.8
+	minZoom = minZoom or 0
+	local zoomLevel = model.zoomLevel or minZoom
+	zoomLevel = zoomLevel + delta * 0.5
+	zoomLevel = min(zoomLevel, maxZoom)
+	zoomLevel = max(zoomLevel, minZoom)
 	local _, y, z = model:GetPosition()
 	model:SetPosition(zoomLevel, y, z)
-	model.zoomLevel = zoomLevel;
+	model.zoomLevel = zoomLevel
 end
 
 function module:Model_OnMouseDown(model, button)
@@ -305,8 +305,8 @@ function module:Model_OnUpdate(self, elapsedTime, rotationsPerSecond)
 		-- settings
 		local settings = ModelSettings[playerRaceSex]
 
-		local zoom = self.zoomLevel or 0;
-		zoom = 1 + zoom - 0; -- want 1 at minimum zoom
+		local zoom = self.zoomLevel or 0
+		zoom = 1 + zoom - 0 -- want 1 at minimum zoom
 
 		-- Panning should require roughly the same mouse movement regardless of zoom level so the model moves at the same rate as the cursor
 		-- This formula more or less works for all zoom levels, found via trial and error
