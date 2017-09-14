@@ -71,15 +71,37 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.originalCloseButton end,
 				set = function(info, value) E.db.enhanced.general.originalCloseButton = value E:StaticPopup_Show("CONFIG_RL") end
 			},
-			model = {
+			trainAllSkills = {
 				order = 7,
+				type = "toggle",
+				name = L["Train All Button"],
+				desc = L["Add button to Trainer frame with ability to train all available skills in one click."],
+				get = function(info) return E.db.enhanced.general.trainAllButton end,
+				set = function(info, value)
+					E.db.enhanced.general.trainAllButton = value
+					E:GetModule("Enhanced_TrainAll"):ToggleState()
+				end,
+			},
+			undressButtons = {
+				order = 8,
+				type = "toggle",
+				name = L["Undress Button"],
+				desc = L["Add button to Dressing Room frame with ability to undress model."],
+				get = function(info) return E.db.enhanced.general.undressButtons end,
+				set = function(info, value)
+					E.db.enhanced.general.undressButton = value
+					E:GetModule("Enhanced_Misc"):UndressButtonToggle()
+				end,
+			},
+			model = {
+				order = 9,
 				type = "toggle",
 				name = L["Model Frames"],
 				get = function(info) return E.private.enhanced.model.enable end,
 				set = function(info, value) E.private.enhanced.model.enable = value; E:StaticPopup_Show("PRIVATE_RL") end
 			},
 			moverTransparancy = {
-				order = 8,
+				order = 10,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],

@@ -30,6 +30,8 @@ P.enhanced = {
 		declineduel = false,
 		hideZoneText = false,
 		originalCloseButton = false,
+		trainAllButton = false,
+		undressButton = false,
 	},
 	actionbars = {
 		equipped = false,

@@ -51,11 +51,12 @@ end
 
 function M:Initialize()
 	self:AutoRelease()
-	self:HideZone()
 	self:DeclineDuel()
+	self:HideZone()
 	self:WatchedFaction()
 	self:LoadMoverTransparancy()
 	self:QuestLevelToggle()
+	self:UndressButtonToggle()
 end
 
 local function InitializeCallback()
