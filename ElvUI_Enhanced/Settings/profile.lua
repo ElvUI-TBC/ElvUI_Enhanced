@@ -20,15 +20,13 @@ P.unitframe.units.player.animatedLoss = {
 	postponeDelay = .05
 };
 
--- Quest
-P.general.showQuestLevel = true;
-
 -- Enhanced
 P.enhanced = {
 	general = {
 		pvpAutoRelease = false,
 		autoRepChange = false,
 		moverTransparancy = 0.8,
+		showQuestLevel = false,
 		declineduel = false,
 		hideZoneText = false,
 		originalCloseButton = false,

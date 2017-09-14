@@ -11,6 +11,11 @@ function addon:Initialize()
 	end
 
 	LEP:RegisterPlugin("ElvUI_Enhanced", self.GetOptions)
+
+	if E.db.general.showQuestLevel then
+		E.db.enhanced.general.showQuestLevel = true
+	end
+	E.db.general.showQuestLevel = nil
 end
 
 local function InitializeCallback()

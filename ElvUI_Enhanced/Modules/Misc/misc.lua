@@ -58,6 +58,7 @@ function M:Initialize()
 	self:LoadDeclineDuel()
 	self:WatchedFaction()
 	self:LoadMoverTransparancy()
+	self:QuestLevelToggle()
 end
 
 local function InitializeCallback()

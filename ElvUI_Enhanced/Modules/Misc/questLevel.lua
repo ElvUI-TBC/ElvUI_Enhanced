@@ -1,18 +1,23 @@
-local E, L, V, P, G = unpack(ElvUI);
+local E, L, V, P, G = unpack(ElvUI)
+local M = E:GetModule("Enhanced_Misc")
 
-local function questlevel()
-	if not E.db.general.showQuestLevel then return; end
+local FauxScrollFrame_GetOffset = FauxScrollFrame_GetOffset
+local GetNumQuestLogEntries = GetNumQuestLogEntries
+local GetQuestLogTitle = GetQuestLogTitle
 
+local function ShowLevel()
 	local scrollOffset = FauxScrollFrame_GetOffset(QuestLogListScrollFrame)
 	local numEntries = GetNumQuestLogEntries()
+	local questIndex, questLogTitle, questCheck, title, level, isHeader, _
 
 	for i = 1, QUESTS_DISPLAYED do
-		local questIndex = i + scrollOffset;
-		local questLogTitle = _G["QuestLogTitle" .. i]
-		local questCheck = _G["QuestLogTitle"..i.."Check"]
+		questIndex = i + scrollOffset
+		questLogTitle = _G["QuestLogTitle"..i]
+		questCheck = _G["QuestLogTitle"..i.."Check"]
 
 		if questIndex <= numEntries then
-			local title, level, _, _, isHeader = GetQuestLogTitle(questIndex)
+			title, level, _, _, isHeader = GetQuestLogTitle(questIndex)
+
 			if not isHeader then
 				questLogTitle:SetText("[" .. level .. "] " .. title)
 				questCheck:Point("LEFT", 5, 0)
@@ -21,5 +26,14 @@ local function questlevel()
 	end
 end
 
-hooksecurefunc("QuestLog_Update", questlevel)
-QuestLogListScrollFrameScrollBar:HookScript("OnValueChanged", questlevel)
+function M:QuestLevelToggle()
+	if E.db.enhanced.general.showQuestLevel then
+		self:SecureHook("QuestLog_Update", ShowLevel)
+		self:SecureHookScript(QuestLogListScrollFrameScrollBar, "OnValueChanged", ShowLevel)
+	else
+		self:Unhook("QuestLog_Update")
+		self:Unhook(QuestLogListScrollFrameScrollBar, "OnValueChanged")
+	end
+
+	QuestLog_Update()
+end
