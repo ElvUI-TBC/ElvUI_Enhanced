@@ -23,22 +23,22 @@ function ETAB:StyleBackdrops()
 			for j = 1, NUM_ACTIONBAR_BUTTONS do
 				frame = _G["ElvUI_Bar"..i.."Button"..j]
 				if frame and frame.backdrop then
-					frame.backdrop:SetTemplate(styleButtons)
+					frame.backdrop:SetTemplate(styleButtons, true)
 				end
 			end
 		end
 	end
 
-	for _, frame in pairs({ElvUI_BarPet, ElvUI_BarTotem, ElvUI_StanceBar}) do
+	for _, frame in pairs({ElvUI_BarPet, ElvUI_StanceBar}) do
 		if frame.backdrop then
-			frame.backdrop:SetTemplate(style)
+			frame.backdrop:SetTemplate(styleBackdrop)
 		end
 	end
 
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		frame = _G["PetActionButton"..i]
 		if frame and frame.backdrop then
-			frame.backdrop:SetTemplate(styleButtons)
+			frame.backdrop:SetTemplate(styleButtons, true)
 		end
 	end
 end

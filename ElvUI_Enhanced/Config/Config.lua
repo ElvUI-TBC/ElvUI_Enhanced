@@ -177,14 +177,14 @@ local function ActionbarOptions()
 						type = "toggle",
 						name = L["Transparent Backdrop"],
 						desc = L["Sets actionbars' backgrounds to transparent template."],
-						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; ETAB:BarsBackdrop() end
+						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; ETAB:StyleBackdrops() end
 					},
 					transparentButtons = {
 						order = 2,
 						type = "toggle",
 						name = L["Transparent Buttons"],
 						desc = L["Sets actionbars buttons' backgrounds to transparent template."],
-						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; ETAB:ButtonsBackdrop() end
+						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; ETAB:StyleBackdrops() end
 					}
 				}
 			}
