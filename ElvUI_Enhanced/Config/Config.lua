@@ -55,7 +55,7 @@ local function GeneralOptions()
 				name = L["Decline Duel"],
 				desc = L["Auto decline all duels"],
 				get = function(info) return E.db.enhanced.general.declineduel; end,
-				set = function(info, value) E.db.enhanced.general.declineduel = value; M:LoadDeclineDuel() end
+				set = function(info, value) E.db.enhanced.general.declineduel = value; M:DeclineDuel() end
 			},
 			hideZoneText = {
 				order = 5,
@@ -597,7 +597,10 @@ local function TooltipOptions()
 						name = SPELLS,
 						desc = L["Show/Hides an Icon for Spells on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells; end,
-						set = function(info, value) E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells = value; end,
+						set = function(info, value)
+							E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells = value
+							E:GetModule("Enhanced_TooltipIcon"):ToggleSpellsState()
+						end,
 						disabled = function() return not E.db.enhanced.tooltip.tooltipIcon.enable end
 					},
 					tooltipIconItems = {
@@ -606,7 +609,10 @@ local function TooltipOptions()
 						name = ITEMS,
 						desc = L["Show/Hides an Icon for Items on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems; end,
-						set = function(info, value) E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems = value; end,
+						set = function(info, value)
+							E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems = value
+							E:GetModule("Enhanced_TooltipIcon"):ToggleItemsState()
+						end,
 						disabled = function() return not E.db.enhanced.tooltip.tooltipIcon.enable end
 					},
 				}

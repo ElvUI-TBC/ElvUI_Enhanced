@@ -25,21 +25,18 @@ function M:AutoRelease()
 	end
 end
 
-local DeclineDuel = CreateFrame("Frame")
-function M:LoadDeclineDuel()
-	if not E.db.enhanced.general.declineduel then
-		DeclineDuel:UnregisterAllEvents()
-		return
-	end
+function M:DUEL_REQUESTED(_, name)
+	StaticPopup_Hide("DUEL_REQUESTED")
+	CancelDuel()
+	E:Print(L["Declined duel request from "]..name..".")
+end
 
-	DeclineDuel:RegisterEvent("DUEL_REQUESTED")
-	DeclineDuel:SetScript("OnEvent", function(_, event, name)
-		if(event == "DUEL_REQUESTED") then
-			StaticPopup_Hide("DUEL_REQUESTED")
-			CancelDuel()
-			E:Print(L["Declined duel request from "]..name..".")
-		end
-	end)
+function M:DeclineDuel()
+	if E.db.enhanced.general.declineduel then
+		self:RegisterEvent("DUEL_REQUESTED")
+	else
+		self:UnregisterEvent("DUEL_REQUESTED")
+	end
 end
 
 function M:HideZone()
@@ -55,7 +52,7 @@ end
 function M:Initialize()
 	self:AutoRelease()
 	self:HideZone()
-	self:LoadDeclineDuel()
+	self:DeclineDuel()
 	self:WatchedFaction()
 	self:LoadMoverTransparancy()
 	self:QuestLevelToggle()
