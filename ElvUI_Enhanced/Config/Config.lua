@@ -74,7 +74,7 @@ local function GeneralOptions()
 					E:GetModule("Enhanced_Misc"):UpdateCloseButtons()
 				end
 			},
-			trainAllSkills = {
+			trainAllButton = {
 				order = 7,
 				type = "toggle",
 				name = L["Train All Button"],
@@ -83,18 +83,18 @@ local function GeneralOptions()
 				set = function(info, value)
 					E.db.enhanced.general.trainAllButton = value
 					E:GetModule("Enhanced_TrainAll"):ToggleState()
-				end,
+				end
 			},
-			undressButtons = {
+			undressButton = {
 				order = 8,
 				type = "toggle",
 				name = L["Undress Button"],
 				desc = L["Add button to Dressing Room frame with ability to undress model."],
-				get = function(info) return E.db.enhanced.general.undressButtons end,
+				get = function(info) return E.db.enhanced.general.undressButton end,
 				set = function(info, value)
 					E.db.enhanced.general.undressButton = value
-					E:GetModule("Enhanced_Misc"):UndressButtonToggle()
-				end,
+					E:GetModule("Enhanced_UndressButtons"):ToggleState()
+				end
 			},
 			model = {
 				order = 9,

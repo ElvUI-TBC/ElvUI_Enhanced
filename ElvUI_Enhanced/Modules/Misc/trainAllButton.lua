@@ -56,7 +56,7 @@ function TA:ButtonUpdate()
 	self.button:Disable()
 end
 
-function TA:ADDON_LOADED(event, addon, ...)
+function TA:ADDON_LOADED(_, addon)
 	if addon ~= "Blizzard_TrainerUI" then return end
 
 	self:ButtonCreate()

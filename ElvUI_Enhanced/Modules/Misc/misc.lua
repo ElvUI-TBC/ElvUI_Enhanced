@@ -56,7 +56,6 @@ function M:Initialize()
 	self:WatchedFaction()
 	self:LoadMoverTransparancy()
 	self:QuestLevelToggle()
-	self:UndressButtonToggle()
 end
 
 local function InitializeCallback()
