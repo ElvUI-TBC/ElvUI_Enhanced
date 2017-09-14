@@ -1702,7 +1702,7 @@ function mod:Initialize()
 	self:PaperDoll_InitStatCategories(PAPERDOLL_STATCATEGORY_DEFAULTORDER, E.db.enhanced.character.player.orderName, E.db.enhanced.character.player.collapsedName, "player")
 
 	PaperDollFrame:RegisterEvent("PLAYER_TALENT_UPDATE")
-	PaperDollFrame:HookScript("OnEvent", function(self, event, ...)
+	PaperDollFrame:HookScript2("OnEvent", function(self, event, ...)
 		if not self:IsVisible() then return end
 
 		local unit = ...
@@ -1729,7 +1729,7 @@ function mod:Initialize()
 		end
 	end)
 
-	PaperDollFrame:HookScript("OnShow", function()
+	PaperDollFrame:HookScript2("OnShow", function()
 		if E.db.enhanced.character.collapsed then
 			mod:CharacterFrame_Collapse()
 		else
@@ -1743,7 +1743,7 @@ function mod:Initialize()
 		mod:PaperDollFrame_SetLevel()
 	end)
 
-	PaperDollFrame:HookScript("OnHide", function(self)
+	PaperDollFrame:HookScript2("OnHide", function(self)
 		if not self:IsShown() then
 			mod:CharacterFrame_Collapse()
 		end
@@ -1780,7 +1780,7 @@ function mod:Initialize()
 
 	self:UpdatePetModelFrame()
 
-	PetPaperDollFrame:HookScript("OnShow", function(self)
+	PetPaperDollFrame:HookScript2("OnShow", function(self)
 		if E.db.enhanced.character.collapsed then
 			mod:CharacterFrame_Collapse()
 		else
@@ -1796,7 +1796,7 @@ function mod:Initialize()
 		mod:PaperDollFrame_UpdateStats()
 	end)
 
-	PetPaperDollFrame:HookScript("OnHide", function(self)
+	PetPaperDollFrame:HookScript2("OnHide", function(self)
 		if PaperDollFrame:IsShown() then return end
 		mod:CharacterFrame_Collapse()
 
