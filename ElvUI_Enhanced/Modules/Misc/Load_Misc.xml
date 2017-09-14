@@ -5,7 +5,6 @@
 	<Script file="movers.lua"/>
 	<Script file="addonList.lua"/>
 	<Script file="deathRecap.lua"/>
-	<Script file="targetclass.lua"/>
 	<Script file="questLevel.lua"/>
 	<Script file="losecontrol.lua"/>
 	<Script file="alreadyKnown.lua"/>
