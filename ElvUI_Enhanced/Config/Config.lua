@@ -583,7 +583,11 @@ local function TooltipOptions()
 						name = L["Enable"],
 						desc = L["Show/Hides an Icon for Spells and Items on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.enable; end,
-						set = function(info, value) E.db.enhanced.tooltip.tooltipIcon.enable = value; end
+						set = function(info, value)
+							E.db.enhanced.tooltip.tooltipIcon.enable = value
+							E:GetModule("Enhanced_TooltipIcon"):ToggleItemsState()
+							E:GetModule("Enhanced_TooltipIcon"):ToggleSpellsState()
+						end
 					},
 					spacer = {
 						order = 2,

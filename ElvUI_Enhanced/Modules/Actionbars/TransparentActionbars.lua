@@ -4,89 +4,47 @@ local ETAB = E:NewModule("Enhanced_TransparentActionbars")
 local _G = _G
 local pairs = pairs
 
-function ETAB:BarsBackdrop()
-	if(E.db.enhanced.actionbars.transparentActionbars.transparentBackdrops) then
-		for i = 1, 10 do
-			local transBars = {_G["ElvUI_Bar"..i]}
-			for _, frame in pairs(transBars) do
-				if(frame.backdrop) then
-					frame.backdrop:SetTemplate("Transparent");
-				end
-			end
-		end
+local NUM_ACTIONBAR_BUTTONS = NUM_ACTIONBAR_BUTTONS
+local NUM_PET_ACTION_SLOTS = NUM_PET_ACTION_SLOTS
 
-		local transOtherBars = {ElvUI_BarPet, ElvUI_StanceBar, ElvUIBags}
-		for _, frame in pairs(transOtherBars) do
-			if(frame.backdrop) then
-				frame.backdrop:SetTemplate("Transparent");
-			end
-		end
-	else
-		for i = 1, 10 do
-			local transBars = {_G["ElvUI_Bar"..i]}
-			for _, frame in pairs(transBars) do
-				if(frame.backdrop) then
-					frame.backdrop:SetTemplate("Default");
-				end
-			end
-		end
+function ETAB:StyleBackdrops()
+	local styleBackdrop = E.db.enhanced.actionbars.transparentActionbars.transparentBackdrops and "Transparent" or "Default"
+	local styleButtons = E.db.enhanced.actionbars.transparentActionbars.transparentButtons and "Transparent" or "Default"
 
-		local transOtherBars = {ElvUI_BarPet, ElvUI_StanceBar, ElvUIBags}
-		for _, frame in pairs(transOtherBars) do
-			if(frame.backdrop) then
-				frame.backdrop:SetTemplate("Default");
+	local frame
+
+	for i = 1, 10 do
+		frame = _G["ElvUI_Bar"..i]
+		if frame then
+			if frame.backdrop then
+				frame.backdrop:SetTemplate(styleBackdrop)
+			end
+
+			for j = 1, NUM_ACTIONBAR_BUTTONS do
+				frame = _G["ElvUI_Bar"..i.."Button"..j]
+				if frame and frame.backdrop then
+					frame.backdrop:SetTemplate(styleButtons)
+				end
 			end
 		end
 	end
-end
 
-function ETAB:ButtonsBackdrop()
-	if(E.db.enhanced.actionbars.transparentActionbars.transparentButtons) then
-		for i = 1, 10 do
-			for k = 1, 12 do
-				local buttonBars = {_G["ElvUI_Bar"..i.."Button"..k]}
-				for _, button in pairs(buttonBars) do
-					if(button.backdrop) then
-						button.backdrop:SetTemplate("Transparent");
-					end
-				end
-			end
+	for _, frame in pairs({ElvUI_BarPet, ElvUI_BarTotem, ElvUI_StanceBar}) do
+		if frame.backdrop then
+			frame.backdrop:SetTemplate(style)
 		end
+	end
 
-		for i = 1, NUM_PET_ACTION_SLOTS do
-			local petButtons = {_G["PetActionButton"..i]}
-			for _, button in pairs(petButtons) do
-				if(button.backdrop) then
-					button.backdrop:SetTemplate("Transparent");
-				end
-			end
-		end
-	else
-		for i = 1, 10 do
-			for k = 1, 12 do
-				local buttonBars = {_G["ElvUI_Bar"..i.."Button"..k]}
-				for _, button in pairs(buttonBars) do
-					if(button.backdrop) then
-						button.backdrop:SetTemplate("Default", true);
-					end
-				end
-			end
-		end
-
-		for i = 1, NUM_PET_ACTION_SLOTS do
-			local petButtons = {_G["PetActionButton"..i]}
-			for _, button in pairs(petButtons) do
-				if(button.backdrop) then
-					button.backdrop:SetTemplate("Default", true);
-				end
-			end
+	for i = 1, NUM_PET_ACTION_SLOTS do
+		frame = _G["PetActionButton"..i]
+		if frame and frame.backdrop then
+			frame.backdrop:SetTemplate(styleButtons)
 		end
 	end
 end
 
 function ETAB:Initialize()
-	E:Delay(0.3, ETAB.BarsBackdrop);
-	E:Delay(0.3, ETAB.ButtonsBackdrop);
+	E:Delay(0.3, ETAB.StyleBackdrops)
 end
 
 local function InitializeCallback()
