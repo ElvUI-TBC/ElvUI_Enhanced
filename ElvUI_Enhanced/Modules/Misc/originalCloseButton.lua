@@ -39,10 +39,6 @@ function S:HandleCloseButton(f, point, text)
 			f:SetPushedTexture("")
 			f.SetPushedTexture = E.noop
 		end
-
-		if not text then
-			text = "x"
-		end
 	end
 
 	if not f.backdrop and not f.noBackdrop then
@@ -53,6 +49,10 @@ function S:HandleCloseButton(f, point, text)
 		f:HookScript2("OnLeave", S.SetOriginalBackdrop)
 	end
 
+	if not text then
+		text = "x"
+	end
+
 	if not f.text then
 		f.text = f:CreateFontString(nil, "OVERLAY")
 		f.text:SetFont([[Interface\AddOns\ElvUI\media\fonts\PT_Sans_Narrow.ttf]], 16, "OUTLINE")
@@ -61,7 +61,7 @@ function S:HandleCloseButton(f, point, text)
 		f.text:SetPoint("CENTER", f, "CENTER", -1, 1)
 	end
 
-	if f.text and f.noBackdrop then
+	if f.noBackdrop then
 		f.text:SetAlpha(0)
 	end
 
