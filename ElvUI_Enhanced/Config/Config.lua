@@ -69,7 +69,10 @@ local function GeneralOptions()
 				type = "toggle",
 				name = L["Original Close Button"],
 				get = function(info) return E.db.enhanced.general.originalCloseButton end,
-				set = function(info, value) E.db.enhanced.general.originalCloseButton = value E:StaticPopup_Show("CONFIG_RL") end
+				set = function(info, value)
+					E.db.enhanced.general.originalCloseButton = value
+					E:GetModule("Enhanced_Misc"):UpdateCloseButtons()
+				end
 			},
 			trainAllSkills = {
 				order = 7,
