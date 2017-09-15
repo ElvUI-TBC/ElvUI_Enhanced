@@ -245,37 +245,29 @@ local function CharacterFrameOptions()
 						get = function(info) return E.private.enhanced.character.enable end,
 						set = function(info, value) E.private.enhanced.character.enable = value; E:StaticPopup_Show("PRIVATE_RL"); end
 					},
-					paperdollBackgrounds = {
+					background = {
 						order = 2,
-						type = "group",
-						name = L["Paperdoll Backgrounds"],
-						guiInline = true,
-						args = {
-							background = {
-								order = 1,
-								type = "toggle",
-								name = L["Character Background"],
-								get = function(info) return E.db.enhanced.character.background; end,
-								set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
-								disabled = function() return not E.private.enhanced.character.enable; end
-							},
-							petBackground = {
-								order = 2,
-								type = "toggle",
-								name = L["Pet Background"],
-								get = function(info) return E.db.enhanced.character.petBackground; end,
-								set = function(info, value) E.db.enhanced.character.petBackground = value; E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame(); end,
-								disabled = function() return not E.private.enhanced.character.enable; end
-							},
-							inspectBackground = {
-								order = 3,
-								type = "toggle",
-								name = L["Inspect Background"],
-								get = function(info) return E.db.enhanced.character.inspectBackground; end,
-								set = function(info, value) E.db.enhanced.character.inspectBackground = value; end,
-								disabled = function() return not E.private.enhanced.character.enable; end
-							}
-						}
+						type = "toggle",
+						name = L["Paperdoll Background"],
+						get = function(info) return E.db.enhanced.character.background; end,
+						set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
+						disabled = function() return not E.private.enhanced.character.enable; end
+					},
+					petBackground = {
+						order = 3,
+						type = "toggle",
+						name = L["Pet Paperdoll Background"],
+						get = function(info) return E.db.enhanced.character.petBackground; end,
+						set = function(info, value) E.db.enhanced.character.petBackground = value; E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame(); end,
+						disabled = function() return not E.private.enhanced.character.enable; end
+					},
+					inspectBackground = {
+						order = 4,
+						type = "toggle",
+						name = L["Inspect Paperdoll Background"],
+						get = function(info) return E.db.enhanced.character.inspectBackground; end,
+						set = function(info, value) E.db.enhanced.character.inspectBackground = value; end,
+						disabled = function() return not E.private.enhanced.character.enable; end
 					}
 				}
 			},
@@ -490,124 +482,62 @@ local function DataTextsOptions()
 	return config;
 end
 
--- Maps
-local function MapsOptions()
-	local EFG = E:GetModule("Enhanced_FogClear")
-
+-- Minimap
+local function MinimapOptions()
 	local config = {
 		order = 6,
 		type = "group",
-		name = L["Maps"],
-		childGroups = "tab",
+		name = L["Minimap"],
+		get = function(info) return E.db.enhanced.minimap[info[#info]] end,
+		set = function(info, value) E.db.enhanced.minimap[info[#info]] = value; E:GetModule("Minimap"):UpdateSettings(); end,
+		disabled = function() return not E.private.general.minimap.enable end,
 		args = {
 			header = {
-				order = 1,
+				order = 0,
 				type = "header",
-				name = ColorizeSettingName(L["Maps"])
+				name = ColorizeSettingName(L["Minimap"])
 			},
-			worldMap = {
+			location = {
+				order = 1,
+				type = "toggle",
+				name = L["Location Panel"],
+				desc = L["Toggle Location Panel."],
+				set = function(info, value)
+					E.db.enhanced.minimap[info[#info]] = value;
+					E:GetModule("Enhanced_MinimapLocation"):UpdateSettings();
+				end
+			},
+			locationdigits = {
 				order = 2,
-				type = "group",
-				name = L["World Map"],
-				args = {
-					header = {
-						order = 1,
-						type = "header",
-						name = L["World Map"]
-					},
-					fogClear = {
-						order = 2,
-						type = "group",
-						name = L["Fog Clear"],
-						guiInline = true,
-						args = {
-							enable = {
-								order = 1,
-								type = "toggle",
-								name = L["Enable"],
-								desc = L["Removes the Fog of War from the World map, thus displaying the artwork for all the undiscovered zones."],
-								get = function(info) return E.db.enhanced.worldMap.fogClear.enable end,
-								set = function(info, value) E.db.enhanced.worldMap.fogClear.enable = value EFG:UpdateFogClear() end
-							},
-							overlayColor = {
-								order = 2,
-								type = "color",
-								name = L["Overlay Color"],
-								--hasAlpha = true,
-								get = function(info)
-									local t = E.db.enhanced.worldMap.fogClear.overlayColor;
-									local d = P.enhanced.worldMap.fogClear.overlayColor;
-									return t.r, t.g, t.b, t.a, d.r, d.g, d.b, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local c = E.db.enhanced.worldMap.fogClear.overlayColor
-									c.r, c.g, c.b, c.a = r, g, b, a
-									EFG:UpdateWorldMapOverlays()
-									EFG:UpdateBattlefieldMinimapOverlays()
-								end,
-								disabled = function() return not E.db.enhanced.worldMap.fogClear.enable end
-							}
-						}
-					}
-				}
+				type = "range",
+				name = L["Location Digits"],
+				desc = L["Number of digits for map location."],
+				min = 0, max = 2, step = 1,
+				disabled = function() return not (E.db.enhanced.minimap.location and E.db.general.minimap.locationText == "ABOVE") end
 			},
-			minimap = {
+			hideincombat = {
 				order = 3,
-				type = "group",
-				name = L["Minimap"],
-				get = function(info) return E.db.enhanced.minimap[info[#info]] end,
-				set = function(info, value) E.db.enhanced.minimap[info[#info]] = value; E:GetModule("Minimap"):UpdateSettings(); end,
-				disabled = function() return not E.private.general.minimap.enable end,
-				args = {
-					header = {
-						order = 0,
-						type = "header",
-						name = L["Minimap"]
-					},
-					location = {
-						order = 1,
-						type = "toggle",
-						name = L["Location Panel"],
-						desc = L["Toggle Location Panel."],
-						set = function(info, value)
-							E.db.enhanced.minimap[info[#info]] = value;
-							E:GetModule("Enhanced_MinimapLocation"):UpdateSettings();
-						end
-					},
-					locationdigits = {
-						order = 2,
-						type = "range",
-						name = L["Location Digits"],
-						desc = L["Number of digits for map location."],
-						min = 0, max = 2, step = 1,
-						disabled = function() return not (E.db.enhanced.minimap.location and E.db.general.minimap.locationText == "ABOVE") end
-					},
-					hideincombat = {
-						order = 3,
-						type = "toggle",
-						name = L["Combat Hide"],
-						desc = L["Hide minimap while in combat."],
-					},
-					fadeindelay = {
-						order = 4,
-						type = "range",
-						name = L["FadeIn Delay"],
-						desc = L["The time to wait before fading the minimap back in after combat hide. (0 = Disabled)"],
-						min = 0, max = 20, step = 1,
-						disabled = function() return not E.db.enhanced.minimap.hideincombat end
-					}
-				}
+				type = "toggle",
+				name = L["Combat Hide"],
+				desc = L["Hide minimap while in combat."],
+			},
+			fadeindelay = {
+				order = 4,
+				type = "range",
+				name = L["FadeIn Delay"],
+				desc = L["The time to wait before fading the minimap back in after combat hide. (0 = Disabled)"],
+				min = 0, max = 20, step = 1,
+				disabled = function() return not E.db.enhanced.minimap.hideincombat end
 			}
 		}
-	}
-
+	};
 	E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText.values = {
 		["MOUSEOVER"] = L["Minimap Mouseover"],
 		["SHOW"] = L["Always Display"],
 		["ABOVE"] = ColorizeSettingName(L["Above Minimap"]),
 		["HIDE"] = L["Hide"]
 	};
-	config.args.minimap.args.locationText = E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText
+	config.args.locationText = E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText
 	return config;
 end
 
@@ -1102,7 +1032,7 @@ function addon:GetOptions()
 			chatGroup = ChatOptions(),
 			characterFrameGroup = CharacterFrameOptions(),
 			datatextsGroup = DataTextsOptions(),
-			mapsGroup = MapsOptions(),
+			minimapGroup = MinimapOptions(),
 			namePlatesGroup = NamePlatesOptions(),
 			tooltipGroup = TooltipOptions(),
 			unitframesGroup = UnitFrameOptions(),

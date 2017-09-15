@@ -40,11 +40,10 @@ L["Enable/Disable the display of durability information on the character screen.
 L["Enable/Disable the display of item levels on the character screen."] = "在角色資訊上顯示各裝備裝等"
 L["Enhanced Character Frame"] = true;
 L["Equipment"] = "自動換裝"
-L["Inspect Background"] = true;
+L["Inspect Paperdoll Background"] = true;
 L["Only show durabitlity information for items that are damaged."] = "只在裝備受損時顯示耐久度."
-L["Paperdoll Backgrounds"] = true;
-L["Character Background"] = true;
-L["Pet Background"] = true;
+L["Paperdoll Background"] = true;
+L["Pet Paperdoll Background"] = true;
 L["Quality Color"] = true;
 
 -- Datatext

@@ -40,11 +40,10 @@ L["Enable/Disable the display of durability information on the character screen.
 L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren/deaktivieren."
 L["Enhanced Character Frame"] = "Erweitertes Charakterfenster"
 L["Equipment"] = "Ausrüstung"
-L["Inspect Background"] = true
+L["Inspect Paperdoll Background"] = "Betrachten Paperdoll Hintergrund"
 L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
-L["Paperdoll Backgrounds"] = true;
-L["Character Background"] = true
-L["Pet Background"] = true
+L["Paperdoll Background"] = "Paperdoll Hintergrund"
+L["Pet Paperdoll Background"] = "Begleiter Paperdoll Hintergrund"
 L["Quality Color"] = "Qualitätsfarbe"
 
 -- Datatext
