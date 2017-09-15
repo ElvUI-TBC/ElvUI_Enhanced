@@ -245,29 +245,37 @@ local function CharacterFrameOptions()
 						get = function(info) return E.private.enhanced.character.enable end,
 						set = function(info, value) E.private.enhanced.character.enable = value; E:StaticPopup_Show("PRIVATE_RL"); end
 					},
-					background = {
+					paperdollBackgrounds = {
 						order = 2,
-						type = "toggle",
-						name = L["Paperdoll Background"],
-						get = function(info) return E.db.enhanced.character.background; end,
-						set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
-						disabled = function() return not E.private.enhanced.character.enable; end
-					},
-					petBackground = {
-						order = 3,
-						type = "toggle",
-						name = L["Pet Paperdoll Background"],
-						get = function(info) return E.db.enhanced.character.petBackground; end,
-						set = function(info, value) E.db.enhanced.character.petBackground = value; E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame(); end,
-						disabled = function() return not E.private.enhanced.character.enable; end
-					},
-					inspectBackground = {
-						order = 4,
-						type = "toggle",
-						name = L["Inspect Paperdoll Background"],
-						get = function(info) return E.db.enhanced.character.inspectBackground; end,
-						set = function(info, value) E.db.enhanced.character.inspectBackground = value; end,
-						disabled = function() return not E.private.enhanced.character.enable; end
+						type = "group",
+						name = L["Paperdoll Backgrounds"],
+						guiInline = true,
+						args = {
+							background = {
+								order = 1,
+								type = "toggle",
+								name = L["Character Background"],
+								get = function(info) return E.db.enhanced.character.background; end,
+								set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
+								disabled = function() return not E.private.enhanced.character.enable; end
+							},
+							petBackground = {
+								order = 2,
+								type = "toggle",
+								name = L["Pet Background"],
+								get = function(info) return E.db.enhanced.character.petBackground; end,
+								set = function(info, value) E.db.enhanced.character.petBackground = value; E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame(); end,
+								disabled = function() return not E.private.enhanced.character.enable; end
+							},
+							inspectBackground = {
+								order = 3,
+								type = "toggle",
+								name = L["Inspect Background"],
+								get = function(info) return E.db.enhanced.character.inspectBackground; end,
+								set = function(info, value) E.db.enhanced.character.inspectBackground = value; end,
+								disabled = function() return not E.private.enhanced.character.enable; end
+							}
+						}
 					}
 				}
 			},
