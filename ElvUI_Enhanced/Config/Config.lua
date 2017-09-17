@@ -1,16 +1,16 @@
-local E, L, V, P, G = unpack(ElvUI);
-local addon = E:GetModule("ElvUI_Enhanced");
+local E, L, V, P, G = unpack(ElvUI)
+local addon = E:GetModule("ElvUI_Enhanced")
 
 local format = string.format
 local tsort = table.sort
 
 local function ColorizeSettingName(settingName)
-	return format("|cffff8000%s|r", settingName);
+	return format("|cffff8000%s|r", settingName)
 end
 
 -- General
 local function GeneralOptions()
-	local M = E:GetModule("Enhanced_Misc");
+	local M = E:GetModule("Enhanced_Misc")
 
 	local config = {
 		order = 1,
@@ -27,23 +27,23 @@ local function GeneralOptions()
 				type = "toggle",
 				name = L["PvP Autorelease"],
 				desc = L["Automatically release body when killed inside a battleground."],
-				get = function(info) return E.db.enhanced.general.pvpAutoRelease; end,
-				set = function(info, value) E.db.enhanced.general.pvpAutoRelease = value; M:AutoRelease(); end
+				get = function(info) return E.db.enhanced.general.pvpAutoRelease end,
+				set = function(info, value) E.db.enhanced.general.pvpAutoRelease = value M:AutoRelease() end
 			},
 			autoRepChange = {
 				order = 2,
 				type = "toggle",
 				name = L["Track Reputation"],
 				desc = L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."],
-				get = function(info) return E.db.enhanced.general.autoRepChange; end,
-				set = function(info, value) E.db.enhanced.general.autoRepChange = value; M:WatchedFaction(); end
+				get = function(info) return E.db.enhanced.general.autoRepChange end,
+				set = function(info, value) E.db.enhanced.general.autoRepChange = value M:WatchedFaction() end
 			},
 			showQuestLevel = {
 				order = 3,
 				type = "toggle",
 				name = L["Show Quest Level"],
 				desc = L["Display quest levels at Quest Log."],
-				get = function(info) return E.db.enhanced.general.showQuestLevel; end,
+				get = function(info) return E.db.enhanced.general.showQuestLevel end,
 				set = function(info, value)
 					E.db.enhanced.general.showQuestLevel = value
 					E:GetModule("Enhanced_Misc"):QuestLevelToggle()
@@ -54,8 +54,8 @@ local function GeneralOptions()
 				type = "toggle",
 				name = L["Decline Duel"],
 				desc = L["Auto decline all duels"],
-				get = function(info) return E.db.enhanced.general.declineduel; end,
-				set = function(info, value) E.db.enhanced.general.declineduel = value; M:DeclineDuel() end
+				get = function(info) return E.db.enhanced.general.declineduel end,
+				set = function(info, value) E.db.enhanced.general.declineduel = value M:DeclineDuel() end
 			},
 			hideZoneText = {
 				order = 5,
@@ -101,27 +101,38 @@ local function GeneralOptions()
 				type = "toggle",
 				name = L["Model Frames"],
 				get = function(info) return E.private.enhanced.model.enable end,
-				set = function(info, value) E.private.enhanced.model.enable = value; E:StaticPopup_Show("PRIVATE_RL") end
+				set = function(info, value) E.private.enhanced.model.enable = value E:StaticPopup_Show("PRIVATE_RL") end
+			},
+			altBuyMaxStack = {
+				order = 10,
+				type = "toggle",
+				name = L["Alt-Click Merchant"],
+				desc = L["Holding Alt key while buying something from vendor will now buy an entire stack."],
+				get = function(info) return E.db.enhanced.general.altBuyMaxStack end,
+				set = function(info, value)
+					E.db.enhanced.general.altBuyMaxStack = value
+					M:AltBuyMaxStack()
+				end
 			},
 			moverTransparancy = {
-				order = 10,
+				order = 11,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],
 				desc = L["Changes the transparency of all the movers."],
 				min = 0, max = 1, step = 0.01,
-				get = function(info) return E.db.enhanced.general.moverTransparancy; end,
-				set = function(info, value) E.db.enhanced.general.moverTransparancy = value M:UpdateMoverTransparancy(); end
-			}
+				get = function(info) return E.db.enhanced.general.moverTransparancy end,
+				set = function(info, value) E.db.enhanced.general.moverTransparancy = value M:UpdateMoverTransparancy() end
+			},
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 -- Actionbars
 local function ActionbarOptions()
-	local EAB = E:GetModule("Enhanced_ActionBars");
-	local ETAB = E:GetModule("Enhanced_TransparentActionbars");
+	local EAB = E:GetModule("Enhanced_ActionBars")
+	local ETAB = E:GetModule("Enhanced_TransparentActionbars")
 
 	local config = {
 		order = 2,
@@ -144,7 +155,7 @@ local function ActionbarOptions()
 						type = "toggle",
 						name = L["Enable"],
 						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
-						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value; EAB:UpdateCallback(); E:GetModule("ActionBars"):UpdateButtonSettings() end
+						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value EAB:UpdateCallback() E:GetModule("ActionBars"):UpdateButtonSettings() end
 					},
 					equippedColor = {
 						order = 2,
@@ -170,27 +181,27 @@ local function ActionbarOptions()
 				name = L["Transparent ActionBars"],
 				guiInline = true,
 				get = function(info) return E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] end,
-				set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; end,
+				set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value end,
 				args = {
 					transparentBackdrops = {
 						order = 1,
 						type = "toggle",
 						name = L["Transparent Backdrop"],
 						desc = L["Sets actionbars' backgrounds to transparent template."],
-						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; ETAB:StyleBackdrops() end
+						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
 					},
 					transparentButtons = {
 						order = 2,
 						type = "toggle",
 						name = L["Transparent Buttons"],
 						desc = L["Sets actionbars buttons' backgrounds to transparent template."],
-						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value; ETAB:StyleBackdrops() end
+						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
 					}
 				}
 			}
 		}
 	}
-	return config;
+	return config
 end
 
 -- Chat
@@ -210,12 +221,12 @@ local function ChatOptions()
 				type = "toggle",
 				name = L["Filter DPS meters Spam"],
 				desc = L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"],
-				get = function(info) return E.db.enhanced.chat.dpsLinks; end,
-				set = function(info, value) E.db.enhanced.chat.dpsLinks = value; E:GetModule("Enhanced_DPSLinks"):UpdateSettings(); end
+				get = function(info) return E.db.enhanced.chat.dpsLinks end,
+				set = function(info, value) E.db.enhanced.chat.dpsLinks = value E:GetModule("Enhanced_DPSLinks"):UpdateSettings() end
 			}
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 -- Character Frame
@@ -243,7 +254,7 @@ local function CharacterFrameOptions()
 						type = "toggle",
 						name = L["Enable"],
 						get = function(info) return E.private.enhanced.character.enable end,
-						set = function(info, value) E.private.enhanced.character.enable = value; E:StaticPopup_Show("PRIVATE_RL"); end
+						set = function(info, value) E.private.enhanced.character.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 					},
 					paperdollBackgrounds = {
 						order = 2,
@@ -255,25 +266,25 @@ local function CharacterFrameOptions()
 								order = 1,
 								type = "toggle",
 								name = L["Character Background"],
-								get = function(info) return E.db.enhanced.character.background; end,
-								set = function(info, value) E.db.enhanced.character.background = value; E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame(); end,
-								disabled = function() return not E.private.enhanced.character.enable; end
+								get = function(info) return E.db.enhanced.character.background end,
+								set = function(info, value) E.db.enhanced.character.background = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+								disabled = function() return not E.private.enhanced.character.enable end
 							},
 							petBackground = {
 								order = 2,
 								type = "toggle",
 								name = L["Pet Background"],
-								get = function(info) return E.db.enhanced.character.petBackground; end,
-								set = function(info, value) E.db.enhanced.character.petBackground = value; E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame(); end,
-								disabled = function() return not E.private.enhanced.character.enable; end
+								get = function(info) return E.db.enhanced.character.petBackground end,
+								set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+								disabled = function() return not E.private.enhanced.character.enable end
 							},
 							inspectBackground = {
 								order = 3,
 								type = "toggle",
 								name = L["Inspect Background"],
-								get = function(info) return E.db.enhanced.character.inspectBackground; end,
-								set = function(info, value) E.db.enhanced.character.inspectBackground = value; end,
-								disabled = function() return not E.private.enhanced.character.enable; end
+								get = function(info) return E.db.enhanced.character.inspectBackground end,
+								set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
+								disabled = function() return not E.private.enhanced.character.enable end
 							}
 						}
 					}
@@ -296,7 +307,7 @@ local function CharacterFrameOptions()
 						type = "toggle",
 						name = L["Enable"],
   						set = function(info, value)
- 							E.db.enhanced.equipment[info[#info]] = value;
+ 							E.db.enhanced.equipment[info[#info]] = value
  							PD:ToggleState()
   						end
 					},
@@ -306,7 +317,7 @@ local function CharacterFrameOptions()
 						name = L["Durability"],
 						guiInline = true,
 						get = function(info) return E.db.enhanced.equipment.durability[info[#info]] end,
-						set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						set = function(info, value) E.db.enhanced.equipment.durability[info[#info]] = value PD:UpdatePaperDoll("player") PD:UpdateInfoText("Character") PD:UpdateInfoText("Inspect") end,
 						disabled = function() return not E.db.enhanced.equipment.enable end,
 						args = {
 							info = {
@@ -368,7 +379,7 @@ local function CharacterFrameOptions()
 						name = L["Item Level"],
 						guiInline = true,
 						get = function(info) return E.db.enhanced.equipment.itemlevel[info[#info]] end,
-						set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player"); PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						set = function(info, value) E.db.enhanced.equipment.itemlevel[info[#info]] = value PD:UpdatePaperDoll("player") PD:UpdateInfoText("Character") PD:UpdateInfoText("Inspect") end,
 						disabled = function() return not E.db.enhanced.equipment.enable end,
 						args = {
 							info = {
@@ -429,7 +440,7 @@ local function CharacterFrameOptions()
 						name = L["Font"],
 						guiInline = true,
 						get = function(info) return E.db.enhanced.equipment[info[#info]] end,
-						set = function(info, value) E.db.enhanced.equipment[info[#info]] = value; PD:UpdateInfoText("Character"); PD:UpdateInfoText("Inspect"); end,
+						set = function(info, value) E.db.enhanced.equipment[info[#info]] = value PD:UpdateInfoText("Character") PD:UpdateInfoText("Inspect") end,
 						disabled = function() return not E.db.enhanced.equipment.enable end,
 						args = {
 							font = {
@@ -463,7 +474,7 @@ local function CharacterFrameOptions()
 		}
 	}
 
-	return config;
+	return config
 end
 
 -- Datatext
@@ -482,12 +493,12 @@ local function DataTextsOptions()
 				order = 1,
 				type = "toggle",
 				name = L["Enhanced Time Color"],
-				get = function(info) return E.db.enhanced.datatexts.timeColorEnch; end,
-				set = function(info, value) E.db.enhanced.datatexts.timeColorEnch = value; E:GetModule("Enhanced_DatatextTime"):UpdateSettings(); end
+				get = function(info) return E.db.enhanced.datatexts.timeColorEnch end,
+				set = function(info, value) E.db.enhanced.datatexts.timeColorEnch = value E:GetModule("Enhanced_DatatextTime"):UpdateSettings() end
 			}
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 -- Minimap
@@ -497,7 +508,7 @@ local function MinimapOptions()
 		type = "group",
 		name = L["Minimap"],
 		get = function(info) return E.db.enhanced.minimap[info[#info]] end,
-		set = function(info, value) E.db.enhanced.minimap[info[#info]] = value; E:GetModule("Minimap"):UpdateSettings(); end,
+		set = function(info, value) E.db.enhanced.minimap[info[#info]] = value E:GetModule("Minimap"):UpdateSettings() end,
 		disabled = function() return not E.private.general.minimap.enable end,
 		args = {
 			header = {
@@ -511,8 +522,8 @@ local function MinimapOptions()
 				name = L["Location Panel"],
 				desc = L["Toggle Location Panel."],
 				set = function(info, value)
-					E.db.enhanced.minimap[info[#info]] = value;
-					E:GetModule("Enhanced_MinimapLocation"):UpdateSettings();
+					E.db.enhanced.minimap[info[#info]] = value
+					E:GetModule("Enhanced_MinimapLocation"):UpdateSettings()
 				end
 			},
 			locationdigits = {
@@ -538,15 +549,15 @@ local function MinimapOptions()
 				disabled = function() return not E.db.enhanced.minimap.hideincombat end
 			}
 		}
-	};
+	}
 	E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText.values = {
 		["MOUSEOVER"] = L["Minimap Mouseover"],
 		["SHOW"] = L["Always Display"],
 		["ABOVE"] = ColorizeSettingName(L["Above Minimap"]),
 		["HIDE"] = L["Hide"]
-	};
+	}
 	config.args.locationText = E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText
-	return config;
+	return config
 end
 
 -- Nameplates
@@ -567,7 +578,7 @@ local function NamePlatesOptions()
 				order = 1,
 				name = L["Smooth Bars"],
 				desc = L["Bars will transition smoothly."],
-				set = function(info, value) E.db.enhanced.nameplates[ info[#info] ] = value; E:GetModule("NamePlates"):ConfigureAll(); end
+				set = function(info, value) E.db.enhanced.nameplates[ info[#info] ] = value E:GetModule("NamePlates"):ConfigureAll() end
 			},
 			smoothSpeed = {
 				type = "range",
@@ -575,12 +586,12 @@ local function NamePlatesOptions()
 				name = L["Animation Speed"],
 				desc = L["Speed in seconds"],
 				min = 0.1, max = 3, step = 0.01,
-				disabled = function() return not E.db.enhanced.nameplates.smooth; end,
-				set = function(info, value) E.db.enhanced.nameplates[ info[#info] ] = value; E:GetModule("NamePlates"):ConfigureAll(); end
+				disabled = function() return not E.db.enhanced.nameplates.smooth end,
+				set = function(info, value) E.db.enhanced.nameplates[ info[#info] ] = value E:GetModule("NamePlates"):ConfigureAll() end
 			},
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 -- Tooltip
@@ -602,7 +613,7 @@ local function TooltipOptions()
 				name = L["Item Border Color"],
 				desc = L["Colorize the tooltip border based on item quality."],
 				get = function(info) return E.db.enhanced.tooltip.itemQualityBorderColor end,
-				set = function(info, value) E.db.enhanced.tooltip.itemQualityBorderColor = value; E:GetModule("Enhanced_ItemBorderColor"):ToggleState(); end
+				set = function(info, value) E.db.enhanced.tooltip.itemQualityBorderColor = value E:GetModule("Enhanced_ItemBorderColor"):ToggleState() end
 			},
 			tooltipIcon = {
 				order = 2,
@@ -615,7 +626,7 @@ local function TooltipOptions()
 						type = "toggle",
 						name = L["Enable"],
 						desc = L["Show/Hides an Icon for Spells and Items on the Tooltip."],
-						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.enable; end,
+						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.enable end,
 						set = function(info, value)
 							E.db.enhanced.tooltip.tooltipIcon.enable = value
 							E:GetModule("Enhanced_TooltipIcon"):ToggleItemsState()
@@ -633,7 +644,7 @@ local function TooltipOptions()
 						type = "toggle",
 						name = SPELLS,
 						desc = L["Show/Hides an Icon for Spells on the Tooltip."],
-						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells; end,
+						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells end,
 						set = function(info, value)
 							E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells = value
 							E:GetModule("Enhanced_TooltipIcon"):ToggleSpellsState()
@@ -645,7 +656,7 @@ local function TooltipOptions()
 						type = "toggle",
 						name = ITEMS,
 						desc = L["Show/Hides an Icon for Items on the Tooltip."],
-						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems; end,
+						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems end,
 						set = function(info, value)
 							E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems = value
 							E:GetModule("Enhanced_TooltipIcon"):ToggleItemsState()
@@ -655,25 +666,25 @@ local function TooltipOptions()
 				}
 			}
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 -- WatchFrame
 local function WatchFrameOptions()
-	local WF = E:GetModule("Enhanced_WatchFrame");
+	local WF = E:GetModule("Enhanced_WatchFrame")
 
 	local choices = {
 		["NONE"] = L["None"],
 		["HIDDEN"] = L["Hidden"]
-	};
+	}
 
 	local config = {
 		order = 9,
 		type = "group",
 		name = L["Watch Frame"],
 		get = function(info) return E.db.enhanced.watchframe[info[#info]] end,
-		set = function(info, value) E.db.enhanced.watchframe[info[#info]] = value; WF:UpdateSettings(); end,
+		set = function(info, value) E.db.enhanced.watchframe[info[#info]] = value WF:UpdateSettings() end,
 		args = {
 			header = {
 				order = 0,
@@ -696,8 +707,8 @@ local function WatchFrameOptions()
 				name = L["Visibility State"],
 				guiInline = true,
 				get = function(info) return E.db.enhanced.watchframe[info[#info]] end,
-				set = function(info, value) E.db.enhanced.watchframe[info[#info]] = value; WF:ChangeState(); end,
-				disabled = function() return not E.db.enhanced.watchframe.enable; end,
+				set = function(info, value) E.db.enhanced.watchframe[info[#info]] = value WF:ChangeState() end,
+				disabled = function() return not E.db.enhanced.watchframe.enable end,
 				args = {
 					city = {
 						order = 1,
@@ -732,8 +743,8 @@ local function WatchFrameOptions()
 				}
 			}
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 -- Loss Control
@@ -754,16 +765,16 @@ local function LoseControlOptions()
 				type = "toggle",
 				name = L["Enable"],
 				get = function(info) return E.private.loseofcontrol.enable end,
-				set = function(info, value) E.private.loseofcontrol.enable = value; E:StaticPopup_Show("PRIVATE_RL"); end
+				set = function(info, value) E.private.loseofcontrol.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
 			typeGroup = {
 				order = 2,
 				type = "group",
 				name = TYPE,
 				guiInline = true,
-				get = function(info) return E.db.enhanced.loseofcontrol[ info[#info] ]; end,
-				set = function(info, value) E.db.enhanced.loseofcontrol[ info[#info] ] = value; end,
-				disabled = function() return not E.private.loseofcontrol.enable; end,
+				get = function(info) return E.db.enhanced.loseofcontrol[ info[#info] ] end,
+				set = function(info, value) E.db.enhanced.loseofcontrol[ info[#info] ] = value end,
+				disabled = function() return not E.private.loseofcontrol.enable end,
 				args = {
 					CC = {
 						type = "toggle",
@@ -792,8 +803,8 @@ local function LoseControlOptions()
 				}
 			}
 		}
-	};
-	return config;
+	}
+	return config
 end
 
 local function UnitFrameOptions()
@@ -822,7 +833,7 @@ local function UnitFrameOptions()
 						name = L["Hide Role Icon in combat"],
 						desc = L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."],
 						get = function(info) return E.db.enhanced.unitframe.hideRoleInCombat end,
-						set = function(info, value) E.db.enhanced.unitframe.hideRoleInCombat = value; E:StaticPopup_Show("PRIVATE_RL"); end
+						set = function(info, value) E.db.enhanced.unitframe.hideRoleInCombat = value E:StaticPopup_Show("PRIVATE_RL") end
 					}
 				}
 			},
@@ -835,8 +846,8 @@ local function UnitFrameOptions()
 						order = 1,
 						type = "group",
 						name = L["Animated Loss"],
-						get = function(info) return E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ]; end,
-						set = function(info, value) E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("player"); end,
+						get = function(info) return E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
 						args = {
 							header = {
 								order = 1,
@@ -887,8 +898,8 @@ local function UnitFrameOptions()
 						order = 2,
 						type = "group",
 						name = L["Portrait"],
-						get = function(info) return E.db.unitframe.units["player"]["portrait"][ info[#info] ]; end,
-						set = function(info, value) E.db.unitframe.units["player"]["portrait"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("player"); end,
+						get = function(info) return E.db.unitframe.units["player"]["portrait"][ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units["player"]["portrait"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
 						args = {
 							header = {
 								order = 1,
@@ -945,7 +956,7 @@ local function UnitFrameOptions()
 								name = L["Enable"],
 								desc = L["Show class icon for units."],
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.enable end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.enable = value; TC:ToggleSettings() end
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.enable = value TC:ToggleSettings() end
 							},
 							spacer = {
 								order = 2,
@@ -959,7 +970,7 @@ local function UnitFrameOptions()
 								desc = L["Size of the indicator icon."],
 								min = 16, max = 40, step = 1,
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.size end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.size = value; TC:ToggleSettings() end,
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.size = value TC:ToggleSettings() end,
 								disabled = function() return not E.db.enhanced.unitframe.units.target.classicon.enable end
 							},
 							xOffset = {
@@ -968,7 +979,7 @@ local function UnitFrameOptions()
 								name = L["xOffset"],
 								min = -100, max = 100, step = 1,
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.xOffset end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.xOffset = value; TC:ToggleSettings() end,
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.xOffset = value TC:ToggleSettings() end,
 								disabled = function() return not E.db.enhanced.unitframe.units.target.classicon.enable end
 							},
 							yOffset = {
@@ -977,7 +988,7 @@ local function UnitFrameOptions()
 								name = L["yOffset"],
 								min = -80, max = 40, step = 1,
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.yOffset end,
-								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.yOffset = value; TC:ToggleSettings() end,
+								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.yOffset = value TC:ToggleSettings() end,
 								disabled = function() return not E.db.enhanced.unitframe.units.target.classicon.enable end
 							}
 						}
@@ -986,8 +997,8 @@ local function UnitFrameOptions()
 						order = 2,
 						type = "group",
 						name = L["Portrait"],
-						get = function(info) return E.db.unitframe.units["target"]["portrait"][ info[#info] ]; end,
-						set = function(info, value) E.db.unitframe.units["target"]["portrait"][ info[#info] ] = value; E:GetModule("UnitFrames"):CreateAndUpdateUF("target"); end,
+						get = function(info) return E.db.unitframe.units["target"]["portrait"][ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units["target"]["portrait"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("target") end,
 						args = {
 							header = {
 								order = 1,
@@ -1047,5 +1058,5 @@ function addon:GetOptions()
 			losecontrolGroup = LoseControlOptions(),
 			watchFrameGroup = WatchFrameOptions(),
 		}
-	};
+	}
 end

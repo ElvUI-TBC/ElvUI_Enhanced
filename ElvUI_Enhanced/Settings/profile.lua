@@ -25,6 +25,7 @@ P.enhanced = {
 	general = {
 		pvpAutoRelease = false,
 		autoRepChange = false,
+		merchant = false,
 		moverTransparancy = 0.8,
 		showQuestLevel = false,
 		declineduel = false,

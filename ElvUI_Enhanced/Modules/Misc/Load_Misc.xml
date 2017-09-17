@@ -16,6 +16,7 @@
 	<Script file="originalCloseButton.lua"/>
 	<Script file="addonsCompatibility.lua"/>
 	<Script file="modelframes.lua"/>
+	<Script file="merchant.lua"/>
 
 	<Script file="characterFrame.lua"/>
 
@@ -111,7 +112,7 @@
 			</OnLoad>
 		</Scripts>
 	</Frame>
-	
+
 	<Button name="PlayerTitleButtonTemplate2" virtual="true">
 		<Size x="169" y="22"/>
 		<Anchors>
@@ -164,6 +165,6 @@
 				</Anchor>
 			</Anchors>
 		</ButtonText>
-		<HighlightTexture file="Interface\AddOns\ElvUI_Enhanced\Media\Textures\UI-FriendsFrame-HighlightBar-Blue" alphaMode="ADD"/>	
+		<HighlightTexture file="Interface\AddOns\ElvUI_Enhanced\Media\Textures\UI-FriendsFrame-HighlightBar-Blue" alphaMode="ADD"/>
 	</Button>
 </Ui>
