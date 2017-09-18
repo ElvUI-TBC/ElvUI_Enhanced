@@ -122,7 +122,7 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.altBuyMaxStack end,
 				set = function(info, value)
 					E.db.enhanced.general.altBuyMaxStack = value
-					M:AltBuyMaxStack()
+					M:BuyStackToggle()
 				end
 			},
 			moverTransparancy = {
