@@ -46,7 +46,7 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.showQuestLevel end,
 				set = function(info, value)
 					E.db.enhanced.general.showQuestLevel = value
-					E:GetModule("Enhanced_Misc"):QuestLevelToggle()
+					M:QuestLevelToggle()
 				end
 			},
 			declineduel = {
@@ -71,7 +71,7 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.originalCloseButton end,
 				set = function(info, value)
 					E.db.enhanced.general.originalCloseButton = value
-					E:GetModule("Enhanced_Misc"):UpdateCloseButtons()
+					M:UpdateCloseButtons()
 				end
 			},
 			trainAllButton = {
@@ -208,7 +208,8 @@ local function ActionbarOptions()
 						desc = L["Sets actionbars buttons' backgrounds to transparent template."],
 						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
 					}
-				}
+				},
+				disabled = function() return not E.private.actionbar.enable end
 			}
 		}
 	}

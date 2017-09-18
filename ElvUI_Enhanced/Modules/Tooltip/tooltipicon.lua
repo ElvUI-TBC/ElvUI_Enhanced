@@ -30,7 +30,7 @@ local function AddIcon(self, icon)
 end
 
 local function ItemIcon(self)
-	local link = self:GetItem()
+	local _, link = self:GetItem()
 	local icon = link and GetItemIcon(link)
 	AddIcon(self, icon)
 end
