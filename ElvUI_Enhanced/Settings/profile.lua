@@ -33,6 +33,7 @@ P.enhanced = {
 		originalCloseButton = false,
 		trainAllButton = false,
 		undressButton = false,
+		alreadyKnown = false,
 	},
 	actionbars = {
 		equipped = false,

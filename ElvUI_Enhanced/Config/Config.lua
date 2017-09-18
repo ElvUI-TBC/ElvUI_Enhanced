@@ -103,8 +103,19 @@ local function GeneralOptions()
 				get = function(info) return E.private.enhanced.model.enable end,
 				set = function(info, value) E.private.enhanced.model.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
-			altBuyMaxStack = {
+			alreadyKnown = {
 				order = 10,
+				type = "toggle",
+				name = L["Already Known"],
+				desc = L["Change color of item icons which already known."],
+				get = function(info) return E.db.enhanced.general.alreadyKnown end,
+				set = function(info, value)
+					E.db.enhanced.general.alreadyKnown = value
+					E:GetModule("Enhanced_AlreadyKnown"):ToggleState()
+				end
+			},
+			altBuyMaxStack = {
+				order = 11,
 				type = "toggle",
 				name = L["Alt-Click Merchant"],
 				desc = L["Holding Alt key while buying something from vendor will now buy an entire stack."],
@@ -115,7 +126,7 @@ local function GeneralOptions()
 				end
 			},
 			moverTransparancy = {
-				order = 11,
+				order = 12,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],
