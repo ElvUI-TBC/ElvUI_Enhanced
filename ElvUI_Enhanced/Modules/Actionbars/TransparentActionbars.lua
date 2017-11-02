@@ -46,7 +46,7 @@ end
 function ETAB:Initialize()
 	if not E.private.actionbar.enable or not (E.db.enhanced.actionbars.transparentActionbars.transparentBackdrops or E.db.enhanced.actionbars.transparentActionbars.transparentButtons) then return end
 
-	self:StyleBackdrops()
+	E:Delay(0.3, ETAB.StyleBackdrops)
 end
 
 local function InitializeCallback()

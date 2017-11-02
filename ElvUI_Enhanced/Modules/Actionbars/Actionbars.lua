@@ -6,11 +6,13 @@ function mod:LAB_ButtonUpdate(button)
 	if button.backdrop then
 		local color = E.db.enhanced.actionbars.equippedColor
 
-		if button:IsEquipped() then
-			button.backdrop:SetBackdropBorderColor(color.r, color.g, color.b)
-		else
-			button.backdrop:SetBackdropBorderColor(unpack(E.media.bordercolor))
-		end
+		E:Delay(0.05, function()
+			if button:IsEquipped() then
+				button.backdrop:SetBackdropBorderColor(color.r, color.g, color.b)
+			else
+				button.backdrop:SetBackdropBorderColor(unpack(E.media.bordercolor))
+			end
+		end)
 	end
 end
 
