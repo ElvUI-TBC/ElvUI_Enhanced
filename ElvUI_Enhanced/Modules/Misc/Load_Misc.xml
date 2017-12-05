@@ -54,7 +54,7 @@
 	<Frame name="StatGroupTemplate" virtual="true">
 		<Size x="187" y="0"/>
 		<Frames>
-			<Button name="$parentToolbar">
+			<Button name="$parentToolbar" parentKey="Toolbar">
 				<Size x="150" y="18"/>
 				<Anchors>
 					<Anchor point="TOP"/>
