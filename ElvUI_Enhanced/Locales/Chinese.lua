@@ -49,7 +49,6 @@ L["Quality Color"] = true;
 
 -- Datatext
 L["Combat Indicator"] = true;
-L["Datatext Disabled"] = true;
 L["Distance"] = true;
 L["Enhanced Time Color"] = true;
 L["Equipped"] = true;
