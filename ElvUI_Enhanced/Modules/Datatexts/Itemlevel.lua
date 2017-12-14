@@ -8,7 +8,7 @@ local GetInventoryItemLink = GetInventoryItemLink
 local GetInventorySlotInfo = GetInventorySlotInfo
 local GetItemInfo = GetItemInfo
 
-local displayString = ""
+local displayNumberString = ""
 local lastPanel
 
 local slots = {
@@ -40,7 +40,7 @@ local levelColors = {
 local function OnEvent(self)
 	local total, equipped = GetAverageItemLevel()
 
-	self.text:SetFormattedText(displayString, L["iLvL"], floor(equipped), floor(total))
+	self.text:SetFormattedText(displayNumberString, L["iLvL"], floor(equipped), floor(total))
 end
 
 local function OnEnter(self)
@@ -75,7 +75,7 @@ local function OnClick(self, btn)
 end
 
 local function ValueColorUpdate(hex)
-	displayString = join("", "%s: ", hex, "%d/%d|r")
+	displayNumberString = join("", "%s: ", hex, "%d/%d|r")
 
 	if(lastPanel ~= nil) then
 		OnEvent(lastPanel)
