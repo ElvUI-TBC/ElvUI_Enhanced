@@ -13,16 +13,16 @@ L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen des Watchframe (Questlog) n
 L["Equipped Item Border"] = "Rahmen der angelegten Items"
 L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
 L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten-Tasten transparent."
-L["Transparent ActionBars"] = true;
+L["Transparent ActionBars"] = "Transparente Aktionsleisten"
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
 L["Transparent s"] = "Transparente Tasten"
 
 -- AddOn List
-L["Enable All"] = true;
-L["Dependencies: "] = true;
-L["Disable All"] = true;
-L["Load AddOn"] = true;
-L["Requires Reload"] = true;
+L["Enable All"] = "Alle aktivieren"
+L["Dependencies: "] = "Abhängigkeiten"
+L["Disable All"] = "Alle deaktivieren"
+L["Load AddOn"] = "Lade AddOn"
+L["Requires Reload"] = "Benötigt Reload"
 
 -- Animated Loss
 L["Animated Loss"] = true;
@@ -40,11 +40,11 @@ L["Enable/Disable the display of durability information on the character screen.
 L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren/deaktivieren."
 L["Enhanced Character Frame"] = "Erweitertes Charakterfenster"
 L["Equipment"] = "Ausrüstung"
-L["Inspect Background"] = true
+L["Inspect Background"] = "Betrachten-Hintergrund"
 L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
-L["Paperdoll Backgrounds"] = true;
-L["Character Background"] = true
-L["Pet Background"] = true
+L["Paperdoll Backgrounds"] = "Paperdoll-Hintergrund"
+L["Character Background"] = "Charakter-Hintergrund"
+L["Pet Background"] = "Begleiter-Hintergrund"
 L["Quality Color"] = "Qualitätsfarbe"
 
 -- Datatext
@@ -57,8 +57,8 @@ L["New Mail"] = "Neue Post"
 L["No Mail"] = "Keine Post"
 L["Out of Combat"] = "Außerhalb des Kampfes"
 L["Reincarnation"] = "Wiederbelebung"
-L["Shards"] = true;
-L["Soul Shards"] = true;
+L["Shards"] = "Splitter"
+L["Soul Shards"] = "Seelensplitter"
 L["Target Range"] = "Zielreichweite"
 L["Total"] = "Gesamt"
 L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = "Du spielst keinen |cff0070DEShaman|r, Infotext deaktiviert."
@@ -166,7 +166,7 @@ L["Class Icons"] = "Klassensymbole"
 L["Detached Height"] = "Höhe loslösen"
 L["Hide Role Icon in combat"] = "Verstecke Rollensymbol im Kampf"
 L["Show class icon for units."] = "Zeige Klassensymbole für Einheiten"
-L["Target"] = true;
+L["Target"] = "Ziel"
 
 -- WatchFrame
 L["Arena"] = "Arena"
