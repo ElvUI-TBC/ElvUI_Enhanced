@@ -465,7 +465,7 @@ local function CharacterFrameOptions()
 							fontSize = {
 								order = 3,
 								type = "range",
-								name = L["Font Size"],
+								name = FONT_SIZE,
 								min = 6, max = 36, step = 1
 							},
 							fontOutline = {
@@ -473,7 +473,7 @@ local function CharacterFrameOptions()
 								type = "select",
 								name = L["Font Outline"],
 								values = {
-									["NONE"] = L["None"],
+									["NONE"] = NONE,
 									["OUTLINE"] = "OUTLINE",
 									["MONOCHROMEOUTLINE"] = "MONOCROMEOUTLINE",
 									["THICKOUTLINE"] = "THICKOUTLINE"
@@ -566,7 +566,7 @@ local function MinimapOptions()
 		["MOUSEOVER"] = L["Minimap Mouseover"],
 		["SHOW"] = L["Always Display"],
 		["ABOVE"] = ColorizeSettingName(L["Above Minimap"]),
-		["HIDE"] = L["Hide"]
+		["HIDE"] = HIDE
 	}
 	config.args.locationText = E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText
 	return config
@@ -687,7 +687,7 @@ local function WatchFrameOptions()
 	local WF = E:GetModule("Enhanced_WatchFrame")
 
 	local choices = {
-		["NONE"] = L["None"],
+		["NONE"] = NONE,
 		["HIDDEN"] = L["Hidden"]
 	}
 

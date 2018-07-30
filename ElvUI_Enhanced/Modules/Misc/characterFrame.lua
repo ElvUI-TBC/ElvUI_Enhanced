@@ -354,7 +354,7 @@ function module:PaperDollSidebarTab(button)
 	button.Icon:SetTexCoord(tcoords[1], tcoords[2], tcoords[3], tcoords[4])
 
 	button.Hider = button:CreateTexture(nil, "OVERLAY")
-	button.Hider:SetTexture(0.4, 0.4, 0.4, 0.4)
+	button.Hider:SetTexture(0, 0, 0, 0.8)
 	button.Hider:SetInside()
 
 	button.Highlight = button:CreateTexture(nil, "HIGHLIGHT")
@@ -1242,13 +1242,15 @@ function module:UpdateCharacterModelFrame()
 		CharacterModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
 
 		if strupper(fileName) == "SCOURGE" then
-			CharacterModelFrame.backgroundOverlay:SetAlpha(0.1)
-		elseif strupper(fileName) == "BLOODELF" or strupper(fileName) == "NIGHTELF" then
-			CharacterModelFrame.backgroundOverlay:SetAlpha(0.3)
-		elseif strupper(fileName) == "TROLL" or strupper(fileName) == "ORC" then
-			CharacterModelFrame.backgroundOverlay:SetAlpha(0.4)
-		else
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.2)
+		elseif strupper(fileName) == "BLOODELF" then
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.8)
+		elseif strupper(fileName) == "TROLL" then
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.7)
+		elseif strupper(fileName) == "ORC" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.5)
+		else
+			CharacterModelFrame.backgroundOverlay:SetAlpha(0.6)
 		end
 	else
 		CharacterModelFrame.backdrop:Hide()
@@ -1283,13 +1285,15 @@ function module:UpdateInspectModelFrame()
 		InspectModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
 
 		if strupper(fileName) == "SCOURGE" then
-			InspectModelFrame.backgroundOverlay:SetAlpha(0.1)
-		elseif strupper(fileName) == "BLOODELF" or strupper(fileName) == "NIGHTELF" then
-			InspectModelFrame.backgroundOverlay:SetAlpha(0.3)
-		elseif strupper(fileName) == "TROLL" or strupper(fileName) == "ORC" then
-			InspectModelFrame.backgroundOverlay:SetAlpha(0.4)
-		else
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.2)
+		elseif strupper(fileName) == "BLOODELF" then
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.8)
+		elseif strupper(fileName) == "TROLL" then
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.7)
+		elseif strupper(fileName) == "ORC" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.5)
+		else
+			InspectModelFrame.backgroundOverlay:SetAlpha(0.6)
 		end
 	else
 		InspectModelFrame.backdrop:Hide()
@@ -1310,10 +1314,10 @@ function module:UpdatePetModelFrame()
 		PetModelFrame.petPaperDollPetModelBg:Show()
 		if playerClass == "HUNTER" then
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petHunter.blp")
-			PetModelFrame.backgroundOverlay:SetAlpha(0.3)
+			PetModelFrame.backgroundOverlay:SetAlpha(0.4)
 		elseif playerClass == "WARLOCK" then
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petWarlock.blp")
-			PetModelFrame.backgroundOverlay:SetAlpha(0.1)
+			PetModelFrame.backgroundOverlay:SetAlpha(0.2)
 		else
 			PetModelFrame.petPaperDollPetModelBg:Hide()
 		end
@@ -1538,10 +1542,13 @@ function module:Initialize()
 		else
 			GameTooltip:SetText(self.expandTooltip)
 		end
+
+		self:SetBackdropBorderColor(unpack(E["media"].rgbvaluecolor))
 	end)
 
 	expandButton:SetScript("OnLeave", function(self)
 		GameTooltip:Hide()
+		self:SetBackdropBorderColor(unpack(E["media"].bordercolor))
 	end)
 
 	local sidebarTabs = CreateFrame("Frame", "PaperDollSidebarTabs", PaperDollFrame)
