@@ -2,7 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local DT = E:GetModule("DataTexts")
 
 local floor = math.floor
-local join = string.join
+local format, join = string.format, string.join
 
 local GetInventoryItemLink = GetInventoryItemLink
 local GetInventorySlotInfo = GetInventorySlotInfo
@@ -10,6 +10,10 @@ local GetItemInfo = GetItemInfo
 
 local displayNumberString = ""
 local lastPanel
+
+local function ColorizeSettingName(settingName)
+	return format("|cffff8000%s|r", settingName)
+end
 
 local slots = {
 	{"HeadSlot", HEADSLOT},
@@ -77,10 +81,10 @@ end
 local function ValueColorUpdate(hex)
 	displayNumberString = join("", "%s: ", hex, "%d/%d|r")
 
-	if(lastPanel ~= nil) then
+	if lastPanel ~= nil then
 		OnEvent(lastPanel)
 	end
 end
 E["valueColorUpdateFuncs"][ValueColorUpdate] = true
 
-DT:RegisterDatatext("Item Level", {"PLAYER_ENTERING_WORLD", "PLAYER_EQUIPMENT_CHANGED", "UNIT_INVENTORY_CHANGED"}, OnEvent, nil, OnClick, OnEnter, nil, L["Item Level"])
+DT:RegisterDatatext("Item Level", {"PLAYER_ENTERING_WORLD", "PLAYER_EQUIPMENT_CHANGED", "UNIT_INVENTORY_CHANGED"}, OnEvent, nil, OnClick, OnEnter, nil, ColorizeSettingName(L["Item Level"]))

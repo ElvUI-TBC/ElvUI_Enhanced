@@ -1,4 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Ammo.lua"/>
 	<Script file="Agility.lua"/>
 	<Script file="CombatIndicator.lua"/>
 	<Script file="Intellect.lua"/>

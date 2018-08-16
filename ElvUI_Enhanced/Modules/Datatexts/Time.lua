@@ -14,7 +14,7 @@ local int = 5
 local function OnUpdate(self, t)
 	int = int - t
 
-	if(int > 0) then return end
+	if int > 0 then return end
 
 	self.text:SetText(BetterDate(E.db.datatexts.timeFormat .. " " .. E.db.datatexts.dateFormat, time()):gsub("%W", displayNumberString):gsub(TIMEMANAGER_AM, displayNumberString):gsub(TIMEMANAGER_PM, displayNumberString))
 
@@ -39,11 +39,11 @@ local function GetLastPanel(name)
 			pointIndex = DT.PointLocation[i]
 
 			for option, value in pairs(db.panels) do
-				if(value and type(value) == "table") then
-					if(option == panelName and db.panels[option][pointIndex] and db.panels[option][pointIndex] == name) then
+				if value and type(value) == "table" then
+					if option == panelName and db.panels[option][pointIndex] and db.panels[option][pointIndex] == name then
 						return panel.dataPanels[pointIndex]
 					end
-				elseif(value and type(value) == "string" and value == name) then
+				elseif value and type(value) == "string" and value == name then
 					return panel.dataPanels[pointIndex]
 				end
 			end

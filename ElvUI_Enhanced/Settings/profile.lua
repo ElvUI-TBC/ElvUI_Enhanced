@@ -1,16 +1,16 @@
-local E, L, V, P, G = unpack(ElvUI);
+local E, L, V, P, G = unpack(ElvUI)
 
 -- Minimap
 P.general.minimap.locationText = "ABOVE"
 
 -- Unitframes
-P.unitframe.units.player.portrait.detachFromFrame = false;
-P.unitframe.units.player.portrait.detachedWidth = 54;
-P.unitframe.units.player.portrait.detachedHeight = 54;
+P.unitframe.units.player.portrait.detachFromFrame = false
+P.unitframe.units.player.portrait.detachedWidth = 54
+P.unitframe.units.player.portrait.detachedHeight = 54
 
-P.unitframe.units.target.portrait.detachFromFrame = false;
-P.unitframe.units.target.portrait.detachedWidth = 54;
-P.unitframe.units.target.portrait.detachedHeight = 54;
+P.unitframe.units.target.portrait.detachFromFrame = false
+P.unitframe.units.target.portrait.detachedWidth = 54
+P.unitframe.units.target.portrait.detachedHeight = 54
 
 P.unitframe.units.player.animatedLoss = {
 	enable = false,
@@ -18,7 +18,7 @@ P.unitframe.units.player.animatedLoss = {
 	startDelay = .2,
 	pauseDelay = .05,
 	postponeDelay = .05
-};
+}
 
 -- Enhanced
 P.enhanced = {
@@ -26,14 +26,14 @@ P.enhanced = {
 		pvpAutoRelease = false,
 		autoRepChange = false,
 		merchant = false,
-		moverTransparancy = 0.8,
+		moverTransparancy = 1,
 		showQuestLevel = false,
 		declineduel = false,
 		hideZoneText = false,
 		originalCloseButton = false,
 		trainAllButton = false,
 		undressButton = false,
-		alreadyKnown = false,
+		alreadyKnown = false
 	},
 	actionbars = {
 		equipped = false,
@@ -60,8 +60,8 @@ P.enhanced = {
 				RANGED_COMBAT = false,
 				SPELL_COMBAT = false,
 				DEFENSES = false,
-				RESISTANCE = false,
-			},
+				RESISTANCE = false
+			}
 		},
 		pet = {
 			orderName = "",
@@ -72,12 +72,12 @@ P.enhanced = {
 				RANGED_COMBAT = false,
 				SPELL_COMBAT = false,
 				DEFENSES = false,
-				RESISTANCE = false,
-			},
-		},
+				RESISTANCE = false
+			}
+		}
 	},
 	datatexts = {
-		timeColorEnch = false,
+		timeColorEnch = false
 	},
 	equipment = {
 		enable = false,
@@ -103,11 +103,11 @@ P.enhanced = {
 		location = false,
 		locationdigits = 1,
 		hideincombat = false,
-		fadeindelay = 5,
+		fadeindelay = 5
 	},
 	nameplates = {
 		smooth = false,
-		smoothSpeed = 0.3,
+		smoothSpeed = 0.3
 	},
 	tooltip = {
 		itemQualityBorderColor = false,
@@ -146,4 +146,4 @@ P.enhanced = {
 		party = "HIDDEN",
 		raid = "HIDDEN"
 	}
-};
+}

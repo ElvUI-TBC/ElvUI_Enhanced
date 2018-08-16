@@ -4,6 +4,10 @@ local addon = E:GetModule("ElvUI_Enhanced")
 local format = string.format
 local tsort = table.sort
 
+local ENABLE, HIDE, FONT_SIZE, NONE = ENABLE, HIDE, FONT_SIZE, NONE
+local CHARACTER, PET, INSPECT = CHARACTER, PET, INSPECT
+local SPELLS, ITEMS, TYPE = SPELLS, ITEMS, TYPE
+
 local function ColorizeSettingName(settingName)
 	return format("|cffff8000%s|r", settingName)
 end
@@ -134,7 +138,7 @@ local function GeneralOptions()
 				min = 0, max = 1, step = 0.01,
 				get = function(info) return E.db.enhanced.general.moverTransparancy end,
 				set = function(info, value) E.db.enhanced.general.moverTransparancy = value M:UpdateMoverTransparancy() end
-			},
+			}
 		}
 	}
 	return config
@@ -164,7 +168,7 @@ local function ActionbarOptions()
 					equipped = {
 						order = 1,
 						type = "toggle",
-						name = L["Enable"],
+						name = ENABLE,
 						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value EAB:UpdateCallback() E:GetModule("ActionBars"):UpdateButtonSettings() end
 					},
@@ -264,7 +268,7 @@ local function CharacterFrameOptions()
 					enable = {
 						order = 1,
 						type = "toggle",
-						name = L["Enable"],
+						name = ENABLE,
 						get = function(info) return E.private.enhanced.character.enable end,
 						set = function(info, value) E.private.enhanced.character.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 					},
@@ -277,7 +281,7 @@ local function CharacterFrameOptions()
 							background = {
 								order = 1,
 								type = "toggle",
-								name = L["Character Background"],
+								name = CHARACTER,
 								get = function(info) return E.db.enhanced.character.background end,
 								set = function(info, value) E.db.enhanced.character.background = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
 								disabled = function() return not E.private.enhanced.character.enable end
@@ -285,7 +289,7 @@ local function CharacterFrameOptions()
 							petBackground = {
 								order = 2,
 								type = "toggle",
-								name = L["Pet Background"],
+								name = PET,
 								get = function(info) return E.db.enhanced.character.petBackground end,
 								set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
 								disabled = function() return not E.private.enhanced.character.enable end
@@ -293,7 +297,7 @@ local function CharacterFrameOptions()
 							inspectBackground = {
 								order = 3,
 								type = "toggle",
-								name = L["Inspect Background"],
+								name = INSPECT,
 								get = function(info) return E.db.enhanced.character.inspectBackground end,
 								set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
 								disabled = function() return not E.private.enhanced.character.enable end
@@ -317,7 +321,7 @@ local function CharacterFrameOptions()
 					enable = {
 						order = 1,
 						type = "toggle",
-						name = L["Enable"],
+						name = ENABLE,
   						set = function(info, value)
  							E.db.enhanced.equipment[info[#info]] = value
  							PD:ToggleState()
@@ -340,7 +344,7 @@ local function CharacterFrameOptions()
 							enable = {
 								order = 2,
 								type = "toggle",
-								name = L["Enable"],
+								name = ENABLE,
 								desc = L["Enable/Disable the display of durability information on the character screen."]
 							},
 							onlydamaged = {
@@ -402,7 +406,7 @@ local function CharacterFrameOptions()
 							enable = {
 								order = 2,
 								type = "toggle",
-								name = L["Enable"],
+								name = ENABLE,
 								desc = L["Enable/Disable the display of item levels on the character screen."]
 							},
 							qualityColor = {
@@ -636,7 +640,7 @@ local function TooltipOptions()
 					tooltipIcon = {
 						order = 1,
 						type = "toggle",
-						name = L["Enable"],
+						name = ENABLE,
 						desc = L["Show/Hides an Icon for Spells and Items on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.enable end,
 						set = function(info, value)
@@ -711,7 +715,7 @@ local function WatchFrameOptions()
 			enable = {
 				order = 2,
 				type = "toggle",
-				name = L["Enable"]
+				name = ENABLE
 			},
 			settings = {
 				order = 3,
@@ -775,7 +779,7 @@ local function LoseControlOptions()
 			enable = {
 				order = 1,
 				type = "toggle",
-				name = L["Enable"],
+				name = ENABLE,
 				get = function(info) return E.private.loseofcontrol.enable end,
 				set = function(info, value) E.private.loseofcontrol.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
@@ -869,7 +873,7 @@ local function UnitFrameOptions()
 							enable = {
 								order = 2,
 								type = "toggle",
-								name = L["Enable"]
+								name = ENABLE
 							},
 							spacer = {
 								order = 3,
@@ -965,7 +969,7 @@ local function UnitFrameOptions()
 							enable = {
 								order = 1,
 								type = "toggle",
-								name = L["Enable"],
+								name = ENABLE,
 								desc = L["Show class icon for units."],
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.enable end,
 								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.enable = value TC:ToggleSettings() end

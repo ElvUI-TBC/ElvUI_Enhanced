@@ -4,7 +4,7 @@ local DT = E:GetModule("DataTexts")
 if E.myclass ~= "WARLOCK" then return end
 
 local select = select
-local join = string.join
+local format, join = string.format, string.join
 
 local ContainerIDToInventoryID = ContainerIDToInventoryID
 local GetContainerItemInfo = GetContainerItemInfo
@@ -19,6 +19,10 @@ local lastPanel;
 
 local _, soulBagType = GetAuctionItemSubClasses(3)
 local _, shardLink = GetItemInfo(6265)
+
+local function ColorizeSettingName(settingName)
+	return format("|cffff8000%s|r", settingName)
+end
 
 local function IsShardBag(bag)
 	local itemLink = GetInventoryItemLink("player", ContainerIDToInventoryID(bag))
@@ -62,4 +66,4 @@ local function ValueColorUpdate(hex)
 end
 E["valueColorUpdateFuncs"][ValueColorUpdate] = true
 
-DT:RegisterDatatext("Soul Shards", {"BAG_UPDATE"}, OnEvent, nil, nil, nil, nil, L["Soul Shards"])
+DT:RegisterDatatext("Soul Shards", {"BAG_UPDATE"}, OnEvent, nil, nil, nil, nil, ColorizeSettingName(L["Soul Shards"])
