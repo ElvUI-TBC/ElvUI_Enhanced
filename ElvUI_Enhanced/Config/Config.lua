@@ -503,6 +503,8 @@ end
 
 -- Datatext
 local function DataTextsOptions()
+	local DTC = E:GetModule("DataTextColors")
+
 	local config = {
 		order = 5,
 		type = "group",
@@ -519,6 +521,42 @@ local function DataTextsOptions()
 				name = L["Enhanced Time Color"],
 				get = function(info) return E.db.enhanced.datatexts.timeColorEnch end,
 				set = function(info, value) E.db.enhanced.datatexts.timeColorEnch = value E:GetModule("Enhanced_DatatextTime"):UpdateSettings() end
+			},
+			datatextColor = {
+				order = 10,
+				type = "group",
+				name = L["Text Color"],
+				guiInline = true,
+				args = {
+					color = {
+						order = 1,
+						type = "select",
+						name = COLOR,
+						values = {
+							["CLASS"] = CLASS,
+							["CUSTOM"] = L["Custom"],
+							["VALUE"] = L["Value Color"],
+						},
+						get = function(info) return E.db.enhanced.datatexts.datatextColor.color end,
+						set = function(info, value) E.db.enhanced.datatexts.datatextColor.color = value DTC:ColorFont() end,
+					},
+					custom = {
+						order = 2,
+						type = "color",
+						name = COLOR_PICKER,
+						disabled = function() return E.db.enhanced.datatexts.datatextColor.color == "CLASS" or E.db.enhanced.datatexts.datatextColor.color == "VALUE" end,
+						get = function(info)
+							local t = E.db.enhanced.datatexts.datatextColor.custom
+							local d = P.enhanced.datatexts.datatextColor.custom
+							return t.r, t.g, t.b, t.a, d.r, d.g, d.b, d.a
+						end,
+						set = function(info, r, g, b)
+							local t = E.db.enhanced.datatexts.datatextColor.custom
+							t.r, t.g, t.b, t.a = r, g, b, a
+							DTC:ColorFont()
+						end
+					}
+				}
 			}
 		}
 	}

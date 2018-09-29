@@ -12,4 +12,5 @@
 	<Script file="Stamina.lua"/>
 	<Script file="Strength.lua"/>
 	<Script file="Time.lua"/>
+	<Script file="DatatextColor.lua"/>
 </Ui>
