@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 
 -- Minimap
-P.general.minimap.locationText = "ABOVE"
+P.general.minimap.locationText = "MOUSEOVER"
 
 -- Unitframes
 P.unitframe.units.player.portrait.detachFromFrame = false
@@ -28,6 +28,7 @@ P.enhanced = {
 		merchant = false,
 		moverTransparancy = 1,
 		showQuestLevel = false,
+		selectQuestReward = false,
 		declineduel = false,
 		hideZoneText = false,
 		originalCloseButton = false,
@@ -135,8 +136,7 @@ P.enhanced = {
 					yOffset = -22
 				}
 			}
-		},
-		hideRoleInCombat = false
+		}
 	},
 	watchframe = {
 		enable = false,
@@ -145,5 +145,17 @@ P.enhanced = {
 		arena = "HIDDEN",
 		party = "HIDDEN",
 		raid = "HIDDEN"
+	},
+	raidmarkerbar = {
+		["enable"] = false,
+		["backdrop"] = true,
+		["transparentButtons"] = false,
+		["transparentBackdrop"] = false,
+		["buttonSize"] = 22,
+		["spacing"] = 1,
+		["orientation"] = "HORIZONTAL",
+		["reverse"] = false,
+		["visibility"] = "DEFAULT",
+		["customVisibility"] = "[noexists, nogroup] hide;show"
 	}
 }

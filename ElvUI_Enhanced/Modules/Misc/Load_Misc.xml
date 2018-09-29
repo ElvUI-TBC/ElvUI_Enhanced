@@ -6,9 +6,7 @@
 	<Script file="addonList.lua"/>
 	<Script file="deathRecap.lua"/>
 	<Script file="questLevel.lua"/>
-<!--
 	<Script file="questReward.lua"/>
--->
 	<Script file="losecontrol.lua"/>
 	<Script file="alreadyKnown.lua"/>
 	<Script file="trainAllButton.lua"/>
@@ -17,6 +15,7 @@
 	<Script file="addonsCompatibility.lua"/>
 	<Script file="modelframes.lua"/>
 	<Script file="merchant.lua"/>
+	<Script file="raidmarkers.lua"/>
 
 	<Script file="characterFrame.lua"/>
 

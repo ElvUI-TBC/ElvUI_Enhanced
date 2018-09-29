@@ -158,10 +158,8 @@ L["Silence"] = "沉默類技能"
 L["Snare"] = "減速類技能"
 
 -- Unitframes
-L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = true;
 L["Class Icons"] = true;
 L["Detached Height"] = true;
-L["Hide Role Icon in combat"] = true;
 L["Show class icon for units."] = "顯是職業圖標"
 L["Target"] = true;
 

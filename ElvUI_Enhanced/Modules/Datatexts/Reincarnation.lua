@@ -7,7 +7,6 @@ local format, join = string.format, string.join
 local floor = math.floor
 
 local GetTime = GetTime
-local IsSpellKnown = IsSpellKnown
 local GetSpellCooldown = GetSpellCooldown
 local IsInInstance = IsInInstance
 local SPELL_FAILED_NOT_KNOWN = SPELL_FAILED_NOT_KNOWN
@@ -25,7 +24,7 @@ local function ColorizeSettingName(settingName)
 end
 
 local function OnUpdate(self)
-	local isKnown = IsSpellKnown(20608, false)
+	local isKnown = IsSpellKnown(20608)
 	if not isKnown then return end
 
 	local start, duration = GetSpellCooldown(20608)
@@ -37,7 +36,7 @@ local function OnUpdate(self)
 end
 
 local function OnEvent(self, event)
-	local isKnown = IsSpellKnown(20608, false)
+	local isKnown = IsSpellKnown(20608)
 
 	if not isKnown then
 		self.text:SetFormattedText(displayString, format(iconString, tex), SPELL_FAILED_NOT_KNOWN)
@@ -58,7 +57,7 @@ local function OnEvent(self, event)
 end
 
 local function OnClick(self)
-	local isKnown = IsSpellKnown(20608, false)
+	local isKnown = IsSpellKnown(20608)
 	if not isKnown then return end
 
 	local _, instanceType = IsInInstance()

@@ -158,10 +158,8 @@ L["Silence"] = "Silence"
 L["Snare"] = "Ralentissement"
 
 -- Unitframes
-L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = "Cachez toutes les icônes de rôle (Dommages/Healer/Tank) sur les cadres d'unité quand vous serait en combat."
 L["Class Icons"] = true;
 L["Detached Height"] = true;
-L["Hide Role Icon in combat"] = "Cachez les icônes de rôle en combat"
 L["Show class icon for units."] = true;
 L["Target"] = true;
 

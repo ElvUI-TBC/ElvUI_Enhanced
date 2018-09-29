@@ -53,8 +53,16 @@ local function GeneralOptions()
 					M:QuestLevelToggle()
 				end
 			},
-			declineduel = {
+			selectQuestReward = {
 				order = 4,
+				type = "toggle",
+				name = L["Select Quest Reward"],
+				desc = L["Automatically select the quest reward with the highest vendor sell value."],
+				get = function(info) return E.db.enhanced.general.selectQuestReward end,
+				set = function(info, value) E.db.enhanced.general.selectQuestReward = value end
+			},
+			declineduel = {
+				order = 5,
 				type = "toggle",
 				name = L["Decline Duel"],
 				desc = L["Auto decline all duels"],
@@ -62,14 +70,14 @@ local function GeneralOptions()
 				set = function(info, value) E.db.enhanced.general.declineduel = value M:DeclineDuel() end
 			},
 			hideZoneText = {
-				order = 5,
+				order = 6,
 				type = "toggle",
 				name = L["Hide Zone Text"],
 				get = function(info) return E.db.enhanced.general.hideZoneText end,
 				set = function(info, value) E.db.enhanced.general.hideZoneText = value M:HideZone() end
 			},
 			originalCloseButton = {
-				order = 6,
+				order = 7,
 				type = "toggle",
 				name = L["Original Close Button"],
 				get = function(info) return E.db.enhanced.general.originalCloseButton end,
@@ -79,7 +87,7 @@ local function GeneralOptions()
 				end
 			},
 			trainAllButton = {
-				order = 7,
+				order = 8,
 				type = "toggle",
 				name = L["Train All Button"],
 				desc = L["Add button to Trainer frame with ability to train all available skills in one click."],
@@ -90,7 +98,7 @@ local function GeneralOptions()
 				end
 			},
 			undressButton = {
-				order = 8,
+				order = 9,
 				type = "toggle",
 				name = L["Undress Button"],
 				desc = L["Add button to Dressing Room frame with ability to undress model."],
@@ -101,14 +109,14 @@ local function GeneralOptions()
 				end
 			},
 			model = {
-				order = 9,
+				order = 10,
 				type = "toggle",
 				name = L["Model Frames"],
 				get = function(info) return E.private.enhanced.model.enable end,
 				set = function(info, value) E.private.enhanced.model.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
 			alreadyKnown = {
-				order = 10,
+				order = 11,
 				type = "toggle",
 				name = L["Already Known"],
 				desc = L["Change color of item icons which already known."],
@@ -119,7 +127,7 @@ local function GeneralOptions()
 				end
 			},
 			altBuyMaxStack = {
-				order = 11,
+				order = 12,
 				type = "toggle",
 				name = L["Alt-Click Merchant"],
 				desc = L["Holding Alt key while buying something from vendor will now buy an entire stack."],
@@ -130,7 +138,7 @@ local function GeneralOptions()
 				end
 			},
 			moverTransparancy = {
-				order = 12,
+				order = 13,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],
@@ -833,25 +841,9 @@ local function UnitFrameOptions()
 		childGroups = "tab",
 		args = {
 			header = {
-				order = 0,
+				order = 1,
 				type = "header",
 				name = ColorizeSettingName(L["UnitFrames"])
-			},
-			general = {
-				order = 1,
-				type = "group",
-				name = L["General"],
-				guiInline = true,
-				args = {
-					hideRoleInCombat = {
-						order = 1,
-						type = "toggle",
-						name = L["Hide Role Icon in combat"],
-						desc = L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."],
-						get = function(info) return E.db.enhanced.unitframe.hideRoleInCombat end,
-						set = function(info, value) E.db.enhanced.unitframe.hideRoleInCombat = value E:StaticPopup_Show("PRIVATE_RL") end
-					}
-				}
 			},
 			player = {
 				order = 2,
@@ -1055,13 +1047,161 @@ local function UnitFrameOptions()
 	return config
 end
 
-function addon:GetOptions()
-	E.Options.args.enhanced = {
-		order = 50,
+-- Raid Markers
+local function RaidMarkerOptions()
+	local RM = E:GetModule("RaidMarkerBar")
+
+	local config = {
+		order = 12,
 		type = "group",
-		childGroups = "tab",
-		name = ColorizeSettingName("Enhanced"),
+		name = L["Raid Markers"],
+		get = function(info) return E.db.enhanced.raidmarkerbar[ info[#info] ] end,	
 		args = {
+			header = {
+				order = 1,
+				type = "header",
+				name = ColorizeSettingName(L["Raid Markers"])
+			},
+			enable = {
+				order = 2,
+				type = "toggle",
+				name = L["Enable"],
+				desc = L["Display a quick action bar for raid targets and world markers."],
+				set = function(info, value) E.db.enhanced.raidmarkerbar.enable = value RM:Visibility() end
+			},
+			reverse = {
+				order = 3,
+				type = "toggle",
+				name = L["Reverse"],
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.reverse = value RM:UpdateBar() end
+			},
+			backdrop = {
+				order = 4,
+				type = "toggle",
+				name = L["Backdrop"],
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.backdrop = value RM:Backdrop() end
+			},
+			transparentButtons = {
+				order = 5,
+				type = "toggle",
+				name = L["Transparent Buttons"],
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.transparentButtons = value RM:ButtonBackdrop() end
+			},
+			transparentBackdrop = {
+				order = 6,
+				type = "toggle",
+				name = L["Transparent Backdrop"],
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.transparentBackdrop = value RM:Backdrop() end
+			},
+			spacer = {
+				order = 7,
+				type = "description",
+				name = " "
+			},
+			buttonSize = {
+				order = 8,
+				type = "range",
+				name = L["Button Size"],
+				min = 16, max = 60, step = 1,
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.buttonSize = value RM:UpdateBar() end
+			},
+			spacing = {
+				order = 9,
+				type = "range",
+				name = L["Button Spacing"],
+				min = -1, max = 20, step = 1,
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.spacing = value RM:UpdateBar() end
+			},
+			orientation = {
+				order = 10,
+				type = "select",
+				name = L["Orientation"],
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				values = {
+					["HORIZONTAL"] = L["Horizontal"],
+					["VERTICAL"] = L["Vertical"]
+				},
+				set = function(info, value) E.db.enhanced.raidmarkerbar.orientation = value RM:UpdateBar() end
+			},
+			visibility = {
+				order = 11,
+				type = "select",
+				name = L["Visibility"],
+				disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
+				values = {
+					["DEFAULT"] = DEFAULT,
+					["INPARTY"] = L["In Party"],
+					["ALWAYS"] = ALWAYS,
+					["CUSTOM"] = L["Custom"]
+				},
+				set = function(info, value) E.db.enhanced.raidmarkerbar.visibility = value RM:Visibility() end
+			},
+			customVisibility = {
+				order = 12,
+				type = "input",
+				width = "full",
+				name = L["Visibility State"],
+				disabled = function() return E.db.enhanced.raidmarkerbar.visibility ~= "CUSTOM" or not E.db.enhanced.raidmarkerbar.enable end,
+				set = function(info, value) E.db.enhanced.raidmarkerbar.customVisibility = value RM:Visibility() end
+			}
+		}
+	}
+	return config
+end
+
+function addon:GetOptions()
+	if not E.Options.args.elvuiPlugins then
+		E.Options.args.elvuiPlugins = {
+			order = 50,
+			type = "group",
+			name = "|cff00b30bE|r|cffC4C4C4lvUI_|r|cff00b30bP|r|cffC4C4C4lugins|r",
+			args = {
+				header = {
+					order = 0,
+					type = "header",
+					name = "|cff00b30bE|r|cffC4C4C4lvUI_|r|cff00b30bP|r|cffC4C4C4lugins|r"
+				},
+				enhancedShortcut = {
+					type = "execute",
+					name = ColorizeSettingName(L["Enhanced"]),
+					func = function()
+						if IsAddOnLoaded("ElvUI_Config") then
+							local ACD = LibStub("AceConfigDialog-3.0-ElvUI")
+							ACD:SelectGroup("ElvUI", "elvuiPlugins", "enhanced", "generalGroup")
+						end
+					end
+				}
+			}
+		}
+	elseif not E.Options.args.elvuiPlugins.args.enhancedShortcut then
+		E.Options.args.elvuiPlugins.args.enhancedShortcut = {
+			type = "execute",
+			name = ColorizeSettingName(L["Enhanced"]),
+			func = function()
+				if IsAddOnLoaded("ElvUI_Config") then
+					local ACD = LibStub("AceConfigDialog-3.0-ElvUI")
+					ACD:SelectGroup("ElvUI", "elvuiPlugins", "enhanced", "generalGroup")
+				end
+			end
+		}
+	end
+	
+	E.Options.args.elvuiPlugins.args.enhanced = {
+		type = "group",
+		name = ColorizeSettingName(L["Enhanced"]),
+		childGroups = "tab",
+		args = {
+			header = {
+				order = 0,
+				type = "header",
+				name = L["Enhanced"]
+			},
 			generalGroup = GeneralOptions(),
 			actionbarGroup = ActionbarOptions(),
 			chatGroup = ChatOptions(),
@@ -1073,6 +1213,7 @@ function addon:GetOptions()
 			unitframesGroup = UnitFrameOptions(),
 			losecontrolGroup = LoseControlOptions(),
 			watchFrameGroup = WatchFrameOptions(),
+			raidmarkerGroup = RaidMarkerOptions()
 		}
 	}
 end

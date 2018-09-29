@@ -158,10 +158,8 @@ L["Silence"] = true;
 L["Snare"] = true;
 
 -- Unitframes
-L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = true;
 L["Class Icons"] = true;
 L["Detached Height"] = true;
-L["Hide Role Icon in combat"] = true;
 L["Show class icon for units."] = true;
 L["Target"] = true;
 

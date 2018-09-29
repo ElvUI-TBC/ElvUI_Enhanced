@@ -158,10 +158,8 @@ L["Silence"] = "Молчание"
 L["Snare"] = "Ловушки"
 
 -- Unitframes
-L["All role icons (Damage/Healer/Tank) on the unit frames are hidden when you go into combat."] = "Все иконки ролей (дд/хил/танк) на фреймах юнитов будут скрыты во время боя."
 L["Class Icons"] = true;
 L["Detached Height"] = "Высота при откреплении"
-L["Hide Role Icon in combat"] = "Скрыть иконку роли в бою"
 L["Show class icon for units."] = "Показывать иконку класса на цели."
 L["Target"] = true;
 
