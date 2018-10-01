@@ -96,10 +96,11 @@ ElvUF_Player.Power.EnergyTick.Spark:SetTexture("Interface\\CastingBar\\UI-Castin
 ElvUF_Player.Power.EnergyTick.Spark:SetBlendMode("ADD")
 
 hooksecurefunc(UF, "Configure_Power", function(_, frame)
-	local db = frame.db.power
-	local power = frame.Power
-
 	if frame.unitframeType == "player" then
+		local power = frame.Power
+		local db = frame.db.power
+		if not db then return end
+
 		if db.energyTickEnable then
 			power.EnergyTick.Spark:Show()
 			power.EnergyTick.Spark:Size(frame.POWERBAR_HEIGHT * 1.6, 22)
