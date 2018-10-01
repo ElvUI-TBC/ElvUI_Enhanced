@@ -8,6 +8,9 @@ P.unitframe.units.player.portrait.detachFromFrame = false
 P.unitframe.units.player.portrait.detachedWidth = 54
 P.unitframe.units.player.portrait.detachedHeight = 54
 
+P.unitframe.units.player.power.energyTickEnable = false
+P.unitframe.units.player.power.energyTickColor = {r = 1, g = 1, b = 1}
+
 P.unitframe.units.target.portrait.detachFromFrame = false
 P.unitframe.units.target.portrait.detachedWidth = 54
 P.unitframe.units.target.portrait.detachedHeight = 54

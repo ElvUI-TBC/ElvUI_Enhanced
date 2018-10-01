@@ -82,3 +82,61 @@ hooksecurefunc(UF, "Configure_Portrait", function(self, frame)
 		end
 	end
 end);
+
+-- Energy Tick
+if not (E.myclass == "DRUID" or E.myclass == "ROGUE") then return end
+
+ElvUF_Player.Power.EnergyTick = CreateFrame("Frame", nil, ElvUF_Player.Power)
+ElvUF_Player.Power.EnergyTick:RegisterEvent("PLAYER_LOGIN")
+ElvUF_Player.Power.EnergyTick:RegisterEvent("PLAYER_ENTERING_WORLD")
+ElvUF_Player.Power.EnergyTick:RegisterEvent("UNIT_DISPLAYPOWER")
+
+ElvUF_Player.Power.EnergyTick.Spark = ElvUF_Player.Power:CreateTexture(nil, "OVERLAY")
+ElvUF_Player.Power.EnergyTick.Spark:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
+ElvUF_Player.Power.EnergyTick.Spark:SetBlendMode("ADD")
+
+hooksecurefunc(UF, "Configure_Power", function(_, frame)
+	local db = frame.db.power
+	local power = frame.Power
+
+	if frame.unitframeType == "player" then
+		if db.energyTickEnable then
+			power.EnergyTick.Spark:Show()
+			power.EnergyTick.Spark:Size(frame.POWERBAR_HEIGHT * 1.6, 22)
+			power.EnergyTick.Spark:SetVertexColor(db.energyTickColor.r, db.energyTickColor.g, db.energyTickColor.b)
+
+			power.EnergyTick:SetScript("OnEvent", function(self)
+				if event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LOGIN" or (event == "UNIT_DISPLAYPOWER" and arg1 == "player") then
+					if UnitPowerType("player") ~= 3 then
+						self.Spark:Hide()
+					else
+						self.Spark:Show()
+					end
+				end
+			end)
+
+			if not power.EnergyTick.lastTick then
+				power.EnergyTick.lastTick = GetTime()
+			end
+
+			power.EnergyTick:SetScript("OnUpdate", function(self)
+				if UnitPowerType("player") ~= 3 then return end
+
+				if not self.energy then
+					self.energy = UnitMana("player")
+				end
+
+				if UnitMana("player") > self.energy or GetTime() >= self.lastTick + 2 then
+					self.lastTick = GetTime()
+				end
+
+				self.energy = UnitMana("player")
+
+				local tickPosition = (frame.POWERBAR_WIDTH / 200 * floor((GetTime() - self.lastTick) * 100) + 0.5)
+				self.Spark:Point("LEFT", power, tickPosition - 12, 0)
+			end)
+		else
+			power.EnergyTick.Spark:Hide()
+		end
+	end
+end)
