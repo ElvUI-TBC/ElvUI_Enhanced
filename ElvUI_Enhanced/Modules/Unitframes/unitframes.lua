@@ -99,12 +99,13 @@ hooksecurefunc(UF, "Configure_Power", function(_, frame)
 	if frame.unitframeType == "player" then
 		local power = frame.Power
 		local db = frame.db.power
-		if not db then return end
 
 		if db.energyTickEnable then
 			power.EnergyTick.Spark:Show()
 			power.EnergyTick.Spark:Size(frame.POWERBAR_HEIGHT * 1.6, 22)
-			power.EnergyTick.Spark:SetVertexColor(db.energyTickColor.r, db.energyTickColor.g, db.energyTickColor.b)
+
+			local color = E.db.unitframe.units.player.power.energyTickColor
+			power.EnergyTick.Spark:SetVertexColor(color.r, color.g, color.b)
 
 			power.EnergyTick:SetScript("OnEvent", function(self)
 				if event == "PLAYER_ENTERING_WORLD" or event == "PLAYER_LOGIN" or (event == "UNIT_DISPLAYPOWER" and arg1 == "player") then
