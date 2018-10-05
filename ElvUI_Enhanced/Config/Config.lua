@@ -4,7 +4,7 @@ local addon = E:GetModule("ElvUI_Enhanced")
 local format = string.format
 local tsort = table.sort
 
-local ENABLE, HIDE, FONT_SIZE, NONE = ENABLE, HIDE, FONT_SIZE, NONE
+local ALWAYS, DEFAULT, ENABLE, HIDE, FONT_SIZE, NONE = ALWAYS, DEFAULT, ENABLE, HIDE, FONT_SIZE, NONE
 local CHARACTER, PET, INSPECT = CHARACTER, PET, INSPECT
 local SPELLS, ITEMS, TYPE = SPELLS, ITEMS, TYPE
 
@@ -269,46 +269,91 @@ local function CharacterFrameOptions()
 				name = L["Enhanced Character Frame"],
 				args = {
 					header = {
-						order = 0,
+						order = 1,
 						type = "header",
 						name = ColorizeSettingName(L["Enhanced Character Frame"])
 					},
 					enable = {
-						order = 1,
+						order = 2,
 						type = "toggle",
 						name = ENABLE,
 						get = function(info) return E.private.enhanced.character.enable end,
 						set = function(info, value) E.private.enhanced.character.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 					},
 					paperdollBackgrounds = {
-						order = 2,
+						order = 3,
 						type = "group",
 						name = L["Paperdoll Backgrounds"],
 						guiInline = true,
 						args = {
-							background = {
+							characterBackground = {
 								order = 1,
-								type = "toggle",
+								type = "group",
 								name = CHARACTER,
-								get = function(info) return E.db.enhanced.character.background end,
-								set = function(info, value) E.db.enhanced.character.background = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
-								disabled = function() return not E.private.enhanced.character.enable end
+								args = {
+									characterBackground = {
+										order = 1,
+										type = "toggle",
+										name = ENABLE,
+										get = function(info) return E.db.enhanced.character.characterBackground end,
+										set = function(info, value) E.db.enhanced.character.characterBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable end
+									},
+									desaturateCharacter = {
+										order = 2,
+										type = "toggle",
+										name = L["Desaturate"],
+										get = function(info) return E.db.enhanced.character.desaturateCharacter end,
+										set = function(info, value) E.db.enhanced.character.desaturateCharacter = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.characterBackground end
+									}
+								}
 							},
 							petBackground = {
 								order = 2,
-								type = "toggle",
+								type = "group",
 								name = PET,
-								get = function(info) return E.db.enhanced.character.petBackground end,
-								set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
-								disabled = function() return not E.private.enhanced.character.enable end
+								args = {
+									petBackground = {
+										order = 1,
+										type = "toggle",
+										name = ENABLE,
+										get = function(info) return E.db.enhanced.character.petBackground end,
+										set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable end
+									},
+									desaturatePet = {
+										order = 2,
+										type = "toggle",
+										name = L["Desaturate"],
+										get = function(info) return E.db.enhanced.character.desaturatePet end,
+										set = function(info, value) E.db.enhanced.character.desaturatePet = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.petBackground end
+									}
+								}
 							},
 							inspectBackground = {
 								order = 3,
-								type = "toggle",
+								type = "group",
 								name = INSPECT,
-								get = function(info) return E.db.enhanced.character.inspectBackground end,
-								set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
-								disabled = function() return not E.private.enhanced.character.enable end
+								args = {
+									inspectBackground = {
+										order = 1,
+										type = "toggle",
+										name = ENABLE,
+										get = function(info) return E.db.enhanced.character.inspectBackground end,
+										set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
+										disabled = function() return not E.private.enhanced.character.enable end
+									},
+									desaturateInspect = {
+										order = 2,
+										type = "toggle",
+										name = L["Desaturate"],
+										get = function(info) return E.db.enhanced.character.desaturateInspect end,
+										set = function(info, value) E.db.enhanced.character.desaturateInspect = value end,
+										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.inspectBackground end
+									}
+								}
 							}
 						}
 					}
@@ -525,13 +570,20 @@ local function DataTextsOptions()
 			datatextColor = {
 				order = 10,
 				type = "group",
-				name = L["Text Color"],
+				name = L["DataText Color"],
 				guiInline = true,
 				args = {
-					color = {
+					enable = {
 						order = 1,
+						type = "toggle",
+						name = ENABLE,
+						get = function(info) return E.db.enhanced.datatexts.datatextColor.enable end,
+						set = function(info, value) E.db.enhanced.datatexts.datatextColor.enable = value DTC:ColorFont() end
+					},
+					color = {
+						order = 2,
 						type = "select",
-						name = COLOR,
+						name = L["DataText Color"],
 						values = {
 							["CLASS"] = CLASS,
 							["CUSTOM"] = L["Custom"],
@@ -541,9 +593,9 @@ local function DataTextsOptions()
 						set = function(info, value) E.db.enhanced.datatexts.datatextColor.color = value DTC:ColorFont() end,
 					},
 					custom = {
-						order = 2,
+						order = 3,
 						type = "color",
-						name = COLOR_PICKER,
+						name = COLOR,
 						disabled = function() return E.db.enhanced.datatexts.datatextColor.color == "CLASS" or E.db.enhanced.datatexts.datatextColor.color == "VALUE" end,
 						get = function(info)
 							local t = E.db.enhanced.datatexts.datatextColor.custom
@@ -724,7 +776,7 @@ local function TooltipOptions()
 							E:GetModule("Enhanced_TooltipIcon"):ToggleItemsState()
 						end,
 						disabled = function() return not E.db.enhanced.tooltip.tooltipIcon.enable end
-					},
+					}
 				}
 			}
 		}
@@ -1016,7 +1068,7 @@ local function UnitFrameOptions()
 									t.r, t.g, t.b = r, g, b
 									E:GetModule("UnitFrames"):CreateAndUpdateUF("player")
 								end,
-								disabled = function() return not E.db.unitframe.units.player.power.enable end
+								disabled = function() return not E.db.unitframe.units.player.power.enable or not E.db.unitframe.units.player.power.energyTickEnable end
 							}
 						}
 					}

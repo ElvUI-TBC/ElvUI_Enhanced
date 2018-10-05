@@ -377,17 +377,22 @@ function mod:Initialize()
 	frame.DragButton:SetScript("OnDragStart", function(self) self:GetParent():StartMoving() end)
 	frame.DragButton:SetScript("OnDragStop", function(self) self:GetParent():StopMovingOrSizing() end)
 
+	frame:SetScript("OnShow", function() PlaySound("igMainMenuOption") end)
+	frame:SetScript("OnHide", function() PlaySound("igMainMenuOptionCheckBoxOn") end)
+
 	frame.DeathRecapEntry = {}
 	for i = 1, 5 do
 		local button = CreateFrame("Frame", nil, frame)
-		button:Size(308, 32)
+		button:Size(308, 34)
+		button:SetTemplate("Transparent")
+
 		frame.DeathRecapEntry[i] = button
 
 		button.DamageInfo = CreateFrame("Button", nil, button)
 		button.DamageInfo:Point("TOPLEFT", 0, 0)
 		button.DamageInfo:Point("BOTTOMRIGHT", button, "BOTTOMLEFT", 80, 0)
 		button.DamageInfo:SetScript("OnEnter", self.Amount_OnEnter)
-		button.DamageInfo:SetScript("OnLeave", GameTooltip_Hide)
+		button.DamageInfo:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
 
 		button.DamageInfo.Amount = button.DamageInfo:CreateFontString("ARTWORK", nil, "GameFontNormal")
 		button.DamageInfo.Amount:SetJustifyH("RIGHT")
@@ -407,10 +412,10 @@ function mod:Initialize()
 		button.SpellInfo:Point("TOPLEFT", button.DamageInfo, "TOPRIGHT", 16, 0)
 		button.SpellInfo:Point("BOTTOMRIGHT", 0, 0)
 		button.SpellInfo:SetScript("OnEnter", self.Spell_OnEnter)
-		button.SpellInfo:SetScript("OnLeave", GameTooltip_Hide)
+		button.SpellInfo:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
 
 		button.SpellInfo.FrameIcom = CreateFrame("Button", nil, button.SpellInfo)
-		button.SpellInfo.FrameIcom:Size(34, 34)
+		button.SpellInfo.FrameIcom:Size(34)
 		button.SpellInfo.FrameIcom:Point("LEFT", 0, 0)
 		button.SpellInfo.FrameIcom:SetTemplate("Default")
 

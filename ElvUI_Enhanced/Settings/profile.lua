@@ -51,9 +51,12 @@ P.enhanced = {
 		dpsLinks = false,
 	},
 	character = {
-		background = false,
+		characterBackground = false,
+		desaturateCharacter = false,
 		petBackground = false,
+		desaturatePet = false,
 		inspectBackground = false,
+		desaturateInspect = false,
 		collapsed = false,
 		player = {
 			orderName = "",
@@ -83,6 +86,7 @@ P.enhanced = {
 	datatexts = {
 		timeColorEnch = false,
 		datatextColor = {
+			enable = false,
 			color = "CUSTOM",
 			custom = {r = 1, g = 1, b = 1, a = 1}
 		}

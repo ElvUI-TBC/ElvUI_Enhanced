@@ -36,6 +36,7 @@ L["Replaces long reports from damage meters with a clickable hyperlink to reduce
 
 -- Character Frame
 L["Damaged Only"] = "Dégâts seulement"
+L["Desaturate"] = true;
 L["Enable/Disable the display of durability information on the character screen."] = "Activer / Désactiver l'affichage des informations de durabilité sur l'écran d'infos de personnage."
 L["Enable/Disable the display of item levels on the character screen."] = "Activer / Désactiver l'affichage des informations du niveau d'objet sur l'écran d'infos de personnage."
 L["Enhanced Character Frame"] = true;
@@ -46,6 +47,7 @@ L["Quality Color"] = true;
 
 -- Datatext
 L["Combat Indicator"] = true;
+L["DataText Color"] = true;
 L["Distance"] = true;
 L["Enhanced Time Color"] = true;
 L["Equipped"] = true;
@@ -58,6 +60,7 @@ L["Shards"] = true;
 L["Soul Shards"] = true;
 L["Target Range"] = true;
 L["Total"] = true;
+L["Value Color"] = true;
 L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = true;
 
 -- Death Recap
@@ -157,9 +160,19 @@ L["Root"] = "Immobilisation"
 L["Silence"] = "Silence"
 L["Snare"] = "Ralentissement"
 
+-- Raid Marks
+L["Raid Markers"] = true
+L["Click to clear the mark."] = true
+L["Click to mark the target."] = true
+L["Custom"] = true
+L["In Party"] = true
+L["Raid Marker Bar"] = true
+L["Reverse"] = true
+
 -- Unitframes
 L["Class Icons"] = true;
 L["Detached Height"] = true;
+L["Energy Tick"] = true;
 L["Show class icon for units."] = true;
 L["Target"] = true;
 

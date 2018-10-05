@@ -1220,34 +1220,41 @@ function module:PaperDollTitlesPane_Update()
 end
 
 function module:UpdateCharacterModelFrame()
-	if E.db.enhanced.character.background then
+	if E.db.enhanced.character.characterBackground then
 		CharacterModelFrame.backdrop:Show()
 
-		local _, fileName = UnitRace("player")
-
 		CharacterModelFrame.textureTopLeft:Show()
-		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
-		CharacterModelFrame.textureTopLeft:SetDesaturated(true)
+		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_1.blp")
+
 		CharacterModelFrame.textureTopRight:Show()
-		CharacterModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.blp")
-		CharacterModelFrame.textureTopRight:SetDesaturated(true)
+		CharacterModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_2.blp")
+
 		CharacterModelFrame.textureBotLeft:Show()
-		CharacterModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.blp")
-		CharacterModelFrame.textureBotLeft:SetDesaturated(true)
+		CharacterModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_3.blp")
+
 		CharacterModelFrame.textureBotRight:Show()
-		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
-		CharacterModelFrame.textureBotRight:SetDesaturated(true)
+		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_4.blp")
+
+		if E.db.enhanced.character.desaturateCharacter then
+			CharacterModelFrame.textureTopLeft:SetDesaturated(true)
+			CharacterModelFrame.textureTopRight:SetDesaturated(true)
+			CharacterModelFrame.textureBotLeft:SetDesaturated(true)
+			CharacterModelFrame.textureBotRight:SetDesaturated(true)
+		else
+			CharacterModelFrame.textureTopLeft:SetDesaturated(false)
+			CharacterModelFrame.textureTopRight:SetDesaturated(false)
+			CharacterModelFrame.textureBotLeft:SetDesaturated(false)
+			CharacterModelFrame.textureBotRight:SetDesaturated(false)
+		end
 
 		CharacterModelFrame.backgroundOverlay:Show()
 		CharacterModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
 
-		if strupper(fileName) == "SCOURGE" then
+		if strupper(E.myrace) == "SCOURGE" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.2)
-		elseif strupper(fileName) == "BLOODELF" then
-			CharacterModelFrame.backgroundOverlay:SetAlpha(0.8)
-		elseif strupper(fileName) == "TROLL" then
+		elseif strupper(E.myrace) == "BLOODELF" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.7)
-		elseif strupper(fileName) == "ORC" then
+		elseif strupper(E.myrace) == "ORC" or strupper(E.myrace) == "TROLL" then
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.5)
 		else
 			CharacterModelFrame.backgroundOverlay:SetAlpha(0.6)
@@ -1270,16 +1277,27 @@ function module:UpdateInspectModelFrame()
 
 		InspectModelFrame.textureTopLeft:Show()
 		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
-		InspectModelFrame.textureTopLeft:SetDesaturated(true)
+
 		InspectModelFrame.textureTopRight:Show()
 		InspectModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.blp")
-		InspectModelFrame.textureTopRight:SetDesaturated(true)
+
 		InspectModelFrame.textureBotLeft:Show()
 		InspectModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.blp")
-		InspectModelFrame.textureBotLeft:SetDesaturated(true)
+
 		InspectModelFrame.textureBotRight:Show()
 		InspectModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
-		InspectModelFrame.textureBotRight:SetDesaturated(true)
+
+		if E.db.enhanced.character.desaturateInspect then
+			InspectModelFrame.textureTopLeft:SetDesaturated(true)
+			InspectModelFrame.textureTopRight:SetDesaturated(true)
+			InspectModelFrame.textureBotLeft:SetDesaturated(true)
+			InspectModelFrame.textureBotRight:SetDesaturated(true)
+		else
+			InspectModelFrame.textureTopLeft:SetDesaturated(false)
+			InspectModelFrame.textureTopRight:SetDesaturated(false)
+			InspectModelFrame.textureBotLeft:SetDesaturated(false)
+			InspectModelFrame.textureBotRight:SetDesaturated(false)
+		end
 
 		InspectModelFrame.backgroundOverlay:Show()
 		InspectModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
@@ -1321,7 +1339,12 @@ function module:UpdatePetModelFrame()
 		else
 			PetModelFrame.petPaperDollPetModelBg:Hide()
 		end
-		PetModelFrame.petPaperDollPetModelBg:SetDesaturated(true)
+
+		if E.db.enhanced.character.desaturatePet then
+			PetModelFrame.petPaperDollPetModelBg:SetDesaturated(true)
+		else
+			PetModelFrame.petPaperDollPetModelBg:SetDesaturated(false)
+		end
 
 		PetModelFrame.backgroundOverlay:Show()
 		PetModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
