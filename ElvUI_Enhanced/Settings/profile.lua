@@ -93,22 +93,25 @@ P.enhanced = {
 	},
 	equipment = {
 		enable = false,
-		font = "Homespun",
-		fontSize = 10,
-		fontOutline = "MONOCHROMEOUTLINE",
 		durability = {
 			enable = true,
 			onlydamaged = true,
 			position = "TOPLEFT",
 			xOffset = 1,
-			yOffset = 0
+			yOffset = 0,
+			font = "Homespun",
+			fontSize = 10,
+			fontOutline = "MONOCHROMEOUTLINE"
 		},
 		itemlevel = {
 			enable = true,
 			qualityColor = true,
 			position = "BOTTOMLEFT",
 			xOffset = 1,
-			yOffset = 4
+			yOffset = 4,
+			font = "Homespun",
+			fontSize = 10,
+			fontOutline = "MONOCHROMEOUTLINE"
 		}
 	},
 	minimap = {
@@ -118,8 +121,10 @@ P.enhanced = {
 		fadeindelay = 5
 	},
 	nameplates = {
-		smooth = false,
-		smoothSpeed = 0.3
+		smoothBars = {
+			enable = false,
+			smoothSpeed = 0.3
+		}
 	},
 	tooltip = {
 		itemQualityBorderColor = false,

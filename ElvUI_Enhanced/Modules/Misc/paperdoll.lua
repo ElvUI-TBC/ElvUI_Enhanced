@@ -104,12 +104,12 @@ function PD:UpdateInfoText(name)
 
 		frame.ItemLevel:ClearAllPoints()
 		frame.ItemLevel:Point(db.itemlevel.position, frame, db.itemlevel.xOffset, db.itemlevel.yOffset)
-		frame.ItemLevel:FontTemplate(E.LSM:Fetch("font", db.font), db.fontSize, db.fontOutline)
+		frame.ItemLevel:FontTemplate(E.LSM:Fetch("font", db.itemlevel.font), db.itemlevel.fontSize, db.itemlevel.fontOutline)
 
 		if name == "Character" and durability then
 			frame.DurabilityInfo:ClearAllPoints()
 			frame.DurabilityInfo:Point(db.durability.position, frame, db.durability.xOffset, db.durability.yOffset)
-			frame.DurabilityInfo:FontTemplate(E.LSM:Fetch("font", db.font), db.fontSize, db.fontOutline)
+			frame.DurabilityInfo:FontTemplate(E.LSM:Fetch("font", db.durability.font), db.durability.fontSize, db.durability.fontOutline)
 		end
 	end
 end
