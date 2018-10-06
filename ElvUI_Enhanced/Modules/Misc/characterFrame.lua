@@ -317,8 +317,7 @@ locale == "ptBR" and "%2$s%4$s (%3$s)|r Nível %1$s" or
 
 function module:PaperDollFrame_SetLevel()
 	local talentTree = E:GetTalentSpecInfo()
-	local classDisplayName, class = UnitClass("player")
-	local classColor = RAID_CLASS_COLORS[class]
+	local classColor = RAID_CLASS_COLORS[E.myclass]
 	local classColorString = format("|cFF%02x%02x%02x", classColor.r*255, classColor.g*255, classColor.b*255)
 	local specName
 
@@ -327,9 +326,9 @@ function module:PaperDollFrame_SetLevel()
 	end
 
 	if specName and specName ~= "" then
-		CharacterLevelText:SetFormattedText(classTextFormat, UnitLevel("player"), classColorString, specName, classDisplayName)
+		CharacterLevelText:SetFormattedText(classTextFormat, UnitLevel("player"), classColorString, specName, E.myLocalizedClass)
 	else
-		CharacterLevelText:SetFormattedText(PLAYER_LEVEL, UnitLevel("player"), classColorString, classDisplayName)
+		CharacterLevelText:SetFormattedText(PLAYER_LEVEL, UnitLevel("player"), classColorString, E.myLocalizedClass)
 	end
 
 	if CharacterLevelText:GetWidth() > 210 then
@@ -468,11 +467,10 @@ function module:SetStat(statFrame, unit, statIndex)
 	statFrame.tooltip2 = _G["DEFAULT_STAT"..statIndex.."_TOOLTIP"]
 
 	if unit == "player" then
-		local _, unitClass = UnitClass("player")
 		if statIndex == 1 then
 			local attackPower = GetAttackPowerForStat(statIndex,effectiveStat)
 			statFrame.tooltip2 = format(statFrame.tooltip2, attackPower)
-			if unitClass == "WARRIOR" or unitClass == "SHAMAN" or unitClass == "PALADIN" then
+			if E.myclass == "WARRIOR" or E.myclass == "SHAMAN" or E.myclass == "PALADIN" then
 				statFrame.tooltip2 = statFrame.tooltip2.."\n"..format(STAT_BLOCK_TOOLTIP, max(0, effectiveStat * BLOCK_PER_STRENGTH - 10))
 			end
 		elseif statIndex == 3 then
@@ -1222,30 +1220,24 @@ end
 function module:UpdateCharacterModelFrame()
 	if E.db.enhanced.character.characterBackground then
 		CharacterModelFrame.backdrop:Show()
+		
+		local desaturate = E.db.enhanced.character.desaturateCharacter and true or false
 
 		CharacterModelFrame.textureTopLeft:Show()
 		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_1.blp")
+		CharacterModelFrame.textureTopLeft:SetDesaturated(desaturate)
 
 		CharacterModelFrame.textureTopRight:Show()
 		CharacterModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_2.blp")
+		CharacterModelFrame.textureTopRight:SetDesaturated(desaturate)
 
 		CharacterModelFrame.textureBotLeft:Show()
 		CharacterModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_3.blp")
+		CharacterModelFrame.textureBotLeft:SetDesaturated(desaturate)
 
 		CharacterModelFrame.textureBotRight:Show()
 		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_4.blp")
-
-		if E.db.enhanced.character.desaturateCharacter then
-			CharacterModelFrame.textureTopLeft:SetDesaturated(true)
-			CharacterModelFrame.textureTopRight:SetDesaturated(true)
-			CharacterModelFrame.textureBotLeft:SetDesaturated(true)
-			CharacterModelFrame.textureBotRight:SetDesaturated(true)
-		else
-			CharacterModelFrame.textureTopLeft:SetDesaturated(false)
-			CharacterModelFrame.textureTopRight:SetDesaturated(false)
-			CharacterModelFrame.textureBotLeft:SetDesaturated(false)
-			CharacterModelFrame.textureBotRight:SetDesaturated(false)
-		end
+		CharacterModelFrame.textureBotRight:SetDesaturated(desaturate)
 
 		CharacterModelFrame.backgroundOverlay:Show()
 		CharacterModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
@@ -1274,30 +1266,23 @@ function module:UpdateInspectModelFrame()
 		InspectModelFrame.backdrop:Show()
 
 		local _, fileName = UnitRace(InspectFrame.unit)
+		local desaturate = E.db.enhanced.character.desaturateInspect and true or false
 
 		InspectModelFrame.textureTopLeft:Show()
 		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
+		InspectModelFrame.textureTopLeft:SetDesaturated(desaturate)
 
 		InspectModelFrame.textureTopRight:Show()
 		InspectModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.blp")
+		InspectModelFrame.textureTopRight:SetDesaturated(desaturate)
 
 		InspectModelFrame.textureBotLeft:Show()
 		InspectModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.blp")
+		InspectModelFrame.textureBotLeft:SetDesaturated(desaturate)
 
 		InspectModelFrame.textureBotRight:Show()
 		InspectModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
-
-		if E.db.enhanced.character.desaturateInspect then
-			InspectModelFrame.textureTopLeft:SetDesaturated(true)
-			InspectModelFrame.textureTopRight:SetDesaturated(true)
-			InspectModelFrame.textureBotLeft:SetDesaturated(true)
-			InspectModelFrame.textureBotRight:SetDesaturated(true)
-		else
-			InspectModelFrame.textureTopLeft:SetDesaturated(false)
-			InspectModelFrame.textureTopRight:SetDesaturated(false)
-			InspectModelFrame.textureBotLeft:SetDesaturated(false)
-			InspectModelFrame.textureBotRight:SetDesaturated(false)
-		end
+		InspectModelFrame.textureBotRight:SetDesaturated(desaturate)
 
 		InspectModelFrame.backgroundOverlay:Show()
 		InspectModelFrame.backgroundOverlay:SetTexture(0, 0, 0)
@@ -1325,13 +1310,11 @@ function module:UpdatePetModelFrame()
 	if E.db.enhanced.character.petBackground then
 		PetModelFrame.backdrop:Show()
 
-		local _, playerClass = UnitClass("player")
-
 		PetModelFrame.petPaperDollPetModelBg:Show()
-		if playerClass == "HUNTER" then
+		if E.myclass == "HUNTER" then
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petHunter.blp")
 			PetModelFrame.backgroundOverlay:SetAlpha(0.4)
-		elseif playerClass == "WARLOCK" then
+		elseif E.myclass == "WARLOCK" then
 			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petWarlock.blp")
 			PetModelFrame.backgroundOverlay:SetAlpha(0.2)
 		else
