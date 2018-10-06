@@ -1305,10 +1305,8 @@ function module:UpdateInspectModelFrame()
 		if strupper(fileName) == "SCOURGE" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.2)
 		elseif strupper(fileName) == "BLOODELF" then
-			InspectModelFrame.backgroundOverlay:SetAlpha(0.8)
-		elseif strupper(fileName) == "TROLL" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.7)
-		elseif strupper(fileName) == "ORC" then
+		elseif strupper(fileName) == "ORC" or strupper(fileName) == "TROLL" then
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.5)
 		else
 			InspectModelFrame.backgroundOverlay:SetAlpha(0.6)

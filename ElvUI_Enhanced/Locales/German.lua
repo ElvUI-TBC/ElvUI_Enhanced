@@ -11,8 +11,8 @@ L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen des Watchframe (Questlog) n
 
 -- Actionbars
 L["Equipped Item Border"] = "Rahmen der angelegten Items"
-L["Sets actionbars' backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
-L["Sets actionbars buttons' backgrounds to transparent template."] = "Setzt die Aktionsleisten-Tasten transparent."
+L["Sets actionbars backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
+L["Sets actionbars buttons backgrounds to transparent template."] = "Setzt die Aktionsleisten-Tasten transparent."
 L["Transparent ActionBars"] = "Transparente Aktionsleisten"
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
 L["Transparent s"] = "Transparente Tasten"
@@ -25,18 +25,18 @@ L["Load AddOn"] = "Lade AddOn"
 L["Requires Reload"] = "Benötigt Reload"
 
 -- Animated Loss
-L["Animated Loss"] = true;
-L["Pause Delay"] = true;
-L["Start Delay"] = true;
-L["Postpone Delay"] = true;
+L["Animated Loss"] = true
+L["Pause Delay"] = true
+L["Start Delay"] = true
+L["Postpone Delay"] = true
 
 -- Chat
 L["Filter DPS meters Spam"] = "Spam von DPS-Metern filtern"
-L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true;
+L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
 L["Damaged Only"] = "Nur Beschädigte"
-L["Desaturate"] = true;
+L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
 L["Enable/Disable the display of item levels on the character screen."] = "Anzeige von Gegenstandsstufen im Charakterfenster aktivieren/deaktivieren."
 L["Enhanced Character Frame"] = "Erweitertes Charakterfenster"
@@ -47,7 +47,7 @@ L["Quality Color"] = "Qualitätsfarbe"
 
 -- Datatext
 L["Combat Indicator"] = "Kampfanzeige"
-L["DataText Color"] = true;
+L["DataText Color"] = true
 L["Distance"] = "Entfernung"
 L["Enhanced Time Color"] = "Erweiterte Zeit-Färbung"
 L["Equipped"] = "Angelegt"
@@ -60,11 +60,11 @@ L["Shards"] = "Splitter"
 L["Soul Shards"] = "Seelensplitter"
 L["Target Range"] = "Zielreichweite"
 L["Total"] = "Gesamt"
-L["Value Color"] = true;
+L["Value Color"] = true
 L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = "Du spielst keinen |cff0070DEShaman|r, Infotext deaktiviert."
 
 -- Death Recap
-L["%s %s"] = true;
+L["%s %s"] = true
 L["%s by %s"] = "%s durch %s"
 L["%s sec before death at %s%% health."] = "%s Sekunden vor Tod bei %s%% Gesundheit."
 L["(%d Absorbed)"] = "(%d Absorbiert)"
@@ -99,7 +99,7 @@ L["Track Reputation"] = "Ruf beobachten"
 -- Model Frames
 L["Drag"] = "Ziehen"
 L["Left-click on character and drag to rotate."] = "Linksklicken und ziehen, um den Charakter zu drehen."
-L["Model Frames"] = true;
+L["Model Frames"] = true
 L["Mouse Wheel Down"] = "Mausrad nach unten"
 L["Mouse Wheel Up"] = "Mausrad nach oben"
 L["Right-click on character and drag to move it within the window."] = "Rechtsklicken und ziehen, um den Charakter im Fenster zu verschieben."
@@ -114,7 +114,7 @@ L["Smooth Bars"] = "Sanfte Balken"
 
 -- Minimap
 L["Above Minimap"] = "Oberhalb der Minimap"
-L["Combat Hide"] = true;
+L["Combat Hide"] = true
 L["FadeIn Delay"] = "Einblendungsverzögerung"
 L["Hide minimap while in combat."] = "Ausblenden der Minimap während des Kampfes."
 L["Location Digits"] = "Koordinaten Nachkommastellen"
@@ -129,7 +129,7 @@ L["Colorize the tooltip border based on item quality."] = "Färbe den Tooltip-Ra
 L["Show/Hides an Icon for Items on the Tooltip."] = "Icon für Gegenstände am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells on the Tooltip."] = "Icon für Zauber am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = "Icon für Zauber oder Gegenstände am Tooltip anzeigen oder ausblenden."
-L["Tooltip Icon"] = true;
+L["Tooltip Icon"] = true
 
 -- Misc
 L["Skin Animations"] = "Skin-Animationen"
@@ -137,10 +137,10 @@ L["Undress"] = "Ausziehen"
 
 -- Character Frame
 L["Character Stats"] = "Charakterstatistiken"
-L["Damage Per Second"] = "DPS";
+L["Damage Per Second"] = "DPS"
 L["Hide Character Information"] = "Verstecke Charakter-Informationen"
 L["Hide Pet Information"] = "Verstecke Begleiter-Informationen"
-L["Item Level"] = true;
+L["Item Level"] = true
 L["Resistance"] = "Widerstände"
 L["Show Character Information"] = "Zeige Charakter-Informationen"
 L["Show Pet Information"] = "Zeige Begleiter-Informationen"
@@ -154,7 +154,7 @@ L["Target Portrait"] = "Ziel-Portrait"
 -- Loss Control
 L["CC"] = "CC"
 L["Disarm"] = "Entwaffnen"
-L["Lose Control"] = true;
+L["Lose Control"] = true
 L["PvE"] = "PvE"
 L["Root"] = "Wurzeln"
 L["Silence"] = "Stille"
@@ -172,7 +172,7 @@ L["Reverse"] = true
 -- Unitframes
 L["Class Icons"] = "Klassensymbole"
 L["Detached Height"] = "Höhe loslösen"
-L["Energy Tick"] = true;
+L["Energy Tick"] = true
 L["Show class icon for units."] = "Zeige Klassensymbole für Einheiten"
 L["Target"] = "Ziel"
 

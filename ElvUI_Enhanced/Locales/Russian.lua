@@ -10,58 +10,58 @@ L["ITEMLEVEL_DESC"] = "Настройка параметров информац�
 L["WATCHFRAME_DESC"] = "Настройте отображение списка заданий (квест лог) исходя из ваших личных предпочтений."
 
 -- Actionbars
-L["Equipped Item Border"] = true;
-L["Sets actionbars' backgrounds to transparent template."] = "Делает фон панелей команд прозрачным."
-L["Sets actionbars buttons' backgrounds to transparent template."] = "Делает кнопки панелей команд прозрачными"
-L["Transparent ActionBars"] = true;
+L["Equipped Item Border"] = true
+L["Sets actionbars backgrounds to transparent template."] = "Делает фон панелей команд прозрачным."
+L["Sets actionbars buttons backgrounds to transparent template."] = "Делает кнопки панелей команд прозрачными"
+L["Transparent ActionBars"] = true
 L["Transparent Backdrop"] = "Прозрачный фон"
 L["Transparent Buttons"] = "Прозрачные кнопки"
 
 -- AddOn List
-L["Enable All"] = true;
-L["Dependencies: "] = true;
-L["Disable All"] = true;
-L["Load AddOn"] = true;
-L["Requires Reload"] = true;
+L["Enable All"] = true
+L["Dependencies: "] = true
+L["Disable All"] = true
+L["Load AddOn"] = true
+L["Requires Reload"] = true
 
 -- Animated Loss
-L["Animated Loss"] = true;
-L["Pause Delay"] = true;
-L["Start Delay"] = true;
-L["Postpone Delay"] = true;
+L["Animated Loss"] = true
+L["Pause Delay"] = true
+L["Start Delay"] = true
+L["Postpone Delay"] = true
 
 -- Chat
-L["Filter DPS meters Spam"] = true;
-L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true;
+L["Filter DPS meters Spam"] = true
+L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
 L["Damaged Only"] = "Только поврежденные"
-L["Desaturate"] = true;
+L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = "Включить/Выключить отображение информации о прочности предметов в окне персонажа."
 L["Enable/Disable the display of item levels on the character screen."] = "Включить/Выключить отображение уровня предмета в окне персонажа."
-L["Enhanced Character Frame"] = true;
+L["Enhanced Character Frame"] = true
 L["Equipment"] = "Экипировка"
 L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
-L["Paperdoll Backgrounds"] = true;
-L["Quality Color"] = true;
+L["Paperdoll Backgrounds"] = true
+L["Quality Color"] = true
 
 -- Datatext
-L["Combat Indicator"] = true;
-L["DataText Color"] = true;
-L["Distance"] = true;
-L["Enhanced Time Color"] = true;
-L["Equipped"] = true;
-L["In Combat"] = true;
+L["Combat Indicator"] = true
+L["DataText Color"] = true
+L["Distance"] = true
+L["Enhanced Time Color"] = true
+L["Equipped"] = true
+L["In Combat"] = true
 L["New Mail"] = "Новое письмо"
 L["No Mail"] = "Нет писем"
-L["Out of Combat"] = true;
-L["Reincarnation"] = true;
-L["Shards"] = true;
-L["Soul Shards"] = true;
-L["Target Range"] = true;
+L["Out of Combat"] = true
+L["Reincarnation"] = true
+L["Shards"] = true
+L["Soul Shards"] = true
+L["Target Range"] = true
 L["Total"] = "Всего"
-L["Value Color"] = true;
-L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = true;
+L["Value Color"] = true
+L["You are not playing a |cff0070DEShaman|r, datatext disabled."] = true
 
 -- Death Recap
 L["%s %s"] = "Урон: %s %s"
@@ -79,21 +79,21 @@ L["You died."] = "Вы умерли."
 
 -- Decline Duels
 L["Auto decline all duels"] = "Автоматически отклонять все дуэли."
-L["Decline Duel"] = true;
+L["Decline Duel"] = true
 L["Declined duel request from "] = "DДуэль отклонена от "
 
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Автоматическое изменение фракции на панели репутации на ту, очки репутации которой вы получили."
 L["Automatically release body when killed inside a battleground."] = "Автоматически покидать тело после смерти на полях боя."
-L["Automatically select the quest reward with the highest vendor sell value."] = true;
+L["Automatically select the quest reward with the highest vendor sell value."] = true
 L["Changes the transparency of all the movers."] = "Изменяет прозрачность фиксаторов"
-L["Colorizes recipes, mounts & pets that are already known"] = true;
-L["Display quest levels at Quest Log."] = true;
-L["Hide Zone Text"] = true;
+L["Colorizes recipes, mounts & pets that are already known"] = true
+L["Display quest levels at Quest Log."] = true
+L["Hide Zone Text"] = true
 L["Mover Transparency"] = "Прозрачность фиксаторов"
-L["Original Close Button"] = true;
+L["Original Close Button"] = true
 L["PvP Autorelease"] = "Автовыход из тела"
-L["Show Quest Level"] = true;
+L["Show Quest Level"] = true
 L["Track Reputation"] = "Отслеживание репутации"
 
 -- Model Frames
@@ -109,30 +109,30 @@ L["Zoom In"] = "Приблизить"
 L["Zoom Out"] = "Отдалить"
 
 -- Nameplates
-L["Bars will transition smoothly."] = true;
-L["Smooth Bars"] = true;
+L["Bars will transition smoothly."] = true
+L["Smooth Bars"] = true
 
 -- Minimap
 L["Above Minimap"] = "Над миникартой"
-L["Combat Hide"] = true;
+L["Combat Hide"] = true
 L["FadeIn Delay"] = "Задержка появления"
 L["Hide minimap while in combat."] = "Скрывать миникарту во время боя."
 L["Location Digits"] = "Цифры координат"
-L["Location Panel"] = true;
+L["Location Panel"] = true
 L["Number of digits for map location."] = "Колличество цифр после запятой в координатах."
 L["The time to wait before fading the minimap back in after combat hide. (0 = Disabled)"] = "Время ожидания появления миникарты после выхода из боя. (0 = Выключено)"
-L["Toggle Location Panel."] = true;
+L["Toggle Location Panel."] = true
 
 -- Tooltip
 L["Item Border Color"] = "Цвет рамки предметов"
 L["Colorize the tooltip border based on item quality."] = "Окрашивать бордюр тултипа в цвет качества предмета"
-L["Show/Hides an Icon for Items on the Tooltip."] = true;
-L["Show/Hides an Icon for Spells on the Tooltip."] = true;
-L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true;
-L["Tooltip Icon"] = true;
+L["Show/Hides an Icon for Items on the Tooltip."] = true
+L["Show/Hides an Icon for Spells on the Tooltip."] = true
+L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true
+L["Tooltip Icon"] = true
 
 -- Misc
-L["Skin Animations"] = true;
+L["Skin Animations"] = true
 L["Undress"] = "Раздеть"
 
 -- Character Frame
@@ -140,11 +140,11 @@ L["Character Stats"] = "Характеристики"
 L["Damage Per Second"] = "Урон в секунду"
 L["Hide Character Information"] = "Скрыть информацию о персонаже"
 L["Hide Pet Information"] = "Скрыть информацию о питомце"
-L["Item Level"] = true;
-L["Resistance"] = true;
+L["Item Level"] = true
+L["Resistance"] = true
 L["Show Character Information"] = "Показать информацию о персонаже"
 L["Show Pet Information"] = "Показать информацию о питомце"
-L["Titles"] = true;
+L["Titles"] = true
 
 -- Movers
 L["Loss Control Icon"] = "Иконка потери контроля"
@@ -170,11 +170,11 @@ L["Raid Marker Bar"] = true
 L["Reverse"] = true
 
 -- Unitframes
-L["Class Icons"] = true;
+L["Class Icons"] = true
 L["Detached Height"] = "Высота при откреплении"
-L["Energy Tick"] = true;
+L["Energy Tick"] = true
 L["Show class icon for units."] = "Показывать иконку класса на цели."
-L["Target"] = true;
+L["Target"] = true
 
 -- WatchFrame
 L["Arena"] = "Арена"

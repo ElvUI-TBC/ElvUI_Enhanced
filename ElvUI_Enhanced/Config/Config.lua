@@ -210,14 +210,14 @@ local function ActionbarOptions()
 						order = 1,
 						type = "toggle",
 						name = L["Transparent Backdrop"],
-						desc = L["Sets actionbars' backgrounds to transparent template."],
+						desc = L["Sets actionbars backgrounds to transparent template."],
 						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
 					},
 					transparentButtons = {
 						order = 2,
 						type = "toggle",
 						name = L["Transparent Buttons"],
-						desc = L["Sets actionbars buttons' backgrounds to transparent template."],
+						desc = L["Sets actionbars buttons backgrounds to transparent template."],
 						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
 					}
 				},
@@ -809,72 +809,61 @@ local function MiscOptions()
 						args = {
 							characterBackground = {
 								order = 1,
-								type = "group",
+								type = "toggle",
 								name = CHARACTER,
-								args = {
-									characterBackground = {
-										order = 1,
-										type = "toggle",
-										name = ENABLE,
-										get = function(info) return E.db.enhanced.character.characterBackground end,
-										set = function(info, value) E.db.enhanced.character.characterBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
-										disabled = function() return not E.private.enhanced.character.enable end
-									},
-									desaturateCharacter = {
-										order = 2,
-										type = "toggle",
-										name = L["Desaturate"],
-										get = function(info) return E.db.enhanced.character.desaturateCharacter end,
-										set = function(info, value) E.db.enhanced.character.desaturateCharacter = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
-										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.characterBackground end
-									}
-								}
+								get = function(info) return E.db.enhanced.character.characterBackground end,
+								set = function(info, value) E.db.enhanced.character.characterBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+								disabled = function() return not E.private.enhanced.character.enable end
+							},
+							desaturateCharacter = {
+								order = 2,
+								type = "toggle",
+								name = L["Desaturate"],
+								get = function(info) return E.db.enhanced.character.desaturateCharacter end,
+								set = function(info, value) E.db.enhanced.character.desaturateCharacter = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+								disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.characterBackground end
+							},
+							spacer = {
+								order = 3,
+								type = "description",
+								name = " "
 							},
 							petBackground = {
-								order = 2,
-								type = "group",
+								order = 4,
+								type = "toggle",
 								name = PET,
-								args = {
-									petBackground = {
-										order = 1,
-										type = "toggle",
-										name = ENABLE,
-										get = function(info) return E.db.enhanced.character.petBackground end,
-										set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
-										disabled = function() return not E.private.enhanced.character.enable end
-									},
-									desaturatePet = {
-										order = 2,
-										type = "toggle",
-										name = L["Desaturate"],
-										get = function(info) return E.db.enhanced.character.desaturatePet end,
-										set = function(info, value) E.db.enhanced.character.desaturatePet = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
-										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.petBackground end
-									}
-								}
+								get = function(info) return E.db.enhanced.character.petBackground end,
+								set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+								disabled = function() return not E.private.enhanced.character.enable end
+							},
+							desaturatePet = {
+								order = 5,
+								type = "toggle",
+								name = L["Desaturate"],
+								get = function(info) return E.db.enhanced.character.desaturatePet end,
+								set = function(info, value) E.db.enhanced.character.desaturatePet = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+								disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.petBackground end
+							},
+							spacer2 = {
+								order = 6,
+								type = "description",
+								name = " "
 							},
 							inspectBackground = {
-								order = 3,
-								type = "group",
+								order = 7,
+								type = "toggle",
 								name = INSPECT,
-								args = {
-									inspectBackground = {
-										order = 1,
-										type = "toggle",
-										name = ENABLE,
-										get = function(info) return E.db.enhanced.character.inspectBackground end,
-										set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
-										disabled = function() return not E.private.enhanced.character.enable end
-									},
-									desaturateInspect = {
-										order = 2,
-										type = "toggle",
-										name = L["Desaturate"],
-										get = function(info) return E.db.enhanced.character.desaturateInspect end,
-										set = function(info, value) E.db.enhanced.character.desaturateInspect = value end,
-										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.inspectBackground end
-									}
-								}
+								get = function(info) return E.db.enhanced.character.inspectBackground end,
+								set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
+								disabled = function() return not E.private.enhanced.character.enable end
+							},
+							desaturateInspect = {
+								order = 8,
+								type = "toggle",
+								name = L["Desaturate"],
+								get = function(info) return E.db.enhanced.character.desaturateInspect end,
+								set = function(info, value) E.db.enhanced.character.desaturateInspect = value end,
+								disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.inspectBackground end
 							}
 						}
 					}
