@@ -47,6 +47,14 @@ P.enhanced = {
 			transparentButtons = false
 		}
 	},
+	blizzard = {
+		dressUpFrame = {
+			enable = false,
+			multiplier = 1.25,
+			background = true,
+			desaturate = false
+		}
+	},
 	chat = {
 		dpsLinks = false,
 	},

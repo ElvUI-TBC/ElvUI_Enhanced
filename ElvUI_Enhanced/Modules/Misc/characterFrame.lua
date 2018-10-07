@@ -1224,19 +1224,19 @@ function module:UpdateCharacterModelFrame()
 		local desaturate = E.db.enhanced.character.desaturateCharacter and true or false
 
 		CharacterModelFrame.textureTopLeft:Show()
-		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_1.blp")
+		CharacterModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_1.blp")
 		CharacterModelFrame.textureTopLeft:SetDesaturated(desaturate)
 
 		CharacterModelFrame.textureTopRight:Show()
-		CharacterModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_2.blp")
+		CharacterModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_2.blp")
 		CharacterModelFrame.textureTopRight:SetDesaturated(desaturate)
 
 		CharacterModelFrame.textureBotLeft:Show()
-		CharacterModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_3.blp")
+		CharacterModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_3.blp")
 		CharacterModelFrame.textureBotLeft:SetDesaturated(desaturate)
 
 		CharacterModelFrame.textureBotRight:Show()
-		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(E.myrace).."_4.blp")
+		CharacterModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_4.blp")
 		CharacterModelFrame.textureBotRight:SetDesaturated(desaturate)
 
 		CharacterModelFrame.backgroundOverlay:Show()
@@ -1269,19 +1269,19 @@ function module:UpdateInspectModelFrame()
 		local desaturate = E.db.enhanced.character.desaturateInspect and true or false
 
 		InspectModelFrame.textureTopLeft:Show()
-		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_1.blp")
+		InspectModelFrame.textureTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(fileName).."_1.blp")
 		InspectModelFrame.textureTopLeft:SetDesaturated(desaturate)
 
 		InspectModelFrame.textureTopRight:Show()
-		InspectModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_2.blp")
+		InspectModelFrame.textureTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(fileName).."_2.blp")
 		InspectModelFrame.textureTopRight:SetDesaturated(desaturate)
 
 		InspectModelFrame.textureBotLeft:Show()
-		InspectModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_3.blp")
+		InspectModelFrame.textureBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(fileName).."_3.blp")
 		InspectModelFrame.textureBotLeft:SetDesaturated(desaturate)
 
 		InspectModelFrame.textureBotRight:Show()
-		InspectModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\"..lower(fileName).."_4.blp")
+		InspectModelFrame.textureBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(fileName).."_4.blp")
 		InspectModelFrame.textureBotRight:SetDesaturated(desaturate)
 
 		InspectModelFrame.backgroundOverlay:Show()
@@ -1312,10 +1312,10 @@ function module:UpdatePetModelFrame()
 
 		PetModelFrame.petPaperDollPetModelBg:Show()
 		if E.myclass == "HUNTER" then
-			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petHunter.blp")
+			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PetPaperDoll\\petHunter.blp")
 			PetModelFrame.backgroundOverlay:SetAlpha(0.4)
 		elseif E.myclass == "WARLOCK" then
-			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\backgrounds\\petWarlock.blp")
+			PetModelFrame.petPaperDollPetModelBg:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PetPaperDoll\\petWarlock.blp")
 			PetModelFrame.backgroundOverlay:SetAlpha(0.2)
 		else
 			PetModelFrame.petPaperDollPetModelBg:Hide()

@@ -6,6 +6,7 @@ local format = string.format
 local ALWAYS, DEFAULT, ENABLE, HIDE, FONT_SIZE, NONE = ALWAYS, DEFAULT, ENABLE, HIDE, FONT_SIZE, NONE
 local CHARACTER, PET, INSPECT = CHARACTER, PET, INSPECT
 local SPELLS, ITEMS, TYPE = SPELLS, ITEMS, TYPE
+local DRESSUP_FRAME = DRESSUP_FRAME
 local MISCELLANEOUS = MISCELLANEOUS
 
 local function ColorizeSettingName(settingName)
@@ -767,6 +768,7 @@ local function MiscOptions()
 	local PD = E:GetModule("Enhanced_PaperDoll")
 	local RM = E:GetModule("RaidMarkerBar")
 	local WF = E:GetModule("Enhanced_WatchFrame")
+	local B = E:GetModule("Enhanced_Blizzard")
 
 	local choices = {
 		["NONE"] = NONE,
@@ -784,86 +786,136 @@ local function MiscOptions()
 				type = "header",
 				name = ColorizeSettingName(MISCELLANEOUS)
 			},
-			characterFrame = {
+			enhancedFrames = {
 				order = 2,
 				type = "group",
-				name = L["Enhanced Character Frame"],
+				name = L["Enhanced Frames"],
 				args = {
 					header = {
 						order = 1,
 						type = "header",
-						name = L["Enhanced Character Frame"]
+						name = L["Enhanced Frames"]
 					},
-					enable = {
+					characterFrame = {
 						order = 2,
-						type = "toggle",
-						name = ENABLE,
-						get = function(info) return E.private.enhanced.character.enable end,
-						set = function(info, value) E.private.enhanced.character.enable = value E:StaticPopup_Show("PRIVATE_RL") end
-					},
-					paperdollBackgrounds = {
-						order = 3,
 						type = "group",
-						name = L["Paperdoll Backgrounds"],
-						guiInline = true,
+						name = L["Character Frame"],
 						args = {
-							characterBackground = {
+							header = {
 								order = 1,
-								type = "toggle",
-								name = CHARACTER,
-								get = function(info) return E.db.enhanced.character.characterBackground end,
-								set = function(info, value) E.db.enhanced.character.characterBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
-								disabled = function() return not E.private.enhanced.character.enable end
+								type = "header",
+								name = L["Character Frame"]
 							},
-							desaturateCharacter = {
+							enable = {
 								order = 2,
 								type = "toggle",
-								name = L["Desaturate"],
-								get = function(info) return E.db.enhanced.character.desaturateCharacter end,
-								set = function(info, value) E.db.enhanced.character.desaturateCharacter = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
-								disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.characterBackground end
+								name = L["Enhanced Character Frame"],
+								get = function(info) return E.private.enhanced.character.enable end,
+								set = function(info, value) E.private.enhanced.character.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 							},
-							spacer = {
+							paperdollBackgrounds = {
 								order = 3,
-								type = "description",
-								name = " "
+								type = "group",
+								name = L["Paperdoll Backgrounds"],
+								guiInline = true,
+								args = {
+									characterBackground = {
+										order = 1,
+										type = "toggle",
+										name = CHARACTER,
+										get = function(info) return E.db.enhanced.character.characterBackground end,
+										set = function(info, value) E.db.enhanced.character.characterBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable end
+									},
+									desaturateCharacter = {
+										order = 2,
+										type = "toggle",
+										name = L["Desaturate"],
+										get = function(info) return E.db.enhanced.character.desaturateCharacter end,
+										set = function(info, value) E.db.enhanced.character.desaturateCharacter = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.characterBackground end
+									},
+									spacer = {
+										order = 3,
+										type = "description",
+										name = " "
+									},
+									petBackground = {
+										order = 4,
+										type = "toggle",
+										name = PET,
+										get = function(info) return E.db.enhanced.character.petBackground end,
+										set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable end
+									},
+									desaturatePet = {
+										order = 5,
+										type = "toggle",
+										name = L["Desaturate"],
+										get = function(info) return E.db.enhanced.character.desaturatePet end,
+										set = function(info, value) E.db.enhanced.character.desaturatePet = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
+										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.petBackground end
+									},
+									spacer2 = {
+										order = 6,
+										type = "description",
+										name = " "
+									},
+									inspectBackground = {
+										order = 7,
+										type = "toggle",
+										name = INSPECT,
+										get = function(info) return E.db.enhanced.character.inspectBackground end,
+										set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
+										disabled = function() return not E.private.enhanced.character.enable end
+									},
+									desaturateInspect = {
+										order = 8,
+										type = "toggle",
+										name = L["Desaturate"],
+										get = function(info) return E.db.enhanced.character.desaturateInspect end,
+										set = function(info, value) E.db.enhanced.character.desaturateInspect = value end,
+										disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.inspectBackground end
+									}
+								}
+							}
+						}
+					},
+					dressingRoom = {
+						order = 3,
+						type = "group",
+						name = DRESSUP_FRAME,
+						get = function(info) return E.db.enhanced.blizzard.dressUpFrame[ info[#info] ] end,
+						set = function(info, value) E.db.enhanced.blizzard.dressUpFrame[ info[#info] ] = value B:UpdateDressUpFrame() end,
+						args = {
+							header = {
+								order = 1,
+								type = "header",
+								name = DRESSUP_FRAME
 							},
-							petBackground = {
+							enable = {
+								order = 2,
+								type = "toggle",
+								name = L["Enhanced Dressing Room"]
+							},
+							multiplier = {
+								order = 3,
+								type = "range",
+								name = L["Scale"],
+								min = 1.1, max = 2, step = 0.01,
+								isPercent = true,
+								disabled = function() return not E.db.enhanced.blizzard.dressUpFrame.enable end
+							},
+							background = {
 								order = 4,
 								type = "toggle",
-								name = PET,
-								get = function(info) return E.db.enhanced.character.petBackground end,
-								set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
-								disabled = function() return not E.private.enhanced.character.enable end
+								name = L["Background"]
 							},
-							desaturatePet = {
+							desaturate = {
 								order = 5,
 								type = "toggle",
 								name = L["Desaturate"],
-								get = function(info) return E.db.enhanced.character.desaturatePet end,
-								set = function(info, value) E.db.enhanced.character.desaturatePet = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
-								disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.petBackground end
-							},
-							spacer2 = {
-								order = 6,
-								type = "description",
-								name = " "
-							},
-							inspectBackground = {
-								order = 7,
-								type = "toggle",
-								name = INSPECT,
-								get = function(info) return E.db.enhanced.character.inspectBackground end,
-								set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
-								disabled = function() return not E.private.enhanced.character.enable end
-							},
-							desaturateInspect = {
-								order = 8,
-								type = "toggle",
-								name = L["Desaturate"],
-								get = function(info) return E.db.enhanced.character.desaturateInspect end,
-								set = function(info, value) E.db.enhanced.character.desaturateInspect = value end,
-								disabled = function() return not E.private.enhanced.character.enable or not E.db.enhanced.character.inspectBackground end
+								disabled = function() return not E.db.enhanced.blizzard.dressUpFrame.background end
 							}
 						}
 					}

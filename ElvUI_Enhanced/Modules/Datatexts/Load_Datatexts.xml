@@ -6,7 +6,7 @@
 	<Script file="ItemLevel.lua"/>
 	<Script file="Mail.lua"/>
 	<!-- <Script file="Range.lua"/> -->
-	<Script file="Reincarnation.lua"/>
+	<!-- <Script file="Reincarnation.lua"/> -->
 	<Script file="SoulShards.lua"/>
 	<Script file="Spirit.lua"/>
 	<Script file="Stamina.lua"/>
