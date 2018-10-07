@@ -2,30 +2,9 @@
 local mod = E:GetModule("Enhanced_Blizzard")
 local S = E:GetModule("Skins")
 
-local lower = string.lower
-
 function mod:UpdateDressUpFrame()
-	local desaturate = E.db.enhanced.blizzard.dressUpFrame.desaturate and true or false
-	local background = E.db.enhanced.blizzard.dressUpFrame.background and 1 or 0
-
-	DressUpModel:ClearAllPoints()
-	DressUpModel.backdrop:ClearAllPoints()
-
 	if E.db.enhanced.blizzard.dressUpFrame.enable then
 		DressUpFrameResizeButton:Show()
-
-		DressUpModel:SetPoint("TOPLEFT", 22, -77)
-		DressUpModel:SetPoint("BOTTOMRIGHT", -47, 106)
-		DressUpModel.backdrop:SetOutside()
-		DressUpModel.backdrop:SetAlpha(background)
-
-		DressUpBackgroundBotLeft:SetAlpha(0)
-		DressUpBackgroundTopRight:SetAlpha(0)
-		DressUpBackgroundTopLeft:SetAlpha(0)
-		DressUpBackgroundBotRight:SetAlpha(0)
-
-		DressUpFrame.ModelBackground:SetAlpha(background)
-		DressUpFrame.ModelBackground:SetDesaturated(desaturate)
 
 		local mult = E.db.enhanced.blizzard.dressUpFrame.multiplier
 		if ElvCharacterDB.Enhanced.ResizeDressUp then
@@ -41,25 +20,14 @@ function mod:UpdateDressUpFrame()
 		DressUpFrame:SetSize(384, 512)
 
 		DressUpFrameResizeButton:Hide()
-
-		DressUpFrame.ModelBackground:SetAlpha(0)
-
-		DressUpModel:SetPoint("BOTTOM", DressUpFrame, "BOTTOM", -11, 104)
-		DressUpModel.backdrop:SetOutside(DressUpBackgroundTopLeft, nil, nil, DressUpModel)
-		DressUpModel.backdrop:SetAlpha(background)
-
-		DressUpBackgroundBotLeft:SetAlpha(background)
-		DressUpBackgroundBotLeft:SetDesaturated(desaturate)
-
-		DressUpBackgroundTopRight:SetAlpha(background)
-		DressUpBackgroundTopRight:SetDesaturated(desaturate)
-
-		DressUpBackgroundTopLeft:SetAlpha(background)
-		DressUpBackgroundTopLeft:SetDesaturated(desaturate)
-
-		DressUpBackgroundBotRight:SetAlpha(background)
-		DressUpBackgroundBotRight:SetDesaturated(desaturate)
 	end
+
+	local desaturate = E.db.enhanced.blizzard.dressUpFrame.desaturate and true or false
+	local background = E.db.enhanced.blizzard.dressUpFrame.background and 1 or 0
+
+	DressUpModel.backdrop:SetAlpha(background)
+	DressUpFrame.ModelBackground:SetAlpha(background)
+	DressUpFrame.ModelBackground:SetDesaturated(desaturate)
 
 	UpdateUIPanelPositions(DressUpFrame)
 end
@@ -83,10 +51,15 @@ function mod:DressUpFrame()
 		mod.UpdateDressUpFrame()
 	end)
 
-	DressUpBackgroundTopLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_1.blp")
-	DressUpBackgroundTopRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_2.blp")
-	DressUpBackgroundBotLeft:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_3.blp")
-	DressUpBackgroundBotRight:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PaperDoll\\"..lower(E.myrace).."_4.blp")
+	DressUpModel:ClearAllPoints()
+	DressUpModel:SetPoint("TOPLEFT", 22, -77)
+	DressUpModel:SetPoint("BOTTOMRIGHT", -47, 106)
+	DressUpModel.backdrop:SetOutside()
+
+	DressUpBackgroundBotLeft:SetAlpha(0)
+	DressUpBackgroundTopRight:SetAlpha(0)
+	DressUpBackgroundTopLeft:SetAlpha(0)
+	DressUpBackgroundBotRight:SetAlpha(0)
 
 	DressUpFrame.ModelBackground = DressUpFrame:CreateTexture()
 	DressUpFrame.ModelBackground:SetAllPoints(DressUpModel)
