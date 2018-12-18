@@ -394,7 +394,9 @@ function AL:Initialize()
 	local buttonAddons = CreateFrame("Button", "ElvUI_ButtonAddons", GameMenuFrame, "GameMenuButtonTemplate")
 	buttonAddons:Point("TOP", GameMenuButtonMacros, "BOTTOM", 0, -1)
 	buttonAddons:SetText(ADDONS)
-	S:HandleButton(buttonAddons)
+	if E.private.skins.blizzard.enable and E.private.skins.blizzard.misc then
+		S:HandleButton(buttonAddons)
+	end
 
 	buttonAddons:SetScript("OnClick", function()
 		HideUIPanel(GameMenuFrame)

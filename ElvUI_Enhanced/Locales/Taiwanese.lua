@@ -83,6 +83,7 @@ L["Decline Duel"] = true
 L["Declined duel request from "] = "已拒絕決鬥請求自"
 
 -- Error Frame
+L["Error Frame"] = true
 L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
 L["Set the height of Error Frame. Higher frame can show more lines at once."] = true
 
