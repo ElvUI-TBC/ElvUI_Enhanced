@@ -57,7 +57,7 @@ P.enhanced = {
 		errorFrame = {
 			width = 300,
 			height = 60,
-			font = "Homespun",
+			font = "PT Sans Narrow",
 			fontSize = 30,
 			fontOutline = "NONE"
 		}
