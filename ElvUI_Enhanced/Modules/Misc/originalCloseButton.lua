@@ -25,6 +25,9 @@ local function UpdateSkinType(f)
 		f.SetPushedTexture = nil
 		f:SetPushedTexture(f.origPushedTexture)
 
+		f.SetHighlightTexture = nil
+		f:SetHighlightTexture(f.origHighlightTexture)
+
 		if not f.desaturated then
 			for i = 1, f:GetNumRegions() do
 				local region = select(i, f:GetRegions())
@@ -40,6 +43,8 @@ local function UpdateSkinType(f)
 		if f.text then
 			f.text:Hide()
 		end
+
+		f:SetHitRectInsets(0, 0, 0, 0)
 
 		f.originalType = true
 	else
@@ -63,9 +68,9 @@ local function UpdateSkinType(f)
 			f.backdrop:Point("BOTTOMRIGHT", -8, 8)
 			f:HookScript2("OnEnter", S.SetModifiedBackdrop)
 			f:HookScript2("OnLeave", S.SetOriginalBackdrop)
-			f:SetHitRectInsets(6, 6, 7, 7)
 		else
 			f.backdrop:Show()
+			f:SetHitRectInsets(6, 6, 7, 7)
 		end
 
 		if not f.text then
@@ -94,6 +99,9 @@ function S:HandleCloseButton(f, point, text)
 	end
 	if f:GetPushedTexture() then
 		f.origPushedTexture = f:GetPushedTexture():GetTexture()
+	end
+	if f:GetHighlightTexture() then
+		f.origHighlightTexture = f:GetHighlightTexture():GetTexture()
 	end
 
 	if E.db.enhanced.general.originalCloseButton then

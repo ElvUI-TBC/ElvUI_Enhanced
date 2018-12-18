@@ -27,11 +27,12 @@ local function OnUpdate(self)
 	local isKnown = IsSpellKnown(20608)
 	if not isKnown then return end
 
-	local start, duration = GetSpellCooldown(20608)
+	local name = GetSpellInfo(20608)
+	local start, duration = GetSpellCooldown(name)
 	if start > 0 and duration > 0 then 
 		self.text:SetFormattedText(displayString, format(iconString, tex), format("%d:%02d", floor((duration - (GetTime() - start)) / 60), floor((duration - (GetTime() - start)) % 60)))
 	else
-		self.text:SetFormattedText(displayString, format(iconString, tex), READY.."!")
+		self.text:SetFormattedText(displayString, format(iconString, tex), L["Ready"].."!")
 	end
 end
 
@@ -44,11 +45,12 @@ local function OnEvent(self, event)
 		if event == "SPELL_UPDATE_COOLDOWN" then
 			self:SetScript("OnUpdate", OnUpdate)
 		elseif not self.text:GetText() then
-			local start, duration = GetSpellCooldown(20608)
+			local name = GetSpellInfo(20608)
+			local start, duration = GetSpellCooldown(name)
 			if start > 0 and duration > 0 then 
 				self.text:SetFormattedText(displayString, format(iconString, tex), format("%d:%02d", floor((duration - (GetTime() - start)) / 60), floor((duration - (GetTime() - start)) % 60)))
 			else
-				self.text:SetFormattedText(displayString, format(iconString, tex), READY.."!")
+				self.text:SetFormattedText(displayString, format(iconString, tex), L["Ready"].."!")
 			end
 		end
 	end
@@ -61,9 +63,10 @@ local function OnClick(self)
 	if not isKnown then return end
 
 	local _, instanceType = IsInInstance()
-	local start, duration = GetSpellCooldown(20608)
+	local name = GetSpellInfo(20608)
+	local start, duration = GetSpellCooldown(name)
 	local message = L["Reincarnation"].." - "..TIME_REMAINING.." "..format("%d:%02d", floor((duration - (GetTime() - start)) / 60), floor((duration - (GetTime() - start)) % 60))
-	local message2 = L["Reincarnation"].." - "..READY.."!"
+	local message2 = L["Reincarnation"].." - "..L["Ready"].."!"
 
 	if start > 0 and duration > 0 then
 		if instanceType == "raid" then

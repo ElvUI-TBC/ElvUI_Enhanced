@@ -729,7 +729,7 @@ end
 function PaperDollFrame_CollapseStatCategory(categoryFrame)
 	if not categoryFrame.collapsed then
 		categoryFrame.collapsed = true
-		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("NoBackdrop")
+		--_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Default", true)
 		local index = 1
 		while _G[categoryFrame:GetName().."Stat"..index] do
 			_G[categoryFrame:GetName().."Stat"..index]:Hide()
@@ -743,7 +743,7 @@ end
 function PaperDollFrame_ExpandStatCategory(categoryFrame)
 	if categoryFrame.collapsed then
 		categoryFrame.collapsed = false
-		_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Default", true)
+		--_G[categoryFrame:GetName().."Toolbar"]:SetTemplate("Default", true)
 		module:PaperDollFrame_UpdateStatCategory(categoryFrame)
 		module:PaperDollFrame_UpdateStatScrollChildHeight()
 	end
@@ -1644,6 +1644,9 @@ function module:Initialize()
 	for i = 1, 8 do
 		local button = CreateFrame("Frame", "CharacterStatsPaneCategory"..i, statsPaneScrollChild, "StatGroupTemplate")
 		button.Toolbar:SetTemplate("Default", true)
+		button.Toolbar:HookScript2("OnEnter", S.SetModifiedBackdrop)
+		button.Toolbar:HookScript2("OnLeave", S.SetOriginalBackdrop)
+
 		button.NameText:SetParent(button.Toolbar)
 		button.NameText:ClearAllPoints()
 		button.NameText:SetPoint("CENTER", button.Toolbar)
