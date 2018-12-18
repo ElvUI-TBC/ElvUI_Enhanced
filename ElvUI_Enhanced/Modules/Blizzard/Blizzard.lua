@@ -3,6 +3,7 @@ local mod = E:NewModule("Enhanced_Blizzard", "AceHook-3.0", "AceEvent-3.0")
 
 function mod:Initialize()
 	self:DressUpFrame()
+	self:ErrorFrameSize()
 end
 
 local function InitializeCallback()

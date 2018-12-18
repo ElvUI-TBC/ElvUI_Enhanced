@@ -53,6 +53,13 @@ P.enhanced = {
 			multiplier = 1.25,
 			background = true,
 			desaturate = false
+		},
+		errorFrame = {
+			width = 300,
+			height = 60,
+			font = "Homespun",
+			fontSize = 30,
+			fontOutline = "NONE"
 		}
 	},
 	chat = {

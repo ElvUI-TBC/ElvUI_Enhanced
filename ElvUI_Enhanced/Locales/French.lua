@@ -82,6 +82,10 @@ L["Auto decline all duels"] = true
 L["Decline Duel"] = true
 L["Declined duel request from "] = "Décliné les invites en duel de "
 
+-- Error Frame
+L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
+L["Set the height of Error Frame. Higher frame can show more lines at once."] = true
+
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Change automatiquement la réputation suivie sur la barre de réputation avec la faction que vous êtes en train de faire."
 L["Automatically release body when killed inside a battleground."] = "Libère automatiquement votre corps quand vous êtes tué en Champs de Bataille."

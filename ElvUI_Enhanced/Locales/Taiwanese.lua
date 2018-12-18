@@ -82,6 +82,10 @@ L["Auto decline all duels"] = "自動拒絕決鬥請求"
 L["Decline Duel"] = true
 L["Declined duel request from "] = "已拒絕決鬥請求自"
 
+-- Error Frame
+L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
+L["Set the height of Error Frame. Higher frame can show more lines at once."] = true
+
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "當你獲得某個陣營的聲望時, 將自動追蹤此陣營的聲望至經驗值欄位."
 L["Automatically release body when killed inside a battleground."] = "在戰場死亡後自動釋放靈魂."

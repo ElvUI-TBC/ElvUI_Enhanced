@@ -82,6 +82,10 @@ L["Auto decline all duels"] = "Автоматически отклонять в�
 L["Decline Duel"] = true
 L["Declined duel request from "] = "DДуэль отклонена от "
 
+-- Error Frame
+L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
+L["Set the height of Error Frame. Higher frame can show more lines at once."] = true
+
 -- General
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Автоматическое изменение фракции на панели репутации на ту, очки репутации которой вы получили."
 L["Automatically release body when killed inside a battleground."] = "Автоматически покидать тело после смерти на полях боя."

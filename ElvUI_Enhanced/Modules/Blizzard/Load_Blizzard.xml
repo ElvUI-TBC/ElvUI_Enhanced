@@ -1,4 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="Blizzard.lua"/>
 	<Script file="DressUpFrame.lua"/>
+	<Script file="ErrorFrame.lua"/>
 </Ui>
