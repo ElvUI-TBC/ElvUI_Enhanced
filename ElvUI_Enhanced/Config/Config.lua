@@ -800,6 +800,7 @@ local function MiscOptions()
 						order = 2,
 						type = "group",
 						name = L["Character Frame"],
+						disabled = function() return not E.private.skins.blizzard.enable or not E.private.skins.blizzard.character end,
 						args = {
 							header = {
 								order = 1,
@@ -887,6 +888,7 @@ local function MiscOptions()
 						name = DRESSUP_FRAME,
 						get = function(info) return E.db.enhanced.blizzard.dressUpFrame[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.blizzard.dressUpFrame[ info[#info] ] = value B:UpdateDressUpFrame() end,
+						disabled = function() return not E.private.skins.blizzard.enable or not E.private.skins.blizzard.dressingroom end,
 						args = {
 							header = {
 								order = 1,

@@ -3,6 +3,8 @@ local mod = E:GetModule("Enhanced_Blizzard")
 local S = E:GetModule("Skins")
 
 function mod:UpdateDressUpFrame()
+	if E.private.skins.blizzard.enable ~= true or E.private.skins.blizzard.dressingroom ~= true then return end
+
 	if E.db.enhanced.blizzard.dressUpFrame.enable then
 		DressUpFrameResizeButton:Show()
 
@@ -33,6 +35,8 @@ function mod:UpdateDressUpFrame()
 end
 
 function mod:DressUpFrame()
+	if E.private.skins.blizzard.enable ~= true or E.private.skins.blizzard.dressingroom ~= true then return end
+
 	if not ElvCharacterDB.Enhanced then
 		ElvCharacterDB.Enhanced = {}
 	end

@@ -1484,6 +1484,7 @@ function GetItemLevelColor(unit)
 end
 
 function module:Initialize()
+	if E.private.skins.blizzard.enable ~= true or E.private.skins.blizzard.character ~= true then return end
 	if not E.private.enhanced.character.enable then return end
 
 	if PersonalGearScore then
