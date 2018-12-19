@@ -1605,6 +1605,13 @@ function module:Initialize()
 		titlePane:Point("TOPRIGHT", -57, -75)
 		for _, button in next, titlePane.buttons do
 			button:Width(172)
+
+			button.Stripe:SetInside()
+			button.SelectedBar:SetTexture(1, 0.80, 0.10, 0.3)
+			button.SelectedBar:SetInside()
+
+			button:GetHighlightTexture():SetTexture(1, 1, 1, 0.3)
+			button:GetHighlightTexture():SetInside()
 		end
 		getmetatable(self).__index.Show(self)
 	end
