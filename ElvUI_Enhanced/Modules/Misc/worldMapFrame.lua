@@ -32,22 +32,25 @@ for i = 1, MAX_RAID_MEMBERS do
 end
 
 WorldMapButton:HookScript("OnUpdate", function(self, elapsed)
+	local unit, class, icon
+	local playerCount, partyX, partyY
+
 	if GetNumRaidMembers() > 0 then
-		local playerCount = 0
+		playerCount = 0
 
 		for i = 1, MAX_RAID_MEMBERS do
-			local unit = "raid"..i
-			local partyX, partyY = GetPlayerMapPosition(unit)
+			unit = "raid"..i
+			partyX, partyY = GetPlayerMapPosition(unit)
 
 			if (partyX ~= 0 and partyY ~= 0) or not UnitIsUnit(unit, "player") then
-				local partyMemberFrameIcon = _G["WorldMapRaid"..(playerCount + 1).."Icon"]
-				local class = select(2, UnitClass(unit))
+				icon = _G["WorldMapRaid"..(playerCount + 1).."Icon"]
+				class = select(2, UnitClass(unit))
 
 				if class then
 					if UnitInParty(unit) then
-						partyMemberFrameIcon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3], BLIP_TEX_COORDS[class][4])
+						icon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3], BLIP_TEX_COORDS[class][4])
 					else
-						partyMemberFrameIcon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3] + BLIP_RAID_Y_OFFSET, BLIP_TEX_COORDS[class][4] + BLIP_RAID_Y_OFFSET)
+						icon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3] + BLIP_RAID_Y_OFFSET, BLIP_TEX_COORDS[class][4] + BLIP_RAID_Y_OFFSET)
 					end
 				end
 				playerCount = playerCount + 1
@@ -55,12 +58,12 @@ WorldMapButton:HookScript("OnUpdate", function(self, elapsed)
 		end
 	else
 		for i = 1, MAX_PARTY_MEMBERS do
-			local unit = "party"..i
-			local partyX, partyY = GetPlayerMapPosition("party"..i)
+			unit = "party"..i
+			partyX, partyY = GetPlayerMapPosition(unit)
 
 			if partyX ~= 0 and partyY ~= 0 then
-				local class = select(2, UnitClass(unit))
-				local partyMemberFrameIcon = _G["WorldMapParty"..i.."Icon"]
+				class = select(2, UnitClass(unit))
+				icon = _G["WorldMapParty"..i.."Icon"]
 
 				if class then
 					partyMemberFrameIcon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3], BLIP_TEX_COORDS[class][4])
