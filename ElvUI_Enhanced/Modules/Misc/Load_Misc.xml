@@ -16,6 +16,7 @@
 	<Script file="modelframes.lua"/>
 	<Script file="merchant.lua"/>
 	<Script file="raidmarkers.lua"/>
+	<Script file="worldMapFrame.lua"/>
 
 	<Script file="characterFrame.lua"/>
 
