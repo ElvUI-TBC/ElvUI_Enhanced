@@ -66,7 +66,7 @@ WorldMapButton:HookScript("OnUpdate", function(self, elapsed)
 				icon = _G["WorldMapParty"..i.."Icon"]
 
 				if class then
-					partyMemberFrameIcon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3], BLIP_TEX_COORDS[class][4])
+					icon:SetTexCoord(BLIP_TEX_COORDS[class][1], BLIP_TEX_COORDS[class][2], BLIP_TEX_COORDS[class][3], BLIP_TEX_COORDS[class][4])
 				end
 			end
 		end
