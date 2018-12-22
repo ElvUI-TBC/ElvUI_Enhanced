@@ -1,4 +1,4 @@
-local E, L, V, P, G, _ = unpack(ElvUI)
+local E, L, V, P, G = unpack(ElvUI)
 local mod = E:NewModule("DeathRecap", "AceHook-3.0", "AceEvent-3.0")
 
 local format, upper = string.format, string.upper
@@ -324,7 +324,7 @@ function mod:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, event, _, sourceName, sou
 	if event == "SWING_DAMAGE" then
 		amount, overkill, school, resisted, blocked, absorbed = ...
 	elseif subVal == "SPELL" then
-		spellId, spellName, _, amount, overkill, school, resisted, blocked, absorbed = ...
+		spellId, spellName, school, amount, overkill, school, resisted, blocked, absorbed = ...
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
 		environmentalType, amount, overkill, school, resisted, blocked, absorbed = ...
 	end
