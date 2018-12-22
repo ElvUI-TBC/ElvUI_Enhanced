@@ -1,12 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
 local mod = E:NewModule("DeathRecap", "AceHook-3.0", "AceEvent-3.0")
 
-local _G = _G
-local tonumber, strsub = tonumber, strsub
 local format, upper = string.format, string.upper
+local floor = math.floor
 local tsort, twipe = table.sort, table.wipe
 local band = bit.band
-local floor = math.floor
+local tonumber, strsub = tonumber, strsub
 
 local GetReleaseTimeRemaining = GetReleaseTimeRemaining
 local RepopMe = RepopMe
@@ -20,7 +19,7 @@ local index = 0
 local deathList = {}
 local eventList = {}
 
-function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed, critical)
+function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed)
 	if (index > 0) and (eventList[index].timestamp + 10 <= timestamp) then
 		index = 0
 		twipe(eventList)
@@ -50,7 +49,6 @@ function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSch
 	eventList[index].resisted = resisted
 	eventList[index].blocked = blocked
 	eventList[index].absorbed = absorbed
-	eventList[index].critical = critical
 	eventList[index].currentHP = UnitHealth("player")
 	eventList[index].maxHP = UnitHealthMax("player")
 end
@@ -150,10 +148,6 @@ function mod:OpenRecap(recapID)
 			dmgInfo.amount = evtData.amount
 
 			dmgInfo.dmgExtraStr = ""
-
-			if evtData.critical and evtData.critical > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. format(L["Critical"], evtData.critical)
-			end
 			if evtData.absorbed and evtData.absorbed > 0 then
 				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. format(L["(%d Absorbed)"], evtData.absorbed)
 				dmgInfo.amount = evtData.amount - evtData.absorbed
@@ -185,9 +179,8 @@ function mod:OpenRecap(recapID)
 		dmgInfo.hpPercent = floor(evtData.currentHP / evtData.maxHP * 100)
 
 		dmgInfo.spellName = spellName
-		dmgInfo.caster = evtData.sourceName or COMBATLOG_UNKNOWN_UNIT
 
-		dmgInfo.spellSchool = evtData.spellSchool
+		dmgInfo.caster = evtData.sourceName or COMBATLOG_UNKNOWN_UNIT
 
 		if evtData.school and evtData.school > 1 then
 			local colorArray = CombatLog_Color_ColorArrayBySchool(evtData.school)
@@ -195,6 +188,8 @@ function mod:OpenRecap(recapID)
 		else
 			entry.SpellInfo.FrameIcom:SetBackdropBorderColor(unpack(E.media.bordercolor))
 		end
+
+		dmgInfo.spellSchool = evtData.spellSchool
 
 		entry.SpellInfo.Caster:SetText(dmgInfo.caster)
 
@@ -320,19 +315,19 @@ function mod:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, event, _, sourceName, sou
 	then return end
 
 	local subVal = strsub(event, 1, 5)
-	local environmentalType, spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical
+	local environmentalType, spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed
 
 	if event == "SWING_DAMAGE" then
-		amount, school, resisted, blocked, absorbed, critical = ...
+		amount, school, resisted, blocked, absorbed = ...
 	elseif subVal == "SPELL" then
-		spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical = ...
+		spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed = ...
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
-		environmentalType, amount, school, resisted, blocked, absorbed, critical = ...
+		environmentalType, amount, school, resisted, blocked, absorbed = ...
 	end
 
 	if not tonumber(amount) then return end
 
-	self:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed, critical)
+	self:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed)
 end
 
 function mod:SetItemRef(link, ...)
