@@ -19,7 +19,7 @@ local index = 0
 local deathList = {}
 local eventList = {}
 
-function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, environmentalType, amount, overkill, school, resisted, blocked, absorbed)
+function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed)
 	if (index > 0) and (eventList[index].timestamp + 10 <= timestamp) then
 		index = 0
 		twipe(eventList)
@@ -42,9 +42,9 @@ function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, environm
 	eventList[index].sourceName = sourceName
 	eventList[index].spellId = spellId
 	eventList[index].spellName = spellName
+	eventList[index].spellSchool = spellSchool
 	eventList[index].environmentalType = environmentalType
 	eventList[index].amount = amount
-	eventList[index].overkill = overkill
 	eventList[index].school = school
 	eventList[index].resisted = resisted
 	eventList[index].blocked = blocked
@@ -148,10 +148,6 @@ function mod:OpenRecap(recapID)
 			dmgInfo.amount = evtData.amount
 
 			dmgInfo.dmgExtraStr = ""
-			if evtData.overkill and evtData.overkill > 0 then
-				dmgInfo.dmgExtraStr = format(L["(%d Overkill)"], evtData.overkill)
-				dmgInfo.amount = evtData.amount - evtData.overkill
-			end
 			if evtData.absorbed and evtData.absorbed > 0 then
 				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. format(L["(%d Absorbed)"], evtData.absorbed)
 				dmgInfo.amount = evtData.amount - evtData.absorbed
@@ -193,7 +189,7 @@ function mod:OpenRecap(recapID)
 			entry.SpellInfo.FrameIcom:SetBackdropBorderColor(unpack(E.media.bordercolor))
 		end
 
-		dmgInfo.school = evtData.school
+		dmgInfo.spellSchool = evtData.spellSchool
 
 		entry.SpellInfo.Caster:SetText(dmgInfo.caster)
 
@@ -319,19 +315,19 @@ function mod:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, event, _, sourceName, sou
 	then return end
 
 	local subVal = strsub(event, 1, 5)
-	local environmentalType, spellId, spellName, amount, overkill, school, resisted, blocked, absorbed
+	local environmentalType, spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed
 
 	if event == "SWING_DAMAGE" then
-		amount, overkill, school, resisted, blocked, absorbed = ...
+		amount, school, resisted, blocked, absorbed = ...
 	elseif subVal == "SPELL" then
-		spellId, spellName, school, amount, overkill, _, resisted, blocked, absorbed = ...
+		spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed = ...
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
-		environmentalType, amount, overkill, school, resisted, blocked, absorbed = ...
+		environmentalType, amount, school, resisted, blocked, absorbed = ...
 	end
 
 	if not tonumber(amount) then return end
 
-	self:AddEvent(timestamp, event, sourceName, spellId, spellName, environmentalType, amount, overkill, school, resisted, blocked, absorbed)
+	self:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed)
 end
 
 function mod:SetItemRef(link, ...)
