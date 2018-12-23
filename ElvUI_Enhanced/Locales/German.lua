@@ -72,6 +72,7 @@ L["(%d Absorbed)"] = "(%d Absorbiert)"
 L["(%d Blocked)"] = "(%d Geblockt)"
 L["(%d Resisted)"] = "(%d Widerstanden)"
 L["Critical"] = true
+L["Crushing"] = true
 L["Death Recap unavailable."] = "Todesursache nicht verfügbar."
 L["Death Recap"] = "Todesursache"
 L["Killing blow at %s%% health."] = "Todesstoß bei %s%% Gesundheit."

@@ -20,7 +20,7 @@ local index = 0
 local deathList = {}
 local eventList = {}
 
-function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed, critical, crushing)
+function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, environmentalType, amount, school, resisted, blocked, absorbed, critical, crushing)
 	if (index > 0) and (eventList[index].timestamp + 10 <= timestamp) then
 		index = 0
 		twipe(eventList)
@@ -43,7 +43,6 @@ function mod:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSch
 	eventList[index].sourceName = sourceName
 	eventList[index].spellId = spellId
 	eventList[index].spellName = spellName
-	eventList[index].spellSchool = spellSchool
 	eventList[index].environmentalType = environmentalType
 	eventList[index].amount = amount
 	eventList[index].school = school
@@ -185,8 +184,6 @@ function mod:OpenRecap(recapID)
 		dmgInfo.spellName = spellName
 		dmgInfo.caster = evtData.sourceName or COMBATLOG_UNKNOWN_UNIT
 
-		dmgInfo.spellSchool = evtData.spellSchool
-
 		if evtData.school and evtData.school > 1 then
 			local colorArray = CombatLog_Color_ColorArrayBySchool(evtData.school)
 			entry.SpellInfo.FrameIcom:SetBackdropBorderColor(colorArray.r, colorArray.g, colorArray.b)
@@ -194,8 +191,9 @@ function mod:OpenRecap(recapID)
 			entry.SpellInfo.FrameIcom:SetBackdropBorderColor(unpack(E.media.bordercolor))
 		end
 
-		entry.SpellInfo.Caster:SetText(dmgInfo.caster)
+		dmgInfo.school = evtData.school
 
+		entry.SpellInfo.Caster:SetText(dmgInfo.caster)
 		entry.SpellInfo.Name:SetText(spellName)
 		entry.SpellInfo.Icon:SetTexture(texture)
 
@@ -231,7 +229,7 @@ function mod:Amount_OnEnter()
 	GameTooltip:SetOwner(self, "ANCHOR_LEFT")
 	GameTooltip:ClearLines()
 	if self.amount then
-		local valueStr = self.school and format(TEXT_MODE_A_STRING_VALUE_SCHOOL, self.amount, CombatLog_String_SchoolString(self.school)) or self.amount
+		local valueStr = self.school and format("%s %s", self.amount, CombatLog_String_SchoolString(self.school)) or self.amount
 		GameTooltip:AddLine(format(L["%s %s"], valueStr, self.dmgExtraStr), 1, 0, 0, false)
 	end
 
@@ -267,9 +265,6 @@ function mod:GetTableInfo(data)
 
 		nameIsNotSpell = true
 	elseif event == "RANGE_DAMAGE" then
-	--	spellId = 3018
-	--	spellName = ACTION_RANGED
-
 		nameIsNotSpell = true
 --	elseif strsub(event, 1, 5) == "SPELL" then
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
@@ -321,23 +316,21 @@ function mod:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, event, _, sourceName, sou
 	then return end
 
 	local subVal = strsub(event, 1, 5)
-	local environmentalType, spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical, crushing
+	local environmentalType, spellId, spellName, amount, school, resisted, blocked, absorbed, critical, crushing
 
 	if event == "SWING_DAMAGE" then
 		amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
 	elseif subVal == "SPELL" then
-		spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
+		spellId, spellName, _, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
 		environmentalType, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
-	elseif subVal == "RANGE" then
-		if event == "RANGE_DAMAGE" then
-			spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
-		end
+	elseif event == "RANGE_DAMAGE" then
+		spellId, spellName, _, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
 	end
 
 	if not tonumber(amount) then return end
 
-	self:AddEvent(timestamp, event, sourceName, spellId, spellName, spellSchool, environmentalType, amount, school, resisted, blocked, absorbed, critical, crushing)
+	self:AddEvent(timestamp, event, sourceName, spellId, spellName, environmentalType, amount, school, resisted, blocked, absorbed, critical, crushing)
 end
 
 function mod:SetItemRef(link, ...)

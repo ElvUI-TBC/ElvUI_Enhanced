@@ -72,6 +72,7 @@ L["(%d Absorbed)"] = "Поглощено: %d ед. урона."
 L["(%d Blocked)"] = "Заблокировано: %d уд. урона."
 L["(%d Resisted)"] = "Сопротивление %d еденицам урона."
 L["Critical"] = true
+L["Crushing"] = true
 L["Death Recap unavailable."] = "Информация о смерти не доступна."
 L["Death Recap"] = "Информация о смерти"
 L["Killing blow at %s%% health."] = "Объем здоровья при получении смертельного удара: %s%%"

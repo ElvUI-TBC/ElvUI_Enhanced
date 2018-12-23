@@ -72,6 +72,7 @@ L["(%d Absorbed)"] = true
 L["(%d Blocked)"] = true
 L["(%d Resisted)"] = true
 L["Critical"] = true
+L["Crushing"] = true
 L["Death Recap unavailable."] = true
 L["Death Recap"] = "Récapitulatif lors de la mort"
 L["Killing blow at %s%% health."] = true

@@ -37,7 +37,7 @@ function M:WorldMapBlips()
 		_G["WorldMapRaid"..i.."Icon"]:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\PartyRaidBlips")
 	end
 
-	WorldMapButton:HookScript("OnUpdate", function(self, elapsed)
+	WorldMapButton:HookScript("OnUpdate", function()
 		local unit, class, icon
 		local playerCount, partyX, partyY
 
