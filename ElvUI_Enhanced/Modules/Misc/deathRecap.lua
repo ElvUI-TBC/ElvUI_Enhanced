@@ -151,20 +151,17 @@ function mod:OpenRecap(recapID)
 
 			dmgInfo.dmgExtraStr = ""
 
-			local critStrng = (evtData.critical and evtData.critical > 0) and L["Critical"] or ""
+			local absoStr = (evtData.absorbed and evtData.absorbed > 0)	and format(L["(%d Absorbed)"].." ", evtData.absorbed) or ""
+			local resiStr = (evtData.resisted and evtData.resisted > 0)	and format(L["(%d Resisted)"].." ", evtData.resisted) or ""
+			local blckStr = (evtData.blocked and evtData.blocked > 0)	and format(L["(%d Blocked)"].." ", evtData.blocked) or ""
+			local critStr = (evtData.critical and evtData.critical > 0)	and L["Critical"] or ""
 
-			if evtData.absorbed and evtData.absorbed > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", format(L["(%d Absorbed)"], evtData.absorbed), " "..critStrng)
-				dmgInfo.amount = evtData.amount - evtData.absorbed
-			elseif evtData.resisted and evtData.resisted > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", format(L["(%d Resisted)"], evtData.resisted), " "..critStrng)
-				dmgInfo.amount = evtData.amount - evtData.resisted
-			elseif evtData.blocked and evtData.blocked > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", format(L["(%d Blocked)"], evtData.blocked), " "..critStrng)
-				dmgInfo.amount = evtData.amount - evtData.blocked
-			else
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..critStrng
-			end
+			local absoDmg = (evtData.absorbed and evtData.absorbed > 0)	and evtData.absorbed or 0
+			local resiDmg = (evtData.resisted and evtData.resisted > 0)	and evtData.resisted or 0
+			local blckDmg = (evtData.blocked and evtData.blocked > 0)	and evtData.blocked or 0
+
+			dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", absoStr..resiStr..blckStr..critStr)
+			dmgInfo.amount = evtData.amount - (absoDmg + resiDmg + blckDmg)
 
 			if evtData.amount > highestDmgAmount then
 				highestDmgIdx = i
