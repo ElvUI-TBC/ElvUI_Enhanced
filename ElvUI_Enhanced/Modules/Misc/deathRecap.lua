@@ -155,16 +155,15 @@ function mod:OpenRecap(recapID)
 			local absoStr = (evtData.absorbed and evtData.absorbed > 0) and format(L["(%d Absorbed)"], evtData.absorbed, " ") or ""
 			local resiStr = (evtData.resisted and evtData.resisted > 0) and format(L["(%d Absorbed)"], evtData.resisted, " ") or ""
 			local blckStr = (evtData.blocked and evtData.blocked > 0) and format(L["(%d Absorbed)"], evtData.blocked, " ") or ""
-			local crusStr = (evtData.crushing and evtData.crushing > 0) and format(L["(%d Crushing)"], evtData.crushing, " ") or ""
 			local critStr = (evtData.critical and evtData.critical > 0) and L["Critical"] or ""
+			local crusStr = (evtData.crushing and evtData.crushing > 0) and L["Crushing"] or ""
 
 			local absoDmg = (evtData.absorbed and evtData.absorbed > 0) and evtData.absorbed or 0
 			local resiDmg = (evtData.resisted and evtData.resisted > 0) and evtData.resisted or 0
 			local blckDmg = (evtData.blocked and evtData.blocked > 0) and evtData.blocked or 0
-			local crusDmg = (evtData.crushing and evtData.crushing > 0) and evtData.crushing or 0
 
-			dmgInfo.dmgExtraStr = join("", dmgInfo.dmgExtraStr, " ", absoStr, resiStr, blckStr, crusStr, critStr)
-			dmgInfo.amount = evtData.amount - (absoDmg + resiDmg + blckDmg + crusDmg)
+			dmgInfo.dmgExtraStr = join("", dmgInfo.dmgExtraStr, " ", absoStr, resiStr, blckStr, critStr, crusStr)
+			dmgInfo.amount = evtData.amount - (absoDmg + resiDmg + blckDmg)
 
 			if evtData.amount > highestDmgAmount then
 				highestDmgIdx = i
