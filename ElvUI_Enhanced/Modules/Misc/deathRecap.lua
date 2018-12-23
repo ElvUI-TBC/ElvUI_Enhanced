@@ -265,6 +265,9 @@ function mod:GetTableInfo(data)
 
 		nameIsNotSpell = true
 	elseif event == "RANGE_DAMAGE" then
+	--	spellId = 3018
+	--	spellName = ACTION_RANGED
+
 		nameIsNotSpell = true
 --	elseif strsub(event, 1, 5) == "SPELL" then
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
@@ -324,6 +327,10 @@ function mod:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, event, _, sourceName, sou
 		spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical = ...
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
 		environmentalType, amount, school, resisted, blocked, absorbed, critical = ...
+	elseif subVal == "RANGE" then
+		if event == "RANGE_DAMAGE" then
+			spellId, spellName, spellSchool, amount, school, resisted, blocked, absorbed, critical = ...
+		end
 	end
 
 	if not tonumber(amount) then return end
