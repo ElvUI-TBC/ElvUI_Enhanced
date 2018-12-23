@@ -481,8 +481,11 @@ function mod:Initialize()
 			end
 			if mod:HasEvents() then
 				self.button3:Enable()
-				self.button3:SetScript("OnEnter", nil)
-				self.button3:SetScript("OnLeave", nil)
+				--self.button3:SetScript("OnEnter", nil)
+				--self.button3:SetScript("OnLeave", nil)
+
+				self.button3:SetScript("OnEnter", S.SetModifiedBackdrop)
+				self.button3:SetScript("OnLeave", S.SetOriginalBackdrop)
 			else
 				self.button3:Disable()
 				self.button3:SetScript("OnEnter", function(self)
