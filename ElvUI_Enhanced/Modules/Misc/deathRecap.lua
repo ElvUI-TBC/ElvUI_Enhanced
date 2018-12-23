@@ -69,7 +69,7 @@ function mod:AddDeath()
 		deathList[deathIndex] = CopyTable(eventList)
 		self:EraseEvents()
 
-		DEFAULT_CHAT_FRAME:AddMessage("|cff71d5ff|Hdeath:" .. deathIndex .. "|h[" .. L["You died."] .. "]|h|r")
+		DEFAULT_CHAT_FRAME:AddMessage("|cff71d5ff|Hdeath:"..deathIndex.."|h["..L["You died."].."]|h|r")
 
 		return true
 	end
@@ -151,26 +151,19 @@ function mod:OpenRecap(recapID)
 
 			dmgInfo.dmgExtraStr = ""
 
-			local critStrng
-			if evtData.critical and evtData.critical > 0 then
-				critStrng = L["Critical"]
-			else
-				critStrng = ""
-			end
+			local critStrng = (evtData.critical and evtData.critical > 0) and L["Critical"] or ""
 
 			if evtData.absorbed and evtData.absorbed > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. join("", format(L["(%d Absorbed)"], evtData.absorbed), " "..critStrng)
+				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", format(L["(%d Absorbed)"], evtData.absorbed), " "..critStrng)
 				dmgInfo.amount = evtData.amount - evtData.absorbed
 			elseif evtData.resisted and evtData.resisted > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. join("", format(L["(%d Resisted)"], evtData.resisted), " "..critStrng)
+				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", format(L["(%d Resisted)"], evtData.resisted), " "..critStrng)
 				dmgInfo.amount = evtData.amount - evtData.resisted
 			elseif evtData.blocked and evtData.blocked > 0 then
-				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. join("", format(L["(%d Blocked)"], evtData.blocked), " "..critStrng)
+				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..join("", format(L["(%d Blocked)"], evtData.blocked), " "..critStrng)
 				dmgInfo.amount = evtData.amount - evtData.blocked
 			else
-				if evtData.critical and evtData.critical > 0 then
-					dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr .. " " .. format(L["Critical"], evtData.critical)
-				end
+				dmgInfo.dmgExtraStr = dmgInfo.dmgExtraStr.." "..critStrng
 			end
 
 			if evtData.amount > highestDmgAmount then
@@ -280,7 +273,7 @@ function mod:GetTableInfo(data)
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
 		local environmentalType = data.environmentalType
 		environmentalType = upper(environmentalType)
-		spellName = _G["ACTION_ENVIRONMENTAL_DAMAGE_" .. environmentalType]
+		spellName = _G["ACTION_ENVIRONMENTAL_DAMAGE_"..environmentalType]
 		nameIsNotSpell = true
 		if environmentalType == "DROWNING" then
 			texture = "spell_shadow_demonbreath"
@@ -295,7 +288,7 @@ function mod:GetTableInfo(data)
 		else
 			texture = "ability_creature_cursed_05"
 		end
-		texture = "Interface\\Icons\\" .. texture
+		texture = "Interface\\Icons\\"..texture
 	end
 
 	local spellNameStr = spellName
@@ -536,7 +529,7 @@ function mod:Initialize()
 		end,
 		OnUpdate = function(self, elapsed)
 			if self.timeleft > 0 then
-				local text = _G[self:GetName() .. "Text"]
+				local text = _G[self:GetName().."Text"]
 				local timeleft = self.timeleft
 				if timeleft < 60 then
 					text:SetFormattedText(DEATH_RELEASE_TIMER, timeleft, SECONDS)
