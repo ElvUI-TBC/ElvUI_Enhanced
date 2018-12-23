@@ -153,8 +153,8 @@ function mod:OpenRecap(recapID)
 			dmgInfo.dmgExtraStr = ""
 
 			local absoStr = (evtData.absorbed and evtData.absorbed > 0) and format(L["(%d Absorbed)"], evtData.absorbed, " ") or ""
-			local resiStr = (evtData.resisted and evtData.resisted > 0) and format(L["(%d Absorbed)"], evtData.resisted, " ") or ""
-			local blckStr = (evtData.blocked and evtData.blocked > 0) and format(L["(%d Absorbed)"], evtData.blocked, " ") or ""
+			local resiStr = (evtData.resisted and evtData.resisted > 0) and format(L["(%d Resisted)"], evtData.resisted, " ") or ""
+			local blckStr = (evtData.blocked and evtData.blocked > 0) and format(L["(%d Blocked)"], evtData.blocked, " ") or ""
 			local critStr = (evtData.critical and evtData.critical > 0) and L["Critical"] or ""
 			local crusStr = (evtData.crushing and evtData.crushing > 0) and L["Crushing"] or ""
 
