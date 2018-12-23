@@ -35,6 +35,7 @@ L["Filter DPS meters Spam"] = true
 L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
+L["Character"] = "Personaje"
 L["Damaged Only"] = true
 L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = true
@@ -43,12 +44,12 @@ L["Enhanced Character Frame"] = true
 L["Equipment"] = true
 L["Only show durabitlity information for items that are damaged."] = true
 L["Paperdoll Backgrounds"] = true
+L["Pet"] = "Mascota"
 L["Quality Color"] = true
 
 -- Datatext
 L["Combat Indicator"] = true
 L["DataText Color"] = true
-L["Distance"] = true
 L["Enhanced Time Color"] = true
 L["Equipped"] = true
 L["In Combat"] = true
@@ -69,8 +70,8 @@ L["%s by %s"] = true
 L["%s sec before death at %s%% health."] = true
 L["(%d Absorbed)"] = true
 L["(%d Blocked)"] = true
-L["(%d Overkill)"] = true
 L["(%d Resisted)"] = true
+L["Critical"] = true
 L["Death Recap unavailable."] = true
 L["Death Recap"] = true
 L["Killing blow at %s%% health."] = true
@@ -110,8 +111,6 @@ L["Mouse Wheel Up"] = true
 L["Right-click on character and drag to move it within the window."] = true
 L["Rotate Left"] = true
 L["Rotate Right"] = true
-L["Zoom In"] = true
-L["Zoom Out"] = true
 
 -- Nameplates
 L["Bars will transition smoothly."] = true
@@ -119,6 +118,7 @@ L["Smooth Bars"] = true
 
 -- Minimap
 L["Above Minimap"] = true
+L["Always"] = "Siempre"
 L["Combat Hide"] = true
 L["FadeIn Delay"] = true
 L["Hide minimap while in combat."] = true
@@ -134,9 +134,11 @@ L["Colorize the tooltip border based on item quality."] = true
 L["Show/Hides an Icon for Items on the Tooltip."] = true
 L["Show/Hides an Icon for Spells on the Tooltip."] = true
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true
+L["Spells"] = "Hechizos"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Miscellaneous"] = true
 L["Skin Animations"] = true
 L["Undress"] = true
 
@@ -149,7 +151,7 @@ L["Item Level"] = true
 L["Resistance"] = true
 L["Show Character Information"] = true
 L["Show Pet Information"] = true
-L["Titles"] = true
+L["Titles"] = "Títulos"
 
 -- Movers
 L["Loss Control Icon"] = true
@@ -164,12 +166,12 @@ L["PvE"] = "PvE"
 L["Root"] = "Inmovilice"
 L["Silence"] = "Silencio"
 L["Snare"] = "Trampa"
+L["Type"] = "Tipo"
 
 -- Raid Marks
 L["Raid Markers"] = true
 L["Click to clear the mark."] = true
 L["Click to mark the target."] = true
-L["Custom"] = true
 L["In Party"] = true
 L["Raid Marker Bar"] = true
 L["Reverse"] = true
@@ -179,7 +181,7 @@ L["Class Icons"] = true
 L["Detached Height"] = true
 L["Energy Tick"] = true
 L["Show class icon for units."] = true
-L["Target"] = true
+L["Target"] = "Objetivo"
 
 -- WatchFrame
 L["Hidden"] = true

@@ -64,6 +64,6 @@ local function ValueColorUpdate(hex)
 		OnEvent(lastPanel)
 	end
 end
-E["valueColorUpdateFuncs"][ValueColorUpdate] = true
+E.valueColorUpdateFuncs[ValueColorUpdate] = true
 
 DT:RegisterDatatext("Soul Shards", {"BAG_UPDATE"}, OnEvent, nil, nil, nil, nil, ColorizeSettingName(L["Soul Shards"]))

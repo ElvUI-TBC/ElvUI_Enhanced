@@ -35,6 +35,7 @@ L["Filter DPS meters Spam"] = true
 L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
+L["Character"] = "Персонаж"
 L["Damaged Only"] = "Только поврежденные"
 L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = "Включить/Выключить отображение информации о прочности предметов в окне персонажа."
@@ -43,12 +44,12 @@ L["Enhanced Character Frame"] = true
 L["Equipment"] = "Экипировка"
 L["Only show durabitlity information for items that are damaged."] = "Показывать уровень прочности только на поврежденных предметах."
 L["Paperdoll Backgrounds"] = true
+L["Pet"] = "Питомец"
 L["Quality Color"] = true
 
 -- Datatext
 L["Combat Indicator"] = true
 L["DataText Color"] = true
-L["Distance"] = true
 L["Enhanced Time Color"] = true
 L["Equipped"] = true
 L["In Combat"] = true
@@ -69,8 +70,8 @@ L["%s by %s"] = "%s - %s"
 L["%s sec before death at %s%% health."] = "%s сек. до смерти при объеме здоровья %s%%"
 L["(%d Absorbed)"] = "Поглощено: %d ед. урона."
 L["(%d Blocked)"] = "Заблокировано: %d уд. урона."
-L["(%d Overkill)"] = "Избыточный урон: %d ед."
 L["(%d Resisted)"] = "Сопротивление %d еденицам урона."
+L["Critical"] = true
 L["Death Recap unavailable."] = "Информация о смерти не доступна."
 L["Death Recap"] = "Информация о смерти"
 L["Killing blow at %s%% health."] = "Объем здоровья при получении смертельного удара: %s%%"
@@ -110,8 +111,6 @@ L["Mouse Wheel Up"] = "Прокрутка вверх"
 L["Right-click on character and drag to move it within the window."] = "Зажмите правую кнопку мыши и тащите курсор, чтобы переместить персонажа."
 L["Rotate Left"] = "Вращение влево"
 L["Rotate Right"] = "Вращение вправо"
-L["Zoom In"] = "Приблизить"
-L["Zoom Out"] = "Отдалить"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true
@@ -119,6 +118,7 @@ L["Smooth Bars"] = true
 
 -- Minimap
 L["Above Minimap"] = "Над миникартой"
+L["Always"] = "Всегда"
 L["Combat Hide"] = true
 L["FadeIn Delay"] = "Задержка появления"
 L["Hide minimap while in combat."] = "Скрывать миникарту во время боя."
@@ -134,9 +134,11 @@ L["Colorize the tooltip border based on item quality."] = "Окрашивать 
 L["Show/Hides an Icon for Items on the Tooltip."] = true
 L["Show/Hides an Icon for Spells on the Tooltip."] = true
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true
+L["Spells"] = "Заклинания"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Miscellaneous"] = "Разное"
 L["Skin Animations"] = true
 L["Undress"] = "Раздеть"
 
@@ -164,12 +166,12 @@ L["PvE"] = "Рейдовые"
 L["Root"] = "Замедления"
 L["Silence"] = "Молчание"
 L["Snare"] = "Ловушки"
+L["Type"] = "Тип"
 
 -- Raid Marks
 L["Raid Markers"] = true
 L["Click to clear the mark."] = true
 L["Click to mark the target."] = true
-L["Custom"] = true
 L["In Party"] = true
 L["Raid Marker Bar"] = true
 L["Reverse"] = true

@@ -392,7 +392,7 @@ function mod:Initialize()
 		button.DamageInfo:Point("TOPLEFT", 0, 0)
 		button.DamageInfo:Point("BOTTOMRIGHT", button, "BOTTOMLEFT", 80, 0)
 		button.DamageInfo:SetScript("OnEnter", self.Amount_OnEnter)
-		button.DamageInfo:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+		button.DamageInfo:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 		button.DamageInfo.Amount = button.DamageInfo:CreateFontString("ARTWORK", nil, "GameFontNormal")
 		button.DamageInfo.Amount:SetJustifyH("RIGHT")
@@ -412,7 +412,7 @@ function mod:Initialize()
 		button.SpellInfo:Point("TOPLEFT", button.DamageInfo, "TOPRIGHT", 16, 0)
 		button.SpellInfo:Point("BOTTOMRIGHT", 0, 0)
 		button.SpellInfo:SetScript("OnEnter", self.Spell_OnEnter)
-		button.SpellInfo:SetScript("OnLeave", function(self) GameTooltip:Hide() end)
+		button.SpellInfo:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
 		button.SpellInfo.FrameIcom = CreateFrame("Button", nil, button.SpellInfo)
 		button.SpellInfo.FrameIcom:Size(34)
@@ -439,6 +439,7 @@ function mod:Initialize()
 
 		if i == 1 then
 			button:SetPoint("BOTTOMLEFT", 16, 64)
+
 			button.tombstone = button:CreateTexture("ARTWORK")
 			button.tombstone:Size(15, 20)
 			button.tombstone:Point("RIGHT", button.DamageInfo.Amount, "LEFT", -10, 0)
@@ -453,7 +454,7 @@ function mod:Initialize()
 	frame.CloseButton:Size(144, 21)
 	frame.CloseButton:Point("BOTTOM", 0, 15)
 	frame.CloseButton:SetText(CLOSE)
-	frame.CloseButton:SetScript("OnClick", function(self) HideUIPanel(DeathRecapFrame) end)
+	frame.CloseButton:SetScript("OnClick", function() HideUIPanel(DeathRecapFrame) end)
 	S:HandleButton(frame.CloseButton)
 
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
@@ -516,7 +517,7 @@ function mod:Initialize()
 				return
 			end
 			if reason == "clicked" then
-				if(HasSoulstone()) then
+				if HasSoulstone() then
 					UseSoulstone()
 				else
 					RepopMe()

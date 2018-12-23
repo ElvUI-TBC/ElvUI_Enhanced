@@ -35,6 +35,7 @@ L["Filter DPS meters Spam"] = true
 L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
+L["Character"] = "Personnage"
 L["Damaged Only"] = "Dégâts seulement"
 L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = "Activer / Désactiver l'affichage des informations de durabilité sur l'écran d'infos de personnage."
@@ -43,12 +44,12 @@ L["Enhanced Character Frame"] = true
 L["Equipment"] = "Équipement"
 L["Only show durabitlity information for items that are damaged."] = "Afficher la durabilité seulement quand l'équipement est endommagé."
 L["Paperdoll Backgrounds"] = true
+L["Pet"] = "Familier"
 L["Quality Color"] = true
 
 -- Datatext
 L["Combat Indicator"] = true
 L["DataText Color"] = true
-L["Distance"] = true
 L["Enhanced Time Color"] = true
 L["Equipped"] = true
 L["In Combat"] = true
@@ -69,8 +70,8 @@ L["%s by %s"] = true
 L["%s sec before death at %s%% health."] = true
 L["(%d Absorbed)"] = true
 L["(%d Blocked)"] = true
-L["(%d Overkill)"] = true
 L["(%d Resisted)"] = true
+L["Critical"] = true
 L["Death Recap unavailable."] = true
 L["Death Recap"] = "Récapitulatif lors de la mort"
 L["Killing blow at %s%% health."] = true
@@ -110,8 +111,6 @@ L["Mouse Wheel Up"] = "Molette vers le haut"
 L["Right-click on character and drag to move it within the window."] = "Cliquez-droit sur le personnage et faites glisser la souris pour le déplacer."
 L["Rotate Left"] = "Pivoter à gauche"
 L["Rotate Right"] = "Pivoter à droite"
-L["Zoom In"] = "Zoomer"
-L["Zoom Out"] = "Dézoomer"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true
@@ -119,6 +118,7 @@ L["Smooth Bars"] = true
 
 -- Minimap
 L["Above Minimap"] = "Sous la minicarte"
+L["Always"] = "Toujours"
 L["Combat Hide"] = true
 L["FadeIn Delay"] = "Délais d'estompage"
 L["Hide minimap while in combat."] = "Cacher la minicarte quand vous êtes en combat"
@@ -134,9 +134,11 @@ L["Colorize the tooltip border based on item quality."] = true
 L["Show/Hides an Icon for Items on the Tooltip."] = true
 L["Show/Hides an Icon for Spells on the Tooltip."] = true
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true
+L["Spells"] = "Sorts"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Miscellaneous"] = "Divers"
 L["Skin Animations"] = true
 L["Undress"] = "Déshabillé"
 
@@ -146,10 +148,10 @@ L["Damage Per Second"] = "DPS"
 L["Hide Character Information"] = true
 L["Hide Pet Information"] = true
 L["Item Level"] = true
-L["Resistance"] = true
+L["Resistance"] = "Résistance"
 L["Show Character Information"] = true
 L["Show Pet Information"] = true
-L["Titles"] = true
+L["Titles"] = "Titres"
 
 -- Movers
 L["Loss Control Icon"] = "Icône de la perte de contrôle"
@@ -164,12 +166,12 @@ L["PvE"] = "PvE"
 L["Root"] = "Immobilisation"
 L["Silence"] = "Silence"
 L["Snare"] = "Ralentissement"
+L["Type"] = "Type"
 
 -- Raid Marks
 L["Raid Markers"] = true
 L["Click to clear the mark."] = true
 L["Click to mark the target."] = true
-L["Custom"] = true
 L["In Party"] = true
 L["Raid Marker Bar"] = true
 L["Reverse"] = true
@@ -179,7 +181,7 @@ L["Class Icons"] = true
 L["Detached Height"] = true
 L["Energy Tick"] = true
 L["Show class icon for units."] = true
-L["Target"] = true
+L["Target"] = "Cibler"
 
 -- WatchFrame
 L["Hidden"] = "Caché"

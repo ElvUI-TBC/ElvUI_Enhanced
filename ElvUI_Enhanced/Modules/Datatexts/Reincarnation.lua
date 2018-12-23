@@ -106,6 +106,6 @@ local function ValueColorUpdate(hex)
 		then OnEvent(lastPanel)
 	end
 end
-E["valueColorUpdateFuncs"][ValueColorUpdate] = true
+E.valueColorUpdateFuncs[ValueColorUpdate] = true
 
 DT:RegisterDatatext("Reincarnation", {"PLAYER_ENTERING_WORLD", "SPELL_UPDATE_COOLDOWN"}, OnEvent, OnUpdate, OnClick, OnEnter, nil, ColorizeSettingName(L["Reincarnation"]))

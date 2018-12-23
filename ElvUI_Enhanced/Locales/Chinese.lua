@@ -35,6 +35,7 @@ L["Filter DPS meters Spam"] = true
 L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
+L["Character"] = "角色"
 L["Damaged Only"] = "受损显示"
 L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = "开启/关闭 人物窗口装备耐久度显示."
@@ -43,12 +44,12 @@ L["Enhanced Character Frame"] = true
 L["Equipment"] = "自动换装"
 L["Only show durabitlity information for items that are damaged."] = "只在装备受损时显示耐久度."
 L["Paperdoll Backgrounds"] = true
+L["Pet"] = "宠物"
 L["Quality Color"] = true
 
 -- Datatext
 L["Combat Indicator"] = true
 L["DataText Color"] = true
-L["Distance"] = true
 L["Enhanced Time Color"] = true
 L["Equipped"] = true
 L["In Combat"] = true
@@ -69,8 +70,8 @@ L["%s by %s"] = true
 L["%s sec before death at %s%% health."] = true
 L["(%d Absorbed)"] = true
 L["(%d Blocked)"] = true
-L["(%d Overkill)"] = true
 L["(%d Resisted)"] = true
+L["Critical"] = true
 L["Death Recap unavailable."] = true
 L["Death Recap"] = "死亡回放"
 L["Killing blow at %s%% health."] = true
@@ -110,8 +111,6 @@ L["Mouse Wheel Up"] = "鼠标滚轮向上滚动"
 L["Right-click on character and drag to move it within the window."] = "右键点击并拖曳角色，使其在窗口内移动。"
 L["Rotate Left"] = "左转"
 L["Rotate Right"] = "右转"
-L["Zoom In"] = "放大"
-L["Zoom Out"] = "缩小"
 
 -- Nameplates
 L["Bars will transition smoothly."] = true
@@ -119,6 +118,7 @@ L["Smooth Bars"] = true
 
 -- Minimap
 L["Above Minimap"] = true
+L["Always"] = "总是"
 L["Combat Hide"] = true
 L["FadeIn Delay"] = true
 L["Hide minimap while in combat."] = true
@@ -134,9 +134,11 @@ L["Colorize the tooltip border based on item quality."] = true
 L["Show/Hides an Icon for Items on the Tooltip."] = true
 L["Show/Hides an Icon for Spells on the Tooltip."] = true
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = true
+L["Spells"] = "法术"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Miscellaneous"] = "杂项"
 L["Skin Animations"] = true
 L["Undress"] = "无装备"
 
@@ -164,12 +166,12 @@ L["PvE"] = "PvE"
 L["Root"] = "定身类技能"
 L["Silence"] = "沉默类技能"
 L["Snare"] = "减速类技能"
+L["Type"] = "类型"
 
 -- Raid Marks
 L["Raid Markers"] = true
 L["Click to clear the mark."] = true
 L["Click to mark the target."] = true
-L["Custom"] = true
 L["In Party"] = true
 L["Raid Marker Bar"] = true
 L["Reverse"] = true
@@ -179,7 +181,7 @@ L["Class Icons"] = true
 L["Detached Height"] = true
 L["Energy Tick"] = true
 L["Show class icon for units."] = true
-L["Target"] = true
+L["Target"] = "目标"
 
 -- WatchFrame
 L["Hidden"] = true

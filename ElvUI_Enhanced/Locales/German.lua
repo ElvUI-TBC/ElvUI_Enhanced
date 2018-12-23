@@ -35,6 +35,7 @@ L["Filter DPS meters Spam"] = "Spam von DPS-Metern filtern"
 L["Replaces long reports from damage meters with a clickable hyperlink to reduce chat spam.\nWorks correctly only with general reports such as DPS or HPS. May fail to filter te report of other things"] = true
 
 -- Character Frame
+L["Character"] = "Charakter"
 L["Damaged Only"] = "Nur Beschädigte"
 L["Desaturate"] = true
 L["Enable/Disable the display of durability information on the character screen."] = "Anzeige der Haltbarkeit im Charakterfenster."
@@ -43,12 +44,12 @@ L["Enhanced Character Frame"] = "Erweitertes Charakterfenster"
 L["Equipment"] = "Ausrüstung"
 L["Only show durabitlity information for items that are damaged."] = "Nur die Haltbarkeit für beschädigte Ausrüstungsteile anzeigen."
 L["Paperdoll Backgrounds"] = "Paperdoll-Hintergrund"
+L["Pet"] = "Begleiter"
 L["Quality Color"] = "Qualitätsfarbe"
 
 -- Datatext
 L["Combat Indicator"] = "Kampfanzeige"
 L["DataText Color"] = true
-L["Distance"] = "Entfernung"
 L["Enhanced Time Color"] = "Erweiterte Zeit-Färbung"
 L["Equipped"] = "Angelegt"
 L["In Combat"] = "Im Kampf"
@@ -69,8 +70,8 @@ L["%s by %s"] = "%s durch %s"
 L["%s sec before death at %s%% health."] = "%s Sekunden vor Tod bei %s%% Gesundheit."
 L["(%d Absorbed)"] = "(%d Absorbiert)"
 L["(%d Blocked)"] = "(%d Geblockt)"
-L["(%d Overkill)"] = "(%d Über dem Tod)"
 L["(%d Resisted)"] = "(%d Widerstanden)"
+L["Critical"] = true
 L["Death Recap unavailable."] = "Todesursache nicht verfügbar."
 L["Death Recap"] = "Todesursache"
 L["Killing blow at %s%% health."] = "Todesstoß bei %s%% Gesundheit."
@@ -110,8 +111,6 @@ L["Mouse Wheel Up"] = "Mausrad nach oben"
 L["Right-click on character and drag to move it within the window."] = "Rechtsklicken und ziehen, um den Charakter im Fenster zu verschieben."
 L["Rotate Left"] = "Linksdrehung"
 L["Rotate Right"] = "Rechtsdrehung"
-L["Zoom In"] = "Hereinzoomen"
-L["Zoom Out"] = "Herauszoomen"
 
 -- Nameplates
 L["Bars will transition smoothly."] = "Balken werden sanft übergehen"
@@ -119,6 +118,7 @@ L["Smooth Bars"] = "Sanfte Balken"
 
 -- Minimap
 L["Above Minimap"] = "Oberhalb der Minimap"
+L["Always"] = "Immer"
 L["Combat Hide"] = true
 L["FadeIn Delay"] = "Einblendungsverzögerung"
 L["Hide minimap while in combat."] = "Ausblenden der Minimap während des Kampfes."
@@ -134,9 +134,11 @@ L["Colorize the tooltip border based on item quality."] = "Färbe den Tooltip-Ra
 L["Show/Hides an Icon for Items on the Tooltip."] = "Icon für Gegenstände am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells on the Tooltip."] = "Icon für Zauber am Tooltip anzeigen oder ausblenden."
 L["Show/Hides an Icon for Spells and Items on the Tooltip."] = "Icon für Zauber oder Gegenstände am Tooltip anzeigen oder ausblenden."
+L["Spells"] = "Zauber"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Miscellaneous"] = "Verschiedenes"
 L["Skin Animations"] = "Skin-Animationen"
 L["Undress"] = "Ausziehen"
 
@@ -164,12 +166,12 @@ L["PvE"] = "PvE"
 L["Root"] = "Wurzeln"
 L["Silence"] = "Stille"
 L["Snare"] = "Verlangsamung"
+L["Type"] = "Typ"
 
 -- Raid Marks
 L["Raid Markers"] = true
 L["Click to clear the mark."] = true
 L["Click to mark the target."] = true
-L["Custom"] = true
 L["In Party"] = true
 L["Raid Marker Bar"] = true
 L["Reverse"] = true

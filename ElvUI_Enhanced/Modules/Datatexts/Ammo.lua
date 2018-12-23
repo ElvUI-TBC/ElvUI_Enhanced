@@ -88,7 +88,7 @@ local function OnEnter(self)
 	for i = 1, NUM_BAG_SLOTS do
 		link = GetInventoryItemLink("player", ContainerIDToInventoryID(i))
 		if link then
-			name, _, quality, _, _, _, subclass, _, _, texture = GetItemInfo(link)
+			name, _, quality, _, _, _, subclass = GetItemInfo(link)
 
 			if subclass == quiver or subclass == pouch or subclass == soulBag then
 				r, g, b = GetItemQualityColor(quality)
@@ -113,7 +113,7 @@ local function OnEnter(self)
 					soulBagLineAdded = true
 				end
 
-				DT.tooltip:AddDoubleLine(join("", format(iconString, texture), "  ", name), format("%d / %d", used, total), r, g, b)
+				DT.tooltip:AddDoubleLine(name.." ", format("%d / %d", used, total), r, g, b)
 			end
 		end
 	end
@@ -146,6 +146,6 @@ local function ValueColorUpdate(hex)
 		OnEvent(lastPanel)
 	end
 end
-E["valueColorUpdateFuncs"][ValueColorUpdate] = true
+E.valueColorUpdateFuncs[ValueColorUpdate] = true
 
 DT:RegisterDatatext(INVTYPE_AMMO, {"PLAYER_ENTERING_WORLD", "BAG_UPDATE", "UNIT_INVENTORY_CHANGED"}, OnEvent, nil, OnClick, OnEnter, nil, ColorizeSettingName(L["Ammo / Soul Shards"]))

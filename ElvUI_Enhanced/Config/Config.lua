@@ -3,12 +3,6 @@ local addon = E:GetModule("ElvUI_Enhanced")
 
 local format = string.format
 
-local ALWAYS, DEFAULT, ENABLE, HIDE, FONT_SIZE, NONE = ALWAYS, DEFAULT, ENABLE, HIDE, FONT_SIZE, NONE
-local CHARACTER, PET, INSPECT = CHARACTER, PET, INSPECT
-local SPELLS, ITEMS, TYPE = SPELLS, ITEMS, TYPE
-local DRESSUP_FRAME = DRESSUP_FRAME
-local MISCELLANEOUS = MISCELLANEOUS
-
 local function ColorizeSettingName(settingName)
 	return format("|cffff8000%s|r", settingName)
 end
@@ -177,7 +171,7 @@ local function ActionbarOptions()
 					equipped = {
 						order = 1,
 						type = "toggle",
-						name = ENABLE,
+						name = L["Enable"],
 						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value EAB:UpdateCallback() E:GetModule("ActionBars"):UpdateButtonSettings() end
 					},
@@ -284,7 +278,7 @@ local function DataTextsOptions()
 					enable = {
 						order = 1,
 						type = "toggle",
-						name = ENABLE,
+						name = L["Enable"],
 						get = function(info) return E.db.enhanced.datatexts.datatextColor.enable end,
 						set = function(info, value) E.db.enhanced.datatexts.datatextColor.enable = value DTC:ColorFont() end
 					},
@@ -293,7 +287,7 @@ local function DataTextsOptions()
 						type = "select",
 						name = L["DataText Color"],
 						values = {
-							["CLASS"] = CLASS,
+							["CLASS"] = L["Class"],
 							["CUSTOM"] = L["Custom"],
 							["VALUE"] = L["Value Color"]
 						},
@@ -303,7 +297,7 @@ local function DataTextsOptions()
 					custom = {
 						order = 3,
 						type = "color",
-						name = COLOR,
+						name = L["Color"],
 						disabled = function() return E.db.enhanced.datatexts.datatextColor.color == "CLASS" or E.db.enhanced.datatexts.datatextColor.color == "VALUE" end,
 						get = function(info)
 							local t = E.db.enhanced.datatexts.datatextColor.custom
@@ -376,7 +370,7 @@ local function MinimapOptions()
 		["MOUSEOVER"] = L["Minimap Mouseover"],
 		["SHOW"] = L["Always Display"],
 		["ABOVE"] = ColorizeSettingName(L["Above Minimap"]),
-		["HIDE"] = HIDE
+		["HIDE"] = L["Hide"]
 	}
 	config.args.locationText = E.Options.args.maps.args.minimap.args.locationTextGroup.args.locationText
 	return config
@@ -404,7 +398,7 @@ local function NamePlatesOptions()
 					enable = {
 						order = 1,
 						type = "toggle",
-						name = ENABLE,
+						name = L["Enable"],
 						desc = L["Bars will transition smoothly."],
 						set = function(info, value) E.db.enhanced.nameplates.smoothBars[ info[#info] ] = value E:GetModule("NamePlates"):ConfigureAll() end
 					},
@@ -455,7 +449,7 @@ local function TooltipOptions()
 					tooltipIcon = {
 						order = 1,
 						type = "toggle",
-						name = ENABLE,
+						name = L["Enable"],
 						desc = L["Show/Hides an Icon for Spells and Items on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.enable end,
 						set = function(info, value)
@@ -473,7 +467,7 @@ local function TooltipOptions()
 					tooltipIconSpells = {
 						order = 3,
 						type = "toggle",
-						name = SPELLS,
+						name = L["Spells"],
 						desc = L["Show/Hides an Icon for Spells on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconSpells end,
 						set = function(info, value)
@@ -485,7 +479,7 @@ local function TooltipOptions()
 					tooltipIconItems = {
 						order = 4,
 						type = "toggle",
-						name = ITEMS,
+						name = L["Items"],
 						desc = L["Show/Hides an Icon for Items on the Tooltip."],
 						get = function(info) return E.db.enhanced.tooltip.tooltipIcon.tooltipIconItems end,
 						set = function(info, value)
@@ -529,8 +523,8 @@ local function UnitFrameOptions()
 						order = 2,
 						type = "group",
 						name = L["Animated Loss"],
-						get = function(info) return E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] end,
-						set = function(info, value) E.db.unitframe.units["player"]["animatedLoss"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
+						get = function(info) return E.db.unitframe.units.player.animatedLoss[ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units.player.animatedLoss[ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
 						args = {
 							header = {
 								order = 1,
@@ -540,7 +534,7 @@ local function UnitFrameOptions()
 							enable = {
 								order = 2,
 								type = "toggle",
-								name = ENABLE
+								name = L["Enable"]
 							},
 							spacer = {
 								order = 3,
@@ -581,8 +575,8 @@ local function UnitFrameOptions()
 						order = 3,
 						type = "group",
 						name = L["Portrait"],
-						get = function(info) return E.db.unitframe.units["player"]["portrait"][ info[#info] ] end,
-						set = function(info, value) E.db.unitframe.units["player"]["portrait"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
+						get = function(info) return E.db.unitframe.units.player.portrait[ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units.player.portrait[ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
 						args = {
 							header = {
 								order = 1,
@@ -620,8 +614,8 @@ local function UnitFrameOptions()
 						order = 4,
 						type = "group",
 						name = L["Energy Tick"],
-						get = function(info) return E.db.unitframe.units["player"]["power"][ info[#info] ] end,
-						set = function(info, value) E.db.unitframe.units["player"]["power"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
+						get = function(info) return E.db.unitframe.units.player.power[ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units.player.power[ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("player") end,
 						args = {
 							header = {
 								order = 1,
@@ -637,14 +631,14 @@ local function UnitFrameOptions()
 							energyTickColor = {
 								order = 3,
 								type = "color",
-								name = COLOR,
+								name = L["Color"],
 								get = function(info)
-									local t = E.db.unitframe.units["player"]["power"][ info[#info] ]
-									local d = P.unitframe.units["player"]["power"][ info[#info] ]
+									local t = E.db.unitframe.units.player.power[ info[#info] ]
+									local d = P.unitframe.units.player.power[ info[#info] ]
 									return t.r, t.g, t.b, t.a, d.r, d.g, d.b
 								end,
 								set = function(info, r, g, b)
-									local t = E.db.unitframe.units["player"]["power"][ info[#info] ]
+									local t = E.db.unitframe.units.player.power[ info[#info] ]
 									t.r, t.g, t.b = r, g, b
 									E:GetModule("UnitFrames"):CreateAndUpdateUF("player")
 								end,
@@ -677,7 +671,7 @@ local function UnitFrameOptions()
 							enable = {
 								order = 1,
 								type = "toggle",
-								name = ENABLE,
+								name = L["Enable"],
 								desc = L["Show class icon for units."],
 								get = function(info) return E.db.enhanced.unitframe.units.target.classicon.enable end,
 								set = function(info, value) E.db.enhanced.unitframe.units.target.classicon.enable = value TC:ToggleSettings() end
@@ -721,8 +715,8 @@ local function UnitFrameOptions()
 						order = 3,
 						type = "group",
 						name = L["Portrait"],
-						get = function(info) return E.db.unitframe.units["target"]["portrait"][ info[#info] ] end,
-						set = function(info, value) E.db.unitframe.units["target"]["portrait"][ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("target") end,
+						get = function(info) return E.db.unitframe.units.target.portrait[ info[#info] ] end,
+						set = function(info, value) E.db.unitframe.units.target.portrait[ info[#info] ] = value E:GetModule("UnitFrames"):CreateAndUpdateUF("target") end,
 						args = {
 							header = {
 								order = 1,
@@ -771,20 +765,20 @@ local function MiscOptions()
 	local B = E:GetModule("Enhanced_Blizzard")
 
 	local choices = {
-		["NONE"] = NONE,
+		["NONE"] = L["None"],
 		["HIDDEN"] = L["Hidden"]
 	}
 
 	local config = {
 		order = 9,
 		type = "group",
-		name = MISCELLANEOUS,
+		name = L["Miscellaneous"],
 		childGroups = "tab",
 		args = {
 			header = {
 				order = 1,
 				type = "header",
-				name = ColorizeSettingName(MISCELLANEOUS)
+				name = ColorizeSettingName(L["Miscellaneous"])
 			},
 			enhancedFrames = {
 				order = 2,
@@ -823,7 +817,7 @@ local function MiscOptions()
 									characterBackground = {
 										order = 1,
 										type = "toggle",
-										name = CHARACTER,
+										name = L["Character"],
 										get = function(info) return E.db.enhanced.character.characterBackground end,
 										set = function(info, value) E.db.enhanced.character.characterBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdateCharacterModelFrame() end,
 										disabled = function() return not E.private.enhanced.character.enable end
@@ -844,7 +838,7 @@ local function MiscOptions()
 									petBackground = {
 										order = 4,
 										type = "toggle",
-										name = PET,
+										name = L["Pet"],
 										get = function(info) return E.db.enhanced.character.petBackground end,
 										set = function(info, value) E.db.enhanced.character.petBackground = value E:GetModule("Enhanced_CharacterFrame"):UpdatePetModelFrame() end,
 										disabled = function() return not E.private.enhanced.character.enable end
@@ -865,7 +859,7 @@ local function MiscOptions()
 									inspectBackground = {
 										order = 7,
 										type = "toggle",
-										name = INSPECT,
+										name = L["Inspect"],
 										get = function(info) return E.db.enhanced.character.inspectBackground end,
 										set = function(info, value) E.db.enhanced.character.inspectBackground = value end,
 										disabled = function() return not E.private.enhanced.character.enable end
@@ -885,7 +879,7 @@ local function MiscOptions()
 					dressingRoom = {
 						order = 3,
 						type = "group",
-						name = DRESSUP_FRAME,
+						name = L["Dressing Room"],
 						get = function(info) return E.db.enhanced.blizzard.dressUpFrame[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.blizzard.dressUpFrame[ info[#info] ] = value B:UpdateDressUpFrame() end,
 						disabled = function() return not E.private.skins.blizzard.enable or not E.private.skins.blizzard.dressingroom end,
@@ -893,7 +887,7 @@ local function MiscOptions()
 							header = {
 								order = 1,
 								type = "header",
-								name = DRESSUP_FRAME
+								name = L["Dressing Room"]
 							},
 							enable = {
 								order = 2,
@@ -939,7 +933,7 @@ local function MiscOptions()
 					enable = {
 						order = 2,
 						type = "toggle",
-						name = ENABLE,
+						name = L["Enable"],
 						set = function(info, value)
 							E.db.enhanced.equipment[info[#info]] = value
 							PD:ToggleState()
@@ -965,7 +959,7 @@ local function MiscOptions()
 							enable = {
 								order = 3,
 								type = "toggle",
-								name = ENABLE,
+								name = L["Enable"],
 								desc = L["Enable/Disable the display of durability information on the character screen."],
 								disabled = function() return not E.db.enhanced.equipment.enable end
 							},
@@ -1020,7 +1014,7 @@ local function MiscOptions()
 							fontSize = {
 								order = 10,
 								type = "range",
-								name = FONT_SIZE,
+								name = L["Font Size"],
 								min = 6, max = 36, step = 1,
 								disabled = function() return not E.db.enhanced.equipment.durability.enable or not E.db.enhanced.equipment.enable end
 							},
@@ -1029,7 +1023,7 @@ local function MiscOptions()
 								type = "select",
 								name = L["Font Outline"],
 								values = {
-									["NONE"] = NONE,
+									["NONE"] = L["None"],
 									["OUTLINE"] = "OUTLINE",
 									["MONOCHROMEOUTLINE"] = "MONOCROMEOUTLINE",
 									["THICKOUTLINE"] = "THICKOUTLINE"
@@ -1058,7 +1052,7 @@ local function MiscOptions()
 							enable = {
 								order = 3,
 								type = "toggle",
-								name = ENABLE,
+								name = L["Enable"],
 								desc = L["Enable/Disable the display of item levels on the character screen."],
 								disabled = function() return not E.db.enhanced.equipment.enable end
 							},
@@ -1112,7 +1106,7 @@ local function MiscOptions()
 							fontSize = {
 								order = 10,
 								type = "range",
-								name = FONT_SIZE,
+								name = L["Font Size"],
 								min = 6, max = 36, step = 1,
 								disabled = function() return not E.db.enhanced.equipment.itemlevel.enable or not E.db.enhanced.equipment.enable end
 							},
@@ -1121,7 +1115,7 @@ local function MiscOptions()
 								type = "select",
 								name = L["Font Outline"],
 								values = {
-									["NONE"] = NONE,
+									["NONE"] = L["None"],
 									["OUTLINE"] = "OUTLINE",
 									["MONOCHROMEOUTLINE"] = "MONOCROMEOUTLINE",
 									["THICKOUTLINE"] = "THICKOUTLINE"
@@ -1205,14 +1199,14 @@ local function MiscOptions()
 					enable = {
 						order = 2,
 						type = "toggle",
-						name = ENABLE,
+						name = L["Enable"],
 						get = function(info) return E.private.loseofcontrol.enable end,
 						set = function(info, value) E.private.loseofcontrol.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 					},
 					typeGroup = {
 						order = 3,
 						type = "group",
-						name = TYPE,
+						name = L["Type"],
 						guiInline = true,
 						get = function(info) return E.db.enhanced.loseofcontrol[ info[#info] ] end,
 						set = function(info, value) E.db.enhanced.loseofcontrol[ info[#info] ] = value end,
@@ -1330,9 +1324,9 @@ local function MiscOptions()
 						name = L["Visibility"],
 						disabled = function() return not E.db.enhanced.raidmarkerbar.enable end,
 						values = {
-							["DEFAULT"] = DEFAULT,
+							["DEFAULT"] = L["Default"],
 							["INPARTY"] = L["In Party"],
-							["ALWAYS"] = ALWAYS,
+							["ALWAYS"] = L["Always"],
 							["CUSTOM"] = L["Custom"]
 						},
 						set = function(info, value) E.db.enhanced.raidmarkerbar.visibility = value RM:Visibility() end
@@ -1367,7 +1361,7 @@ local function MiscOptions()
 					enable = {
 						order = 3,
 						type = "toggle",
-						name = ENABLE
+						name = L["Enable"]
 					},
 					settings = {
 						order = 4,
@@ -1454,7 +1448,7 @@ function addon:GetOptions()
 			end
 		}
 	end
-	
+
 	E.Options.args.elvuiPlugins.args.enhanced = {
 		type = "group",
 		name = ColorizeSettingName(L["Enhanced"]),
