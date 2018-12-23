@@ -132,8 +132,16 @@ local function GeneralOptions()
 					M:BuyStackToggle()
 				end
 			},
-			moverTransparancy = {
+			worldMapBlips = {
 				order = 14,
+				type = "toggle",
+				name = L["WorldMap Blips"],
+				desc = L["Colorize worldmap player dots with class colors"],
+				get = function(info) return E.db.enhanced.general.worldMapBlips end,
+				set = function(info, value) E.db.enhanced.general.worldMapBlips = value E:StaticPopup_Show("PRIVATE_RL") end
+			},
+			moverTransparancy = {
+				order = 15,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],

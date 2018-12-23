@@ -37,7 +37,8 @@ P.enhanced = {
 		originalCloseButton = false,
 		trainAllButton = false,
 		undressButton = false,
-		alreadyKnown = false
+		alreadyKnown = false,
+		worldMapBlips = false
 	},
 	actionbars = {
 		equipped = false,
