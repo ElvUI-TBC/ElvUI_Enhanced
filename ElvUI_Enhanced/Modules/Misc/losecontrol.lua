@@ -3,7 +3,7 @@ local LOS = E:NewModule("LoseOfControl", "AceEvent-3.0")
 local LSM = LibStub("LibSharedMedia-3.0")
 
 local function SpellName(id)
-	local name, _, _, _, _, _, _, _, _ = GetSpellInfo(id)
+	local name = GetSpellInfo(id)
 	if not name then
 		print("|cff1784d1ElvUI:|r SpellID is not valid: "..id..". Please check for an updated version, if none exists report to ElvUI author.")
 		return "Impale"
@@ -199,18 +199,18 @@ function LOS:Initialize()
 	self.Icon:SetTexCoord(unpack(E.TexCoords))
 
 	self.AbilityName = self.frame:CreateFontString(nil, "OVERLAY")
-	self.AbilityName:FontTemplate(E["media"].normFont, 20, "OUTLINE")
+	self.AbilityName:FontTemplate(E.media.normFont, 20, "OUTLINE")
 	self.AbilityName:Point("BOTTOM", self.frame, 0, -28)
 
 	self.Cooldown = CreateFrame("Cooldown", self.frame:GetName().."Cooldown", self.frame, "CooldownFrameTemplate")
 	self.Cooldown:SetInside()
 
 	self.frame.NumberText = self.frame:CreateFontString(nil, "OVERLAY")
-	self.frame.NumberText:FontTemplate(E["media"].normFont, 20, "OUTLINE")
+	self.frame.NumberText:FontTemplate(E.media.normFont, 20, "OUTLINE")
 	self.frame.NumberText:Point("BOTTOM", self.frame, 0, -58)
 
 	self.SecondsText = self.frame:CreateFontString(nil, "OVERLAY")
-	self.SecondsText:FontTemplate(E["media"].normFont, 20, "OUTLINE")
+	self.SecondsText:FontTemplate(E.media.normFont, 20, "OUTLINE")
 	self.SecondsText:Point("BOTTOM", self.frame, 0, -80)
 	self.SecondsText:SetText(L["seconds"])
 

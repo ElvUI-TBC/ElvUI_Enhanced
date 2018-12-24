@@ -90,18 +90,28 @@ L["Set the width of Error Frame. Too narrow frame may cause messages to be split
 L["Set the height of Error Frame. Higher frame can show more lines at once."] = true
 
 -- General
+L["Add button to Dressing Room frame with ability to undress model."] = true
+L["Add button to Trainer frame with ability to train all available skills in one click."] = true
+L["Alt-Click Merchant"] = true
+L["Already Known"] = true
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Change automatiquement la réputation suivie sur la barre de réputation avec la faction que vous êtes en train de faire."
 L["Automatically release body when killed inside a battleground."] = "Libère automatiquement votre corps quand vous êtes tué en Champs de Bataille."
 L["Automatically select the quest reward with the highest vendor sell value."] = "Sélectionne automatiquement la récompense de quête qui vaut la plus chère chez le vendeur."
 L["Changes the transparency of all the movers."] = "Change la transparence des Ancres"
+L["Colorize the WorldMap party/raid icons with class colors"] = true
 L["Colorizes recipes, mounts & pets that are already known"] = true
 L["Display quest levels at Quest Log."] = true
 L["Hide Zone Text"] = true
+L["Holding Alt key while buying something from vendor will now buy an entire stack."] = true
 L["Mover Transparency"] = "Transparence des Ancres"
 L["Original Close Button"] = true
 L["PvP Autorelease"] = "Libération automatique en PVP"
+L["Select Quest Reward"] = true
 L["Show Quest Level"] = true
 L["Track Reputation"] = "Suivre la Réputation"
+L["Train All Button"] = true
+L["Undress Button"] = true
+L["WorldMap Blips"] = true
 
 -- Model Frames
 L["Drag"] = "Glisser"
@@ -139,8 +149,10 @@ L["Spells"] = "Sorts"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Enhanced Frames"] = true
 L["Miscellaneous"] = "Divers"
 L["Skin Animations"] = true
+L["Total cost:"] = true
 L["Undress"] = "Déshabillé"
 
 -- Character Frame

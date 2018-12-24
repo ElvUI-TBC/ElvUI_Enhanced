@@ -7,6 +7,7 @@ local BuyTrainerService = BuyTrainerService
 local GetNumTrainerServices = GetNumTrainerServices
 local GetTrainerServiceCost = GetTrainerServiceCost
 local GetTrainerServiceInfo = GetTrainerServiceInfo
+local ALL, TRAIN = ALL, TRAIN
 
 function TA:ButtonCreate()
 	self.button = CreateFrame("Button", "ElvUI_TrainAllButton", ClassTrainerFrame, "UIPanelButtonTemplate")

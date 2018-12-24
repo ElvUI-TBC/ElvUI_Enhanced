@@ -90,18 +90,28 @@ L["Set the width of Error Frame. Too narrow frame may cause messages to be split
 L["Set the height of Error Frame. Higher frame can show more lines at once."] = true
 
 -- General
+L["Add button to Dressing Room frame with ability to undress model."] = true
+L["Add button to Trainer frame with ability to train all available skills in one click."] = true
+L["Alt-Click Merchant"] = true
+L["Already Known"] = true
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Ändere automatisch die beobachtete Fraktion auf der Erfahrungsleiste zu der Fraktion für die Sie grade Rufpunkte erhalten haben."
 L["Automatically release body when killed inside a battleground."] = "Gibt automatisch Ihren Geist frei, wenn Sie auf dem Schlachtfeld getötet wurden."
 L["Automatically select the quest reward with the highest vendor sell value."] = "Wählt automatisch die Questbelohnung mit dem höchsten Wiederverkaufswert beim Händler"
 L["Changes the transparency of all the movers."] = "Ändere die Transparenz aller Ankerpukte"
+L["Colorize the WorldMap party/raid icons with class colors"] = true
 L["Colorizes recipes, mounts & pets that are already known"] = "Rezepte, Reittiere und Begleiter einfärben, die bereits bekannt sind"
 L["Display quest levels at Quest Log."] = "Questlevel im Questlog anzeigen."
 L["Hide Zone Text"] = "Zonentext verstecken"
+L["Holding Alt key while buying something from vendor will now buy an entire stack."] = true
 L["Mover Transparency"] = "Transparenz Ankerpunkte"
 L["Original Close Button"] = "Originaler Schließen-Button"
 L["PvP Autorelease"] = "Automatische Freigabe im PvP"
+L["Select Quest Reward"] = true
 L["Show Quest Level"] = "Zeige Questlevel"
 L["Track Reputation"] = "Ruf beobachten"
+L["Train All Button"] = true
+L["Undress Button"] = true
+L["WorldMap Blips"] = true
 
 -- Model Frames
 L["Drag"] = "Ziehen"
@@ -139,8 +149,10 @@ L["Spells"] = "Zauber"
 L["Tooltip Icon"] = true
 
 -- Misc
+L["Enhanced Frames"] = true
 L["Miscellaneous"] = "Verschiedenes"
 L["Skin Animations"] = "Skin-Animationen"
+L["Total cost:"] = true
 L["Undress"] = "Ausziehen"
 
 -- Character Frame

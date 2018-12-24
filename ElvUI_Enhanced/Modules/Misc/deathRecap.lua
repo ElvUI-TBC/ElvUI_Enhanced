@@ -209,12 +209,6 @@ function mod:OpenRecap(recapID)
 		entry.DamageInfo.Amount:Hide()
 		entry.DamageInfo.AmountLarge:Show()
 	end
-
-	local deathEntry = self.DeathRecapEntry[1]
-	local tombstoneIcon = deathEntry.tombstone
-	if entry == deathEntry then
-		tombstoneIcon:Point("RIGHT", deathEntry.DamageInfo.AmountLarge, "LEFT", -10, 0)
-	end
 end
 
 function mod:Spell_OnEnter()
@@ -320,12 +314,10 @@ function mod:COMBAT_LOG_EVENT_UNFILTERED(_, timestamp, event, _, sourceName, sou
 
 	if event == "SWING_DAMAGE" then
 		amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
-	elseif subVal == "SPELL" then
+	elseif subVal == "SPELL" or event == "RANGE_DAMAGE" then
 		spellId, spellName, _, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
 	elseif event == "ENVIRONMENTAL_DAMAGE" then
 		environmentalType, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
-	elseif event == "RANGE_DAMAGE" then
-		spellId, spellName, _, amount, school, resisted, blocked, absorbed, critical, _, crushing = ...
 	end
 
 	if not tonumber(amount) then return end
@@ -441,7 +433,7 @@ function mod:Initialize()
 
 			button.tombstone = button:CreateTexture("ARTWORK")
 			button.tombstone:Size(15, 20)
-			button.tombstone:Point("RIGHT", button.DamageInfo.Amount, "LEFT", -10, 0)
+			button.tombstone:Point("LEFT", button.DamageInfo, "LEFT", 10, 0)
 			button.tombstone:SetTexCoord(0.658203125, 0.6875, 0.00390625, 0.08203125)
 			button.tombstone:SetTexture("Interface\\AddOns\\ElvUI_Enhanced\\Media\\Textures\\DeathRecap")
 		else

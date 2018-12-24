@@ -136,7 +136,7 @@ local function GeneralOptions()
 				order = 14,
 				type = "toggle",
 				name = L["WorldMap Blips"],
-				desc = L["Colorize worldmap player dots with class colors"],
+				desc = L["Colorize the WorldMap party/raid icons with class colors"],
 				get = function(info) return E.db.enhanced.general.worldMapBlips end,
 				set = function(info, value) E.db.enhanced.general.worldMapBlips = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
