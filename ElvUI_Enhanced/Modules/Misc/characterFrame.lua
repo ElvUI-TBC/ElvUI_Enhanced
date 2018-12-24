@@ -1150,15 +1150,23 @@ function module:PaperDollTitlesPane_UpdateScrollFrame()
 	local numButtons = #buttons
 	local scrollOffset = HybridScrollFrame_GetOffset(PaperDollTitlesPane)
 	local button, playerTitle
+
 	for i = 1, numButtons do
 		button = buttons[i]
 		playerTitle = playerTitles[i + scrollOffset]
+
 		if playerTitle then
 			button:Show()
 			button.text:SetText(playerTitle.name)
 			button.titleId = playerTitle.id
-			if PaperDollTitlesPane.selected == playerTitle.id  then
+
+			button:GetHighlightTexture():SetTexture(1, 1, 1, 0.3)
+			button:GetHighlightTexture():SetInside()
+
+			if PaperDollTitlesPane.selected == playerTitle.id then
 				button.Check:SetAlpha(1)
+				button.SelectedBar:SetTexture(1, 0.80, 0.10, 0.3)
+				button.SelectedBar:SetInside()
 				button.SelectedBar:Show()
 			else
 				button.Check:SetAlpha(0)
@@ -1166,8 +1174,8 @@ function module:PaperDollTitlesPane_UpdateScrollFrame()
 			end
 
 			if (i + scrollOffset) % 2 == 0 then
-				button.Stripe:SetTexture(0.9, 0.9, 1)
-				button.Stripe:SetAlpha(0.1)
+				button.Stripe:SetTexture(0.9, 0.9, 1, 0.1)
+				button.Stripe:SetInside()
 				button.Stripe:Show()
 			else
 				button.Stripe:Hide()
@@ -1499,14 +1507,17 @@ function module:Initialize()
 
 		if not frame.fixed then
 			if _G[name.."ScrollUpButton"] and _G[name.."ScrollDownButton"] then
-				_G[name.."ScrollUpButton"]:Width(_G[name.."ScrollUpButton"]:GetWidth() + 2)
-				_G[name.."ScrollDownButton"]:Width(_G[name.."ScrollDownButton"]:GetWidth() + 2)
+			--	_G[name.."ScrollUpButton"]:Width(_G[name.."ScrollUpButton"]:GetWidth() + 2)
+				_G[name.."ScrollUpButton"]:Width(_G[name.."ScrollUpButton"]:GetWidth())
+			--	_G[name.."ScrollDownButton"]:Width(_G[name.."ScrollDownButton"]:GetWidth() + 2)
+				_G[name.."ScrollDownButton"]:Width(_G[name.."ScrollDownButton"]:GetWidth())
 			end
 			frame.fixed = true
 		end
 
 		if frame.thumbbg then
-			frame.thumbTexture:Size(16, 28)
+		--	frame.thumbTexture:Size(16, 28)
+			frame.thumbTexture:Size(14, 28)
 			frame.thumbbg:Point("TOPLEFT", frame:GetThumbTexture(), "TOPLEFT", w1, h1)
 			frame.thumbbg:Point("BOTTOMRIGHT", frame:GetThumbTexture(), "BOTTOMRIGHT", w2, h2)
 		end
@@ -1605,13 +1616,6 @@ function module:Initialize()
 		titlePane:Point("TOPRIGHT", -57, -75)
 		for _, button in next, titlePane.buttons do
 			button:Width(172)
-
-			button.Stripe:SetInside()
-			button.SelectedBar:SetTexture(1, 0.80, 0.10, 0.3)
-			button.SelectedBar:SetInside()
-
-			button:GetHighlightTexture():SetTexture(1, 1, 1, 0.3)
-			button:GetHighlightTexture():SetInside()
 		end
 		getmetatable(self).__index.Show(self)
 	end
@@ -1787,18 +1791,22 @@ function module:Initialize()
 
 	PetNameText:SetPoint("CENTER", CharacterFrame, 0, 200)
 	PetLevelText:SetPoint("TOP", CharacterFrame, 0, -20)
-	PetPaperDollPetInfo:SetPoint("TOPLEFT", 25, -78)
+	PetPaperDollPetInfo:SetPoint("TOPLEFT", E.PixelMode and 25 or 27, -(E.PixelMode and 70 or 72))
 
 	PetTrainingPointText:ClearAllPoints()
-	PetTrainingPointText:SetPoint("BOTTOMRIGHT", PetModelFrame, "BOTTOMRIGHT", -31, -26)
+	PetTrainingPointText:SetPoint("BOTTOMRIGHT", PetModelFrame, "BOTTOMRIGHT", -31, -34)
 	PetTrainingPointLabel:SetPoint("RIGHT", PetTrainingPointText, "LEFT", -5, 1)
 
 	PetPaperDollCloseButton:Kill()
 	PetAttributesFrame:Kill()
 	PetResistanceFrame:Kill()
 
+	PetPaperDollFrameExpBar:Size(310, 10)
+	PetPaperDollFrameExpBar:Point("BOTTOMLEFT", 25, 106)
+
 	PetModelFrame:CreateBackdrop("Default")
 	PetModelFrame:SetSize(310, 320)
+	PetModelFrame:Point("TOPLEFT", 25, -70)
 
 	PetModelFrame.petPaperDollPetModelBg = PetModelFrame:CreateTexture("$parentPetPaperDollPetModelBg", "BACKGROUND")
 	PetModelFrame.petPaperDollPetModelBg:Size(494, 461)

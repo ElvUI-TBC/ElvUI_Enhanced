@@ -59,7 +59,7 @@ P.enhanced = {
 			width = 300,
 			height = 60,
 			font = "PT Sans Narrow",
-			fontSize = 30,
+			fontSize = 12,
 			fontOutline = "NONE"
 		}
 	},
