@@ -460,7 +460,7 @@ function mod:Initialize()
 		text = DEATH_RELEASE_TIMER,
 		button1 = DEATH_RELEASE,
 		button2 = USE_SOULSTONE,
-		button3 = L["Death Recap"],
+		button3 = L["Recap"],
 		OnShow = function(self)
 			self.timeleft = GetReleaseTimeRemaining()
 			local text = HasSoulstone()
@@ -475,24 +475,11 @@ function mod:Initialize()
 			end
 			if mod:HasEvents() then
 				self.button3:Enable()
-				--self.button3:SetScript("OnEnter", nil)
-				--self.button3:SetScript("OnLeave", nil)
-
-				self.button3:SetScript("OnEnter", S.SetModifiedBackdrop)
-				self.button3:SetScript("OnLeave", S.SetOriginalBackdrop)
 			else
 				self.button3:Disable()
-				self.button3:SetScript("OnEnter", function(self)
-					GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
-					GameTooltip:SetText(L["Death Recap unavailable."])
-					GameTooltip:Show()
-				end)
-				self.button3:SetScript("OnLeave", GameTooltip_Hide)
 			end
 		end,
 		OnHide = function(self)
-			self.button3:SetScript("OnEnter", nil)
-			self.button3:SetScript("OnLeave", nil)
 			HideUIPanel(DeathRecapFrame)
 		end,
 		OnAccept = function()
