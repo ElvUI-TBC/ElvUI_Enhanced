@@ -658,7 +658,7 @@ function module:SetMeleeDPS(statFrame, unit)
 	local baseDamage = (minDamage + maxDamage) * 0.5
 	local fullDamage = (baseDamage + physicalBonusPos + physicalBonusNeg) * percent
 	local totalBonus = (fullDamage - baseDamage)
-	local damagePerSecond = (max(fullDamage,1) / speed)
+	local damagePerSecond = (max(fullDamage, 1) / speed)
 
 	local colorPos = "|cff20ff20"
 	local colorNeg = "|cffff2020"
@@ -1467,7 +1467,7 @@ function GetItemLevelColor(unit)
 
 	local i = 0
 	local sumR, sumG, sumB = 0, 0, 0
-	for slotName, _ in pairs(slots) do
+	for slotName in pairs(slots) do
 		local slotID = GetInventorySlotInfo(slotName)
 		if GetInventoryItemTexture(unit, slotID) then
 			local itemLink = GetInventoryItemLink(unit, slotID)

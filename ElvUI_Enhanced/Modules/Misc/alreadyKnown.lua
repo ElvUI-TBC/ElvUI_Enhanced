@@ -34,7 +34,7 @@ local function MerchantFrame_UpdateMerchantInfo()
 			return
 		end
 
-		local button = _G["MerchantItem" .. i .. "ItemButton"]
+		local button = _G["MerchantItem"..i.."ItemButton"]
 
 		if button and button:IsShown() then
 			local _, _, _, _, numAvailable, isUsable = GetMerchantItemInfo(index)
@@ -60,7 +60,7 @@ local function MerchantFrame_UpdateBuybackInfo()
 			return
 		end
 
-		local button = _G["MerchantItem" .. i .. "ItemButton"]
+		local button = _G["MerchantItem"..i.."ItemButton"]
 
 		if button and button:IsShown() then
 			local _, _, _, _, _, isUsable = GetBuybackItemInfo(i)
@@ -80,7 +80,7 @@ local function AuctionFrameBrowse_Update()
 		local index = offset + i
 		if index > numItems then return end
 
-		local texture = _G["BrowseButton" .. i .. "ItemIconTexture"]
+		local texture = _G["BrowseButton"..i.."ItemIconTexture"]
 
 		if texture and texture:IsShown() then
 			local _, _, _, _, canUse = GetAuctionItemInfo("list", index)
@@ -100,7 +100,7 @@ local function AuctionFrameBid_Update()
 		local index = offset + i
 		if index > numItems then return end
 
-		local texture = _G["BidButton" .. i .. "ItemIconTexture"]
+		local texture = _G["BidButton"..i.."ItemIconTexture"]
 
 		if texture and texture:IsShown() then
 			local _, _, _, _, canUse = GetAuctionItemInfo("bidder", index)
@@ -120,7 +120,7 @@ local function AuctionFrameAuctions_Update()
 		local index = offset + i
 		if index > numItems then return end
 
-		local texture = _G["AuctionsButton" .. i .. "ItemIconTexture"]
+		local texture = _G["AuctionsButton"..i.."ItemIconTexture"]
 
 		if texture and texture:IsShown() then
 			local _, _, _, _, canUse, _, _, _, _, _, _, _, saleStatus = GetAuctionItemInfo("owner", index)
@@ -143,7 +143,7 @@ local function GuildBankFrame_Update()
 	local tab = GetCurrentGuildBankTab()
 
 	for i = 1, MAX_GUILDBANK_SLOTS_PER_TAB do
-		local button = _G["GuildBankColumn" .. ceil((i - 0.5) / NUM_SLOTS_PER_GUILDBANK_GROUP) .. "Button" .. fmod(i, NUM_SLOTS_PER_GUILDBANK_GROUP)]
+		local button = _G["GuildBankColumn"..ceil((i - 0.5) / NUM_SLOTS_PER_GUILDBANK_GROUP).."Button"..fmod(i, NUM_SLOTS_PER_GUILDBANK_GROUP)]
 
 		if button and button:IsShown() then
 			local texture, _, locked = GetGuildBankItemInfo(tab, i)

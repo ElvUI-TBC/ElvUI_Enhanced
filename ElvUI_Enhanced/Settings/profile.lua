@@ -29,6 +29,7 @@ P.enhanced = {
 		pvpAutoRelease = false,
 		autoRepChange = false,
 		merchant = false,
+		merchantItemLevel = false,
 		moverTransparancy = 1,
 		showQuestLevel = false,
 		selectQuestReward = false,
