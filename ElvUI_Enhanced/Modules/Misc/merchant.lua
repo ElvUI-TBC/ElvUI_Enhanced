@@ -23,7 +23,7 @@ function M:MerchantItemButton_OnModifiedClick()
 end
 
 function M:BuyStackToggle()
-	if E.db.enhanced.general.merchantItemLevel then
+	if E.db.enhanced.general.altBuyMaxStack then
 		if not self:IsHooked("MerchantItemButton_OnModifiedClick") then
 			self:SecureHook("MerchantItemButton_OnModifiedClick")
 		end
