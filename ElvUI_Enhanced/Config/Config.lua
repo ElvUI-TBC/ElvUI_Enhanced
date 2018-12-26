@@ -136,7 +136,7 @@ local function GeneralOptions()
 				order = 14,
 				type = "toggle",
 				name = L["Merchant ItemLevel"],
-				desc = L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = true
+				desc = L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"],
 				get = function(info) return E.db.enhanced.general.merchantItemLevel end,
 				set = function(info, value) E.db.enhanced.general.merchantItemLevel = value end
 			},
