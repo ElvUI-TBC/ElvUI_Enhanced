@@ -47,6 +47,12 @@ P.enhanced = {
 		transparentActionbars = {
 			transparentBackdrops = false,
 			transparentButtons = false
+		},
+		pet = {
+			checkedBorder = false,
+			checkedBorderColor = {r = 1, g = 1, b = 0},
+			autoCastBorder = false,
+			autoCastBorderColor = {r = 1, g = 0, b = 0}
 		}
 	},
 	blizzard = {

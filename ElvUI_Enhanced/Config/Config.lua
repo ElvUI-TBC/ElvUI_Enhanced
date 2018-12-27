@@ -165,6 +165,7 @@ end
 
 -- Actionbars
 local function ActionbarOptions()
+	local AB = E:GetModule("ActionBars")
 	local EAB = E:GetModule("Enhanced_ActionBars")
 	local ETAB = E:GetModule("Enhanced_TransparentActionbars")
 
@@ -172,67 +173,154 @@ local function ActionbarOptions()
 		order = 2,
 		type = "group",
 		name = L["ActionBars"],
+		childGroups = "tab",
 		args = {
 			header = {
 				order = 1,
 				type = "header",
 				name = ColorizeSettingName(L["ActionBars"])
 			},
-			equipped = {
+			general = {
 				order = 2,
 				type = "group",
-				name = L["Equipped Item Border"],
-				guiInline = true,
+				name = L["General"],
 				args = {
-					equipped = {
+					header = {
 						order = 1,
-						type = "toggle",
-						name = L["Enable"],
-						get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
-						set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value EAB:UpdateCallback() E:GetModule("ActionBars"):UpdateButtonSettings() end
+						type = "header",
+						name = L["General"],
 					},
-					equippedColor = {
+					transparentActionbars = {
 						order = 2,
-						type = "color",
-						name = L["Border Color"],
-						get = function(info)
-							local t = E.db.enhanced.actionbars[ info[#info] ]
-							local d = P.enhanced.actionbars[ info[#info] ]
-							return t.r, t.g, t.b, t.a, d.r, d.g, d.b
-						end,
-						set = function(info, r, g, b)
-							local t = E.db.enhanced.actionbars[ info[#info] ]
-							t.r, t.g, t.b = r, g, b
-							E:GetModule("ActionBars"):UpdateButtonSettings()
-						end,
-						disabled = function() return not E.db.enhanced.actionbars.equipped end
+						type = "group",
+						name = L["Transparent ActionBars"],
+						guiInline = true,
+						get = function(info) return E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] end,
+						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value end,
+						args = {
+							transparentBackdrops = {
+								order = 1,
+								type = "toggle",
+								name = L["Transparent Backdrop"],
+								desc = L["Sets actionbars backgrounds to transparent template."],
+								set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
+							},
+							transparentButtons = {
+								order = 2,
+								type = "toggle",
+								name = L["Transparent Buttons"],
+								desc = L["Sets actionbars buttons backgrounds to transparent template."],
+								set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
+							}
+						},
+						disabled = function() return not E.private.actionbar.enable end
+					},
+					equipped = {
+						order = 3,
+						type = "group",
+						name = L["Equipped Item Border"],
+						guiInline = true,
+						args = {
+							equipped = {
+								order = 1,
+								type = "toggle",
+								name = L["Enable"],
+								get = function(info) return E.db.enhanced.actionbars[ info[#info] ] end,
+								set = function(info, value) E.db.enhanced.actionbars[ info[#info] ] = value EAB:UpdateCallback() AB:UpdateButtonSettings() end
+							},
+							equippedColor = {
+								order = 2,
+								type = "color",
+								name = L["Border Color"],
+								get = function(info)
+									local t = E.db.enhanced.actionbars[ info[#info] ]
+									local d = P.enhanced.actionbars[ info[#info] ]
+									return t.r, t.g, t.b, t.a, d.r, d.g, d.b
+								end,
+								set = function(info, r, g, b)
+									local t = E.db.enhanced.actionbars[ info[#info] ]
+									t.r, t.g, t.b = r, g, b
+									AB:UpdateButtonSettings()
+								end,
+								disabled = function() return not E.db.enhanced.actionbars.equipped end
+							}
+						}
 					}
 				}
 			},
-			transparentActionbars = {
+			pet = {
 				order = 3,
 				type = "group",
-				name = L["Transparent ActionBars"],
-				guiInline = true,
-				get = function(info) return E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] end,
-				set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value end,
+				name = L["Pet Bar"],
 				args = {
-					transparentBackdrops = {
+					header = {
 						order = 1,
-						type = "toggle",
-						name = L["Transparent Backdrop"],
-						desc = L["Sets actionbars backgrounds to transparent template."],
-						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
+						type = "header",
+						name = L["Pet Bar"],
 					},
-					transparentButtons = {
+					checked = {
 						order = 2,
-						type = "toggle",
-						name = L["Transparent Buttons"],
-						desc = L["Sets actionbars buttons backgrounds to transparent template."],
-						set = function(info, value) E.db.enhanced.actionbars.transparentActionbars[ info[#info] ] = value ETAB:StyleBackdrops() end
+						type = "group",
+						name = L["Checked Border"],
+						guiInline = true,
+						args = {
+							checkedBorder = {
+								order = 1,
+								type = "toggle",
+								name = L["Enable"],
+								get = function(info) return E.db.enhanced.actionbars.pet[ info[#info] ] end,
+								set = function(info, value) E.db.enhanced.actionbars.pet[ info[#info] ] = value AB:UpdatePet() end
+							},
+							checkedBorderColor = {
+								order = 2,
+								type = "color",
+								name = L["Border Color"],
+								get = function(info)
+									local t = E.db.enhanced.actionbars.pet[ info[#info] ]
+									local d = P.enhanced.actionbars.pet[ info[#info] ]
+									return t.r, t.g, t.b, t.a, d.r, d.g, d.b
+								end,
+								set = function(info, r, g, b)
+									local t = E.db.enhanced.actionbars.pet[ info[#info] ]
+									t.r, t.g, t.b = r, g, b
+									AB:UpdatePet()
+								end
+							}
+						},
+						disabled = function() return not E.private.actionbar.enable end
+					},
+					autoCast = {
+						order = 3,
+						type = "group",
+						name = L["AutoCast Border"],
+						guiInline = true,
+						args = {
+							autoCastBorder = {
+								order = 1,
+								type = "toggle",
+								name = L["Enable"],
+								get = function(info) return E.db.enhanced.actionbars.pet[ info[#info] ] end,
+								set = function(info, value) E.db.enhanced.actionbars.pet[ info[#info] ] = value AB:UpdatePet() end
+							},
+							autoCastBorderColor = {
+								order = 2,
+								type = "color",
+								name = L["Border Color"],
+								get = function(info)
+									local t = E.db.enhanced.actionbars.pet[ info[#info] ]
+									local d = P.enhanced.actionbars.pet[ info[#info] ]
+									return t.r, t.g, t.b, t.a, d.r, d.g, d.b
+								end,
+								set = function(info, r, g, b)
+									local t = E.db.enhanced.actionbars.pet[ info[#info] ]
+									t.r, t.g, t.b = r, g, b
+									AB:UpdatePet()
+								end
+							}
+						},
+						disabled = function() return not E.private.actionbar.enable end
 					}
-				},
-				disabled = function() return not E.private.actionbar.enable end
+				}
 			}
 		}
 	}
