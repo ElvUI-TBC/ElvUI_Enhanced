@@ -244,7 +244,8 @@ local function ActionbarOptions()
 								end,
 								disabled = function() return not E.db.enhanced.actionbars.equipped end
 							}
-						}
+						},
+						disabled = function() return not E.private.actionbar.enable end
 					}
 				}
 			},
@@ -284,10 +285,11 @@ local function ActionbarOptions()
 									local t = E.db.enhanced.actionbars.pet[ info[#info] ]
 									t.r, t.g, t.b = r, g, b
 									AB:UpdatePet()
-								end
+								end,
+								disabled = function() return not E.db.enhanced.actionbars.pet.checkedBorder end
 							}
 						},
-						disabled = function() return not E.private.actionbar.enable end
+						disabled = function() return not E.private.actionbar.enable or not E.db.actionbar.barPet.enabled end
 					},
 					autoCast = {
 						order = 3,
@@ -315,10 +317,11 @@ local function ActionbarOptions()
 									local t = E.db.enhanced.actionbars.pet[ info[#info] ]
 									t.r, t.g, t.b = r, g, b
 									AB:UpdatePet()
-								end
+								end,
+								disabled = function() return not E.db.enhanced.actionbars.pet.autoCastBorder end
 							}
 						},
-						disabled = function() return not E.private.actionbar.enable end
+						disabled = function() return not E.private.actionbar.enable or not E.db.actionbar.barPet.enabled end
 					}
 				}
 			}
