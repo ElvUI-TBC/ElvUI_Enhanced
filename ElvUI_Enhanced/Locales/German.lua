@@ -10,9 +10,13 @@ L["ITEMLEVEL_DESC"] = "Passen Sie die Einstellungen für die Anzeige von Gegenst
 L["WATCHFRAME_DESC"] = "Passen Sie die Einstellungen des Watchframe (Questlog) nach ihren Wünschen an."
 
 -- Actionbars
+L["AutoCast Border"] = true
+L["Checked Border"] = true
 L["Equipped Item Border"] = "Rahmen der angelegten Items"
 L["Sets actionbars backgrounds to transparent template."] = "Setzt den Aktionsleisten Hintergrund transparent."
 L["Sets actionbars buttons backgrounds to transparent template."] = "Setzt die Aktionsleisten-Tasten transparent."
+L["Replaces the checked textures with colored borders."] = true
+L["Replaces the auto cast textures with colored borders."] = true
 L["Transparent ActionBars"] = "Transparente Aktionsleisten"
 L["Transparent Backdrop"] = "Transparenter Hintergrund"
 L["Transparent s"] = "Transparente Tasten"

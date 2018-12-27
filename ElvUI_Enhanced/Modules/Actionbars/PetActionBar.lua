@@ -5,6 +5,8 @@ local _G = _G
 local unpack = unpack
 
 local GetPetActionInfo = GetPetActionInfo
+local PetHasActionBar = PetHasActionBar
+local hooksecurefunc = hooksecurefunc
 
 local function UpdatePet(event, unit)
 	if ((event == "UNIT_FLAGS" or event == "UNIT_AURA") and unit ~= "pet") then return end
@@ -14,7 +16,7 @@ local function UpdatePet(event, unit)
 		local buttonName = "PetActionButton"..i
 		local button = _G[buttonName]
 		local shine = _G[buttonName.."AutoCast"]
-		local _, _, _, _, isActive, _, autoCastEnabled = GetPetActionInfo(i)
+		local _, _, texture, _, isActive, _, autoCastEnabled = GetPetActionInfo(i)
 
 		if E.db.enhanced.actionbars.pet.checkedBorder then button:SetChecked(false) end
 		if E.db.enhanced.actionbars.pet.autoCastBorder then shine:Hide() end
@@ -27,6 +29,10 @@ local function UpdatePet(event, unit)
 			color = E.db.enhanced.actionbars.pet.autoCastBorderColor
 			button.backdrop:SetBackdropBorderColor(color.r, color.g, color.b)
 		else
+			button.backdrop:SetBackdropBorderColor(unpack(E.media.bordercolor))
+		end
+
+		if not PetHasActionBar() and texture then
 			button.backdrop:SetBackdropBorderColor(unpack(E.media.bordercolor))
 		end
 	end

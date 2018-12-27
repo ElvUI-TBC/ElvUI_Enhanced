@@ -269,6 +269,7 @@ local function ActionbarOptions()
 								order = 1,
 								type = "toggle",
 								name = L["Enable"],
+								desc = L["Replaces the checked textures with colored borders."],
 								get = function(info) return E.db.enhanced.actionbars.pet[ info[#info] ] end,
 								set = function(info, value) E.db.enhanced.actionbars.pet[ info[#info] ] = value AB:UpdatePet() end
 							},
@@ -301,6 +302,7 @@ local function ActionbarOptions()
 								order = 1,
 								type = "toggle",
 								name = L["Enable"],
+								desc = L["Replaces the auto cast textures with colored borders."],
 								get = function(info) return E.db.enhanced.actionbars.pet[ info[#info] ] end,
 								set = function(info, value) E.db.enhanced.actionbars.pet[ info[#info] ] = value AB:UpdatePet() end
 							},
