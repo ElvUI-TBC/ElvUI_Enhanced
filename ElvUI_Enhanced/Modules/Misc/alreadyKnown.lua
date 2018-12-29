@@ -11,6 +11,7 @@ local GetAuctionItemLink = GetAuctionItemLink
 local GetCurrentGuildBankTab = GetCurrentGuildBankTab
 local GetGuildBankItemInfo = GetGuildBankItemInfo
 local GetGuildBankItemLink = GetGuildBankItemLink
+local GetInboxItem = GetInboxItem
 local GetItemInfo = GetItemInfo
 local GetMerchantNumItems = GetMerchantNumItems
 local GetNumAuctionItems = GetNumAuctionItems
@@ -28,11 +29,9 @@ local knownColor = {r = 0.1, g = 1.0, b = 0.2}
 local function MerchantFrame_UpdateMerchantInfo()
 	local numItems = GetMerchantNumItems()
 
-	for i = 1, MERCHANT_ITEMS_PER_PAGE do
+	for i = 1, BUYBACK_ITEMS_PER_PAGE do
 		local index = (MerchantFrame.page - 1) * MERCHANT_ITEMS_PER_PAGE + i
-		if index > numItems then
-			return
-		end
+		if index > numItems then return end
 
 		local button = _G["MerchantItem"..i.."ItemButton"]
 
@@ -56,9 +55,7 @@ local function MerchantFrame_UpdateBuybackInfo()
 	local numItems = GetNumBuybackItems()
 
 	for i = 1, BUYBACK_ITEMS_PER_PAGE do
-		if i > numItems then
-			return
-		end
+		if i > numItems then return end
 
 		local button = _G["MerchantItem"..i.."ItemButton"]
 
@@ -159,6 +156,20 @@ local function GuildBankFrame_Update()
 	end
 end
 
+local function OpenMailFrame_UpdateButtonPositions()
+	for i = 1, ATTACHMENTS_MAX_RECEIVE do
+		local button = _G["OpenMailAttachmentButton"..i]
+
+		if button then
+			local name, _, _, _, canUse = GetInboxItem(InboxFrame.openMailID, i)
+
+			if name and canUse and AK:IsAlreadyKnown(GetInboxItemLink(InboxFrame.openMailID, i)) then
+				SetItemButtonTextureVertexColor(button, knownColor.r, knownColor.g, knownColor.b)
+			end
+		end
+	end
+end
+
 function AK:IsAlreadyKnown(itemLink)
 	if not itemLink then return end
 
@@ -201,6 +212,9 @@ function AK:SetHooks()
 	end
 	if not self:IsHooked("MerchantFrame_UpdateBuybackInfo") then
 		self:SecureHook("MerchantFrame_UpdateBuybackInfo", MerchantFrame_UpdateBuybackInfo)
+	end
+	if not self:IsHooked("OpenMailFrame_UpdateButtonPositions") then
+		self:SecureHook("OpenMailFrame_UpdateButtonPositions", OpenMailFrame_UpdateButtonPositions)
 	end
 
 	if not self.auctionHooked and IsAddOnLoaded("Blizzard_AuctionUI") then
