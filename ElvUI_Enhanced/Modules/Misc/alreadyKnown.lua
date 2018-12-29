@@ -170,6 +170,38 @@ local function OpenMailFrame_UpdateButtonPositions()
 	end
 end
 
+local function QuestFrameItems_Update(questState)
+	local numQuestRewards, numQuestChoices
+	local numQuestSpellRewards = 0
+	if questState == "QuestLog" then
+		numQuestRewards, numQuestChoices = GetNumQuestLogRewards(), GetNumQuestLogChoices()
+		if GetQuestLogRewardSpell() then
+			numQuestSpellRewards = 1
+		end
+	else
+		numQuestRewards, numQuestChoices = GetNumQuestRewards(), GetNumQuestChoices()
+		if GetRewardSpell() then
+			numQuestSpellRewards = 1
+		end
+	end
+
+	local rewardsCount = numQuestChoices + numQuestRewards + numQuestSpellRewards
+	if rewardsCount > 0 then
+		local _, questItem, link, isUsable
+		local questStateItem = questState.."Item"
+
+		for i = 1, rewardsCount do
+			questItem = _G[questStateItem..i]
+			link = questItem.type and (questState == "QuestLog" and GetQuestLogItemLink or GetQuestItemLink)(questItem.type, questItem:GetID())
+			_, _, _, _, isUsable = (questState == "QuestLog" and GetQuestLogChoiceInfo or GetQuestItemInfo)(questState == "QuestLog" and i or questItem.type, i)
+
+			if isUsable and AK:IsAlreadyKnown(link) then
+				SetItemButtonTextureVertexColor(questItem, knownColor.r, knownColor.g, knownColor.b)
+			end
+		end
+	end
+end
+
 function AK:IsAlreadyKnown(itemLink)
 	if not itemLink then return end
 
@@ -216,6 +248,9 @@ function AK:SetHooks()
 	if not self:IsHooked("OpenMailFrame_UpdateButtonPositions") then
 		self:SecureHook("OpenMailFrame_UpdateButtonPositions", OpenMailFrame_UpdateButtonPositions)
 	end
+	if not self:IsHooked("QuestFrameItems_Update") then
+		self:SecureHook("QuestFrameItems_Update", QuestFrameItems_Update)
+	end	
 
 	if not self.auctionHooked and IsAddOnLoaded("Blizzard_AuctionUI") then
 		if not self:IsHooked("AuctionFrameBrowse_Update") then
