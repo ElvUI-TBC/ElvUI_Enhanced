@@ -32,6 +32,7 @@ P.enhanced = {
 		merchantItemLevel = false,
 		moverTransparancy = 1,
 		showQuestLevel = false,
+		questItemLevel = false,
 		selectQuestReward = false,
 		declineduel = false,
 		hideZoneText = false,

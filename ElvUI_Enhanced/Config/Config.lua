@@ -143,8 +143,20 @@ local function GeneralOptions()
 					M:MerchantItemLevel()
 				end
 			},
-			worldMapBlips = {
+			questItemLevel = {
 				order = 15,
+				type = "toggle",
+				name = L["Quest ItemLevel"],
+				desc = L["Display the item level on the Quest frames, to change the font you have to set it in ElvUI - Bags - ItemLevel"],
+				get = function(info) return E.db.enhanced.general.questItemLevel end,
+				set = function(info, value)
+					E.db.enhanced.general.questItemLevel = value
+					M:QuestItemLevel()
+					E:StaticPopup_Show("PRIVATE_RL")
+				end
+			},
+			worldMapBlips = {
+				order = 16,
 				type = "toggle",
 				name = L["WorldMap Blips"],
 				desc = L["Colorize the WorldMap party/raid icons with class colors"],
@@ -152,7 +164,7 @@ local function GeneralOptions()
 				set = function(info, value) E.db.enhanced.general.worldMapBlips = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
 			moverTransparancy = {
-				order = 16,
+				order = 17,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],
