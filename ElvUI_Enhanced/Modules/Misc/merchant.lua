@@ -5,8 +5,10 @@ local _G = _G
 local select = select
 
 local BuyMerchantItem = BuyMerchantItem
+local GetBuybackItemInfo = GetBuybackItemInfo
 local GetItemInfo = GetItemInfo
 local GetItemQualityColor = GetItemQualityColor
+local GetNumBuybackItems = GetNumBuybackItems
 local GetMerchantItemLink = GetMerchantItemLink
 local GetMerchantItemMaxStack = GetMerchantItemMaxStack
 local GetMerchantNumItems = GetMerchantNumItems
@@ -34,11 +36,9 @@ function M:BuyStackToggle()
 	end
 end
 
-local function MerchantItemlevel()
-	local numMerchantItems = GetMerchantNumItems()
-	local index, button, itemLink, buybackName
-	local _, quality, itemlevel, itemType
-	local r, g, b
+function M:MerchantFrame_UpdateMerchantInfo()
+	local index, button, itemLink
+	local _, quality, itemlevel, itemType, r, g, b
 
 	for i = 1, BUYBACK_ITEMS_PER_PAGE do
 		index = ((MerchantFrame.page - 1) * MERCHANT_ITEMS_PER_PAGE) + i
@@ -49,21 +49,19 @@ local function MerchantItemlevel()
 			button.text:FontTemplate(E.LSM:Fetch("font", E.db.bags.itemLevelFont), E.db.bags.itemLevelFontSize, E.db.bags.itemLevelFontOutline)
 			button.text:SetPoint("BOTTOMRIGHT", 0, 3)
 		end
-		button.text:SetText("")
 
-		if index <= numMerchantItems then
+		if index <= GetMerchantNumItems() then
 			itemLink = GetMerchantItemLink(index)
+
 			if itemLink then
 				_, _, quality, itemlevel, _, itemType = GetItemInfo(itemLink)
 				r, g, b = GetItemQualityColor(quality)
 
+				button.text:SetText("")
+
 				if (itemlevel and itemlevel > 1) and (quality and quality > 1) and (itemType == ENCHSLOT_WEAPON or itemType == ARMOR) then
-					if E.db.enhanced.general.merchantItemLevel then
-						button.text:SetText(itemlevel)
-						button.text:SetTextColor(r, g, b)
-					else
-						button.text:SetText("")
-					end
+					button.text:SetText(itemlevel)
+					button.text:SetTextColor(r, g, b)
 				end
 			end
 		end
@@ -73,31 +71,23 @@ local function MerchantItemlevel()
 			MerchantBuyBackItemItemButton.text:FontTemplate(E.LSM:Fetch("font", E.db.bags.itemLevelFont), E.db.bags.itemLevelFontSize, E.db.bags.itemLevelFontOutline)
 			MerchantBuyBackItemItemButton.text:SetPoint("BOTTOMRIGHT", 0, 3)
 		end
-		MerchantBuyBackItemItemButton.text:SetText("")
 
-		buybackName = GetBuybackItemInfo(GetNumBuybackItems())
-		if buybackName then
-			_, _, quality, itemlevel, _, itemType = GetItemInfo(buybackName)
+		if GetBuybackItemInfo(GetNumBuybackItems()) then
+			_, _, quality, itemlevel, _, itemType = GetItemInfo(GetBuybackItemInfo(GetNumBuybackItems()))
 			r, g, b = GetItemQualityColor(quality)
 
+			MerchantBuyBackItemItemButton.text:SetText("")
+
 			if (itemlevel and itemlevel > 1) and (quality and quality > 1) and (itemType == ENCHSLOT_WEAPON or itemType == ARMOR) then
-				if E.db.enhanced.general.merchantItemLevel then
-					MerchantBuyBackItemItemButton.text:SetText(itemlevel)
-					MerchantBuyBackItemItemButton.text:SetTextColor(r, g, b)
-				else
-					MerchantBuyBackItemItemButton.text:SetText("")
-				end
+				MerchantBuyBackItemItemButton.text:SetText(itemlevel)
+				MerchantBuyBackItemItemButton.text:SetTextColor(r, g, b)
 			end
 		end
 	end
 end
-hooksecurefunc("MerchantFrame_UpdateMerchantInfo", MerchantItemlevel)
 
-local function MerchantBuybackItemlevel()
-	local numBuybackItems = GetNumBuybackItems()
-	local button, buybackName
-	local _, quality, itemlevel, itemType
-	local r, g, b
+function M:MerchantFrame_UpdateBuybackInfo()
+	local _, button, quality, itemlevel, itemType, r, g, b
 
 	for i = 1, BUYBACK_ITEMS_PER_PAGE do
 		button = _G["MerchantItem"..i.."ItemButton"]
@@ -107,24 +97,46 @@ local function MerchantBuybackItemlevel()
 			button.text:FontTemplate(E.LSM:Fetch("font", E.db.bags.itemLevelFont), E.db.bags.itemLevelFontSize, E.db.bags.itemLevelFontOutline)
 			button.text:SetPoint("BOTTOMRIGHT", 0, 3)
 		end
-		button.text:SetText("")
 
-		if i <= numBuybackItems then
-			buybackName = GetBuybackItemInfo(i)
-			if buybackName then
-				_, _, quality, itemlevel, _, itemType = GetItemInfo(buybackName)
+		if i <= GetNumBuybackItems() then
+			if GetBuybackItemInfo(i) then
+				_, _, quality, itemlevel, _, itemType = GetItemInfo(GetBuybackItemInfo(i))
 				r, g, b = GetItemQualityColor(quality)
 
+				button.text:SetText("")
+
 				if (itemlevel and itemlevel > 1) and (quality and quality > 1) and (itemType == ENCHSLOT_WEAPON or itemType == ARMOR) then
-					if E.db.enhanced.general.merchantItemLevel then
-						button.text:SetText(itemlevel)
-						button.text:SetTextColor(r, g, b)
-					else
-						button.text:SetText("")
-					end
+					button.text:SetText(itemlevel)
+					button.text:SetTextColor(r, g, b)
 				end
 			end
 		end
 	end
 end
-hooksecurefunc("MerchantFrame_UpdateBuybackInfo", MerchantBuybackItemlevel)
+
+function M:MerchantItemLevel()
+	if E.db.enhanced.general.merchantItemLevel then
+		if not self:IsHooked("MerchantFrame_UpdateMerchantInfo") then
+			self:SecureHook("MerchantFrame_UpdateMerchantInfo")
+		end
+		if not self:IsHooked("MerchantFrame_UpdateBuybackInfo") then
+			self:SecureHook("MerchantFrame_UpdateBuybackInfo")
+		end
+	else
+		if self:IsHooked("MerchantFrame_UpdateMerchantInfo") then
+			self:Unhook("MerchantFrame_UpdateMerchantInfo")
+		end
+		if self:IsHooked("MerchantFrame_UpdateBuybackInfo") then
+			self:Unhook("MerchantFrame_UpdateBuybackInfo")
+		end
+
+		for i = 1, BUYBACK_ITEMS_PER_PAGE do
+			if _G["MerchantItem"..i.."ItemButton"].text then
+				_G["MerchantItem"..i.."ItemButton"].text:SetText("")
+			end
+		end
+		if MerchantBuyBackItemItemButton.text then
+			MerchantBuyBackItemItemButton.text:SetText("")
+		end
+	end
+end

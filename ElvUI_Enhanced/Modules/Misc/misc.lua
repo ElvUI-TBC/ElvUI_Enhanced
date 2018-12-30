@@ -58,6 +58,7 @@ function M:Initialize()
 	self:LoadMoverTransparancy()
 	self:QuestLevelToggle()
 	self:BuyStackToggle()
+	self:MerchantItemLevel()
 	self:WorldMapBlips()
 end
 

@@ -138,7 +138,10 @@ local function GeneralOptions()
 				name = L["Merchant ItemLevel"],
 				desc = L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"],
 				get = function(info) return E.db.enhanced.general.merchantItemLevel end,
-				set = function(info, value) E.db.enhanced.general.merchantItemLevel = value end
+				set = function(info, value)
+					E.db.enhanced.general.merchantItemLevel = value
+					M:MerchantItemLevel()
+				end
 			},
 			worldMapBlips = {
 				order = 15,
