@@ -9,9 +9,15 @@ local function SelectQuestReward(index)
 	local btn = _G[("QuestRewardItem%d"):format(index)]
 
 	if btn.type == "choice" then
-		QuestRewardItemHighlight:ClearAllPoints()
-		QuestRewardItemHighlight:SetAllPoints(btn)
-		QuestRewardItemHighlight:Show()
+		if E.private.skins.blizzard.enable and E.private.skins.blizzard.quest then
+			_G[btn:GetName()]:SetBackdropBorderColor(1, 0.80, 0.10)
+			_G[btn:GetName()].backdrop:SetBackdropBorderColor(1, 0.80, 0.10)
+			_G[btn:GetName().."Name"]:SetTextColor(1, 0.80, 0.10)
+		else
+			QuestRewardItemHighlight:ClearAllPoints()
+			QuestRewardItemHighlight:Point("TOPLEFT", btn, "TOPLEFT", -8, 7)
+			QuestRewardItemHighlight:Show()
+		end
 
 		QuestFrameRewardPanel.itemChoice = btn:GetID()
 	end
