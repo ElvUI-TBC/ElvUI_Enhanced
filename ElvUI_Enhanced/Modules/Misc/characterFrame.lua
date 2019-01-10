@@ -421,12 +421,13 @@ function module:ItemLevel(statFrame, unit)
 		local r, b, g = GearScore_GetQuality(myGearScore)
 		label:SetTextColor(r, g, b)
 	else
-		local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
-		if avgItemLevelEquipped == avgItemLevel then
-			label:SetText(format("%.2f", avgItemLevelEquipped))
+		local overall, equipped = GetAverageItemLevel()
+		if overall > equipped then
+			label:SetText(format("%.1f / %.1f", equipped, overall))
 		else
-			label:SetText(format("%.2f / %.2f", avgItemLevelEquipped, avgItemLevel))
+			label:SetText(format("%.1f", equipped))
 		end
+
 		label:SetTextColor(GetItemLevelColor())
 	end
 end
