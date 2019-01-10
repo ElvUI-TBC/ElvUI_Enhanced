@@ -1,5 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local mod = E:NewModule("DeathRecap", "AceHook-3.0", "AceEvent-3.0")
+local CC = E:GetModule("ClassCache")
 
 local _G = _G
 local tonumber, strsub = tonumber, strsub
@@ -194,6 +195,15 @@ function mod:OpenRecap(recapID)
 		dmgInfo.school = evtData.school
 
 		entry.SpellInfo.Caster:SetText(dmgInfo.caster)
+
+		local class = CC:GetClassByName(dmgInfo.caster)
+		if class then
+			local textColor = CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[class] or RAID_CLASS_COLORS[class]
+			entry.SpellInfo.Caster:SetTextColor(textColor.r, textColor.g, textColor.b)
+		else
+			entry.SpellInfo.Caster:SetTextColor(0.5, 0.5, 0.5)
+		end
+
 		entry.SpellInfo.Name:SetText(spellName)
 		entry.SpellInfo.Icon:SetTexture(texture)
 

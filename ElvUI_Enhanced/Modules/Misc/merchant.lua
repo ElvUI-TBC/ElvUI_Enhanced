@@ -47,7 +47,7 @@ function M:MerchantFrame_UpdateMerchantInfo()
 		if not button.text then
 			button.text = button:CreateFontString(nil, "OVERLAY")
 			button.text:FontTemplate(E.LSM:Fetch("font", E.db.bags.itemLevelFont), E.db.bags.itemLevelFontSize, E.db.bags.itemLevelFontOutline)
-			button.text:SetPoint("BOTTOMRIGHT", 0, 3)
+			button.text:Point("BOTTOMRIGHT", 0, 3)
 		end
 
 		if index <= GetMerchantNumItems() then
@@ -69,7 +69,7 @@ function M:MerchantFrame_UpdateMerchantInfo()
 		if not MerchantBuyBackItemItemButton.text then
 			MerchantBuyBackItemItemButton.text = MerchantBuyBackItemItemButton:CreateFontString(nil, "OVERLAY")
 			MerchantBuyBackItemItemButton.text:FontTemplate(E.LSM:Fetch("font", E.db.bags.itemLevelFont), E.db.bags.itemLevelFontSize, E.db.bags.itemLevelFontOutline)
-			MerchantBuyBackItemItemButton.text:SetPoint("BOTTOMRIGHT", 0, 3)
+			MerchantBuyBackItemItemButton.text:Point("BOTTOMRIGHT", 0, 3)
 		end
 
 		if GetBuybackItemInfo(GetNumBuybackItems()) then
@@ -97,7 +97,7 @@ function M:MerchantFrame_UpdateBuybackInfo()
 		if not button.text then
 			button.text = button:CreateFontString(nil, "OVERLAY")
 			button.text:FontTemplate(E.LSM:Fetch("font", E.db.bags.itemLevelFont), E.db.bags.itemLevelFontSize, E.db.bags.itemLevelFontOutline)
-			button.text:SetPoint("BOTTOMRIGHT", 0, 3)
+			button.text:Point("BOTTOMRIGHT", 0, 3)
 		end
 
 		if i <= GetNumBuybackItems() then

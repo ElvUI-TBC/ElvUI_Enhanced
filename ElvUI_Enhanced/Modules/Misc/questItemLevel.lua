@@ -16,25 +16,15 @@ local GetRewardSpell = GetRewardSpell
 local ARMOR, ENCHSLOT_WEAPON = ARMOR, ENCHSLOT_WEAPON
 
 function M:QuestFrameItems_Update(questState)
-	local numQuestRewards, numQuestChoices
-	local numQuestSpellRewards = 0
-
-	if questState == "QuestLog" then
-		numQuestRewards, numQuestChoices = GetNumQuestLogRewards(), GetNumQuestLogChoices()
-		if GetQuestLogRewardSpell() then numQuestSpellRewards = 1 end
-	else
-		numQuestRewards, numQuestChoices = GetNumQuestRewards(), GetNumQuestChoices()
-		if GetRewardSpell() then numQuestSpellRewards = 1 end
-	end
-	local rewardsCount = numQuestChoices + numQuestRewards + numQuestSpellRewards
+	local numQuestRewards = questState == "QuestLog" and GetNumQuestLogRewards() or GetNumQuestRewards()
+	local numQuestChoices = questState == "QuestLog" and GetNumQuestLogChoices() or GetNumQuestChoices()
+	local numQuestSpellRewards = questState == "QuestLog" and GetQuestLogRewardSpell() or GetRewardSpell()
+	local rewardsCount = numQuestChoices + numQuestRewards + (numQuestSpellRewards and 1 or 0)
 
 	if rewardsCount > 0 then
-		local item, icon, link
-		local _, quality, itemlevel, itemType
-
 		for i = 1, rewardsCount do
-			item = _G[questState.."Item"..i]
-			icon = _G[questState.."Item"..i.."IconTexture"]
+			local item = _G[questState.."Item"..i]
+			local icon = _G[questState.."Item"..i.."IconTexture"]
 
 			if not item.text then
 				item.text = item:CreateFontString(nil, "OVERLAY")
@@ -47,10 +37,10 @@ function M:QuestFrameItems_Update(questState)
 			end
 			item.text:SetText("")
 
-			link = item.type and (questState == "QuestLog" and GetQuestLogItemLink or GetQuestItemLink)(item.type, item:GetID())
+			local link = item.type and (questState == "QuestLog" and GetQuestLogItemLink or GetQuestItemLink)(item.type, item:GetID())
 
 			if link then
-				_, _, quality, itemlevel, _, itemType = GetItemInfo(link)
+				local _, _, quality, itemlevel, _, itemType = GetItemInfo(link)
 
 				if (itemlevel and itemlevel > 1) and quality and (itemType == ENCHSLOT_WEAPON or itemType == ARMOR) then
 					item.text:SetText(itemlevel)
