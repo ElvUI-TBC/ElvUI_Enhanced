@@ -35,6 +35,7 @@ P.enhanced = {
 		questItemLevel = false,
 		selectQuestReward = false,
 		declineduel = false,
+		declineParty = false,
 		hideZoneText = false,
 		originalCloseButton = false,
 		trainAllButton = false,

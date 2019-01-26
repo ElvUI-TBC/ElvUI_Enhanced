@@ -83,11 +83,6 @@ L["Killing blow at %s%% health."] = "Todesstoß bei %s%% Gesundheit."
 L["Recap"] = "Zusammenfassung"
 L["You died."] = "Du bist gestorben."
 
--- Decline Duels
-L["Auto decline all duels"] = "Auto-Ablehnen von allen Duellen"
-L["Decline Duel"] = "Duell ablehnen"
-L["Declined duel request from "] = "Duellaufforderung abgelehnt von "
-
 -- Error Frame
 L["Error Frame"] = true
 L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
@@ -101,9 +96,15 @@ L["Already Known"] = true
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Ändere automatisch die beobachtete Fraktion auf der Erfahrungsleiste zu der Fraktion für die Sie grade Rufpunkte erhalten haben."
 L["Automatically release body when killed inside a battleground."] = "Gibt automatisch Ihren Geist frei, wenn Sie auf dem Schlachtfeld getötet wurden."
 L["Automatically select the quest reward with the highest vendor sell value."] = "Wählt automatisch die Questbelohnung mit dem höchsten Wiederverkaufswert beim Händler"
+L["Auto decline all duels"] = "Auto-Ablehnen von allen Duellen"
+L["Auto decline party invites"] = true
 L["Changes the transparency of all the movers."] = "Ändere die Transparenz aller Ankerpukte"
 L["Colorize the WorldMap party/raid icons with class colors"] = true
-L["Colorizes recipes, mounts & pets that are already known"] = "Rezepte, Reittiere und Begleiter einfärben, die bereits bekannt sind"
+L["Colorizes recipes that are already known"] = true
+L["Decline Duel"] = "Duell ablehnen"
+L["Decline Party"] = true
+L["Declined duel request from "] = "Duellaufforderung abgelehnt von "
+L["Declined party request from "] = true
 L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = "Zeigt das ItemLevel bei den Händlern an, um die Schriftart zu ändern, musst du sie in ElvUI - Taschen - ItemLevel ändern."
 L["Display the item level on the Quest frames, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = true
 L["Display quest levels at Quest Log."] = "Questlevel im Questlog anzeigen."

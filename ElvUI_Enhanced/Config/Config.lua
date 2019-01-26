@@ -64,15 +64,23 @@ local function GeneralOptions()
 				get = function(info) return E.db.enhanced.general.declineduel end,
 				set = function(info, value) E.db.enhanced.general.declineduel = value M:DeclineDuel() end
 			},
-			hideZoneText = {
+			declineParty = {
 				order = 7,
+				type = "toggle",
+				name = L["Decline Party"],
+				desc = L["Auto decline party invites"],
+				get = function(info) return E.db.enhanced.general.declineParty end,
+				set = function(info, value) E.db.enhanced.general.declineParty = value M:DeclineParty() end
+			},
+			hideZoneText = {
+				order = 8,
 				type = "toggle",
 				name = L["Hide Zone Text"],
 				get = function(info) return E.db.enhanced.general.hideZoneText end,
 				set = function(info, value) E.db.enhanced.general.hideZoneText = value M:HideZone() end
 			},
 			originalCloseButton = {
-				order = 8,
+				order = 9,
 				type = "toggle",
 				name = L["Original Close Button"],
 				get = function(info) return E.db.enhanced.general.originalCloseButton end,
@@ -82,7 +90,7 @@ local function GeneralOptions()
 				end
 			},
 			trainAllButton = {
-				order = 9,
+				order = 10,
 				type = "toggle",
 				name = L["Train All Button"],
 				desc = L["Add button to Trainer frame with ability to train all available skills in one click."],
@@ -93,7 +101,7 @@ local function GeneralOptions()
 				end
 			},
 			undressButton = {
-				order = 10,
+				order = 11,
 				type = "toggle",
 				name = L["Undress Button"],
 				desc = L["Add button to Dressing Room frame with ability to undress model."],
@@ -104,17 +112,17 @@ local function GeneralOptions()
 				end
 			},
 			model = {
-				order = 11,
+				order = 12,
 				type = "toggle",
 				name = L["Model Frames"],
 				get = function(info) return E.private.enhanced.model.enable end,
 				set = function(info, value) E.private.enhanced.model.enable = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
 			alreadyKnown = {
-				order = 12,
+				order = 13,
 				type = "toggle",
 				name = L["Already Known"],
-				desc = L["Change color of item icons which already known."],
+				desc = L["Colorizes recipes that are already known"] = true,
 				get = function(info) return E.db.enhanced.general.alreadyKnown end,
 				set = function(info, value)
 					E.db.enhanced.general.alreadyKnown = value
@@ -122,7 +130,7 @@ local function GeneralOptions()
 				end
 			},
 			altBuyMaxStack = {
-				order = 13,
+				order = 14,
 				type = "toggle",
 				name = L["Alt-Click Merchant"],
 				desc = L["Holding Alt key while buying something from vendor will now buy an entire stack."],
@@ -133,7 +141,7 @@ local function GeneralOptions()
 				end
 			},
 			merchantItemLevel = {
-				order = 14,
+				order = 15,
 				type = "toggle",
 				name = L["Merchant ItemLevel"],
 				desc = L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"],
@@ -144,7 +152,7 @@ local function GeneralOptions()
 				end
 			},
 			questItemLevel = {
-				order = 15,
+				order = 16,
 				type = "toggle",
 				name = L["Quest ItemLevel"],
 				desc = L["Display the item level on the Quest frames, to change the font you have to set it in ElvUI - Bags - ItemLevel"],
@@ -156,7 +164,7 @@ local function GeneralOptions()
 				end
 			},
 			worldMapBlips = {
-				order = 16,
+				order = 17,
 				type = "toggle",
 				name = L["WorldMap Blips"],
 				desc = L["Colorize the WorldMap party/raid icons with class colors"],
@@ -164,7 +172,7 @@ local function GeneralOptions()
 				set = function(info, value) E.db.enhanced.general.worldMapBlips = value E:StaticPopup_Show("PRIVATE_RL") end
 			},
 			moverTransparancy = {
-				order = 17,
+				order = 18,
 				type = "range",
 				isPercent = true,
 				name = L["Mover Transparency"],

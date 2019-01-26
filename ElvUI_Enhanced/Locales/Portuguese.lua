@@ -83,11 +83,6 @@ L["Killing blow at %s%% health."] = true
 L["Recap"] = true
 L["You died."] = true
 
--- Decline Duels
-L["Auto decline all duels"] = true
-L["Decline Duel"] = true
-L["Declined duel request from "] = true
-
 -- Error Frame
 L["Error Frame"] = true
 L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
@@ -101,9 +96,15 @@ L["Already Known"] = true
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "Mudar automaticamente a facção controlada para a facção na qual acabou de ganhar pontos de reputação."
 L["Automatically release body when killed inside a battleground."] = "Automaticamente libertar o corpo quando morto num campo de batalha."
 L["Automatically select the quest reward with the highest vendor sell value."] = true
+L["Auto decline all duels"] = true
+L["Auto decline party invites"] = true
 L["Changes the transparency of all the movers."] = true
 L["Colorize the WorldMap party/raid icons with class colors"] = true
-L["Colorizes recipes, mounts & pets that are already known"] = true
+L["Colorizes recipes that are already known"] = true
+L["Decline Duel"] = true
+L["Decline Party"] = true
+L["Declined duel request from "] = true
+L["Declined party request from "] = true
 L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = true
 L["Display the item level on the Quest frames, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = true
 L["Display quest levels at Quest Log."] = true

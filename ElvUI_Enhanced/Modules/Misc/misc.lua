@@ -39,6 +39,20 @@ function M:DeclineDuel()
 	end
 end
 
+function M:PARTY_INVITE_REQUEST(_, name)
+	StaticPopup_Hide("PARTY_INVITE")
+	DeclineGroup()
+	E:Print(L["Declined party request from "]..name..".")
+end
+
+function M:DeclineParty()
+	if E.db.enhanced.general.declineParty then
+		self:RegisterEvent("PARTY_INVITE_REQUEST")
+	else
+		self:UnregisterEvent("PARTY_INVITE_REQUEST")
+	end
+end
+
 function M:HideZone()
 	if E.db.enhanced.general.hideZoneText then
 		ZoneTextFrame:UnregisterAllEvents()
@@ -61,6 +75,7 @@ function M:Initialize()
 	self:BuyStackToggle()
 	self:MerchantItemLevel()
 	self:WorldMapBlips()
+	self:DeclineParty()
 end
 
 local function InitializeCallback()

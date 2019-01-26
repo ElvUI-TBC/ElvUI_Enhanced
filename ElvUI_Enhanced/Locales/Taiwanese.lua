@@ -83,11 +83,6 @@ L["Killing blow at %s%% health."] = true
 L["Recap"] = true
 L["You died."] = true
 
--- Decline Duels
-L["Auto decline all duels"] = "自動拒絕決鬥請求"
-L["Decline Duel"] = true
-L["Declined duel request from "] = "已拒絕決鬥請求自"
-
 -- Error Frame
 L["Error Frame"] = true
 L["Set the width of Error Frame. Too narrow frame may cause messages to be split in several lines"] = true
@@ -101,9 +96,15 @@ L["Already Known"] = true
 L["Automatically change your watched faction on the reputation bar to the faction you got reputation points for."] = "當你獲得某個陣營的聲望時, 將自動追蹤此陣營的聲望至經驗值欄位."
 L["Automatically release body when killed inside a battleground."] = "在戰場死亡後自動釋放靈魂."
 L["Automatically select the quest reward with the highest vendor sell value."] = "自動選取有最高賣價的任務獎勵物品"
+L["Auto decline all duels"] = "自動拒絕決鬥請求"
+L["Auto decline party invites"] = true
 L["Changes the transparency of all the movers."] = "改變所有定位器的透明度"
 L["Colorize the WorldMap party/raid icons with class colors"] = true
-L["Colorizes recipes, mounts & pets that are already known"] = true
+L["Colorizes recipes that are already known"] = true
+L["Decline Duel"] = true
+L["Decline Party"] = true
+L["Declined duel request from "] = "已拒絕決鬥請求自"
+L["Declined party request from "] = true
 L["Display the item level on the MerchantFrame, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = true
 L["Display the item level on the Quest frames, to change the font you have to set it in ElvUI - Bags - ItemLevel"] = true
 L["Display quest levels at Quest Log."] = true
