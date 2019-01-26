@@ -122,7 +122,7 @@ local function GeneralOptions()
 				order = 13,
 				type = "toggle",
 				name = L["Already Known"],
-				desc = L["Colorizes recipes that are already known"] = true,
+				desc = L["Colorizes recipes that are already known"],
 				get = function(info) return E.db.enhanced.general.alreadyKnown end,
 				set = function(info, value)
 					E.db.enhanced.general.alreadyKnown = value
